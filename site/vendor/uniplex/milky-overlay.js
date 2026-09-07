@@ -1,9 +1,14 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01&pages=20260907-025-2";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-025-2";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260907-025-2";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13&pages=20260907-025-2";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260907-025-2";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260907-025-2";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01&pages=20260907-service-base";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-service-base";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260907-service-base";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13&pages=20260907-service-base";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260907-service-base";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260907-service-base";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260907-service-base";
+
+const pageRouteId = document.body.dataset.pageRouteId || "concept";
+const currentPath = sharedRouteRegistry[pageRouteId]?.path || sharedRouteRegistry.concept.path;
+const videoEnabled = pageRouteId === "concept";
 
 const pointVideo = document.querySelector(".home-point-ingredient__vi video");
 if (pointVideo) {
@@ -36,19 +41,21 @@ document.querySelectorAll("[data-concept-portrait]").forEach((slot) => {
   slot.innerHTML = conceptFirstViewImage(slot.dataset.conceptPortrait);
 });
 
-mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"), "/concept/");
+mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"), currentPath);
 bindSharedConceptMenu(document);
 
-const sharedBottomScope = mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"), "/concept/");
+const sharedBottomScope = mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"), currentPath);
 const scrollCue = mountSharedScrollCue(document.querySelector(".l-main-img__inner"), {
   target: "#concept",
-  ariaLabel: "コンセプトセクションへ移動",
+  ariaLabel: pageRouteId === "service" ? "サービス内容へ移動" : "コンセプトセクションへ移動",
 });
 const fvTrigger = document.querySelector(".js-home-mv-trigger");
 const pointSection = document.querySelector("#point");
 const kaleidoscopeStage = document.querySelector(".milky-kaleidoscope-stage");
-if (kaleidoscopeStage instanceof HTMLElement) kaleidoscopeStage.innerHTML = milkyKaleidoscopeVideoMarkup();
-const disposeKaleidoscopeVideo = bindMilkyKaleidoscopeVideo(kaleidoscopeStage, { endElement: pointSection });
+if (videoEnabled && kaleidoscopeStage instanceof HTMLElement) kaleidoscopeStage.innerHTML = milkyKaleidoscopeVideoMarkup();
+const disposeKaleidoscopeVideo = videoEnabled
+  ? bindMilkyKaleidoscopeVideo(kaleidoscopeStage, { endElement: pointSection })
+  : () => {};
 
 const hero = document.querySelector(".js-home-mv");
 const heroImages = [...document.querySelectorAll(".js-home-mv-img")];

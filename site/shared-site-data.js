@@ -1,7 +1,7 @@
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
-  service: Object.freeze({ path: "/milky-veil-preview/service/", label: "SERVICE" }),
+  service: Object.freeze({ path: "/milky-veil-preview/service/", label: "SERVICE", navigationMode: "document" }),
   staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF" }),
   menu: Object.freeze({ path: "/milky-veil-preview/menu/", label: "MENU" }),
   items: Object.freeze({ path: "/milky-veil-preview/items/", label: "ITEMS" }),

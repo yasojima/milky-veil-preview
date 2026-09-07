@@ -1,12 +1,12 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260907-025-2";
-import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260907-025-2";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-025-2";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260907-025-2";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=20260907-025-2";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260907-025-2";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260907-025-2";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260907-025-2";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260907-025-2";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260907-service-base";
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260907-service-base";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-service-base";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260907-service-base";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=20260907-service-base";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260907-service-base";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260907-service-base";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260907-service-base";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260907-service-base";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -709,18 +709,6 @@ function conceptPage() {
   </main>`;
 }
 
-function servicePage() {
-  const cells = ["BLEACH","EXTENSION","PERM","LOW DAMAGE","FACE FRAME","SOFT WAVE","FADE PLAN","VOLUME","GLOSS"];
-  return `<main id="main" class="subpage subpage-service">${routeBreadcrumb("service")}
-    <section class="service-lab">
-      <header class="service-lab-intro mv-reveal"><small>TECHNIQUE LAB</small><h1>色 × 長さ × 質感</h1><p>ひとつの技術で答えを出さず<br>三つの軸の交点から施術を組み立てる</p></header>
-      <div class="service-lab-matrix" role="group" aria-label="技術の組み合わせ"><span></span><b>COLOR</b><b>LENGTH</b><b>TEXTURE</b>${cells.map((cell,index)=>`<button type="button" data-lab-cell="${index}">${cell}</button>`).join("")}</div>
-      <div class="service-lab-result"><small>SELECTED COMBINATION</small><strong data-lab-result>LAVENDER VEIL + 20 PIECES + SOFT BEND</strong></div>
-    </section>
-    <section class="service-evidence"><header><small>FROM THE FLOOR</small><h2>技術名の前に<br>見ているもの</h2></header><div>${subpageImageSlot("COLOR / LIGHT","窓際で髪色を確認する場面")}${subpageImageSlot("LENGTH / LINE","エクステの長さと輪郭を確認する場面")}${subpageImageSlot("TEXTURE / TOUCH","手触りと動きを確認する場面")}</div></section>
-  </main>`;
-}
-
 function staffPage() {
   const positions = ["p1","p2","p3","p4","p5","p6"];
   return `<main id="main" class="subpage subpage-staff">${routeBreadcrumb("staff")}
@@ -934,7 +922,6 @@ function renderPage(path) {
   const key = routeRegistry[routeId].label;
   if (normalized === "/milky-veil-preview/") return home();
   if (key === "CONCEPT") return conceptPage();
-  if (key === "SERVICE") return servicePage();
   if (key === "STAFF") return staffPage();
   if (key === "MENU") return menuPage();
   if (key === "ITEMS") return itemsPage();
@@ -1151,11 +1138,6 @@ function bindSubpageMotion() {
     reducedMotion.addEventListener("change", requestMotion);
     requestMotion();
   }
-  document.querySelectorAll("[data-lab-cell]").forEach((button) => button.addEventListener("click", () => {
-    document.querySelectorAll("[data-lab-cell]").forEach((candidate) => candidate.classList.toggle("is-selected", candidate === button));
-    const output = document.querySelector("[data-lab-result]");
-    if (output) output.textContent = `${button.textContent}を起点に髪の履歴と仕上がりを組み立てます`;
-  }));
   document.querySelectorAll("[data-menu-range]").forEach((button) => button.addEventListener("click", () => {
     document.querySelectorAll("[data-menu-range]").forEach((candidate) => candidate.classList.toggle("is-selected", candidate === button));
     const output = document.querySelector("[data-menu-range-result]");
