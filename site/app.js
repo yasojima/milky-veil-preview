@@ -1,12 +1,12 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260908-service-exact-concept-copy";
-import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260908-service-exact-concept-copy";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260908-service-exact-concept-copy";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260908-service-exact-concept-copy";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=20260908-service-exact-concept-copy";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260908-service-exact-concept-copy";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260908-service-exact-concept-copy";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260908-service-exact-concept-copy";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260908-service-exact-concept-copy";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=2026090802";
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=2026090802";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=2026090802";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=2026090802";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=2026090802";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=2026090802";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=2026090802";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=2026090802";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=2026090802";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
