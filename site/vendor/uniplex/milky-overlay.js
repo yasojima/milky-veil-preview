@@ -1,9 +1,9 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01&pages=20260907-025-2";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-025-2";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260907-025-2";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13&pages=20260907-025-2";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260907-025-2";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260907-025-2";
 
 const pointVideo = document.querySelector(".home-point-ingredient__vi video");
 if (pointVideo) {
