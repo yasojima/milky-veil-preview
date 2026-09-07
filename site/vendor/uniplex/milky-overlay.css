@@ -366,7 +366,7 @@ body[data-page-route-id="service"] .service-menu-stage__inner {
   bottom: auto;
   display: flex;
   justify-content: center;
-  padding: clamp(72px, 8vw, 120px) clamp(20px, 5vw, 72px) clamp(88px, 10vw, 150px);
+  padding: clamp(72px, 8vw, 120px) clamp(20px, 5vw, 72px) 0;
 }
 
 body[data-page-route-id="service"] .service-menu-artwork {
@@ -399,7 +399,7 @@ body[data-page-route-id="service"] .service-menu-artwork img {
   }
 
   body[data-page-route-id="service"] .service-menu-stage__inner {
-    padding: 56px 14px 82px;
+    padding: 56px 14px 0;
   }
 
   body[data-page-route-id="service"] .service-menu-artwork {
