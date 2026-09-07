@@ -339,34 +339,15 @@ body#home,
 }
 
 body[data-page-route-id="service"] .service-menu-stage {
-  margin-bottom: 0;
+  margin: 0;
+  padding: clamp(72px, 8vw, 120px) 0 clamp(88px, 10vw, 150px);
   background: #fff6fa;
 }
 
-body[data-page-route-id="service"] > #shared-bottom-ui-root {
-  position: relative;
-  z-index: 2;
-}
-
-body[data-page-route-id="service"] .service-menu-stage__bg {
-  bottom: 0;
-  background: linear-gradient(180deg, transparent 0%, transparent 58%, rgba(255, 246, 250, .72) 78%, #fff6fa 100%);
-}
-
-body[data-page-route-id="service"] .service-menu-stage__bg .home-concept__bg-in {
-  transition: opacity .75s ease;
-}
-
-body[data-page-route-id="service"] .service-menu-stage__content {
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 246, 250, .88) 14%, #fff6fa 30%);
-}
-
 body[data-page-route-id="service"] .service-menu-stage__inner {
-  position: relative;
-  bottom: auto;
   display: flex;
   justify-content: center;
-  padding: clamp(72px, 8vw, 120px) clamp(20px, 5vw, 72px) 0;
+  padding: 0 clamp(20px, 5vw, 72px);
 }
 
 body[data-page-route-id="service"] .service-menu-artwork {
@@ -391,15 +372,11 @@ body[data-page-route-id="service"] .service-menu-artwork img {
 
 @media (width < 768px) {
   body[data-page-route-id="service"] .service-menu-stage {
-    padding-top: 110svh;
-  }
-
-  body[data-page-route-id="service"] .service-menu-stage__content::before {
-    height: 72svh;
+    padding: 56px 0 82px;
   }
 
   body[data-page-route-id="service"] .service-menu-stage__inner {
-    padding: 56px 14px 0;
+    padding: 0 14px;
   }
 
   body[data-page-route-id="service"] .service-menu-artwork {
