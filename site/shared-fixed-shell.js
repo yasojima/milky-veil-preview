@@ -22,7 +22,7 @@ export function sharedFixedCtaMarkup() {
         <span class="cta-hours">${sharedFixedShellData.hours.join(" / ")}</span>
       </div>
       <div class="fixed-cta-actions">
-        <a class="fixed-cta-action" href="/contact/" data-link>お問い合わせはこちら</a>
+        <a class="fixed-cta-action" href="/milky-veil-preview/contact/" data-link>お問い合わせはこちら</a>
         <button class="fixed-cta-action" type="button" data-demo-reserve>ご予約はこちら</button>
       </div>
       <div class="page-top-cell">
