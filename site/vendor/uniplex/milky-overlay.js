@@ -1,10 +1,10 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01&pages=20260907-service-fv-video";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01&pages=20260907-service-fv-video";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260907-service-fv-video";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13&pages=20260907-service-fv-video";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260907-service-fv-video";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260907-service-fv-video";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260907-service-fv-video";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260907-01&pages=20260908-service-marquee";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260904-01&pages=20260908-service-marquee";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260908-service-marquee";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260907-13&pages=20260908-service-marquee";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260908-service-marquee";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260908-service-marquee";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260908-service-marquee";
 
 const pageRouteId = document.body.dataset.pageRouteId || "concept";
 const currentPath = sharedRouteRegistry[pageRouteId]?.path || sharedRouteRegistry.concept.path;
