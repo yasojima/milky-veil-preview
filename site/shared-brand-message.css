@@ -1,0 +1,78 @@
+.shared-brand-message {
+  display: flex;
+  box-sizing: border-box;
+  height: 750px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(28px, 5vw, 72px);
+  background: #fff6fa;
+  color: #172133;
+  font-family: "MV Shared Noto Sans JP", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: normal;
+  line-height: 1.9;
+  text-align: center;
+  text-rendering: auto;
+  -webkit-font-smoothing: auto;
+  -webkit-text-size-adjust: auto;
+}
+
+.shared-brand-message-copy {
+  width: max-content;
+  max-width: 100%;
+}
+
+.shared-brand-message-copy > small {
+  display: block;
+  margin: 0 0 20px;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .25em;
+  line-height: 1.9;
+  text-align: left;
+  transform: translateY(50%);
+}
+
+.shared-brand-message-copy > p {
+  margin: 0;
+  font: 400 clamp(57px, 11vw, 159px) / 1.02 "MV Shared Playfair Display", "Times New Roman", serif;
+  letter-spacing: normal;
+  line-break: auto;
+  overflow-wrap: normal;
+  text-align: left;
+  text-rendering: auto;
+  word-break: normal;
+  -webkit-font-smoothing: auto;
+  -webkit-line-break: auto;
+}
+
+.shared-brand-message-copy > span {
+  display: block;
+  margin-top: 32px;
+  font: 400 19.5px / 1.9 "MV Shared Noto Serif JP", serif;
+  letter-spacing: .16em;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .shared-brand-message {
+    height: 620px;
+    padding-inline: 22px;
+  }
+
+  .shared-brand-message-copy > p {
+    font-size: 54px;
+    line-height: 1.05;
+  }
+
+  .shared-brand-message-copy > small {
+    margin-bottom: 14px;
+    font-size: 8px;
+  }
+
+  .shared-brand-message-copy > span {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,109 @@
+.shared-footer-ticker {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 41px 0 0;
+  padding: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  background: transparent;
+}
+
+.shared-footer-ticker .content_wrapper {
+  padding: 0;
+}
+
+.shared-footer-ticker .heading.block_header_4 {
+  padding-top: 10px;
+}
+
+.shared-footer-ticker .heading.block_header_4 .h {
+  margin: 0 0 -2.4%;
+  padding: 0 30px;
+  color: #970200;
+  font-family: "Rosarivo", "Cardo", "Noto Serif JP", "Yu Mincho", serif;
+  font-size: 120px !important;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  transform: translateY(-0.26em);
+  white-space: nowrap;
+}
+
+.shared-footer-ticker .wrapper_item {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.shared-footer-ticker .inner_item {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0;
+  overflow: visible;
+}
+
+.shared-footer-ticker .inner_item:nth-of-type(odd) {
+  animation: loop 80s -40s linear infinite;
+}
+
+.shared-footer-ticker .inner_item:nth-of-type(even) {
+  animation: loop2 80s linear infinite;
+}
+
+.shared-footer-ticker-rule {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 100px;
+  background: transparent;
+}
+
+.shared-footer-ticker-rule hr {
+  display: block;
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+  height: 1px;
+  margin: 0 auto;
+  border: 0;
+  border-bottom: 1px solid #000;
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes loop2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .shared-footer-ticker {
+    margin-top: 22px;
+  }
+
+  .shared-footer-ticker .heading.block_header_4 .h {
+    font-size: 80px !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .shared-footer-ticker .heading.block_header_4 .h {
+    font-size: 77.5757px !important;
+  }
+}

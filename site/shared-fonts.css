@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "MV Shared Noto Sans JP";
+  src: url("/milky-veil-preview/assets/fonts/shared-ui/noto-sans-jp-shared.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "MV Shared DM Sans";
+  src: url("/milky-veil-preview/assets/fonts/shared-ui/dm-sans-shared.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500 600;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "MV Shared Noto Serif JP";
+  src: url("/milky-veil-preview/assets/fonts/shared-ui/noto-serif-jp-shared.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "MV Shared Playfair Display";
+  src: url("/milky-veil-preview/assets/fonts/shared-ui/playfair-display-shared.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Rosarivo";
+  src: url("/milky-veil-preview/assets/fonts/shared-ui/rosarivo-shared.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}

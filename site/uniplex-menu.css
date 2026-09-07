@@ -1,0 +1,171 @@
+:root {
+  --mh--font-family--en: "Marcellus", sans-serif;
+  --mh--font-size--x3s: 1.1rem;
+  --mh--font-size--x2l: 1.8rem;
+  --mh--font-size--x5l: 2.3rem;
+  --mh--header--height: 50px;
+  --mh--space--md: 40px;
+  --mh--easing: ease;
+  --mh--duration: 0.3s;
+  --mh--line-height--none: 1;
+  --mh--line-height--sm: 1.4;
+  --mh--letter-spacing--none: 0;
+}
+
+@media (width >= 768px) {
+  :root {
+    --breakpoint: 1920;
+    --mh--font-size--x2l: calc(100vw * 26 / var(--breakpoint));
+    --mh--font-size--x5l: calc(100vw * 36 / var(--breakpoint));
+    --mh--header--height: 130px;
+    --mh--space--md: 80px;
+  }
+}
+
+@media (width >= 1920px) {
+  :root {
+    --mh--font-size--x2l: 2.6rem;
+    --mh--font-size--x5l: 3.6rem;
+  }
+}
+
+/* UNIPLEX source: style.css lines 4524-4662. Only the shared trigger
+   position, white surface, dark ink, and pale-pink hover are overridden. */
+.l-nav-btn {
+  position: fixed;
+  top: var(--shared-menu-anchor-y);
+  right: var(--shared-menu-anchor-right);
+  z-index: 141;
+  display: block;
+  width: auto;
+  padding: 0;
+  color: #111b2f;
+  mix-blend-mode: normal;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--mh--font-size--x3s);
+  transform: translateY(-50%);
+  transition: opacity var(--mh--duration) var(--mh--easing);
+}
+
+.shared-concept-menu {
+  position: relative;
+  z-index: 142;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto;
+}
+
+.shared-concept-menu .l-nav-btn {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.l-nav-btn__txt {
+  display: block;
+  line-height: var(--mh--line-height--sm);
+  text-align: center;
+}
+
+@media (width >= 768px) {
+  .l-nav-btn {
+    font-size: var(--mh--font-size--x2l);
+  }
+}
+
+.l-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 140;
+  width: 100%;
+  min-width: 320px;
+  height: 100lvh;
+  padding: calc(40px + var(--mh--header--height)) var(--mh--space--md) calc(80px + env(safe-area-inset-bottom));
+  overscroll-behavior-y: none;
+  background-color: #fff;
+  color: #10182d;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+  transform: translateX(120%);
+  transition: transform var(--mh--duration) var(--mh--easing);
+}
+
+.l-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.l-nav.is-open {
+  transform: translateX(0);
+}
+
+@media (width >= 768px) {
+  .l-nav {
+    max-width: 900px;
+    padding: calc(30px + var(--mh--header--height)) 4.6875%;
+    display: grid;
+    align-items: center;
+  }
+}
+
+.l-nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--mh--font-size--x5l);
+}
+
+.l-nav-list__item {
+  border-bottom: 1px solid rgba(16, 24, 45, 0.3);
+  padding-block: 5px;
+}
+
+.l-nav-list__item-link {
+  position: relative;
+  display: block;
+  padding: 20px 0 15px 0;
+  border: 0;
+}
+
+@media (width >= 768px) {
+  .l-nav-list__item {
+    padding-block: 20px;
+  }
+
+  .l-nav-list__item-link {
+    padding: 20px 0 20px 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .l-nav-list__item-link {
+    transition: color var(--mh--duration) var(--mh--easing);
+  }
+
+  .l-nav-list__item-link:hover {
+    color: #f7cfdf;
+  }
+}
+
+.l-nav-list__item-link:focus-visible {
+  color: #f7cfdf;
+  outline: 1px auto #101010;
+  outline-offset: 0;
+}
+
+.l-nav-list__item-link[aria-current="page"] {
+  color: #ce7fa5;
+}
+
+.u-font-en {
+  font-family: var(--mh--font-family--en);
+  font-weight: 400;
+  line-height: var(--mh--line-height--none);
+  letter-spacing: var(--mh--letter-spacing--none);
+}
+
+.u-uppercase {
+  text-transform: uppercase;
+}

@@ -1,0 +1,85 @@
+.shared-scroll-cue {
+  position: absolute;
+  z-index: 899;
+  right: var(--shared-scroll-right);
+  bottom: var(--shared-scroll-home-bottom);
+  width: var(--shared-scroll-width);
+  height: var(--shared-scroll-height);
+  color: #fff;
+  opacity: 1;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+.shared-scroll-cue.is-hidden {
+  opacity: 0;
+}
+
+.shared-scroll-cue__link {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 1px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 0 100px;
+  color: inherit;
+  font: 700 10px/1px "Noto Serif JP", serif;
+  letter-spacing: 10px;
+  text-decoration: none;
+  text-orientation: mixed;
+  writing-mode: vertical-lr;
+  white-space: nowrap;
+  text-shadow: 0 1px 5px rgba(17,27,47,.48);
+  pointer-events: auto;
+}
+
+.shared-scroll-cue__line {
+  position: absolute;
+  left: 1px;
+  top: calc(var(--shared-scroll-height) - 72px);
+  display: block;
+  width: 1px;
+  height: calc(72px + var(--shared-scroll-line-extension));
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, #f2c7dc 100%);
+  box-shadow: 0 0 1px rgba(100,49,78,.22);
+  transition: opacity .25s;
+  pointer-events: none;
+}
+
+.shared-scroll-cue__link:hover + .shared-scroll-cue__line,
+.shared-scroll-cue__link:focus-visible + .shared-scroll-cue__line {
+  opacity: .68;
+}
+
+@media (max-width: 900px) {
+  .shared-scroll-cue {
+    z-index: 899;
+    right: var(--shared-scroll-right);
+    bottom: var(--shared-scroll-home-bottom);
+    display: flex;
+    width: var(--shared-scroll-width);
+    height: var(--shared-scroll-height);
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: column;
+  }
+
+  .shared-scroll-cue__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: auto;
+    padding: 0;
+  }
+
+  .shared-scroll-cue__line {
+    position: absolute;
+    top: calc(var(--shared-scroll-height) - 78px);
+    left: 4.5px;
+    width: 1px;
+    height: calc(78px + var(--shared-scroll-line-extension));
+    margin: 0;
+  }
+}

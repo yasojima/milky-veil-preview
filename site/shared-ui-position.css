@@ -1,0 +1,32 @@
+:root {
+  --shared-menu-anchor-right: clamp(28px, 2.4vw, 34px);
+  --shared-menu-anchor-y: calc(clamp(32px, 2.6vw, 37px) + 24px);
+  --shared-scroll-right: 35px;
+  --shared-scroll-width: 3px;
+  --shared-scroll-height: 288px;
+  --shared-scroll-home-bottom: 60px;
+  --shared-scroll-line-extension: 60px;
+}
+
+@media (min-width: 901px) and (max-width: 1300px) {
+  :root {
+    --shared-scroll-home-bottom: 110px;
+    --shared-scroll-line-extension: 110px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --shared-menu-anchor-right: 30px;
+    --shared-menu-anchor-y: 58.5px;
+    --shared-scroll-right: 0px;
+    --shared-scroll-width: 45px;
+    --shared-scroll-height: 266px;
+    --shared-scroll-home-bottom: max(0px, calc(100% - (100svh - 68px)));
+    --shared-scroll-line-extension: 0px;
+  }
+
+  .l-main-img__inner > .shared-scroll-cue {
+    --shared-scroll-line-extension: 68px;
+  }
+}

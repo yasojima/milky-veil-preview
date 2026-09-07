@@ -1,0 +1,84 @@
+export const MILKY_KALEIDOSCOPE_VIDEO = Object.freeze({
+  videoSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-adopted.mp4",
+  posterSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png",
+});
+
+export function milkyKaleidoscopeVideoMarkup() {
+  return `<div class="milky-kaleidoscope-media">
+    <img class="milky-kaleidoscope-poster" src="${MILKY_KALEIDOSCOPE_VIDEO.posterSrc}" alt="" decoding="async" />
+    <video class="milky-kaleidoscope-video" src="${MILKY_KALEIDOSCOPE_VIDEO.videoSrc}" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>
+  </div>`;
+}
+
+export function bindMilkyKaleidoscopeVideo(stage, { endElement } = {}) {
+  if (!(stage instanceof HTMLElement)) return () => {};
+  const video = stage.querySelector(".milky-kaleidoscope-video");
+  if (!(video instanceof HTMLVideoElement)) return () => {};
+
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  let frameId = 0;
+  let disposed = false;
+
+  video.muted = true;
+  video.defaultMuted = true;
+
+  const markReady = () => stage.classList.add("is-video-ready");
+  const markError = () => stage.classList.add("is-video-fallback");
+  const endPosition = () => endElement instanceof HTMLElement
+    ? endElement.getBoundingClientRect().top + scrollY
+    : Number.POSITIVE_INFINITY;
+
+  const play = () => {
+    if (reducedMotion.matches || disposed) return;
+    const playback = video.play();
+    playback?.catch(() => stage.classList.add("is-video-awaiting-gesture"));
+  };
+
+  const render = () => {
+    frameId = 0;
+    if (disposed) return;
+    const ended = scrollY >= endPosition();
+    stage.classList.toggle("is-end", ended);
+    if (ended || reducedMotion.matches || document.hidden) {
+      video.pause();
+      return;
+    }
+    play();
+  };
+
+  const requestRender = () => {
+    if (frameId || disposed) return;
+    frameId = requestAnimationFrame(render);
+  };
+
+  const retryPlayback = () => {
+    stage.classList.remove("is-video-awaiting-gesture");
+    play();
+  };
+
+  video.addEventListener("loadeddata", markReady);
+  video.addEventListener("canplay", markReady);
+  video.addEventListener("error", markError);
+  addEventListener("scroll", requestRender, { passive: true });
+  addEventListener("resize", requestRender, { passive: true });
+  addEventListener("pointerdown", retryPlayback, { passive: true });
+  addEventListener("touchstart", retryPlayback, { passive: true });
+  document.addEventListener("visibilitychange", requestRender);
+
+  if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) markReady();
+  render();
+
+  return () => {
+    disposed = true;
+    if (frameId) cancelAnimationFrame(frameId);
+    video.pause();
+    video.removeEventListener("loadeddata", markReady);
+    video.removeEventListener("canplay", markReady);
+    video.removeEventListener("error", markError);
+    removeEventListener("scroll", requestRender);
+    removeEventListener("resize", requestRender);
+    removeEventListener("pointerdown", retryPlayback);
+    removeEventListener("touchstart", retryPlayback);
+    document.removeEventListener("visibilitychange", requestRender);
+  };
+}

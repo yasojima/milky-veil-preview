@@ -1,0 +1,80 @@
+.milky-kaleidoscope-stage {
+  overflow: hidden;
+  width: 100%;
+}
+
+.concept-fv-background-stage:not(.is-fv-background-ready) {
+  visibility: hidden;
+}
+
+.js-home-mv.is-fv-media-pending .l-main-img-bg__col {
+  background: var(--milky-home-paper, #f3f2f0);
+}
+
+.js-home-mv.is-fv-media-pending [data-concept-fv-image] {
+  visibility: hidden;
+}
+
+.js-home-mv.is-fv-media-pending .l-main-img__content {
+  visibility: hidden;
+}
+
+.js-home-mv.is-fv-media-pending .l-main-img__content.is-hidden > .l-main-img__logo {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.milky-kaleidoscope-media {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.milky-kaleidoscope-poster,
+.milky-kaleidoscope-video {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.milky-kaleidoscope-poster {
+  opacity: 1;
+  transition: opacity .2s linear;
+}
+
+.milky-kaleidoscope-video {
+  opacity: 0;
+  transition: opacity .2s linear;
+}
+
+.milky-kaleidoscope-stage.is-video-ready:not(.is-video-fallback) .milky-kaleidoscope-poster {
+  opacity: 0;
+}
+
+.milky-kaleidoscope-stage.is-video-ready:not(.is-video-fallback) .milky-kaleidoscope-video {
+  opacity: 1;
+}
+
+@media (orientation: portrait) {
+  .milky-kaleidoscope-poster,
+  .milky-kaleidoscope-video {
+    width: auto;
+    min-width: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milky-kaleidoscope-video {
+    display: none;
+  }
+
+  .milky-kaleidoscope-poster {
+    opacity: 1 !important;
+  }
+}
