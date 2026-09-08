@@ -9,7 +9,7 @@ body#home,
 }
 
 .home-point.u-bg-primary-500 {
-  background-color: #fff6fa;
+  background-color: var(--milky-home-paper);
 }
 
 .home-point-section .c-head01__sub .c-marker01.is-point {
@@ -311,11 +311,11 @@ body#home,
 
 /* Reuse MILKY VEIL's pale-pink surface for the two marquee rules. */
 .home-movie__marquee.is-top {
-  border-bottom-color: #fff6fa;
+  border-bottom-color: var(--milky-home-paper);
 }
 
 .home-movie__marquee.is-bottom {
-  border-top-color: #fff6fa;
+  border-top-color: var(--milky-home-paper);
 }
 
 /* Keep the saved image-reveal motion and replace only its yellow cover. */
@@ -350,7 +350,7 @@ body[data-page-route-id="menu"] .service-menu-stage {
   --milky-menu-artwork-gap: clamp(88px, 10vw, 150px);
   margin: 0;
   padding: var(--milky-menu-artwork-gap) 0;
-  background: #fff6fa;
+  background: var(--milky-home-paper);
 }
 
 body[data-page-route-id="menu"] .service-menu-stage__inner {

@@ -1,7 +1,7 @@
 .site-footer {
   --shared-footer-ink: #172133;
   --shared-footer-pad: clamp(24px, 5vw, 82px);
-  background: #e8e6e2;
+  background: var(--milky-home-paper, #fff);
   color: var(--shared-footer-ink);
   display: block;
   box-sizing: border-box;
@@ -108,7 +108,7 @@
 .footer-links a:focus-visible { color: #a46282; border-color: #a46282; }
 .footer-signature { align-self: end; display: flex; align-items: flex-end; justify-content: flex-end; min-width: 0; transform: translate(38px, 20px); }
 .footer-signature img { display: block; width: 50px; height: auto; filter: drop-shadow(0 5px 14px rgba(81, 48, 68, .12)); }
-.fixed-cta-clearance { block-size: var(--fixed-cta-height); background: #fff6fa; }
+.fixed-cta-clearance { block-size: var(--fixed-cta-height); background: var(--milky-home-paper, #fff); }
 
 @media (min-width: 1101px) {
   .site-footer { block-size: 394px; min-block-size: 394px; max-block-size: 394px; overflow: hidden; }

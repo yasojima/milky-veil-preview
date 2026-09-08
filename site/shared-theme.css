@@ -1,4 +1,5 @@
 :root {
-  --milky-home-paper: #f3f2f0;
+  --milky-home-paper: #FFFFFF;
+  background-color: var(--milky-home-paper);
 }
 

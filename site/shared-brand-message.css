@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 clamp(28px, 5vw, 72px);
-  background: #fff6fa;
+  background: var(--milky-home-paper, #fff);
   color: #172133;
   font-family: "MV Shared Noto Sans JP", sans-serif;
   font-size: 16px;

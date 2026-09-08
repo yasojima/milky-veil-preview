@@ -8,7 +8,7 @@
 }
 
 .js-home-mv.is-fv-media-pending .l-main-img-bg__col {
-  background: var(--milky-home-paper, #f3f2f0);
+  background: var(--milky-home-paper, #fff);
 }
 
 .js-home-mv.is-fv-media-pending [data-concept-fv-image] {
