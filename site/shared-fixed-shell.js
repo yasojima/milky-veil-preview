@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260908-035";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260908-036";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
