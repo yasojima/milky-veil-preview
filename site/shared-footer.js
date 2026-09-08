@@ -1,4 +1,4 @@
-import { sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260909-018";
+import { sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260909-019";
 
 export const sharedFooterSalon = sharedSalonData;
 export const sharedFooterRoutes = Object.freeze(sharedFooterRouteIds.map((routeId) => sharedRouteRegistry[routeId]));

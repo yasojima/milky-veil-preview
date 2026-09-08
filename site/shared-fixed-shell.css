@@ -67,7 +67,6 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
     flex-wrap:wrap;
     height:auto;
     padding:3px 5px calc(3px + env(safe-area-inset-bottom));
-    background:rgb(255 255 255 / 95%);
   }
   .cta-tel {
     display:flex;
