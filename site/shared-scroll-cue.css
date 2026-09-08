@@ -54,22 +54,22 @@
 
 @media (max-width: 900px) {
   .shared-scroll-cue {
-    right: 22px;
+    right: calc((var(--fixed-side-trigger-width, 45px) - 10px) / 2);
     bottom: calc(148px + env(safe-area-inset-bottom));
     width: 10px;
-    height: 210px;
+    height: 220px;
   }
   .shared-scroll-cue__link {
     width: 10px;
     height: auto;
     padding: 0;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 10px;
-    letter-spacing: 6px;
+    letter-spacing: 10px;
   }
   .shared-scroll-cue__line {
     left: 4.5px;
-    top: 174px;
+    top: 184px;
     height: 36px;
   }
 }
