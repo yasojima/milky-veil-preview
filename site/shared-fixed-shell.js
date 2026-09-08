@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-022";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-023";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -110,6 +110,7 @@ export function bindSharedFixedShell(scope = document) {
 
   function setSocialOpen(open, restoreFocus = false) {
     socialRail?.classList.toggle("is-open", open);
+    if (!open) socialRail?.classList.remove("is-hovered");
     socialToggle?.setAttribute("aria-expanded", String(open));
     socialToggle?.setAttribute("aria-label", open ? "SNSを閉じる" : "SNSを表示");
     socialItems.forEach((item) => item.setAttribute("tabindex", open ? "0" : "-1"));
@@ -136,8 +137,10 @@ export function bindSharedFixedShell(scope = document) {
     event.stopPropagation();
     setSocialOpen(socialToggle.getAttribute("aria-expanded") !== "true");
   }, { signal });
-  socialRail?.addEventListener("mouseenter", () => socialRail.classList.add("is-hovered"), { signal });
-  socialRail?.addEventListener("mouseleave", () => socialRail.classList.remove("is-hovered"), { signal });
+  socialRail?.addEventListener("pointerenter", (event) => {
+    if (event.pointerType === "mouse" && window.matchMedia("(hover: hover)").matches) socialRail.classList.add("is-hovered");
+  }, { signal });
+  socialRail?.addEventListener("pointerleave", () => socialRail.classList.remove("is-hovered"), { signal });
   socialItems.forEach((item) => item.addEventListener("click", (event) => event.preventDefault(), { signal }));
   pageTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }), { signal });
   reserveButtons.forEach((button) => button.addEventListener("click", () => {

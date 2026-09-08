@@ -34,17 +34,13 @@
   transition: clip-path .5s cubic-bezier(.645, .045, .355, 1);
 }
 
-.fixed-social-rail:hover,
 .fixed-social-rail.is-hovered,
-.fixed-social-rail.is-open,
-.fixed-social-rail:focus-within {
+.fixed-social-rail.is-open {
   clip-path: inset(0);
 }
 
-.fixed-social-rail:hover .fixed-social-item,
 .fixed-social-rail.is-hovered .fixed-social-item,
-.fixed-social-rail.is-open .fixed-social-item,
-.fixed-social-rail:focus-within .fixed-social-item {
+.fixed-social-rail.is-open .fixed-social-item {
   opacity: 1;
   transform: translateX(0);
 }

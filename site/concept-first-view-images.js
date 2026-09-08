@@ -1,4 +1,4 @@
-import { responsiveImageAttributes } from "./responsive-media.js?v=20260909-009&pages=20260909-022";
+import { responsiveImageAttributes } from "./responsive-media.js?v=20260909-009&pages=20260909-023";
 const firstViewImages = {
   concept: {
     left: { src: "/milky-veil-preview/assets/references/concept-first-view/customer-left.png", alt: "水色の服と白いボブヘアのお客様モデル", width: 1152, height: 2048, position: "50% 20%", scale: 1.37, origin: "50% 24%" },
