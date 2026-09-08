@@ -401,3 +401,12 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
     transform: none;
   }
 }
+
+@media (orientation: portrait) {
+  .l-main-img__logo.milky-fv-wordmark {
+    inset: 50% 0 auto;
+    font-size: 19vw;
+    transform: translateY(-50%);
+    -webkit-text-stroke-width: .5px;
+  }
+}

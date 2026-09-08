@@ -54,32 +54,22 @@
 
 @media (max-width: 900px) {
   .shared-scroll-cue {
-    z-index: 899;
-    right: var(--shared-scroll-right);
-    bottom: var(--shared-scroll-home-bottom);
-    display: flex;
-    width: var(--shared-scroll-width);
-    height: var(--shared-scroll-height);
-    align-items: flex-start;
-    justify-content: flex-end;
-    flex-direction: column;
+    right: 22px;
+    bottom: calc(148px + env(safe-area-inset-bottom));
+    width: 10px;
+    height: 210px;
   }
-
   .shared-scroll-cue__link {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 10px;
     height: auto;
     padding: 0;
+    font-size: 9px;
+    line-height: 10px;
+    letter-spacing: 6px;
   }
-
   .shared-scroll-cue__line {
-    position: absolute;
-    top: calc(var(--shared-scroll-height) - 78px);
     left: 4.5px;
-    width: 1px;
-    height: calc(78px + var(--shared-scroll-line-extension));
-    margin: 0;
+    top: 174px;
+    height: 36px;
   }
 }
