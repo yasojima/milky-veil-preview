@@ -84,26 +84,23 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .cta-phone-note { display:block; font:600 11px/1.4 "MV Shared Noto Serif JP",serif; letter-spacing:0; }
   .cta-hours { display:none; }
   .fixed-cta-actions {
-    display:flex;
-    flex:0 0 auto;
-    flex-direction:row;
-    flex-wrap:wrap;
+    display:grid;
+    flex:0 1 340px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
     max-width:100%;
     padding:8px 0;
-    gap:0;
+    gap:6px;
     border-left:0!important;
   }
   .fixed-cta-action {
-    flex:0 1 auto;
-    width:auto;
-    min-width:130px;
-    height:auto;
-    margin:2px 2.5px!important;
-    padding:11px 7px 6px;
-    font-size:15px!important;
+    width:100%;
+    min-width:0;
+    height:44px;
+    margin:2px 0!important;
+    padding:0 5px;
+    font-size:13px!important;
     line-height:1.6;
     letter-spacing:0;
-    border:0!important;
     box-shadow:none;
   }
   .fixed-cta-action:hover,.fixed-cta-action:focus-visible { opacity:.6; }
@@ -113,5 +110,5 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 @media (max-width:400px) {
   .cta-phone strong { font-size:25px; }
   .cta-phone-note { font-size:10px; }
-  .fixed-cta-action { font-size:13px!important; line-height:1.4; }
+  .fixed-cta-action { font-size:12px!important; }
 }
