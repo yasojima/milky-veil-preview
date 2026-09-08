@@ -19,14 +19,8 @@
   :root {
     --shared-menu-anchor-right: 30px;
     --shared-menu-anchor-y: 58.5px;
-    --shared-scroll-right: 0px;
-    --shared-scroll-width: 45px;
-    --shared-scroll-height: 266px;
-    --shared-scroll-home-bottom: max(0px, calc(100% - (100svh - 68px)));
-    --shared-scroll-line-extension: 0px;
-  }
+    --shared-scroll-home-bottom: calc(66px + env(safe-area-inset-bottom));
+    --shared-scroll-line-extension: calc(66px + env(safe-area-inset-bottom));
 
-  .l-main-img__inner > .shared-scroll-cue {
-    --shared-scroll-line-extension: 68px;
   }
 }
