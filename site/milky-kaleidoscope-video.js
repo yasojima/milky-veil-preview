@@ -1,6 +1,6 @@
-import { responsiveImageAttributes } from "./responsive-media.js?v=20260909-009&pages=20260909-009";
+import { responsiveImageAttributes } from "./responsive-media.js?v=20260909-009&pages=20260909-010";
 export const MILKY_KALEIDOSCOPE_VIDEO = Object.freeze({
-  videoSrc: "/milky-veil-preview/assets/generated/web-video/kaleidoscope.mp4",
+  videoSrc: "/milky-veil-preview/assets/generated/web-video/kaleidoscope-hd.mp4",
   posterSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png",
 });
 
