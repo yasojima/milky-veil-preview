@@ -3,10 +3,18 @@ export const MILKY_KALEIDOSCOPE_VIDEO = Object.freeze({
   posterSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png",
 });
 
-export function milkyKaleidoscopeVideoMarkup() {
+export const MILKY_SERVICE_FIRST_VIEW_MEDIA = Object.freeze({
+  videoSrc: "",
+  posterSrc: "/milky-veil-preview/assets/references/service-story/service-fv-crystal-v1.png",
+});
+
+export function milkyKaleidoscopeVideoMarkup(media = MILKY_KALEIDOSCOPE_VIDEO) {
+  const video = media.videoSrc
+    ? `<video class="milky-kaleidoscope-video" src="${media.videoSrc}" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>`
+    : "";
   return `<div class="milky-kaleidoscope-media">
-    <img class="milky-kaleidoscope-poster" src="${MILKY_KALEIDOSCOPE_VIDEO.posterSrc}" alt="" decoding="async" />
-    <video class="milky-kaleidoscope-video" src="${MILKY_KALEIDOSCOPE_VIDEO.videoSrc}" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>
+    <img class="milky-kaleidoscope-poster" src="${media.posterSrc}" alt="" decoding="async" />
+    ${video}
   </div>`;
 }
 
