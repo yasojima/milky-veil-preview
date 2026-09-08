@@ -57,8 +57,62 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 }
 
 @media (min-width:901px) and (max-width:1300px){:root,:host{--fixed-cta-height:112px;--fixed-cta-actions-width:204px}.fixed-cta-actions{flex-direction:column;gap:5px}.fixed-cta-action{width:100%;min-height:44px;flex-basis:44px}.cta-tel{flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:10px 24px 10px 70px}}
-@media (max-width:900px){:root,:host{--fixed-cta-height:calc(68px + env(safe-area-inset-bottom));--fixed-cta-actions-width:auto;--fixed-page-top-column-width:60px;--fixed-side-trigger-width:45px;--fixed-social-panel-width:240px}.fixed-cta{grid-template-columns:1fr 1fr var(--fixed-page-top-column-width);padding-bottom:env(safe-area-inset-bottom)}.cta-tel{display:none}.fixed-cta-actions{display:contents}.fixed-cta-action{width:auto;height:54px;margin-inline:3px!important;font-size:10px!important}.fixed-social-item{width:60px}.fixed-social-item img{width:38px;height:38px}}
-
-@media (max-width: 900px) {
-  .page-top-cell { height: 61px; align-self: start; }
+.cta-phone-note { display: none; }
+/* Adapted from k-hairsalon.jp #fixbtn mobile layout: telephone above two actions. */
+@media (max-width:900px) {
+  :root,:host { --fixed-cta-height: calc(120px + env(safe-area-inset-bottom)); --fixed-social-panel-width:240px; }
+  .fixed-cta {
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    height:auto;
+    padding:3px 5px calc(3px + env(safe-area-inset-bottom));
+    background:rgb(255 255 255 / 95%);
+  }
+  .cta-tel {
+    display:flex;
+    flex-direction:column;
+    flex:0 0 100%;
+    justify-content:center;
+    gap:0;
+    height:auto;
+    padding:8px 5px;
+    text-align:center;
+  }
+  .cta-phone { justify-content:center; gap:5px; }
+  .cta-phone strong { font-size:27px; font-weight:600; line-height:1; }
+  .cta-phone svg { width:12px; height:12px; }
+  .cta-phone-note { display:block; font:600 11px/1.4 "MV Shared Noto Serif JP",serif; letter-spacing:0; }
+  .cta-hours { display:none; }
+  .fixed-cta-actions {
+    display:flex;
+    flex:0 0 auto;
+    flex-direction:row;
+    flex-wrap:wrap;
+    max-width:100%;
+    padding:8px 0;
+    gap:0;
+    border-left:0!important;
+  }
+  .fixed-cta-action {
+    flex:0 1 auto;
+    width:auto;
+    min-width:130px;
+    height:auto;
+    margin:2px 2.5px!important;
+    padding:11px 7px 6px;
+    font-size:15px!important;
+    line-height:1.6;
+    letter-spacing:0;
+    border:0!important;
+    box-shadow:none;
+  }
+  .fixed-cta-action:hover,.fixed-cta-action:focus-visible { opacity:.6; }
+  .page-top-cell { display:none; }
+  .fixed-social-item { width:60px; }
+}
+@media (max-width:400px) {
+  .cta-phone strong { font-size:25px; }
+  .cta-phone-note { font-size:10px; }
+  .fixed-cta-action { font-size:13px!important; line-height:1.4; }
 }

@@ -52,3 +52,7 @@
   opacity: .68;
 }
 
+
+@media (max-width: 900px) {
+  .shared-scroll-cue { display: none; }
+}
