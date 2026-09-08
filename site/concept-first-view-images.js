@@ -3,7 +3,7 @@ const firstViewImages = {
     left: { src: "/milky-veil-preview/assets/references/concept-first-view/customer-left.png", alt: "水色の服と白いボブヘアのお客様モデル", width: 1152, height: 2048, position: "50% 20%", scale: 1.37, origin: "50% 24%" },
     right: { src: "/milky-veil-preview/assets/references/concept-first-view/stylist-right.png", alt: "グレーの服とブロンドヘアのスタイリスト", width: 1152, height: 2048, position: "50% 20%", scale: 1, origin: "center" },
   },
-  service: {
+  menu: {
     left: { src: "/milky-veil-preview/assets/references/service-story/service-fv-left-shampoo-room-v1.png", alt: "暖色の間接照明に照らされたMILKY VEILのシャンプースペース", width: 1008, height: 1792, position: "50% 50%", scale: 1, origin: "center" },
     right: { src: "/milky-veil-preview/assets/references/service-story/service-fv-right-reception-v1.png", alt: "暖色の間接照明に照らされたMILKY VEILの受付とセット面", width: 1008, height: 1792, position: "50% 50%", scale: 1, origin: "center" },
   },

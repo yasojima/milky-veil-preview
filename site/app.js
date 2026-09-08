@@ -1,12 +1,12 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260908-034";
-import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260908-034";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260908-034";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260908-034";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=20260908-034";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260908-034";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260908-034";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260908-034";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260908-034";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260908-035";
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260908-035";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260908-035";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260908-035";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260907-13&pages=20260908-035";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260908-035";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260908-035";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260908-035";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260908-035";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -53,9 +53,6 @@ const pageCopy = {
   CONCEPT: {
     text: "髪の履歴と今の状態を丁寧に読み取り、仕上がりだけでなく色落ちの途中まできれいなデザインをつくります。",
   },
-  SERVICE: {
-    text: "カラー、エクステ、パーマ、カット。髪質と暮らしに合わせて、今の気分を自分らしく形にします。",
-  },
   STAFF: {
     lead: "6つの感性で、ひとりの“好き”を形に。",
     text: "得意な色、質感、シルエットが異なる6名のスタイリストが、一人ひとりのなりたいムードへ向き合います。",
@@ -82,7 +79,7 @@ const pageCopy = {
   "MEN'S": { lead: "性別ではなく、好きなムードから選ぶ。", text: "カット、カラー、パーマ、エクステまで、ファッションになじむデザインをつくります。" },
   CONTACT: { lead: "ご相談・お問い合わせ", text: "こちらはデモフォームです。入力内容は送信・保存されません。" },
   "PRIVACY POLICY": { lead: "プライバシーポリシー", text: "本ページはデモサイトの個人情報取り扱い方針を示す仮原稿です。" },
-  "SITE MAP": { lead: "サイトマップ", text: "MILKY VEILデモサイトの全18ページをご案内します。" },
+  "SITE MAP": { lead: "サイトマップ", text: "MILKY VEILデモサイトの全17ページをご案内します。" },
 };
 
 const homeSplitSections = Object.freeze([
@@ -96,13 +93,13 @@ const homeSplitSections = Object.freeze([
     sectionId: "concept-home",
   }),
   Object.freeze({
-    label: "SERVICE",
+    label: "MENU",
     heading: Object.freeze(["今っぽさを", "自分らしく似合わせる。"]),
     text: "トレンドカラー、エクステ、デザインパーマ、カットまで。骨格、髪質、ファッションへ合わせてあなたのバランスへ落とし込みます。",
     image: `${A}home-role-locked-pack-v1/home-service-customer-05-v1.png`,
     reverse: true,
-    routeId: "service",
-    sectionId: "service-home",
+    routeId: "menu",
+    sectionId: "menu-home",
   }),
 ]);
 
@@ -469,7 +466,7 @@ function related() {
       <p class="eyebrow">EXPLORE MILKY VEIL</p>
       <h2>もっと自分らしいスタイルへ。</h2>
       <div class="related-grid">
-        ${["concept", "service", "menu", "feature"].map((id) => link(id, "related-link")).join("")}
+        ${["concept", "menu", "staff", "feature"].map((id) => link(id, "related-link")).join("")}
       </div>
       <div class="tag-row"><span>#BLEACH</span><span>#COLOR</span><span>#EXTENSION</span><span>#PERM</span></div>
     </section>`;

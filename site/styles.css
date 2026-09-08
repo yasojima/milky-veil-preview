@@ -54,7 +54,7 @@ html[lang]:not([lang="ja"]) .header-message{font-size:clamp(10px,.95vw,12px);let
 .header-action{height:var(--home-cta-height);flex:0 0 var(--home-cta-width);min-width:0;display:flex;align-items:center;justify-content:center;border:1px solid currentColor;background:transparent;color:inherit;font:500 clamp(11px,.94vw,12px)/1.35 "Noto Sans JP","DM Sans",sans-serif;letter-spacing:.1em;white-space:nowrap;cursor:pointer}
 html[lang]:not([lang="ja"]) .header-action{font-size:clamp(8.5px,.8vw,10px);letter-spacing:.01em}
 .header-on-hero .header-action{background:rgba(11,18,29,.08);border-color:rgba(255,255,255,.8)}
-.header-primary-nav{width:88%;height:42px;margin:clamp(5px,.5vw,8px) 0 0 auto;padding-inline:28px;display:flex;align-items:center;justify-content:space-between;gap:0;white-space:nowrap;font:500 var(--home-nav-font-size) "DM Sans",sans-serif;letter-spacing:.06em}
+.header-primary-nav{width:76%;height:42px;margin:clamp(5px,.5vw,8px) 0 0 auto;padding-inline:28px;display:flex;align-items:center;justify-content:space-between;gap:0;white-space:nowrap;font:500 var(--home-nav-font-size) "DM Sans",sans-serif;letter-spacing:.06em}
 .header-primary-nav a{position:relative}.header-primary-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:currentColor;transition:.25s}.header-primary-nav a:hover:after{right:0}
 .header-primary-nav a[aria-current="page"]:after{right:0}
 .social-icons{display:flex;align-items:center;gap:var(--home-sns-gap,9px);text-shadow:none}.header-utility .social-icons{flex:0 0 auto}.header-utility .social-icon{width:var(--home-sns-size);height:var(--home-sns-size);flex:0 0 var(--home-sns-size)}.social-icon{display:block;width:38px;height:38px;flex:0 0 38px}.social-icon img{object-fit:contain}

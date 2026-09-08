@@ -85,7 +85,7 @@
 .footer-links {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   align-content: stretch;
   column-gap: 28px;
   width: calc(100% + 78px);
@@ -109,10 +109,6 @@
 .footer-signature { align-self: end; display: flex; align-items: flex-end; justify-content: flex-end; min-width: 0; transform: translate(38px, 20px); }
 .footer-signature img { display: block; width: 50px; height: auto; filter: drop-shadow(0 5px 14px rgba(81, 48, 68, .12)); }
 .fixed-cta-clearance { block-size: var(--fixed-cta-height); background: #fff6fa; }
-
-@media (min-width: 901px) {
-  .footer-links a:nth-child(2) { grid-column: 1; }
-}
 
 @media (min-width: 1101px) {
   .site-footer { block-size: 394px; min-block-size: 394px; max-block-size: 394px; overflow: hidden; }

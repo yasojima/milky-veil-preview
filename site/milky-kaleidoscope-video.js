@@ -3,7 +3,7 @@ export const MILKY_KALEIDOSCOPE_VIDEO = Object.freeze({
   posterSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png",
 });
 
-export const MILKY_SERVICE_FIRST_VIEW_MEDIA = Object.freeze({
+export const MILKY_MENU_FIRST_VIEW_MEDIA = Object.freeze({
   videoSrc: "",
   posterSrc: "/milky-veil-preview/assets/references/service-story/service-fv-crystal-v1.png",
 });

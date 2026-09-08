@@ -1,9 +1,8 @@
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
-  service: Object.freeze({ path: "/milky-veil-preview/service/", label: "SERVICE", navigationMode: "document" }),
-  staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document" }),
   menu: Object.freeze({ path: "/milky-veil-preview/menu/", label: "MENU", navigationMode: "document" }),
+  staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document" }),
   items: Object.freeze({ path: "/milky-veil-preview/items/", label: "ITEMS", navigationMode: "document" }),
   access: Object.freeze({ path: "/milky-veil-preview/access/", label: "ACCESS", navigationMode: "document" }),
   blog: Object.freeze({ path: "/milky-veil-preview/blog/", label: "JOURNAL" }),
@@ -20,9 +19,9 @@ export const sharedRouteRegistry = Object.freeze({
 });
 
 export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry));
-export const sharedPrimaryRouteIds = Object.freeze(["home", "concept", "service", "staff", "menu", "items", "access", "blog"]);
+export const sharedPrimaryRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access", "blog"]);
 export const sharedSecondaryRouteIds = Object.freeze(["feature", "featureColor", "featurePerm", "featureStraight", "featureTreatment", "featureMens", "column", "contact", "privacy", "sitemap"]);
-export const sharedFooterRouteIds = Object.freeze(["home", "concept", "service", "staff", "menu", "items", "access", "blog", "feature", "contact", "privacy", "sitemap", "column"]);
+export const sharedFooterRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access", "blog", "feature", "contact", "privacy", "sitemap", "column"]);
 export const sharedBrandEyebrow = "COLOR & DESIGN SALON";
 export const sharedBrandHeadlineLines = Object.freeze(["BLEACH", "THE RULES."]);
 export const sharedBrandSupportingLines = Object.freeze([
