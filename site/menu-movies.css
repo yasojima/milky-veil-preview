@@ -1,3 +1,12 @@
+.home-point-ingredient__content-bg-in::after,
+.home-movie__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(40 42 45 / .3);
+  pointer-events: none;
+}
+.home-movie__bg::after { background: rgb(40 42 45 / .5); }
 .menu-movie-dialog {
   width: min(94vw, 640px);
   max-height: 94dvh;
