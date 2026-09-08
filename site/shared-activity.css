@@ -1,0 +1,6 @@
+.motion-is-idle, .motion-is-idle::before, .motion-is-idle::after,
+.motion-is-idle *, .motion-is-idle *::before, .motion-is-idle *::after {
+  animation-play-state: paused !important;
+}
+
+html, :host, a, button, [role="button"] { -webkit-tap-highlight-color: transparent; }

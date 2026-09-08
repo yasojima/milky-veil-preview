@@ -1,12 +1,12 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-008";
-import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260804-01&pages=20260909-008";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260909-008";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-008";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-008";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-008";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-008";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-008";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-008";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-009";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-009";
+import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260909-009";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-009";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-009";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-009";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-009";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-009";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-009";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -470,14 +470,6 @@ function related() {
       </div>
       <div class="tag-row"><span>#BLEACH</span><span>#COLOR</span><span>#EXTENSION</span><span>#PERM</span></div>
     </section>`;
-}
-
-function resolveMedia(src) {
-  return responsiveImageManifest[src] || Object.freeze({ src, width: 0, height: 0, candidates: Object.freeze([]) });
-}
-
-function responsiveSrcset(src) {
-  return resolveMedia(src).candidates.map((candidate) => `${candidate.src} ${candidate.width}w`).join(", ");
 }
 
 function responsiveImage(src, alt = "", options = {}) {

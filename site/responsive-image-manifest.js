@@ -47,7 +47,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/light-salon-pack/04-hero-cutting-wide-natural-v4.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/04-hero-cutting-wide-natural-v4-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/04-hero-cutting-wide-natural-v4-png-1672.webp",
     "width": 1672,
     "height": 941,
     "candidates": [
@@ -66,6 +66,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/04-hero-cutting-wide-natural-v4-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/04-hero-cutting-wide-natural-v4-png-1672.webp",
+        "width": 1672
       }
     ]
   },
@@ -116,7 +120,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/light-salon-pack/07-lifestyle-three-models.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/07-lifestyle-three-models-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/07-lifestyle-three-models-png-1672.webp",
     "width": 1672,
     "height": 941,
     "candidates": [
@@ -135,6 +139,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/07-lifestyle-three-models-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/light-salon-pack/07-lifestyle-three-models-png-1672.webp",
+        "width": 1672
       }
     ]
   },
@@ -181,7 +189,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/journal-model-06-pack-v2/01-interior-wide.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/01-interior-wide-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/01-interior-wide-png-1672.webp",
     "width": 1672,
     "height": 941,
     "candidates": [
@@ -200,6 +208,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/01-interior-wide-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/01-interior-wide-png-1672.webp",
+        "width": 1672
       }
     ]
   },
@@ -223,7 +235,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2-png-2048.webp",
     "width": 2167,
     "height": 725,
     "candidates": [
@@ -242,6 +254,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2-png-2048.webp",
+        "width": 2048
       }
     ]
   },
@@ -265,7 +281,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/journal-model-06-pack-v2/04-extension-hair-detail-model-06-v2.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/04-extension-hair-detail-model-06-v2-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/04-extension-hair-detail-model-06-v2-png-2048.webp",
     "width": 2098,
     "height": 750,
     "candidates": [
@@ -284,11 +300,15 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/04-extension-hair-detail-model-06-v2-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/04-extension-hair-detail-model-06-v2-png-2048.webp",
+        "width": 2048
       }
     ]
   },
   "/milky-veil-preview/assets/generated/journal-model-06-pack-v2/05-bleached-perm-model-06-approved.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/05-bleached-perm-model-06-approved-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/05-bleached-perm-model-06-approved-png-1672.webp",
     "width": 1672,
     "height": 941,
     "candidates": [
@@ -307,6 +327,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/05-bleached-perm-model-06-approved-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/journal-model-06-pack-v2/05-bleached-perm-model-06-approved-png-1672.webp",
+        "width": 1672
       }
     ]
   },
@@ -482,7 +506,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/home-owner-4k-v1/home-hero-owner-4k-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/home-owner-4k-v1/home-hero-owner-4k-v1-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/home-owner-4k-v1/home-hero-owner-4k-v1-png-2048.webp",
     "width": 5460,
     "height": 3073,
     "candidates": [
@@ -501,11 +525,15 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/home-owner-4k-v1/home-hero-owner-4k-v1-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/home-owner-4k-v1/home-hero-owner-4k-v1-png-2048.webp",
+        "width": 2048
       }
     ]
   },
   "/milky-veil-preview/assets/generated/home-introduction/three-model-editorial-collage-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/home-introduction/three-model-editorial-collage-v1-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/home-introduction/three-model-editorial-collage-v1-png-2048.webp",
     "width": 2048,
     "height": 1641,
     "candidates": [
@@ -524,11 +552,15 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/home-introduction/three-model-editorial-collage-v1-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/home-introduction/three-model-editorial-collage-v1-png-2048.webp",
+        "width": 2048
       }
     ]
   },
   "/milky-veil-preview/assets/generated/home-access/interior-collage-night-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/home-access/interior-collage-night-v1-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/home-access/interior-collage-night-v1-png-2048.webp",
     "width": 2048,
     "height": 1152,
     "candidates": [
@@ -547,6 +579,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/home-access/interior-collage-night-v1-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/home-access/interior-collage-night-v1-png-2048.webp",
+        "width": 2048
       }
     ]
   },
@@ -791,7 +827,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/references/service-story/service-fv-crystal-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/service-fv-crystal-v1-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/service-fv-crystal-v1-png-2048.webp",
     "width": 2048,
     "height": 1152,
     "candidates": [
@@ -810,6 +846,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/service-fv-crystal-v1-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/service-fv-crystal-v1-png-2048.webp",
+        "width": 2048
       }
     ]
   },
@@ -833,7 +873,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/references/service-story/menu-point-shibuya-day.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-point-shibuya-day-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-point-shibuya-day-png-2048.webp",
     "width": 2048,
     "height": 1152,
     "candidates": [
@@ -852,11 +892,15 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-point-shibuya-day-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-point-shibuya-day-png-2048.webp",
+        "width": 2048
       }
     ]
   },
   "/milky-veil-preview/assets/references/service-story/menu-movie-shibuya-sunset.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-movie-shibuya-sunset-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-movie-shibuya-sunset-png-2048.webp",
     "width": 2048,
     "height": 1152,
     "candidates": [
@@ -875,6 +919,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-movie-shibuya-sunset-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/service-story/menu-movie-shibuya-sunset-png-2048.webp",
+        "width": 2048
       }
     ]
   },
@@ -898,7 +946,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/references/concept-point/try-model-back.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point/try-model-back-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point/try-model-back-png-2016.webp",
     "width": 2016,
     "height": 3584,
     "candidates": [
@@ -917,6 +965,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point/try-model-back-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point/try-model-back-png-2016.webp",
+        "width": 2016
       }
     ]
   },
@@ -959,7 +1011,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/concept-point02-framing/point02-after-short-aligned-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/concept-point02-framing/point02-after-short-aligned-v1-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/concept-point02-framing/point02-after-short-aligned-v1-png-2048.webp",
     "width": 2048,
     "height": 1152,
     "candidates": [
@@ -978,6 +1030,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/concept-point02-framing/point02-after-short-aligned-v1-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/concept-point02-framing/point02-after-short-aligned-v1-png-2048.webp",
+        "width": 2048
       }
     ]
   },
@@ -1039,7 +1095,7 @@ export const responsiveImageManifest = Object.freeze({
     ]
   },
   "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/concept-fv-kaleidoscope/kaleidoscope-white-poster-png-1600.webp",
+    "src": "/milky-veil-preview/assets/generated/responsive/concept-fv-kaleidoscope/kaleidoscope-white-poster-png-1920.webp",
     "width": 1920,
     "height": 1080,
     "candidates": [
@@ -1058,6 +1114,10 @@ export const responsiveImageManifest = Object.freeze({
       {
         "src": "/milky-veil-preview/assets/generated/responsive/concept-fv-kaleidoscope/kaleidoscope-white-poster-png-1600.webp",
         "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/concept-fv-kaleidoscope/kaleidoscope-white-poster-png-1920.webp",
+        "width": 1920
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-008";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-009";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -95,17 +95,11 @@ export function bindSharedFixedShell(scope = document) {
     frameId = requestAnimationFrame(update);
   }
 
-  function updateImmediately() {
-    if (frameId) cancelAnimationFrame(frameId);
-    frameId = 0;
-    update();
-  }
-
   function handleScroll() {
     scrolling = true;
     window.clearTimeout(scrollIdleTimer);
     if (!bar.classList.contains("is-docked")) bar.classList.add("is-scrolling");
-    updateImmediately();
+    schedule();
     scrollIdleTimer = window.setTimeout(() => {
       scrolling = false;
       bar.classList.remove("is-scrolling");

@@ -1,10 +1,15 @@
-import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-008";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-008";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-008";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-008";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260909-009";
+import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-009";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-009";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-009";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-009";
+
+const activityCleanup = new WeakMap();
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009",
   "/milky-veil-preview/site/shared-fonts.css?v=20260906-01",
+  "/milky-veil-preview/site/shared-font-subset.css?v=20260909-009",
   "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03",
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01",
   "/milky-veil-preview/site/shared-footer.css?v=20260902-09",
@@ -19,6 +24,7 @@ export function mountSharedBottomUi(host, currentPath) {
       <style>
         :host {
           all: initial !important;
+          -webkit-tap-highlight-color: transparent;
           display: block !important;
           width: auto !important;
           margin: 0 !important;
@@ -59,11 +65,14 @@ export function mountSharedBottomUi(host, currentPath) {
     if (anchor.getAttribute("href") === activePath) anchor.setAttribute("aria-current", "page");
     else anchor.removeAttribute("aria-current");
   });
+  if (!activityCleanup.has(host)) activityCleanup.set(host, bindAmbientMotion(root));
   return root;
 }
 
 export function clearSharedBottomUi(host) {
   if (!(host instanceof HTMLElement)) return;
+  activityCleanup.get(host)?.();
+  activityCleanup.delete(host);
   host.shadowRoot?.replaceChildren();
   host.replaceChildren();
 }
