@@ -1,0 +1,12 @@
+.menu-movie-dialog {
+  width: min(94vw, 640px);
+  max-height: 94dvh;
+  margin: auto;
+  padding: 44px 12px 12px;
+  border: 1px solid #f7cfdf;
+  background: #382431;
+  color: #fff;
+}
+.menu-movie-dialog::backdrop { background: rgb(0 0 0 / .78); }
+.menu-movie-dialog video { display: block; width: 100%; height: min(78dvh, 900px); object-fit: contain; background: #000; }
+.menu-movie-close { position: absolute; top: 8px; right: 12px; padding: 4px 8px; color: #fff; background: transparent; border: 0; cursor: pointer; }
