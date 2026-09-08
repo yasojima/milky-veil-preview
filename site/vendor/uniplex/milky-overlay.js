@@ -1,10 +1,10 @@
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260909-002";
-import { bindMilkyKaleidoscopeVideo, MILKY_KALEIDOSCOPE_VIDEO, MILKY_MENU_FIRST_VIEW_MEDIA, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260908-02&pages=20260909-002";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260909-002";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260908-01&pages=20260909-002";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260909-002";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260909-002";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260909-002";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260909-008";
+import { bindMilkyKaleidoscopeVideo, MILKY_KALEIDOSCOPE_VIDEO, MILKY_MENU_FIRST_VIEW_MEDIA, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260908-02&pages=20260909-008";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260909-008";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260908-01&pages=20260909-008";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260909-008";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260909-008";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260909-008";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
@@ -14,28 +14,17 @@ const firstViewMedia = pageRouteId === "menu" ? MILKY_MENU_FIRST_VIEW_MEDIA : MI
 const pointVideo = document.querySelector(".home-point-ingredient__vi video");
 if (pointVideo) {
   pointVideo.muted = true;
-  pointVideo.defaultMuted = true;
-  pointVideo.autoplay = true;
-  pointVideo.loop = true;
-  pointVideo.playsInline = true;
-  pointVideo.preload = "auto";
-  const resumePointVideo = () => {
-    if (document.hidden || !pointVideo.paused) return;
+  const updatePointVideo = () => {
     const bounds = pointVideo.getBoundingClientRect();
-    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-    pointVideo.play().catch(() => {});
+    const visible = bounds.bottom > 0 && bounds.top < innerHeight && !document.hidden;
+    if (!visible) { pointVideo.pause(); return; }
+    if (!pointVideo.getAttribute("src")) pointVideo.src = pointVideo.dataset.src;
+    if (pointVideo.paused) pointVideo.play().catch(() => {});
   };
-  const pointVideoObserver = new IntersectionObserver((entries) => {
-    if (entries.some((entry) => entry.isIntersecting)) resumePointVideo();
-  }, { threshold: 0.01 });
-  pointVideoObserver.observe(pointVideo);
-  pointVideo.addEventListener("loadeddata", resumePointVideo);
-  pointVideo.addEventListener("canplay", resumePointVideo);
-  window.addEventListener("pageshow", resumePointVideo);
-  document.addEventListener("visibilitychange", resumePointVideo);
-  document.addEventListener("pointerdown", resumePointVideo, { passive: true });
-  document.addEventListener("scroll", resumePointVideo, { passive: true });
-  resumePointVideo();
+  const observer = new IntersectionObserver(updatePointVideo, { threshold: 0.01 });
+  observer.observe(pointVideo);
+  document.addEventListener("visibilitychange", updatePointVideo);
+  window.addEventListener("pageshow", updatePointVideo);
 }
 
 document.querySelectorAll("[data-concept-portrait]").forEach((slot) => {

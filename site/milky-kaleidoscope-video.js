@@ -1,5 +1,6 @@
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260909-008&pages=20260909-008";
 export const MILKY_KALEIDOSCOPE_VIDEO = Object.freeze({
-  videoSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-adopted.mp4",
+  videoSrc: "/milky-veil-preview/assets/generated/web-video/kaleidoscope.mp4",
   posterSrc: "/milky-veil-preview/assets/generated/concept-fv-kaleidoscope/kaleidoscope-white-poster.png",
 });
 
@@ -10,10 +11,10 @@ export const MILKY_MENU_FIRST_VIEW_MEDIA = Object.freeze({
 
 export function milkyKaleidoscopeVideoMarkup(media = MILKY_KALEIDOSCOPE_VIDEO) {
   const video = media.videoSrc
-    ? `<video class="milky-kaleidoscope-video" src="${media.videoSrc}" muted loop autoplay playsinline preload="auto" aria-hidden="true"></video>`
+    ? `<video class="milky-kaleidoscope-video" src="${media.videoSrc}" muted loop playsinline preload="none" aria-hidden="true"></video>`
     : "";
   return `<div class="milky-kaleidoscope-media">
-    <img class="milky-kaleidoscope-poster" src="${media.posterSrc}" alt="" decoding="async" />
+    <img class="milky-kaleidoscope-poster" src="${responsiveImageManifest[media.posterSrc]?.src || media.posterSrc}" alt="" decoding="async" />
     ${video}
   </div>`;
 }
@@ -51,7 +52,7 @@ export function bindMilkyKaleidoscopeVideo(stage, { endElement } = {}) {
       video.pause();
       return;
     }
-    play();
+    if (video.paused) play();
   };
 
   const requestRender = () => {
@@ -61,7 +62,7 @@ export function bindMilkyKaleidoscopeVideo(stage, { endElement } = {}) {
 
   const retryPlayback = () => {
     stage.classList.remove("is-video-awaiting-gesture");
-    play();
+    requestRender();
   };
 
   video.addEventListener("loadeddata", markReady);

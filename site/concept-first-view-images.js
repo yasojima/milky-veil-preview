@@ -1,3 +1,4 @@
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260909-008&pages=20260909-008";
 const firstViewImages = {
   concept: {
     left: { src: "/milky-veil-preview/assets/references/concept-first-view/customer-left.png", alt: "水色の服と白いボブヘアのお客様モデル", width: 1152, height: 2048, position: "50% 20%", scale: 1.37, origin: "50% 24%" },
@@ -12,7 +13,9 @@ const firstViewImages = {
 export function firstViewImage(side, routeId = "concept") {
   const routeImages = firstViewImages[routeId] || firstViewImages.concept;
   const portrait = routeImages[side];
-  return `<img src="${portrait.src}" alt="${portrait.alt}" width="${portrait.width}" height="${portrait.height}" fetchpriority="high" decoding="async" data-concept-fv-image style="display:block;width:100%;height:100%;object-fit:cover;object-position:${portrait.position};transform:scale(${portrait.scale});transform-origin:${portrait.origin};">`;
+  const media = responsiveImageManifest[portrait.src];
+  const srcset = media ? ` srcset="${media.candidates.map(c => `${c.src} ${c.width}w`).join(", ")}" sizes="(max-width: 767px) 100vw, 50vw"` : "";
+  return `<img src="${media?.src || portrait.src}"${srcset} alt="${portrait.alt}" width="${portrait.width}" height="${portrait.height}" fetchpriority="high" decoding="async" data-concept-fv-image style="display:block;width:100%;height:100%;object-fit:cover;object-position:${portrait.position};transform:scale(${portrait.scale});transform-origin:${portrait.origin};">`;
 }
 
 export function conceptFirstViewImage(side) {
@@ -31,7 +34,7 @@ function waitForImageDecode(image) {
         resolve(true);
       }
       catch {
-        resolve(false);
+        resolve(image.complete && image.naturalWidth > 0);
       }
     };
 

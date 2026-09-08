@@ -1,3 +1,6 @@
 :root {
   --milky-home-paper: #f3f2f0;
 }
+
+/* Keep keyboard focus while suppressing the browser touch flash. */
+html { -webkit-tap-highlight-color: transparent; }
