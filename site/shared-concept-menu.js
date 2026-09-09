@@ -1,4 +1,4 @@
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-036";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-037";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -43,6 +43,12 @@ export function bindSharedConceptMenu(scope = document) {
     return disposeActiveMenu;
   }
 
+  const bottomHost = document.getElementById("shared-bottom-ui-root");
+  const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
+  const syncBottomSpace = () => nav.style.setProperty("--shared-menu-bottom-space", (bottomBar?.getBoundingClientRect().height || 0) + "px");
+  const bottomObserver = new ResizeObserver(syncBottomSpace);
+  if (bottomBar) bottomObserver.observe(bottomBar);
+  syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
   const text = toggle.querySelector(".js-nav-btn-txt");
@@ -87,6 +93,7 @@ export function bindSharedConceptMenu(scope = document) {
   setOpen(false);
   disposeActiveMenu = () => {
     controller.abort();
+    bottomObserver.disconnect();
     inertTargets.forEach((target) => { target.inert = false; });
   };
   return disposeActiveMenu;
