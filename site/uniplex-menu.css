@@ -1,8 +1,8 @@
 :root {
   --mh--font-family--en: "Marcellus", sans-serif;
-  --mh--font-size--x3s: 1.1rem;
-  --mh--font-size--x2l: 1.8rem;
-  --mh--font-size--x5l: 2.3rem;
+  --mh--font-size--x3s: 11px;
+  --mh--font-size--x2l: 18px;
+  --mh--font-size--x5l: 23px;
   --mh--header--height: 50px;
   --mh--space--md: 40px;
   --mh--easing: ease;
@@ -24,8 +24,8 @@
 
 @media (width >= 1920px) {
   :root {
-    --mh--font-size--x2l: 2.6rem;
-    --mh--font-size--x5l: 3.6rem;
+    --mh--font-size--x2l: 26px;
+    --mh--font-size--x5l: 36px;
   }
 }
 
@@ -167,4 +167,10 @@
 
 .u-uppercase {
   text-transform: uppercase;
+}
+
+.shared-concept-menu .u-font-en { font-family: var(--mh--font-family--en); }
+.shared-concept-menu .u-uppercase { text-transform: uppercase; }
+@media (width > 900px) {
+  .home-simple-menu { display: none; }
 }

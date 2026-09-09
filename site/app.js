@@ -1,11 +1,11 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-034";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-034";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-034";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-034";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-034";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-034";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-034";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-034";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-035";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-035";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-035";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-035";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-035";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-035";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-035";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-035";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -401,9 +401,9 @@ function header(isHome = false, currentPath = "/") {
             ${navigation.primary.map((r)=>link(r, "", currentPath)).join("")}
           </nav>
       </div>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="global-nav">
+      ${isHome ? "" : `<button class="menu-toggle" aria-expanded="false" aria-controls="global-nav">
         <span></span><span></span><span></span><b>MENU</b>
-      </button>
+      </button>`}
     </header>`;
 }
 
@@ -1574,7 +1574,7 @@ function render({ focusRoute = false } = {}) {
   const isConceptRoute = currentRouteId === "concept";
   const routeShell = isConceptRoute
     ? conceptHeader(current.path)
-    : `${header(current.path === "/milky-veil-preview/", current.path)}${globalOverlay(current.path)}`;
+    : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path)}</div>` : globalOverlay(current.path)}`;
   const appBody = suppressSharedShell
     ? renderPage(location.pathname)
     : `${routeShell}${renderPage(location.pathname)}`;
