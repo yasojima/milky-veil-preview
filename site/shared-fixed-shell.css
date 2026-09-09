@@ -26,6 +26,13 @@
   transition: none;
 }
 
+.fixed-cta[data-menu-open], .fixed-cta[data-menu-open].is-scrolling {
+  position: fixed;
+  inset: var(--menu-dock-top) 0 auto;
+  transform: none;
+  transition: none;
+}
+
 .fixed-cta-clearance { position:relative; }
 
 .fixed-cta.is-docked .fixed-social-rail {

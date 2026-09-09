@@ -190,9 +190,11 @@
 
 .shared-concept-menu .l-nav.is-compact-menu {
   --menu-row-height: clamp(32px, calc((100svh - var(--shared-menu-bar-height, 130px) - 166px) / var(--menu-row-count, 7)), 69px);
-  display: grid; grid-template-rows: max-content 64px; align-content: start;
-  padding: 80px clamp(24px, 4vw, 60px) 6px;
-  gap: 16px; overflow: hidden; overscroll-behavior: none;
+  top: var(--shared-menu-screen-top, 0px);
+  height: var(--shared-menu-screen-height, 100dvh);
+  display: grid; grid-template-rows: minmax(0, 1fr) 64px; align-content: start; align-items: stretch;
+  padding: 80px clamp(24px, 4vw, 60px) calc(var(--shared-menu-bar-height, 130px) + 16px);
+  gap: 6px; overflow: hidden; overscroll-behavior: none; touch-action: none;
 }
 .shared-concept-menu .l-nav.is-compact-menu::after { display: none; }
 .is-compact-menu .l-nav-list { display: grid; grid-auto-flow: column; align-content: start; gap: 0 20px; min-height: 0; }

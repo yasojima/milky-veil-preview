@@ -1,6 +1,6 @@
 import { ensureGoogleTranslate, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-045";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-046";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -47,10 +47,16 @@ export function bindSharedConceptMenu(scope = document) {
 
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
+  let lockedScroll = null;
+  let savedBodyStyle;
+  const savedRootBackground = document.documentElement.style.background;
   const syncBottomSpace = () => {
     const barHeight = bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
     nav.style.setProperty("--shared-menu-bar-height", barHeight + "px");
+    nav.style.setProperty("--shared-menu-screen-height", viewportHeight + "px");
+    nav.style.setProperty("--shared-menu-screen-top", (window.visualViewport?.offsetTop || 0) + "px");
+    bottomBar?.style.setProperty("--menu-dock-top", ((window.visualViewport?.offsetTop || 0) + viewportHeight - barHeight) + "px");
     nav.style.setProperty("--shared-menu-viewport-height", Math.max(160, viewportHeight - barHeight) + "px");
   };
   const bottomObserver = new ResizeObserver(syncBottomSpace);
@@ -69,6 +75,7 @@ export function bindSharedConceptMenu(scope = document) {
   }, { passive: true, signal });
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
+  window.visualViewport?.addEventListener("scroll", syncBottomSpace, { signal });
   const text = toggle.querySelector(".js-nav-btn-txt");
   const surfaceRoot = menu.closest("#app, .l-wrapper");
   const surfaceTargets = surfaceRoot
@@ -92,6 +99,20 @@ export function bindSharedConceptMenu(scope = document) {
   const setOpen = (open, { restoreFocus = false } = {}) => {
     syncBottomSpace();
     if (compact) {
+      if (open && lockedScroll === null) {
+        lockedScroll = window.scrollY;
+        savedBodyStyle = document.body.getAttribute("style");
+        Object.assign(document.body.style, { position: "fixed", top: -lockedScroll + "px", width: "100%", overflow: "hidden" });
+        document.documentElement.style.background = "#fff";
+      } else if (!open && lockedScroll !== null) {
+        const scrollY = lockedScroll;
+        lockedScroll = null;
+        if (savedBodyStyle === null) document.body.removeAttribute("style");
+        else document.body.setAttribute("style", savedBodyStyle);
+        document.documentElement.style.background = savedRootBackground;
+        window.scrollTo({ top: scrollY, behavior: "instant" });
+      }
+      bottomBar?.toggleAttribute("data-menu-open", open);
       document.documentElement.style.overflow = open ? "hidden" : previousOverflow;
       if (shareRail) shareRail.style.display = open ? "none" : "";
       if (open) { nav.scrollTop = 0; requestAnimationFrame(fitMenu); }
@@ -102,6 +123,7 @@ export function bindSharedConceptMenu(scope = document) {
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
     nav.setAttribute("aria-hidden", String(!open));
     nav.inert = !open;
+    syncBottomSpace();
     if (text) text.textContent = open ? "close" : "menu";
     inertTargets.forEach((target) => { target.inert = open; });
     if (!open && restoreFocus) requestAnimationFrame(() => toggle.focus());
@@ -145,6 +167,7 @@ export function bindSharedConceptMenu(scope = document) {
   }
   setOpen(false);
   disposeActiveMenu = () => {
+    if (compact) setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
     itemsObserver.disconnect();
