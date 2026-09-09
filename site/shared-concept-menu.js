@@ -1,4 +1,4 @@
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-038";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-039";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -55,6 +55,13 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
+  let reviewSpace = Math.max(window.innerHeight * 3, 2400);
+  nav.style.setProperty("--menu-review-space", reviewSpace + "px");
+  nav.addEventListener("scroll", () => {
+    if (nav.scrollHeight - nav.scrollTop - nav.clientHeight > nav.clientHeight) return;
+    reviewSpace += Math.max(window.innerHeight * 3, 2400);
+    nav.style.setProperty("--menu-review-space", reviewSpace + "px");
+  }, { passive: true, signal });
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
   const text = toggle.querySelector(".js-nav-btn-txt");

@@ -185,3 +185,5 @@
   padding-bottom: calc(90px + env(safe-area-inset-bottom));
   overscroll-behavior-y: auto;
 }
+
+.shared-concept-menu .l-nav::after { content: ""; display: block; height: var(--menu-review-space, 300vh); grid-column: 1 / -1; pointer-events: none; }
