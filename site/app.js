@@ -1,12 +1,11 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-032";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-032";
-import { bindMilkyKaleidoscopeVideo, milkyKaleidoscopeVideoMarkup } from "./milky-kaleidoscope-video.js?v=20260904-01&pages=20260909-032";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-032";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-032";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-032";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-032";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-032";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-032";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-033";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-033";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-033";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-033";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-033";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-033";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-033";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-033";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -642,7 +641,7 @@ function conceptPage() {
   return `<main id="main" class="subpage subpage-concept concept-uniplex-mainline">
     <div id="top" class="concept-uniplex-content">
       <div class="intro-sequence" data-motion="intro-sequence">
-        <div class="intro-logo-motion home-concept__bg"><div class="intro-logo-viewport"><div class="intro-logo-stage home-concept__bg-in milky-kaleidoscope-stage concept-fv-background-stage" aria-hidden="true">${milkyKaleidoscopeVideoMarkup()}</div></div></div>
+        <div class="intro-logo-motion home-concept__bg"><div class="intro-logo-viewport"><div class="intro-logo-stage home-concept__bg-in milky-kaleidoscope-stage concept-fv-background-stage" aria-hidden="true"></div></div></div>
         <div class="hero-layer">
           <section class="hero js-home-mv l-main-img is-intro-pending is-fv-media-pending" data-motion="hero" aria-labelledby="hero-title">
             <span class="concept-fv-trigger js-home-mv-trigger l-main-img__trigger" data-motion="hero-trigger" aria-hidden="true"></span>
@@ -940,7 +939,6 @@ function bindConceptUniplexMotion() {
     pointTwo: scope.querySelector('[data-motion="point-two"]'),
   };
   const introLogoStage = scope.querySelector(".intro-logo-stage");
-  const disposeKaleidoscopeVideo = bindMilkyKaleidoscopeVideo(introLogoStage, { endElement: nodes.foreground });
   let frameId = 0;
   let disposed = false;
   let heroObserver = null;
@@ -1042,7 +1040,6 @@ function bindConceptUniplexMotion() {
   return () => {
     disposed = true;
     if (frameId) cancelAnimationFrame(frameId);
-    disposeKaleidoscopeVideo();
     heroObserver?.disconnect();
     removeEventListener("scroll", requestConceptMotion);
     removeEventListener("resize", requestConceptMotion);

@@ -1,16 +1,14 @@
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260909-032";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260909-032";
-import { bindMilkyKaleidoscopeVideo, MILKY_KALEIDOSCOPE_VIDEO, MILKY_MENU_FIRST_VIEW_MEDIA, milkyKaleidoscopeVideoMarkup } from "/milky-veil-preview/site/milky-kaleidoscope-video.js?v=20260908-02&pages=20260909-032";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260909-032";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260908-01&pages=20260909-032";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260909-032";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260909-032";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260909-032";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260909-033";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260909-033";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260909-033";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260908-01&pages=20260909-033";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260909-033";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260902-03&pages=20260909-033";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260909-033";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
 const currentPath = sharedRouteRegistry[pageRouteId]?.path || sharedRouteRegistry.concept.path;
-const firstViewMedia = pageRouteId === "menu" ? MILKY_MENU_FIRST_VIEW_MEDIA : MILKY_KALEIDOSCOPE_VIDEO;
 
 const pointVideo = document.querySelector(".home-point-ingredient__vi video");
 if (pointVideo) {
@@ -36,10 +34,7 @@ const scrollCue = mountSharedScrollCue(document.querySelector(".l-main-img__inne
   ariaLabel: `${sharedRouteRegistry[pageRouteId]?.label || "ページ"}本文へ移動`,
 });
 const fvTrigger = document.querySelector(".js-home-mv-trigger");
-const pointSection = document.querySelector("#point");
 const kaleidoscopeStage = document.querySelector(".milky-kaleidoscope-stage");
-if (kaleidoscopeStage instanceof HTMLElement) kaleidoscopeStage.innerHTML = milkyKaleidoscopeVideoMarkup(firstViewMedia);
-const disposeKaleidoscopeVideo = bindMilkyKaleidoscopeVideo(kaleidoscopeStage, { endElement: pointSection });
 
 const hero = document.querySelector(".js-home-mv");
 const heroImages = [...document.querySelectorAll(".js-home-mv-img")];
@@ -65,7 +60,6 @@ void beginHeroIntro();
 addEventListener("pagehide", (event) => {
   if (event.persisted) return;
   pageDisposed = true;
-  disposeKaleidoscopeVideo();
 });
 
 if (scrollCue && fvTrigger) {
