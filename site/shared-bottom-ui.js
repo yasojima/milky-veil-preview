@@ -9,7 +9,7 @@ const activityCleanup = new WeakMap();
 const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260910-076",
   "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260910-076",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-076",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-076&edit=1788993810463",
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260910-076",
   "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260910-076",
   "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260910-076",
