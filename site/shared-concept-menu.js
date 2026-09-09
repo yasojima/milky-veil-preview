@@ -1,5 +1,5 @@
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-040";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-041";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -79,8 +79,10 @@ export function bindSharedConceptMenu(scope = document) {
   const fitMenu = () => {
     if (!compact || !list) return;
     const available = Math.max(100, nav.clientHeight - 150);
-    const rows = Math.max(1, Math.min(list.children.length, Math.floor(available / 44)));
-    list.style.gridTemplateRows = "repeat(" + rows + ", minmax(0, 1fr))";
+    const item = list.firstElementChild;
+    const naturalHeight = item?.getBoundingClientRect().height || 78;
+    const rows = Math.max(1, Math.min(list.children.length, Math.floor(available / naturalHeight)));
+    list.style.gridTemplateRows = "repeat(" + rows + ", max-content)";
     list.style.gridTemplateColumns = "repeat(" + Math.ceil(list.children.length / rows) + ", minmax(0, 1fr))";
   };
   const layoutObserver = new ResizeObserver(fitMenu);
