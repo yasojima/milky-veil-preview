@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-075";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-075";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-075";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-075";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-075";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-075";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-075";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-075";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-076";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-076";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-076";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-076";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-076";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-076";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-076";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-076";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -532,7 +532,7 @@ function home() {
           <span>${sharedBrandSupportingLines.join("<br>")}</span>
           <a class="hero-reserve wave-cta" href="${hotpepper.href}" target="_blank" rel="noopener noreferrer" aria-label="Hot Pepper Beautyを新しいタブで開きます"><span>${hotpepper.label}</span><i aria-hidden="true"></i></a>
         </div>
-        ${sharedScrollCueMarkup({ target: "#instagram-home", ariaLabel: "Instagramセクションへ移動" })}
+        ${sharedScrollCueMarkup({ target: "#concept-home", ariaLabel: "CONCEPTセクションへ移動" })}
       </section>
       ${instagramFeed()}
       ${homeSplitSections.map(({ label, heading, text, image, reverse, routeId, sectionId }) => splitSection(label, heading, text, image, reverse, routeId, sectionId)).join("")}
@@ -1539,7 +1539,20 @@ function bind(sharedBottomScope) {
   }
 }
 
-function render({ focusRoute = false } = {}) {
+const scrollStorageKey = () => `milky-scroll:${location.pathname}${location.search}`;
+let reloadScrollPosition;
+try {
+  if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+    reloadScrollPosition = JSON.parse(sessionStorage.getItem(scrollStorageKey()) || "null");
+  }
+} catch { reloadScrollPosition = null; }
+if (reloadScrollPosition && Number.isFinite(reloadScrollPosition.y)) history.scrollRestoration = "manual";
+addEventListener("pagehide", () => {
+  try { sessionStorage.setItem(scrollStorageKey(), JSON.stringify({ x: scrollX, y: scrollY })); } catch { /* Storage may be disabled by browser settings. */ }
+});
+let renderedPathname;
+
+function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   disposeHomeStaffCarousel();
   disposeHomeStaffCarousel = () => {};
   disposeSubpageMotion();
@@ -1588,8 +1601,20 @@ function render({ focusRoute = false } = {}) {
   }
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   else mountGoogleTranslateWidgets();
-  window.scrollTo(0,0);
+  renderedPathname = location.pathname;
+  if (resetScroll) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 
-addEventListener("popstate",()=>render({ focusRoute: true }));
+addEventListener("popstate", () => {
+  if (location.pathname !== renderedPathname) render({ focusRoute: true, resetScroll: false });
+});
 render();
+if (reloadScrollPosition && Number.isFinite(reloadScrollPosition.y)) {
+  const loaded = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => addEventListener("load", resolve, { once: true }));
+  Promise.all([loaded, document.fonts.ready]).then(() => {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      window.scrollTo({ left: reloadScrollPosition.x, top: reloadScrollPosition.y, behavior: "instant" });
+      history.scrollRestoration = "auto";
+    }));
+  });
+}
