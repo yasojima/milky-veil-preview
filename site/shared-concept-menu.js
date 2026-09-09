@@ -1,5 +1,6 @@
+import { ensureGoogleTranslate, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-043";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-044";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -138,20 +139,8 @@ export function bindSharedConceptMenu(scope = document) {
       panel.inert = !open;
       if (!open) return;
       const target = panel.querySelector("[data-google-translate]");
-      const mount = () => {
-        if (target.childElementCount || !window.google?.translate?.TranslateElement) return;
-        new window.google.translate.TranslateElement({ pageLanguage: "ja", autoDisplay: false }, target.id);
-      };
-      if (window.google?.translate?.TranslateElement) { mount(); return; }
-      window.milkyMenuTranslationReady = mount;
-      if (!document.getElementById("menu-translation-script")) {
-        const script = document.createElement("script");
-        script.id = "menu-translation-script";
-        script.src = "https://translate.google.com/translate_a/element.js?cb=milkyMenuTranslationReady";
-        script.async = true;
-        script.onerror = () => { target.textContent = "翻訳機能を読み込めませんでした。"; };
-        document.head.append(script);
-      }
+      selectTranslationTarget(target.id);
+      ensureGoogleTranslate();
     }, { signal });
   }
   setOpen(false);

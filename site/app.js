@@ -1,12 +1,13 @@
+import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-043";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-043";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-043";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-043";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-043";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-043";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-043";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-043";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-044";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-044";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-044";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-044";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-044";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-044";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-044";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-044";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -36,12 +37,7 @@ const shellData = Object.freeze({
     contact: Object.freeze({ kind: "route", routeId: "contact", label: "お問い合わせはこちら" }),
     demoReservation: Object.freeze({ kind: "demo", label: "ご予約はこちら" }),
     hotpepper: Object.freeze({ kind: "external", label: "ご予約はこちら", href: "https://beauty.hotpepper.jp/" }),
-    translate: Object.freeze({
-      kind: "embedded-service",
-      provider: "Google Translate",
-      scriptSrc: "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit",
-      includedLanguages: "af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,zh-CN,zh-TW,co,hr,cs,da,nl,en,eo,et,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,he,hi,hmn,hu,is,ig,id,ga,it,ja,jv,kn,kk,km,rw,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ny,or,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tl,tg,ta,tt,te,th,tr,tk,uk,ur,ug,uz,vi,cy,xh,yi,yo,zu",
-    }),
+    translate: translationSettings,
   }),
   assistChannels: Object.freeze([
     Object.freeze({ id: "webChat", label: "WEB CHAT", enabled: false, href: null, placement: "floating-support" }),
@@ -276,87 +272,6 @@ function link(routeId, cls = "", currentPath = "", labelOverride = "") {
   return `<a class="${cls}" href="${path}" data-link${isCurrent ? ' aria-current="page"' : ""}>${labelOverride || label}</a>`;
 }
 
-let activeTranslateTargetId = "google-translate-header";
-let googleTranslateGadget = null;
-const translationStorageKey = "milky-veil-translation-language";
-
-function storedTranslationLanguage() {
-  try {
-    return sessionStorage.getItem(translationStorageKey) || "";
-  } catch {
-    return "";
-  }
-}
-
-function rememberTranslationLanguage(language) {
-  try {
-    if (!language || language === "ja") sessionStorage.removeItem(translationStorageKey);
-    else sessionStorage.setItem(translationStorageKey, language);
-  } catch {
-    // Translation still works for the current page when storage is unavailable.
-  }
-}
-
-function connectGoogleTranslateCombo(gadget) {
-  const combo = gadget?.querySelector(".goog-te-combo");
-  if (!combo || combo.dataset.milkyVeilBound === "true") return;
-  combo.dataset.milkyVeilBound = "true";
-  combo.addEventListener("change", () => rememberTranslationLanguage(combo.value));
-  const storedLanguage = storedTranslationLanguage();
-  if (storedLanguage && combo.value !== storedLanguage) {
-    combo.value = storedLanguage;
-    combo.dispatchEvent(new Event("change", { bubbles: true }));
-  }
-}
-
-function mountGoogleTranslateWidgets() {
-  if (!window.google?.translate?.TranslateElement) return;
-  if (googleTranslateGadget && !googleTranslateGadget.isConnected) googleTranslateGadget = null;
-  const target = document.getElementById(activeTranslateTargetId)
-    || document.querySelector("[data-google-translate]");
-  if (!target) return;
-  googleTranslateGadget ||= document.querySelector(".goog-te-gadget");
-  if (googleTranslateGadget) {
-    target.replaceChildren(googleTranslateGadget);
-    connectGoogleTranslateCombo(googleTranslateGadget);
-    return;
-  }
-  if (target.dataset.initialized === "true") return;
-  target.dataset.initialized = "true";
-  new window.google.translate.TranslateElement({
-    pageLanguage: "ja",
-    includedLanguages: shellData.actions.translate.includedLanguages,
-    autoDisplay: false,
-  }, target.id);
-  googleTranslateGadget = target.querySelector(".goog-te-gadget");
-  connectGoogleTranslateCombo(googleTranslateGadget);
-  if (!googleTranslateGadget) {
-    requestAnimationFrame(() => {
-      googleTranslateGadget = target.querySelector(".goog-te-gadget");
-      connectGoogleTranslateCombo(googleTranslateGadget);
-    });
-  }
-}
-
-window.googleTranslateElementInit = mountGoogleTranslateWidgets;
-
-function ensureGoogleTranslate() {
-  if (window.google?.translate?.TranslateElement) {
-    mountGoogleTranslateWidgets();
-    return;
-  }
-  if (document.getElementById("google-translate-script")) return;
-  const script = document.createElement("script");
-  script.id = "google-translate-script";
-  script.src = shellData.actions.translate.scriptSrc;
-  script.async = true;
-  script.onerror = () => {
-    document.querySelectorAll("[data-google-translate]").forEach((element) => {
-      element.textContent = "翻訳機能を読み込めませんでした。";
-    });
-  };
-  document.head.append(script);
-}
 
 function header(isHome = false, currentPath = "/") {
   const { salon, navigation, actions } = shellData;
@@ -1197,8 +1112,7 @@ function bind(sharedBottomScope) {
     const willOpen = button.getAttribute("aria-expanded") !== "true";
     setTranslateOpen(button, willOpen);
     if (willOpen) {
-      activeTranslateTargetId = button.closest(".translate-control")?.querySelector("[data-google-translate]")?.id
-        || "google-translate-header";
+      selectTranslationTarget(button.closest(".translate-control")?.querySelector("[data-google-translate]")?.id || "google-translate-header");
       ensureGoogleTranslate();
       mountGoogleTranslateWidgets();
     }
