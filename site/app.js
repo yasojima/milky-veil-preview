@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-076";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-076";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-076";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-076&edit=1788993810463";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-076";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-076";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-076";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-076";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-078";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-078";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-078";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-078";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-078";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-078";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-078";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-078";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -1546,7 +1546,12 @@ try {
     reloadScrollPosition = JSON.parse(sessionStorage.getItem(scrollStorageKey()) || "null");
   }
 } catch { reloadScrollPosition = null; }
-if (reloadScrollPosition && Number.isFinite(reloadScrollPosition.y)) history.scrollRestoration = "manual";
+const restoringScroll = reloadScrollPosition && Number.isFinite(reloadScrollPosition.y);
+const initialOpacity = document.documentElement.style.opacity;
+if (restoringScroll) {
+  history.scrollRestoration = "manual";
+  document.documentElement.style.opacity = "0";
+}
 addEventListener("pagehide", () => {
   try { sessionStorage.setItem(scrollStorageKey(), JSON.stringify({ x: scrollX, y: scrollY })); } catch { /* Storage may be disabled by browser settings. */ }
 });
@@ -1609,11 +1614,11 @@ addEventListener("popstate", () => {
   if (location.pathname !== renderedPathname) render({ focusRoute: true, resetScroll: false });
 });
 render();
-if (reloadScrollPosition && Number.isFinite(reloadScrollPosition.y)) {
-  const loaded = document.readyState === "complete" ? Promise.resolve() : new Promise(resolve => addEventListener("load", resolve, { once: true }));
-  Promise.all([loaded, document.fonts.ready]).then(() => {
+if (restoringScroll) {
+  sharedBottomUiReady(document.getElementById("shared-bottom-ui-root")).then(() => {
     requestAnimationFrame(() => requestAnimationFrame(() => {
       window.scrollTo({ left: reloadScrollPosition.x, top: reloadScrollPosition.y, behavior: "instant" });
+      document.documentElement.style.opacity = initialOpacity;
       history.scrollRestoration = "auto";
     }));
   });

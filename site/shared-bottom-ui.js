@@ -1,18 +1,23 @@
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260910-076";
-import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260910-076";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-076";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260910-076";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260910-076";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260910-078";
+import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260910-078";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-078";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260910-078";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260910-078";
 
 const activityCleanup = new WeakMap();
+const styleReadiness = new WeakMap();
+
+export function sharedBottomUiReady(host) {
+  return styleReadiness.get(host) || Promise.resolve();
+}
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260910-076",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260910-076",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-076&edit=1788993810463",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260910-076",
-  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260910-076",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260910-076",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260910-078",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260910-078",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-078",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260910-078",
+  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260910-078",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260910-078",
 ]);
 
 export function mountSharedBottomUi(host, currentPath) {
@@ -39,6 +44,7 @@ export function mountSharedBottomUi(host, currentPath) {
           -webkit-text-size-adjust: 100%;
           zoom: 1;
         }
+        [data-shared-bottom-ui-component][data-css-pending] { opacity: 0 !important; pointer-events: none !important; }
         [data-shared-bottom-ui-component] {
           display: block;
           box-sizing: border-box;
@@ -49,7 +55,7 @@ export function mountSharedBottomUi(host, currentPath) {
         }
       </style>
       ${SHARED_BOTTOM_STYLES.map((href) => `<link rel="stylesheet" href="${href}">`).join("")}
-      <div data-shared-bottom-ui-component>
+      <div data-shared-bottom-ui-component data-css-pending>
         ${sharedBrandMessageMarkup()}
         ${sharedFooterTickerMarkup()}
         ${sharedFooterTickerRuleMarkup()}
@@ -58,6 +64,17 @@ export function mountSharedBottomUi(host, currentPath) {
         ${sharedFixedCtaMarkup()}
       </div>
     `;
+    const component = root.querySelector("[data-shared-bottom-ui-component]");
+    const ready = Promise.all([...root.querySelectorAll('link[rel="stylesheet"]')].map(link => {
+      if (link.sheet) return true;
+      return new Promise(resolve => {
+        link.addEventListener("load", () => resolve(true), { once: true });
+        link.addEventListener("error", () => resolve(false), { once: true });
+      });
+    })).then(results => {
+      if (results.every(Boolean)) component.removeAttribute("data-css-pending");
+    });
+    styleReadiness.set(host, ready);
   }
   const activePath = currentPath === "/" ? "/" : `/${String(currentPath).replace(/^\/+|\/+$/g, "")}/`;
   root.querySelectorAll(".footer-links a").forEach((anchor) => {
@@ -72,6 +89,7 @@ export function clearSharedBottomUi(host) {
   if (!(host instanceof HTMLElement)) return;
   activityCleanup.get(host)?.();
   activityCleanup.delete(host);
+  styleReadiness.delete(host);
   host.shadowRoot?.replaceChildren();
   host.replaceChildren();
 }
