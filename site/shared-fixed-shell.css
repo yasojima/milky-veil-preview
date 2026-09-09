@@ -74,6 +74,15 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
     padding:8px 5px;
     text-align:center;
   }
+  .fixed-cta::after {
+    content:"";
+    position:absolute;
+    z-index:2;
+    inset:auto 0 calc(env(safe-area-inset-bottom, 0px) - 1px);
+    height:1px;
+    background:#172133;
+    pointer-events:none;
+  }
   .cta-phone { justify-content:center; gap:5px; }
   .cta-phone strong { font-size:27px; font-weight:600; line-height:1; }
   .cta-phone svg { width:12px; height:12px; }
