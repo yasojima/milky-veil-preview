@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-080";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-081";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -17,6 +17,10 @@ export function sharedFixedCtaMarkup() {
           ${sharedFixedShellData.socials.map(({ name, file }) => `<button class="fixed-social-item" type="button" tabindex="-1" aria-label="${name}（デモ・リンク未設定）" title="${name}（デモ）" data-demo-social><img src="/milky-veil-preview/assets/ui/social/${file}" alt=""></button>`).join("")}
         </div>
       </aside>
+      <button class="fixed-contact-toggle" type="button" aria-expanded="false" aria-controls="fixed-contact-panel" aria-label="お問い合わせ・予約を表示" data-fixed-contact-toggle>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="2"/><path d="m5 9 11 8 11-8"/></svg>
+      </button>
+      <div class="fixed-contact-panel" id="fixed-contact-panel">
       <div class="cta-tel">
         <span class="cta-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 2.8 9.3 8l-2.1 1.7c1.4 3.1 3.9 5.6 7.1 7.1l1.7-2.1 5.2 2.6-.8 3.7c-.2.8-.9 1.3-1.7 1.3C9.3 21.7 2.3 14.7 1.7 5.3c-.1-.8.5-1.5 1.3-1.7l3.7-.8Z"/></svg><strong>${sharedFixedShellData.phone}</strong></span>
         <span class="cta-hours">${sharedFixedShellData.hours.join(" / ")}</span>
@@ -27,6 +31,7 @@ export function sharedFixedCtaMarkup() {
       </div>
       <div class="page-top-cell">
         <button type="button" class="page-top" aria-label="ページ上部へ"></button>
+      </div>
       </div>
     </div>`;
 }
@@ -52,6 +57,9 @@ export function bindSharedFixedShell(scope = document) {
   const socialRail = bar.querySelector("[data-fixed-social-rail]");
   const socialToggle = bar.querySelector("[data-fixed-social-toggle]");
   const socialItems = [...bar.querySelectorAll("[data-demo-social]")];
+  const contactToggle = bar.querySelector("[data-fixed-contact-toggle]");
+  const contactPanel = bar.querySelector(".fixed-contact-panel");
+  const mobile = window.matchMedia("(max-width: 900px)");
   const pageTop = bar.querySelector(".page-top");
   const reserveButtons = [...bar.querySelectorAll("[data-demo-reserve]")];
   const controller = new AbortController();
@@ -81,6 +89,11 @@ export function bindSharedFixedShell(scope = document) {
   function update() {
     frameId = 0;
     syncSharedBoundary();
+    if (mobile.matches) {
+      bar.classList.remove("is-scrolling", "is-docked");
+      if (dock) dock.style.height = "0px";
+      return;
+    }
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {
       const height = `${bar.getBoundingClientRect().height}px`;
@@ -113,6 +126,7 @@ export function bindSharedFixedShell(scope = document) {
   }
 
   function setSocialOpen(open, restoreFocus = false) {
+    if (open && mobile.matches) setContactOpen(false);
     socialRail?.classList.toggle("is-open", open);
     if (!open) socialRail?.classList.remove("is-hovered");
     socialToggle?.setAttribute("aria-expanded", String(open));
@@ -120,6 +134,24 @@ export function bindSharedFixedShell(scope = document) {
     socialItems.forEach((item) => item.setAttribute("tabindex", open ? "0" : "-1"));
     if (!open && restoreFocus) socialToggle?.focus();
   }
+
+  function setContactOpen(open, restoreFocus = false) {
+    const expanded = mobile.matches && open;
+    bar.classList.toggle("is-contact-open", expanded);
+    contactToggle?.setAttribute("aria-expanded", String(expanded));
+    contactToggle?.setAttribute("aria-label", expanded ? "お問い合わせ・予約を閉じる" : "お問い合わせ・予約を表示");
+    if (contactPanel) contactPanel.inert = mobile.matches && !expanded;
+    if (!expanded && restoreFocus) contactToggle?.focus();
+  }
+
+  contactToggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const open = contactToggle.getAttribute("aria-expanded") !== "true";
+    if (open) setSocialOpen(false);
+    setContactOpen(open);
+  }, { signal });
+  mobile.addEventListener("change", () => { setContactOpen(false); schedule(); }, { signal });
+  setContactOpen(false);
 
   function keepFocusedElementVisible(event) {
     const target = event.composedPath()[0];
@@ -152,9 +184,11 @@ export function bindSharedFixedShell(scope = document) {
   }, { signal }));
   document.addEventListener("click", (event) => {
     if (!event.composedPath().includes(socialRail)) setSocialOpen(false);
+    if (!event.composedPath().includes(contactPanel) && !event.composedPath().includes(contactToggle)) setContactOpen(false);
   }, { signal });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && socialToggle?.getAttribute("aria-expanded") === "true") setSocialOpen(false, true);
+    if (event.key === "Escape" && contactToggle?.getAttribute("aria-expanded") === "true") setContactOpen(false, true);
   }, { signal });
   document.addEventListener("focusin", keepFocusedElementVisible, { signal });
   if (queryRoot !== document) queryRoot.addEventListener("focusin", keepFocusedElementVisible, { signal });
