@@ -13,7 +13,7 @@
   border: 0;
   transform: none;
   zoom: 1;
-  font-family: "MV Shared Noto Sans JP", sans-serif;
+  font-family: var(--mv-font-text);
   font-size: 16px;
   font-weight: 300;
   line-height: 1.9;
@@ -57,7 +57,7 @@
 
 .footer-kicker {
   margin: 0 0 12px;
-  font: 600 15.5px/1.25 "MV Shared DM Sans", sans-serif;
+  font: 600 15.5px/1.25 var(--mv-font-text);
   letter-spacing: .22em;
 }
 
@@ -79,8 +79,8 @@
 .footer-info-grid section:first-child p:first-of-type { white-space: nowrap; }
 .footer-info-grid section:first-child p:last-child,
 .footer-info-grid section:last-child p:last-child { margin-top: 0; }
-.footer-info h2 { margin: 0; font: 600 16.5px/1.25 "MV Shared DM Sans", sans-serif; letter-spacing: .18em; }
-.footer-info p { margin: 0; font-family: "MV Shared Noto Sans JP", sans-serif; font-size: 16px; font-weight: 300; line-height: 1.5; letter-spacing: normal; }
+.footer-info h2 { margin: 0; font: 600 16.5px/1.25 var(--mv-font-text); letter-spacing: .18em; }
+.footer-info p { margin: 0; font-family: var(--mv-font-text); font-size: 16px; font-weight: 300; line-height: 1.5; letter-spacing: normal; }
 
 .footer-links {
   display: grid;
@@ -99,7 +99,7 @@
   border-bottom: 1px solid rgba(23, 33, 51, .28);
   padding: 0;
   color: inherit;
-  font: 500 14px/1.4 "MV Shared DM Sans", sans-serif;
+  font: 500 14px/1.4 var(--mv-font-text);
   letter-spacing: .045em;
   text-decoration: none;
 }

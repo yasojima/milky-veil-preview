@@ -21,7 +21,7 @@
   margin: 0 0 -2.4%;
   padding: 0 30px;
   color: #970200;
-  font-family: "Rosarivo", "Cardo", "Noto Serif JP", "Yu Mincho", serif;
+  font-family: var(--mv-font-text);
   font-size: 120px !important;
   font-weight: 400;
   letter-spacing: 0;

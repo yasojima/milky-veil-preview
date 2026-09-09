@@ -1,5 +1,5 @@
 :root {
-  --mh--font-family--en: "Marcellus", sans-serif;
+  --mh--font-family--en: var(--mv-font-text);
   --mh--font-size--x3s: 11px;
   --mh--font-size--x2l: 18px;
   --mh--font-size--x5l: 23px;

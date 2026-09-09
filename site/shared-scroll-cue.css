@@ -24,7 +24,7 @@
   box-sizing: border-box;
   padding: 0 0 100px;
   color: inherit;
-  font: 700 10px/1px "Noto Serif JP", serif;
+  font: 700 10px/1px var(--mv-font-text);
   letter-spacing: 10px;
   text-decoration: none;
   text-orientation: mixed;

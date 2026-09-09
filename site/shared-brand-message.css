@@ -7,7 +7,7 @@
   padding: 0 clamp(28px, 5vw, 72px);
   background: var(--milky-home-paper, #fff);
   color: #172133;
-  font-family: "MV Shared Noto Sans JP", sans-serif;
+  font-family: var(--mv-font-text);
   font-size: 16px;
   font-weight: 300;
   letter-spacing: normal;
@@ -36,7 +36,7 @@
 
 .shared-brand-message-copy > p {
   margin: 0;
-  font: 400 clamp(57px, 11vw, 159px) / 1.02 "MV Shared Playfair Display", "Times New Roman", serif;
+  font: 400 clamp(57px, 11vw, 159px) / 1.02 var(--mv-font-text);
   letter-spacing: normal;
   line-break: auto;
   overflow-wrap: normal;
@@ -50,7 +50,7 @@
 .shared-brand-message-copy > span {
   display: block;
   margin-top: 32px;
-  font: 400 19.5px / 1.9 "MV Shared Noto Serif JP", serif;
+  font: 400 19.5px / 1.9 var(--mv-font-text);
   letter-spacing: .16em;
   text-align: left;
 }

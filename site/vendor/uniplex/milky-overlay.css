@@ -64,7 +64,7 @@ body#home {
   left: clamp(20px, 4vw, 58px);
   z-index: 2;
   color: var(--milky-ink);
-  font: 700 clamp(10px, .8vw, 14px)/1 Arial, sans-serif;
+  font: 700 clamp(10px, .8vw, 14px)/1 var(--mv-font-text);
   letter-spacing: .32em;
 }
 
