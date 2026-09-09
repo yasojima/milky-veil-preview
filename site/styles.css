@@ -1104,7 +1104,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .instagram-album-controls button:disabled{opacity:.3;cursor:default}
 .instagram-open:has(.instagram-play) .instagram-card-hover{padding-top:100px}
 .instagram-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:56px;height:56px;border:1px solid #fff;border-radius:50%;background:#17213333;font-size:18px}
-.instagram-detail-link{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:16px;border-top:1px solid #17213320;color:#36f;font-size:13px;text-decoration:none}
+.instagram-detail-link{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:16px;border-top:1px solid #17213320;color:#36f;font-size:13px;font-weight:700;text-decoration:none}
 .instagram-detail-link svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .instagram-detail-link[aria-disabled="true"]{cursor:default}
 .instagram-detail-copy{display:flex;flex-direction:column;gap:24px;min-width:0;height:var(--detail-media-height,70dvh);min-height:0;overflow-y:auto;padding:28px}
