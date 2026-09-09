@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-070";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-070";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-070";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-070";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-070";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-070";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-070";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-070";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-071";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-071";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-071";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-071";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-071";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-071";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-071";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-071";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -402,6 +402,10 @@ const instagramPosts = Object.freeze([
   { title: "BLONDE COLLECTION", caption: "ボブもロングもなりたい印象に合わせたブロンド", images: [homeFeatureCards[1][1], homeFeatureCards[2][1]], alt: "ブロンドのヘアデザイン" },
 ]);
 
+function instagramIcon(id) {
+  return `<svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="instagram-stroke-${id}" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb846"/><stop offset=".45" stop-color="#ff285c"/><stop offset="1" stop-color="#c02bdd"/></linearGradient></defs><g stroke="url(#instagram-stroke-${id})" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="#e8349c"/></svg>`;
+}
+
 function instagramFeed() {
   return `<section class="instagram-home" id="instagram-home" aria-labelledby="instagram-heading">
     <header class="instagram-heading"><h2 id="instagram-heading"><img src="/milky-veil-preview/assets/ui/social/${sharedSocials.find(social => social.name === "Instagram").file}" alt="" aria-hidden="true">INSTAGRAM</h2></header>
@@ -409,13 +413,13 @@ function instagramFeed() {
       ${instagramPosts.map((post, index) => `<article class="instagram-card"><div class="instagram-card-media">
         <button type="button" class="instagram-open" data-instagram-post="${index}" aria-haspopup="dialog" aria-label="${post.title}の${post.video ? "動画" : "写真と本文"}を見る">
           ${responsiveImage(post.images[0], post.alt, { sizes: "(max-width: 767px) 85vw, 33vw" })}
-          <span class="instagram-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="instagram-stroke-${index}" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb846"/><stop offset=".45" stop-color="#ff285c"/><stop offset="1" stop-color="#c02bdd"/></linearGradient></defs><g stroke="url(#instagram-stroke-${index})" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="#e8349c"/></svg></span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
+          <span class="instagram-card-icon" aria-hidden="true">${instagramIcon(index)}</span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
           ${post.video ? '<span class="instagram-play" aria-hidden="true">▶</span>' : ""}
         </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
       </article>`).join("")}
     </div>
     <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / ${instagramPosts.length}</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>
-    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus>×</button><div class="instagram-detail"></div></dialog>
+    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus>×</button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る">←</button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る">→</button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
   </section>`;
 }
 
@@ -446,30 +450,72 @@ function bindInstagramFeed() {
     event.preventDefault();
     go(active + (event.key === "ArrowRight" ? 1 : -1));
   });
-  section.querySelectorAll("[data-instagram-post]").forEach(button => button.addEventListener("click", () => {
-    const post = instagramPosts[Number(button.dataset.instagramPost)];
-    opener = button;
-    detail.innerHTML = `<div class="instagram-detail-image">${post.video ? `<video controls playsinline preload="metadata" poster="${post.images[0]}" src="${post.video}" aria-label="${post.alt}"></video>` : `<div class="instagram-album">${post.images.map(image => responsiveImage(image, post.alt, { sizes: "(max-width: 767px) 90vw, 50vw", loading: "eager" })).join("")}</div>${post.images.length > 1 ? '<div class="instagram-album-controls"><button type="button" data-album-step="-1" aria-label="前の写真" disabled>←</button><span class="instagram-album-count" aria-live="polite">1 / 2</span><button type="button" data-album-step="1" aria-label="次の写真">→</button></div>' : ""}`}</div><div class="instagram-detail-copy"><p class="eyebrow">MILKY VEIL / SAMPLE</p><h3 id="instagram-post-heading">${post.title}</h3><p>${post.caption}</p><a class="instagram-detail-link" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer">Instagramを見る ↗</a></div>`;
+  let currentPost = 0;
+  let currentPhoto = 0;
+  const fitDetail = () => {
+    if (!dialog.open) return;
+    const media = detail.querySelector("video") || detail.querySelectorAll(".instagram-album img")[currentPhoto];
+    if (!media) return;
+    const width = media.videoWidth || media.naturalWidth;
+    const height = media.videoHeight || media.naturalHeight;
+    if (!width || !height) return;
+    const ratio = width / height;
+    const mobile = innerWidth < 768;
+    const copyWidth = mobile ? 0 : Math.min(360, innerWidth * .34);
+    const maxWidth = mobile ? innerWidth - 32 : Math.min(1200, innerWidth - 144) - copyWidth;
+    const maxHeight = mobile ? innerHeight * .58 : Math.min(740, innerHeight - 128);
+    const mediaWidth = mobile ? maxWidth : Math.min(maxWidth, maxHeight * ratio);
+    const mediaHeight = mobile ? mediaWidth / ratio : Math.min(maxHeight, mediaWidth / ratio);
+    dialog.style.setProperty("--detail-width", `${mediaWidth + copyWidth}px`);
+    dialog.style.setProperty("--detail-media-width", `${mediaWidth}px`);
+    dialog.style.setProperty("--detail-media-height", `${mediaHeight}px`);
+  };
+  const showPost = index => {
+    currentPost = (index + instagramPosts.length) % instagramPosts.length;
+    currentPhoto = 0;
+    const post = instagramPosts[currentPost];
+    detail.querySelector("video")?.pause();
+    detail.innerHTML = `<div class="instagram-detail-image">${post.video ? `<video controls playsinline preload="metadata" poster="${post.images[0]}" src="${post.video}" aria-label="${post.alt}"></video>` : `<div class="instagram-album">${post.images.map(image => responsiveImage(image, post.alt, { sizes: "(max-width: 767px) 90vw, 50vw", loading: "eager" })).join("")}</div>${post.images.length > 1 ? `<div class="instagram-album-controls"><button type="button" data-album-step="-1" aria-label="前の写真" disabled>←</button><span class="instagram-album-count" aria-live="polite">1 / ${post.images.length}</span><button type="button" data-album-step="1" aria-label="次の写真">→</button></div>` : ""}`}</div><div class="instagram-detail-copy"><header class="instagram-detail-account"><a href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer"><img src="${sharedBrandLogo}" alt="MILKY VEIL"><span>@${instagramProfile.username}</span></a><span class="instagram-detail-icon" aria-hidden="true">${instagramIcon("detail")}</span></header><div class="instagram-detail-text"><h3 id="instagram-post-heading">${post.title}</h3><p>${post.caption}</p></div><a class="instagram-detail-link" href="${post.permalink || instagramProfile.url}" target="_blank" rel="noopener noreferrer">${post.permalink ? "元の投稿を見る" : "Instagramを見る"} ↗</a></div>`;
+    detail.querySelectorAll("img").forEach(image => image.addEventListener("load", fitDetail, { once: true }));
+    detail.querySelector("video")?.addEventListener("loadedmetadata", fitDetail, { once: true });
+    dialog.querySelector("[data-post-status]").textContent = `${currentPost + 1} / ${instagramPosts.length} ${post.title}`;
     const album = detail.querySelector(".instagram-album");
     if (album && post.images.length > 1) {
       const albumButtons = [...detail.querySelectorAll("[data-album-step]")];
       let photoIndex = 0;
       album.addEventListener("scroll", () => {
         photoIndex = Math.round(album.scrollLeft / album.clientWidth);
+        currentPhoto = photoIndex;
+        fitDetail();
         detail.querySelector(".instagram-album-count").textContent = `${photoIndex + 1} / ${post.images.length}`;
         albumButtons[0].disabled = photoIndex === 0;
         albumButtons[1].disabled = photoIndex === post.images.length - 1;
       }, { passive: true });
       albumButtons.forEach(control => control.addEventListener("click", () => album.scrollTo({ left: (photoIndex + Number(control.dataset.albumStep)) * album.clientWidth, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" })));
     }
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
+    window.addEventListener("resize", fitDetail);
+    dialog.scrollTop = 0;
+    fitDetail();
+  };
+  section.querySelectorAll("[data-instagram-post]").forEach(button => button.addEventListener("click", () => {
+    opener = button;
+    showPost(Number(button.dataset.instagramPost));
   }));
+  dialog.querySelectorAll("[data-post-step]").forEach(button => button.addEventListener("click", () => showPost(currentPost + Number(button.dataset.postStep))));
+  dialog.addEventListener("keydown", event => {
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key) || event.target.closest("video,.instagram-album-controls")) return;
+    event.preventDefault();
+    showPost(currentPost + (event.key === "ArrowRight" ? 1 : -1));
+  });
+
+
   section.querySelector(".instagram-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", event => {
     const bounds = dialog.getBoundingClientRect();
     if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
   });
-  dialog.addEventListener("close", () => { detail.querySelector("video")?.pause(); detail.replaceChildren(); opener?.focus({ preventScroll: true }); });
+  dialog.addEventListener("close", () => { window.removeEventListener("resize", fitDetail); detail.querySelector("video")?.pause(); detail.replaceChildren(); opener?.focus({ preventScroll: true }); });
   sync();
 }
 
