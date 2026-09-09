@@ -7,3 +7,13 @@
 
 body { background-color: var(--milky-canvas); }
 #main { background-color: var(--milky-surface); }
+
+body[data-page-route-id="concept"] {
+  --milky-canvas: #F0F8FF;
+  --milky-intro-surface: var(--milky-canvas);
+}
+
+body[data-page-route-id="menu"] {
+  --milky-canvas: #E0FFFF;
+  --milky-intro-surface: var(--milky-canvas);
+}

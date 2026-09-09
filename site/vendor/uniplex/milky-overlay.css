@@ -8,7 +8,7 @@ body#home {
 
 .home-concept,
 .home-concept__bg {
-  background-color: var(--milky-home-paper);
+  background-color: var(--milky-intro-surface, var(--milky-home-paper));
 }
 
 .home-point.u-bg-primary-500 {
