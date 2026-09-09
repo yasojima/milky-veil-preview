@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines } from "./shared-site-data.js?v=20260906-02&pages=20260909-060";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines } from "./shared-site-data.js?v=20260906-02&pages=20260909-061";
 
 export const sharedBrandMessageEyebrow = sharedBrandEyebrow;
 export const sharedBrandMessageLines = sharedBrandHeadlineLines;

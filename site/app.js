@@ -1,13 +1,13 @@
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-060";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-060";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-060";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-060";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-060";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-060";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-060";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-060";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-061";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-061";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-061";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-061";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-061";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-061";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-061";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-061";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -108,11 +108,11 @@ const featureCards = [
 ];
 
 const homeFeatureCards = [
-  ["COLOR", `${HF}color-lavender-customer-v2.png`],
-  ["TEXTURE", `${HF}texture-white-bob-customer-v2.png`],
-  ["SILHOUETTE", `${HF}silhouette-long-blonde-customer-v2.png`],
-  ["MOOD", `${HF}mood-root-white-bob-customer-v3.png`],
-  ["IDENTITY", `${HF}identity-white-purple-updo-customer-v3.png`],
+  ["COLOR", `${HF}color-lavender-customer-v2.png`, "LAVENDER", "ラベンダー"],
+  ["TEXTURE", `${HF}texture-white-bob-customer-v2.png`, "WHITE BOB", "ホワイトボブ"],
+  ["SILHOUETTE", `${HF}silhouette-long-blonde-customer-v2.png`, "BLONDE", "ブロンド"],
+  ["MOOD", `${HF}mood-root-white-bob-customer-v3.png`, "ROOT SHADOW", "ルーツシャドウ"],
+  ["IDENTITY", `${HF}identity-white-purple-updo-customer-v3.png`, "TWO-TONE", "ツートーン"],
 ];
 
 const staffProfiles = Object.freeze([
@@ -408,28 +408,19 @@ function home() {
         </div>
         ${sharedScrollCueMarkup({ target: "#concept-home", ariaLabel: "コンセプトセクションへ移動" })}
       </section>
-      <section class="intro">
-        <div class="intro-image">${responsiveImage(`${A}home-introduction/three-model-editorial-collage-v1.png`, "ラベンダー、ホワイトパープル、ブロンドのスタイルを楽しむ3人の女性", { sizes: "(max-width: 900px) 100vw, 55vw" })}</div>
-        <div class="intro-copy">
-          <p class="eyebrow">INTRODUCTION</p>
-          <h2><span class="split-heading-line">なりたい色を</span><span class="split-heading-line">諦めない</span></h2>
-          <p>ブリーチも、エクステも、パーマも。髪への負担をできる限り抑えながら、いまの気分にいちばん似合うスタイルを形にする、渋谷のデザインサロンです。</p>
-        </div>
-      </section>
       ${homeSplitSections.map(({ label, heading, text, image, reverse, routeId, sectionId }) => splitSection(label, heading, text, image, reverse, routeId, sectionId)).join("")}
       <section class="duo">
         <a href="${routePath("menu")}" data-link>${responsiveImage(`${A}home-role-locked-pack-v1/home-menu-color-service-v4.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<span><b>MENU</b></span></a>
         <a href="${routePath("items")}" data-link>${responsiveImage(`${A}home-role-locked-pack-v1/home-items-customer-06-v1.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<span><b>ITEMS</b></span></a>
       </section>
       ${staffStrip()}
-      ${journalPreview()}
       <section class="access-home">
         ${responsiveImage(`${A}home-access/interior-collage-night-v1.png`, "夜の渋谷を望むMILKY VEILの店内コラージュ")}
         <div><p class="eyebrow">ACCESS</p><h2>SHIBUYA<br>COLOR SALON</h2><p>${shellData.salon.accessLabel}</p>${link("access","outline-link light wave-cta","","VIEW ACCESS")}</div>
       </section>
       <section class="feature-home">
-        <div class="section-title"><p class="eyebrow">FEATURE</p><h2>DESIGN<br>WITHOUT LIMITS.</h2></div>
-        <div class="feature-grid">${homeFeatureCards.map(([n,img])=>`<article class="feature-card feature-card-${n.toLowerCase()}">${responsiveImage(img, "", { sizes: "(max-width: 900px) 75vw, 20vw" })}<span><b>${n}</b></span></article>`).join("")}</div>
+        <div class="section-title"><p class="eyebrow">なりたい髪を、ここから。</p><h2>COLOR &amp; DESIGN</h2></div>
+        <div class="feature-grid">${homeFeatureCards.map(([n,img,label,description])=>`<article class="feature-card feature-card-${n.toLowerCase()}">${responsiveImage(img, description, { sizes: "(max-width: 900px) 50vw, 20vw" })}<span><b>${label}</b><small>${description}</small></span></article>`).join("")}</div>
       </section>
     </main>`;
 }
@@ -506,28 +497,6 @@ function journalCard(post, className = "", mediaRole = "card") {
     <p><span>${post.category}</span><time datetime="${post.date.replaceAll(".", "-")}">${post.date}</time></p>
     <h3>${post.title}</h3><i aria-hidden="true">→</i>
   </article>`;
-}
-
-function journalPreview() {
-  const secondary = journalPosts.slice(1);
-  return `<section class="journal-preview" aria-labelledby="journal-preview-title">
-    <div class="journal-cover-rail" aria-hidden="true"><span>MILKY VEIL</span><small>SHIBUYA</small><i></i></div>
-    <div class="journal-cover-media">
-      <div class="journal-cover-image" aria-hidden="true">${responsiveImage(journalIssue.cover, "", { loading: "eager", sizes: "(max-width: 900px) 116px, 34vw", fetchPriority: "high" })}</div>
-      ${journalIssueBadge("journal-issue--cover")}
-    </div>
-    <div class="journal-cover-copy">
-      <h2 id="journal-preview-title">MILKY <br>JOURNAL</h2>
-      <p class="journal-cover-lead">髪からはじまるファッションとカルチャー<br>新しい私に出会う瞬間をそっと集めて<br>髪と私をつなぐ小さな物語</p>
-      <article class="journal-cover-feature">
-        <p>FEATURE STORY</p>
-        <h3>はじめてのブリーチ<br>予約前に伝えてほしい<br>3つのこと</h3>
-        <a class="journal-read" href="${routePath("blog")}" data-link>READ STORY <i aria-hidden="true">→</i></a>
-      </article>
-      <div class="journal-cover-list">${secondary.slice(0,2).map((post,index)=>`<a href="${routePath("blog")}" data-link><span>0${index+2}</span><strong>${post.title}</strong><i aria-hidden="true">→</i></a>`).join("")}</div>
-      <a class="journal-explore wave-cta" href="${routePath("blog")}" data-link><span>EXPLORE JOURNAL</span><i aria-hidden="true">→</i></a>
-    </div>
-  </section>`;
 }
 
 function subpageImageSlot(label, description) {
