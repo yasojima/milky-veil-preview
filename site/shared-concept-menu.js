@@ -1,6 +1,6 @@
-import { ensureGoogleTranslate, selectTranslationTarget } from "./shared-translation.js";
+import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-056";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-058";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -172,6 +172,7 @@ export function bindSharedConceptMenu(scope = document) {
     }, { signal });
   }
   setOpen(false);
+  if (storedTranslationLanguage()) ensureGoogleTranslate();
   disposeActiveMenu = () => {
     if (compact) setOpen(false);
     controller.abort();

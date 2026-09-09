@@ -206,7 +206,7 @@
 .menu-social-tools .social-icon img { width: 100%; height: 100%; object-fit: contain; }
 .menu-social-tools .translate-control { position: relative; }
 .menu-social-tools .translate-toggle img { width: 32px; height: 32px; filter: brightness(0); }
-.menu-social-tools .translate-menu { display: none; position: absolute; bottom: 48px; right: 0; width: 260px; padding: 14px; background: white; border: 1px solid #172133; z-index: 2; color: #172133; font: 12px/1.5 sans-serif; }
+.menu-social-tools .translate-menu { display: none; position: absolute; bottom: 48px; right: 0; width: 260px; padding: 14px; background: white; border: 1px solid #172133; z-index: 2; color: #172133; font: 12px/1.5 var(--mv-font-text); }
 .menu-social-tools .translate-control.is-open .translate-menu { display: block; }
 
 #app:has(.shared-concept-menu) .site-header > .menu-toggle { display: none; }
@@ -220,3 +220,5 @@
     min-height: 44px;
   }
 }
+
+.translation-retry { padding: 8px 12px; border: 1px solid currentColor; background: #fff; color: #172133; font: 400 12px/1.5 var(--mv-font-text); cursor: pointer; }
