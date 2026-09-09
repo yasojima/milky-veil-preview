@@ -1113,3 +1113,8 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .instagram-detail-copy h3{margin:12px 0}
 }
 @media(prefers-reduced-motion:reduce){.instagram-open img,.instagram-card-hover{transition:none}}
+
+.instagram-profile{text-align:right;font:13px/1.5 var(--mv-font-text)}
+.instagram-profile a{text-decoration:underline;text-underline-offset:4px}
+.instagram-profile .instagram-sample{margin-top:10px}
+@media(max-width:480px){.instagram-heading{flex-wrap:wrap}.instagram-profile{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left}.instagram-profile .instagram-sample{margin:0}}

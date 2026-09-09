@@ -1,13 +1,13 @@
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-063";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-063";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-063";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-063";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-063";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-063";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-063";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-063";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-064";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-064";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-064";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-064";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-064";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-064";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-064";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-064";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -393,9 +393,11 @@ function heroMediaFrame(media) {
   return `<div class="hero-media" data-media-type="image">${responsiveImage(media.src, media.alt || "", { loading: "eager", sizes: "100vw", fetchPriority: media.fetchPriority || "high" })}</div>`;
 }
 
+const instagramProfile = Object.freeze({ username: "m___amakawa", url: "https://www.instagram.com/m___amakawa/" });
+
 function instagramFeed() {
   return `<section class="instagram-home" id="instagram-home" aria-labelledby="instagram-heading">
-    <header class="instagram-heading"><div><p class="eyebrow">MILKY VEIL</p><h2 id="instagram-heading">INSTAGRAM</h2></div><p class="instagram-sample">SAMPLE</p></header>
+    <header class="instagram-heading"><div><p class="eyebrow">MILKY VEIL</p><h2 id="instagram-heading">INSTAGRAM</h2></div><div class="instagram-profile"><a href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer">@${instagramProfile.username} ↗</a><p class="instagram-sample">SAMPLE</p></div></header>
     <div class="instagram-track" aria-label="Instagram投稿サンプル">
       ${homeFeatureCards.slice(0,3).map(([, image, label, description], index) => `<article class="instagram-card">
         <button type="button" class="instagram-open" data-instagram-post="${index}" aria-label="${description}の写真と本文を見る">
