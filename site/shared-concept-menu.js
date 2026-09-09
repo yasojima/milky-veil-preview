@@ -1,6 +1,6 @@
 import { ensureGoogleTranslate, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-046";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-047";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -151,14 +151,20 @@ export function bindSharedConceptMenu(scope = document) {
 
   const translateButton = nav.querySelector(".menu-social-tools .translate-toggle");
   if (translateButton && !document.getElementById("app")) {
-    translateButton.addEventListener("click", () => {
-      const control = translateButton.closest(".translate-control");
-      const panel = control.querySelector(".translate-menu");
-      const open = translateButton.getAttribute("aria-expanded") !== "true";
+    const control = translateButton.closest(".translate-control");
+    const panel = control.querySelector(".translate-menu");
+    const setTranslationOpen = (open) => {
       control.classList.toggle("is-open", open);
       translateButton.setAttribute("aria-expanded", String(open));
       panel.setAttribute("aria-hidden", String(!open));
       panel.inert = !open;
+    };
+    document.addEventListener("pointerdown", (event) => {
+      if (!event.composedPath().includes(control)) setTranslationOpen(false);
+    }, { capture: true, signal });
+    translateButton.addEventListener("click", () => {
+      const open = translateButton.getAttribute("aria-expanded") !== "true";
+      setTranslationOpen(open);
       if (!open) return;
       const target = panel.querySelector("[data-google-translate]");
       selectTranslationTarget(target.id);
