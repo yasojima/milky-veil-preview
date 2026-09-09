@@ -1,7 +1,7 @@
 .site-footer {
   --shared-footer-ink: #172133;
   --shared-footer-pad: clamp(24px, 5vw, 82px);
-  background: var(--milky-home-paper, #fff);
+  background: #F3E4E9;
   color: var(--shared-footer-ink);
   display: block;
   box-sizing: border-box;

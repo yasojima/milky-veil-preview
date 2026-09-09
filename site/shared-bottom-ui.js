@@ -1,8 +1,8 @@
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260909-024";
-import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-024";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-024";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-024";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-024";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260909-025";
+import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-025";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-025";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-025";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-025";
 
 const activityCleanup = new WeakMap();
 
