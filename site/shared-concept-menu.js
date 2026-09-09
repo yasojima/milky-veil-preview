@@ -1,6 +1,6 @@
 import { ensureGoogleTranslate, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-049";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-050";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -47,6 +47,10 @@ export function bindSharedConceptMenu(scope = document) {
 
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
+  const footerObserver = new IntersectionObserver(([entry]) => {
+    menu.classList.toggle("is-near-footer", entry.isIntersecting);
+  });
+  if (bottomHost) footerObserver.observe(bottomHost);
   let lockedScroll = null;
   let savedBodyStyle;
   const savedRootBackground = document.documentElement.style.background;
@@ -176,6 +180,7 @@ export function bindSharedConceptMenu(scope = document) {
     if (compact) setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
+    footerObserver.disconnect();
     itemsObserver.disconnect();
     if (compact) { document.documentElement.style.overflow = previousOverflow; if (shareRail) shareRail.style.display = ""; }
     inertTargets.forEach((target) => { target.inert = false; });

@@ -57,8 +57,8 @@
 
 @media (max-width: 900px) {
   .shared-brand-message {
-    height: 620px;
-    padding-inline: 22px;
+    height: auto;
+    padding: 56px 22px;
   }
 
   .shared-brand-message-copy > p {

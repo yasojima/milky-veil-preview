@@ -210,3 +210,16 @@
 .menu-social-tools .translate-control.is-open .translate-menu { display: block; }
 
 #app:has(.shared-concept-menu) .site-header > .menu-toggle { display: none; }
+
+@media (max-width: 900px) {
+  .shared-concept-menu:has(.l-nav-btn[aria-expanded="false"]) {
+    z-index: 1001;
+  }
+  .shared-concept-menu .l-nav-btn {
+    min-width: 64px;
+    min-height: 44px;
+  }
+  .shared-concept-menu.is-near-footer .l-nav-btn[aria-expanded="false"] {
+    background: #fff;
+  }
+}
