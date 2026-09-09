@@ -409,7 +409,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   .l-main-img__logo.milky-fv-wordmark {
     inset: 50% 0 auto;
     font-size: 19vw;
-    transform: translateY(-50%) scaleY(2);
+    transform: translateY(-50%) scaleY(1.30);
     transform-origin: center;
     -webkit-text-stroke-width: .5px;
   }
