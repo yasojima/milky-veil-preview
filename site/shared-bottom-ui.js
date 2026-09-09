@@ -1,19 +1,19 @@
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260909-044";
-import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-044";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-044";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-044";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-044";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260909-045";
+import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260909-045";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-045";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260909-045";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260909-045";
 
 const activityCleanup = new WeakMap();
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260909-044",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260909-044",
-  "/milky-veil-preview/site/shared-font-subset.css?v=20260909-009&pages=20260909-044",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260909-044",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260909-044",
-  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260909-044",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260909-044",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260909-045",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260909-045",
+  "/milky-veil-preview/site/shared-font-subset.css?v=20260909-009&pages=20260909-045",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260909-045",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260909-045",
+  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260909-045",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260909-045",
 ]);
 
 export function mountSharedBottomUi(host, currentPath) {

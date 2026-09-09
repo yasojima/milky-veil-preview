@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-044";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-045";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -19,7 +19,6 @@ export function sharedFixedCtaMarkup() {
       </aside>
       <div class="cta-tel">
         <span class="cta-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 2.8 9.3 8l-2.1 1.7c1.4 3.1 3.9 5.6 7.1 7.1l1.7-2.1 5.2 2.6-.8 3.7c-.2.8-.9 1.3-1.7 1.3C9.3 21.7 2.3 14.7 1.7 5.3c-.1-.8.5-1.5 1.3-1.7l3.7-.8Z"/></svg><strong>${sharedFixedShellData.phone}</strong></span>
-        <span class="cta-phone-note">※営業電話は業務に支障をきたす為、ご遠慮ください。</span>
         <span class="cta-hours">${sharedFixedShellData.hours.join(" / ")}</span>
       </div>
       <div class="fixed-cta-actions">
