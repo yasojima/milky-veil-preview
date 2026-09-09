@@ -1,13 +1,13 @@
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-051";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-051";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-051";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-051";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-051";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-051";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-051";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-051";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-052";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-052";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-052";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-052";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-052";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-052";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-052";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-052";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -403,7 +403,7 @@ function home() {
         <div class="hero-copy">
           <p>${sharedBrandEyebrow}</p>
           <h1>${sharedBrandHeadlineLines.join("<br>")}</h1>
-          <span>${sharedBrandSupportingLines.join("<br>")}</span>
+          <span>${sharedBrandSupportingLines.join("<br>").replace("、", "、<br>")}</span>
           <a class="hero-reserve wave-cta" href="${hotpepper.href}" target="_blank" rel="noopener noreferrer" aria-label="Hot Pepper Beautyを新しいタブで開きます"><span>${hotpepper.label}</span><i aria-hidden="true"></i></a>
         </div>
         ${sharedScrollCueMarkup({ target: "#concept-home", ariaLabel: "コンセプトセクションへ移動" })}
