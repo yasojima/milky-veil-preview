@@ -29,8 +29,7 @@
   }
 }
 
-/* UNIPLEX source: style.css lines 4524-4662. Only the shared trigger
-   position, white surface, dark ink, and pale-pink hover are overridden. */
+
 .l-nav-btn {
   position: fixed;
   top: var(--shared-menu-anchor-y);

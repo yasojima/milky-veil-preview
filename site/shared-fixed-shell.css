@@ -56,7 +56,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 
 @media (min-width:901px) and (max-width:1300px){:root,:host{--fixed-cta-height:112px;--fixed-cta-actions-width:204px}.fixed-cta-actions{flex-direction:column;gap:5px}.fixed-cta-action{width:100%;min-height:44px;flex-basis:44px}.cta-tel{flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:10px 24px 10px 70px}}
 .cta-phone-note { display: none; }
-/* Adapted from k-hairsalon.jp #fixbtn mobile layout: telephone above two actions. */
+/* Telephone and actions share one responsive dock. */
 @media (max-width:900px) {
   :root,:host { --fixed-cta-height: calc(120px + env(safe-area-inset-bottom)); --fixed-social-panel-width:240px; }
   .fixed-cta {

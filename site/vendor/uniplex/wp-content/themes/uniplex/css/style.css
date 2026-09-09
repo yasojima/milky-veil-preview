@@ -794,14 +794,14 @@ html body {
   }
 }
 html body {
-  --mh--color--primary-100: rgb(226, 219, 215);
-  --mh--color--primary-200: rgb(253, 255, 196);
-  --mh--color--primary-300: rgb(247, 253, 70);
-  --mh--color--primary-300_op50: rgba(247, 253, 70, 0.5);
-  --mh--color--primary-400: rgb(227, 233, 42);
-  --mh--color--primary-450: rgb(216, 227, 25);
-  --mh--color--primary-500: rgb(207, 219, 0);
-  --mh--color--primary-800: rgb(104, 110, 0);
+  --mh--color--primary-100: var(--milky-home-paper, #fff);
+  --mh--color--primary-200: var(--milky-home-paper, #fff);
+  --mh--color--primary-300: var(--milky-home-paper, #fff);
+  --mh--color--primary-300_op50: rgba(255, 255, 255, 0.5);
+  --mh--color--primary-400: var(--milky-home-paper, #fff);
+  --mh--color--primary-450: var(--milky-home-paper, #fff);
+  --mh--color--primary-500: var(--milky-home-paper, #fff);
+  --mh--color--primary-800: #172133;
   --mh--color--grayscale-100: rgb(255, 255, 255);
   --mh--color--grayscale-100_op30: rgba(255, 255, 255, 0.3);
   --mh--color--grayscale-100_op70: rgba(255, 255, 255, 0.7);
@@ -5867,7 +5867,7 @@ summary::-webkit-details-marker {
   left: 0;
   right: 0;
   height: 52px;
-  background-color: #101002;
+  background-color: #172133;
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -5902,7 +5902,7 @@ summary::-webkit-details-marker {
 @media (width >= 768px ) {
   .home-movie__marquee {
     height: 61px;
-    background-image: linear-gradient(90deg, #60620c, #101002 5%, #101002 95%, #60620c);
+    background-image: linear-gradient(90deg, #172133, #172133 5%, #172133 95%, #172133);
     width: 222.3958333333vw;
     min-width: 4270px;
   }
