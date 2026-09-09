@@ -174,3 +174,6 @@
 @media (width > 900px) {
   .home-simple-menu { display: none; }
 }
+
+.home-menu-content { display: grid; grid-template-columns: 1fr; gap: 28px; }
+.home-simple-menu .l-nav { padding: 100px 24px 90px; }

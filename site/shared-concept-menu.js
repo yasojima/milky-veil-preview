@@ -1,4 +1,4 @@
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-035";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-036";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -7,7 +7,7 @@ const normalizePath = (path) => {
   return `/${String(path).replace(/^\/+|\/+$/g, "")}/`;
 };
 
-export function sharedConceptMenuMarkup(currentPath = "/concept/") {
+export function sharedConceptMenuMarkup(currentPath = "/concept/", { content } = {}) {
   const activePath = normalizePath(currentPath);
   const items = sharedConceptMenuRoutes.map(({ path, label }) => `
     <li class="l-nav-list__item" itemprop="name">
@@ -19,7 +19,7 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/") {
         <span class="js-nav-btn-txt l-nav-btn__txt u-font-en u-uppercase">menu</span>
       </button>
       <nav id="global-nav" class="js-nav-content l-nav" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-        <ul class="l-nav-list">${items}</ul>
+        ${content ?? `<ul class="l-nav-list">${items}</ul>`}
       </nav>
     </div>
   </header>`;
