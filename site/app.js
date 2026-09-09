@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-065";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-065";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-065";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-065";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-065";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-065";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-065";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-065";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-066";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-066";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-066";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-066";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-066";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-066";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-066";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-066";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -279,7 +279,7 @@ function header(isHome = false, currentPath = "/") {
   return `
     <header class="site-header ${isHome ? "header-on-hero" : "header-on-page"}">
       <a class="brand" href="/milky-veil-preview/" data-link aria-label="MILKY VEIL ホーム">
-        <img class="brand-mark" src="/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png" width="497" height="640" alt="" aria-hidden="true">
+        <img class="brand-mark" src="${sharedBrandLogo}" width="497" height="640" alt="" aria-hidden="true">
       </a>
       <div class="header-desktop">
           <p class="header-message">${salon.headerMessage}</p>
@@ -397,21 +397,21 @@ function heroMediaFrame(media) {
 const instagramProfile = Object.freeze({ username: "m___amakawa", url: "https://www.instagram.com/m___amakawa/" });
 
 const instagramPosts = Object.freeze([
-  { title: homeFeatureCards[0][2], caption: "やわらかなラベンダーに、透けるようなツヤ。", images: [homeFeatureCards[0][1]], alt: homeFeatureCards[0][3] },
-  { title: "SALON MOMENTS", caption: "MILKY VEILの空間を、動画で。", images: [MENU_MOVIE_ASSETS[0].replace(".mp4", ".webp")], video: MENU_MOVIE_ASSETS[0], alt: "MILKY VEIL 店内紹介" },
-  { title: "BLONDE COLLECTION", caption: "ボブもロングも。なりたい印象に合わせたブロンド。", images: [homeFeatureCards[1][1], homeFeatureCards[2][1]], alt: "ブロンドのヘアデザイン" },
+  { title: homeFeatureCards[0][2], caption: "やわらかなラベンダーに、透けるようなツヤ", images: [homeFeatureCards[0][1]], alt: homeFeatureCards[0][3] },
+  { title: "SALON MOMENTS", caption: "MILKY VEILの空間を、動画で", images: [MENU_MOVIE_ASSETS[0].replace(".mp4", ".webp")], video: MENU_MOVIE_ASSETS[0], alt: "MILKY VEIL 店内紹介" },
+  { title: "BLONDE COLLECTION", caption: "ボブもロングも。なりたい印象に合わせたブロンド", images: [homeFeatureCards[1][1], homeFeatureCards[2][1]], alt: "ブロンドのヘアデザイン" },
 ]);
 
 function instagramFeed() {
   return `<section class="instagram-home" id="instagram-home" aria-labelledby="instagram-heading">
-    <header class="instagram-heading"><div><p class="eyebrow">MILKY VEIL</p><h2 id="instagram-heading">INSTAGRAM</h2></div><div class="instagram-profile"><a href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer">@${instagramProfile.username} ↗</a><p class="instagram-sample">SAMPLE</p></div></header>
+    <header class="instagram-heading"><h2 id="instagram-heading"><img src="/milky-veil-preview/assets/ui/social/${sharedSocials.find(social => social.name === "Instagram").file}" alt="" aria-hidden="true">INSTAGRAM</h2></header>
     <div class="instagram-track" aria-label="Instagram投稿サンプル">
-      ${instagramPosts.map((post, index) => `<article class="instagram-card">
+      ${instagramPosts.map((post, index) => `<article class="instagram-card"><div class="instagram-card-media">
         <button type="button" class="instagram-open" data-instagram-post="${index}" aria-haspopup="dialog" aria-label="${post.title}の${post.video ? "動画" : "写真と本文"}を見る">
           ${responsiveImage(post.images[0], post.alt, { sizes: "(max-width: 767px) 85vw, 33vw" })}
-          <span class="instagram-card-icon" aria-hidden="true">${post.video ? "▷" : post.images.length > 1 ? "▣" : "↗"}</span><span class="instagram-card-hover">VIEW POST</span>
+          <span class="instagram-card-icon" aria-hidden="true"><img src="/milky-veil-preview/assets/ui/social/${sharedSocials.find(social => social.name === "Instagram").file}" alt=""></span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
           ${post.video ? '<span class="instagram-play" aria-hidden="true">▶</span>' : ""}
-        </button><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
+        </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
       </article>`).join("")}
     </div>
     <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / ${instagramPosts.length}</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>

@@ -1,4 +1,4 @@
-import { sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260910-065";
+import { sharedBrandLogo, sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260910-066";
 
 export const sharedFooterSalon = sharedSalonData;
 export const sharedFooterRoutes = Object.freeze(sharedFooterRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
@@ -30,7 +30,7 @@ export function sharedFooterMarkup(currentPath = "/") {
           ${sharedFooterRoutes.map(({ path, label }) => `<a href="${path}" data-link${path === activePath ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
         </nav>
         <div class="footer-signature" aria-label="MILKY VEIL">
-          <img src="/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png" width="497" height="640" alt="MILKY VEIL">
+          <img src="${sharedBrandLogo}" width="497" height="640" alt="MILKY VEIL">
         </div>
       </div>
     </footer>`;

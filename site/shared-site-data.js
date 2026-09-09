@@ -1,3 +1,4 @@
+export const sharedBrandLogo = "/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png";
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
