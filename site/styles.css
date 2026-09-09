@@ -1086,8 +1086,28 @@ html body {
   .home-page .home-staff-photo { aspect-ratio:3/4; }
   .home-page .home-staff-profile { padding:0 14px; }
   .home-page .home-staff-arrow { top:calc((100vw - 40px) * 2 / 3); }
-  .home-page .journal-card-featured figure { height:auto; aspect-ratio:4/3; }
-  .home-page .journal-card-featured h3 { font-size:22px; }
+  .home-page .journal-preview { grid-template-columns:minmax(0,1fr) minmax(0,1.65fr); gap:16px 14px; padding-block:48px; align-items:start; }
+  .home-page .journal-cover-rail { grid-column:1/-1; grid-row:auto; display:flex; gap:8px; padding:0; justify-content:flex-start; align-items:center; }
+  .home-page .journal-cover-rail>span,.home-page .journal-cover-rail>small { writing-mode:horizontal-tb; transform:none; font-size:10px; }
+  .home-page .journal-cover-rail>i { width:40px; height:1px; }
+  .home-page .journal-cover-copy { display:contents; }
+  .home-page .journal-cover-copy>h2 { grid-column:1/-1; grid-row:2; font-size:clamp(32px,9vw,52px); line-height:1; }
+  .home-page .journal-cover-copy>h2 br { display:none; }
+  .home-page .journal-cover-lead { grid-column:1/-1; grid-row:3; margin:0; font-size:12px; line-height:1.7; }
+  .home-page .journal-cover-media { grid-column:1; grid-row:4; width:100%; aspect-ratio:auto; align-self:start; }
+  .home-page .journal-cover-image,.home-page .journal-cover-image picture { display:block; height:auto; }
+  .home-page .journal-cover-media img { display:block; height:auto; object-fit:contain; transform:none; }
+  .home-page .journal-issue--cover { width:48px; height:48px; left:6px; bottom:6px; row-gap:2px; font-size:5px; }
+  .home-page .journal-issue--cover strong { font-size:15px; }
+  .home-page .journal-issue--cover small { font-size:5px; }
+  .home-page .journal-cover-feature { grid-column:2; grid-row:4; padding-top:12px; }
+  .home-page .journal-cover-feature>p { margin-bottom:10px; font-size:8px; }
+  .home-page .journal-cover-feature h3 { font-size:clamp(14px,3.8vw,21px); line-height:1.65; }
+  .home-page .journal-read { margin-top:14px; font-size:8px; width:100%; }
+  .home-page .journal-cover-list { grid-column:1/-1; grid-row:5; margin:0; }
+  .home-page .journal-cover-list>a { min-height:56px; grid-template-columns:24px minmax(0,1fr) 18px; gap:8px; }
+  .home-page .journal-cover-list strong { font-size:12px; }
+  .home-page .journal-explore { grid-column:1/-1; grid-row:6; height:44px; margin:0; padding-inline:16px; }
   .home-page .access-home { height:auto; min-height:0; aspect-ratio:5/4; }
   .home-page .access-home>div { left:20px; right:20px; bottom:20px; }
   .home-page .access-home h2 { font-size:clamp(24px,7vw,48px); }

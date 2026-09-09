@@ -1,13 +1,13 @@
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-059";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-059";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-059";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-059";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-059";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-059";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-059";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-059";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-060";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-060";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-060";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-060";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-060";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-060";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-060";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-060";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -517,7 +517,7 @@ function journalPreview() {
       ${journalIssueBadge("journal-issue--cover")}
     </div>
     <div class="journal-cover-copy">
-      <h2 id="journal-preview-title">MILKY<br>JOURNAL</h2>
+      <h2 id="journal-preview-title">MILKY <br>JOURNAL</h2>
       <p class="journal-cover-lead">髪からはじまるファッションとカルチャー<br>新しい私に出会う瞬間をそっと集めて<br>髪と私をつなぐ小さな物語</p>
       <article class="journal-cover-feature">
         <p>FEATURE STORY</p>
