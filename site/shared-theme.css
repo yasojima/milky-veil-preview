@@ -1,4 +1,9 @@
 :root {
-  --milky-home-paper: #FFFFFF;
+  --milky-canvas: #FAF8F9;
+  --milky-surface: #FFFFFF;
+  --milky-footer: #F3E4E9;
+  --milky-home-paper: var(--milky-surface);
 }
 
+body { background-color: var(--milky-canvas); }
+#main { background-color: var(--milky-surface); }

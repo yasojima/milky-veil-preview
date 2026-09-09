@@ -2,7 +2,10 @@
   --milky-ink: #172133;
 }
 
-body#home,
+body#home {
+  background-color: var(--milky-canvas);
+}
+
 .home-concept,
 .home-concept__bg {
   background-color: var(--milky-home-paper);
