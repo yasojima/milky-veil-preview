@@ -189,12 +189,15 @@
 .shared-concept-menu .l-nav::after { content: ""; display: block; height: var(--menu-review-space, 300vh); grid-column: 1 / -1; pointer-events: none; }
 
 .shared-concept-menu .l-nav.is-compact-menu {
-  display: grid; grid-template-rows: auto minmax(64px, 1fr);
+  --menu-row-height: clamp(32px, calc((100svh - var(--shared-menu-bar-height, 130px) - 166px) / var(--menu-row-count, 7)), 69px);
+  display: grid; grid-template-rows: max-content 64px; align-content: start;
   padding: 80px clamp(24px, 4vw, 60px) 6px;
-  gap: 8px; overflow: hidden; overscroll-behavior: none;
+  gap: 16px; overflow: hidden; overscroll-behavior: none;
 }
 .shared-concept-menu .l-nav.is-compact-menu::after { display: none; }
 .is-compact-menu .l-nav-list { display: grid; grid-auto-flow: column; align-content: start; gap: 0 20px; min-height: 0; }
+.is-compact-menu .l-nav-list__item { padding-block: 0; min-height: 0; }
+.is-compact-menu .l-nav-list__item-link { display: flex; align-items: center; height: 100%; padding-block: 0; }
 .menu-social-tools { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .menu-social-tools .social-icons { display: flex; align-items: center; gap: 12px; }
 .menu-social-tools .social-icon, .menu-social-tools .translate-toggle { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 0; background: transparent; }

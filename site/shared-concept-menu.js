@@ -1,5 +1,5 @@
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-042";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-043";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -49,6 +49,7 @@ export function bindSharedConceptMenu(scope = document) {
   const syncBottomSpace = () => {
     const barHeight = bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    nav.style.setProperty("--shared-menu-bar-height", barHeight + "px");
     nav.style.setProperty("--shared-menu-viewport-height", Math.max(160, viewportHeight - barHeight) + "px");
   };
   const bottomObserver = new ResizeObserver(syncBottomSpace);
@@ -78,15 +79,12 @@ export function bindSharedConceptMenu(scope = document) {
   const list = nav.querySelector(".l-nav-list");
   const fitMenu = () => {
     if (!compact || !list) return;
-    const available = Math.max(100, nav.clientHeight - 150);
-    const item = list.firstElementChild;
-    const naturalHeight = item?.getBoundingClientRect().height || 78;
-    const rows = Math.max(1, Math.min(list.children.length, Math.floor(available / naturalHeight)));
-    list.style.gridTemplateRows = "repeat(" + rows + ", max-content)";
+    const columns = Math.max(1, Math.ceil(list.children.length / 10));
+    const rows = Math.max(1, Math.ceil(list.children.length / columns));
+    nav.style.setProperty("--menu-row-count", rows);
+    list.style.gridTemplateRows = "repeat(" + rows + ", var(--menu-row-height))";
     list.style.gridTemplateColumns = "repeat(" + Math.ceil(list.children.length / rows) + ", minmax(0, 1fr))";
   };
-  const layoutObserver = new ResizeObserver(fitMenu);
-  if (compact) layoutObserver.observe(nav);
   const itemsObserver = new MutationObserver(fitMenu);
   if (list) itemsObserver.observe(list, { childList: true });
 
@@ -160,7 +158,6 @@ export function bindSharedConceptMenu(scope = document) {
   disposeActiveMenu = () => {
     controller.abort();
     bottomObserver.disconnect();
-    layoutObserver.disconnect();
     itemsObserver.disconnect();
     if (compact) { document.documentElement.style.overflow = previousOverflow; if (shareRail) shareRail.style.display = ""; }
     inertTargets.forEach((target) => { target.inert = false; });
