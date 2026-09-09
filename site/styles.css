@@ -1150,3 +1150,5 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .feature-home .section-title h2{margin-left:auto}
 
 @media(min-width:901px){.home-page>#concept-home+#menu-home{margin-block-start:calc(-1 * var(--home-section-space))}}
+
+.home-page .feature-grid span{text-align:left;padding-inline:7%}
