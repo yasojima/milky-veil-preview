@@ -20,11 +20,13 @@
 }
 
 .fixed-cta.is-docked {
-  position: fixed;
-  inset: auto 0 var(--fixed-cta-dock-bottom);
+  position: absolute;
+  inset: auto 0 0;
   transform: none;
   transition: none;
 }
+
+.fixed-cta-clearance { position:relative; }
 
 .fixed-cta.is-docked .fixed-social-rail {
   bottom: calc(100% + 11px);

@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-027";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-028";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -45,6 +45,11 @@ export function bindSharedFixedShell(scope = document) {
   }
 
   const footer = queryRoot.querySelector(".site-footer");
+  const dock = queryRoot.querySelector(".fixed-cta-clearance");
+  if (dock instanceof HTMLElement) {
+    dock.removeAttribute("aria-hidden");
+    dock.append(bar);
+  }
   const socialRail = bar.querySelector("[data-fixed-social-rail]");
   const socialToggle = bar.querySelector("[data-fixed-social-toggle]");
   const socialItems = [...bar.querySelectorAll("[data-demo-social]")];
@@ -78,16 +83,17 @@ export function bindSharedFixedShell(scope = document) {
     frameId = 0;
     syncSharedBoundary();
     if (!(footer instanceof HTMLElement)) return;
+    if (dock instanceof HTMLElement) {
+      const height = `${bar.getBoundingClientRect().height}px`;
+      if (dock.style.height !== height) dock.style.height = height;
+    }
     const footerRect = footer.getBoundingClientRect();
     if (footerRect.top <= viewportBottom()) {
-      const footerOverlap = Math.max(0, viewportBottom() - footerRect.top);
-      bar.style.setProperty("--fixed-cta-dock-bottom", `${Math.round(footerOverlap)}px`);
       bar.classList.remove("is-scrolling");
       bar.classList.add("is-docked");
       return;
     }
     bar.classList.remove("is-docked");
-    bar.style.removeProperty("--fixed-cta-dock-bottom");
     bar.classList.toggle("is-scrolling", scrolling);
   }
 
@@ -99,8 +105,7 @@ export function bindSharedFixedShell(scope = document) {
   function handleScroll() {
     scrolling = true;
     window.clearTimeout(scrollIdleTimer);
-    if (!bar.classList.contains("is-docked")) bar.classList.add("is-scrolling");
-    schedule();
+    update();
     scrollIdleTimer = window.setTimeout(() => {
       scrolling = false;
       bar.classList.remove("is-scrolling");
