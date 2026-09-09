@@ -1,13 +1,13 @@
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-062";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-062";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-062";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-062";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-062";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-062";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-062";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-062";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-063";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-063";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-063";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-063";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-063";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-063";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-063";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-063";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -393,6 +393,56 @@ function heroMediaFrame(media) {
   return `<div class="hero-media" data-media-type="image">${responsiveImage(media.src, media.alt || "", { loading: "eager", sizes: "100vw", fetchPriority: media.fetchPriority || "high" })}</div>`;
 }
 
+function instagramFeed() {
+  return `<section class="instagram-home" id="instagram-home" aria-labelledby="instagram-heading">
+    <header class="instagram-heading"><div><p class="eyebrow">MILKY VEIL</p><h2 id="instagram-heading">INSTAGRAM</h2></div><p class="instagram-sample">SAMPLE</p></header>
+    <div class="instagram-track" aria-label="Instagram投稿サンプル">
+      ${homeFeatureCards.slice(0,3).map(([, image, label, description], index) => `<article class="instagram-card">
+        <button type="button" class="instagram-open" data-instagram-post="${index}" aria-label="${description}の写真と本文を見る">
+          ${responsiveImage(image, description, { sizes: "(max-width: 767px) 85vw, 33vw" })}
+          <span class="instagram-card-icon" aria-hidden="true">↗</span><span class="instagram-card-hover">VIEW POST</span>
+        </button><div class="instagram-caption"><h3>${label}</h3><p>${description}のヘアデザイン。</p></div>
+      </article>`).join("")}
+    </div>
+    <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / 3</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>
+    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus>×</button><div class="instagram-detail"></div></dialog>
+  </section>`;
+}
+
+function bindInstagramFeed() {
+  const section = document.querySelector(".instagram-home");
+  if (!section) return;
+  const track = section.querySelector(".instagram-track");
+  const cards = [...track.children];
+  const dialog = section.querySelector("dialog");
+  const count = section.querySelector(".instagram-count");
+  const previous = section.querySelector('[data-instagram-step="-1"]');
+  const next = section.querySelector('[data-instagram-step="1"]');
+  let active = 0;
+  let opener;
+  const sync = () => {
+    active = cards.reduce((best, card, i) => Math.abs(card.offsetLeft - cards[0].offsetLeft - track.scrollLeft) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - track.scrollLeft) ? i : best, 0);
+    count.textContent = `${active + 1} / ${cards.length}`;
+    previous.disabled = active === 0;
+    next.disabled = active === cards.length - 1;
+  };
+  track.addEventListener("scroll", sync, { passive: true });
+  section.querySelectorAll("[data-instagram-step]").forEach(button => button.addEventListener("click", () => {
+    const index = Math.max(0, Math.min(cards.length - 1, active + Number(button.dataset.instagramStep)));
+    track.scrollTo({ left: cards[index].offsetLeft - cards[0].offsetLeft, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  }));
+  section.querySelectorAll("[data-instagram-post]").forEach(button => button.addEventListener("click", () => {
+    const [, image, label, description] = homeFeatureCards[Number(button.dataset.instagramPost)];
+    opener = button;
+    section.querySelector(".instagram-detail").innerHTML = `<div class="instagram-detail-image">${responsiveImage(image, description, { sizes: "(max-width: 767px) 90vw, 50vw", loading: "eager" })}</div><div class="instagram-detail-copy"><p class="eyebrow">MILKY VEIL / SAMPLE</p><h3 id="instagram-post-heading">${label}</h3><p>${description}のヘアデザイン。</p></div>`;
+    dialog.showModal();
+  }));
+  section.querySelector(".instagram-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener("close", () => { opener?.focus({ preventScroll: true }); });
+  sync();
+}
+
 function home() {
   const { hotpepper } = shellData.actions;
   return `
@@ -408,6 +458,7 @@ function home() {
         </div>
         ${sharedScrollCueMarkup({ target: "#concept-home", ariaLabel: "コンセプトセクションへ移動" })}
       </section>
+      ${instagramFeed()}
       ${homeSplitSections.map(({ label, heading, text, image, reverse, routeId, sectionId }) => splitSection(label, heading, text, image, reverse, routeId, sectionId)).join("")}
       <section class="duo">
         <a href="${routePath("menu")}" data-link>${responsiveImage(`${A}home-role-locked-pack-v1/home-menu-color-service-v4.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<span><b>MENU</b></span></a>
@@ -1008,6 +1059,7 @@ function bindSubpageMotion() {
 }
 
 function bind(sharedBottomScope) {
+  bindInstagramFeed();
   bindSubpageMotion();
   bindSharedFixedShell(sharedBottomScope);
   document.querySelectorAll("[data-link]").forEach((el)=>el.addEventListener("click",(e)=>{
