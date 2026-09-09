@@ -1035,3 +1035,64 @@ html body {
 @media (max-width: 560px) and (prefers-reduced-motion: reduce) {
   .concept-uniplex-mainline .concept-sticky { height: 68svh; }
 }
+
+@media (max-width:900px) {
+  .header-on-hero { height:80px; padding:12px 15px; backdrop-filter:none; }
+  .header-on-hero::before { content:none; }
+  .header-on-hero .brand { width:auto; min-width:0; height:55px; margin:0; filter:none; }
+  .header-on-hero .brand-mark { width:auto; height:55px; filter:none; }
+  .header-on-hero .header-desktop { display:block; top:20px; right:76px; width:auto; max-width:none; }
+  .header-on-hero .header-message,
+  .header-on-hero .header-phone,
+  .header-on-hero .header-actions,
+  .header-on-hero .header-primary-nav,
+  .header-on-hero .social-x,
+  .header-on-hero .social-tiktok { display:none; }
+  .header-on-hero .header-utility { height:40px; }
+  .header-on-hero .header-social-tools,
+  .header-on-hero .social-icons { gap:12px; }
+  .header-on-hero .social-icon,
+  .header-on-hero .translate-toggle { width:36px; height:36px; flex-basis:36px; }
+  .header-on-hero .translate-toggle img { filter:none; }
+  .home-simple-menu .l-nav-btn { top:40px; right:16px; }
+}
+
+@media (max-width:900px) {
+  .home-page { --home-mobile-gutter:20px; --home-mobile-space:100px; font-size:14px; }
+  .home-page .hero { height:auto; min-height:0; aspect-ratio:5/4; }
+  .home-page .hero img { object-position:center; }
+  .home-page .hero-copy { left:4%; right:auto; bottom:4%; width:64%; max-width:none; }
+  .home-page .hero-copy>p { font-size:7px; margin:0; transform:none; }
+  .home-page .hero-copy h1 { font-size:clamp(22px,6vw,48px); line-height:.95; margin:8px 0; }
+  .home-page .hero-copy>span { font-size:clamp(10px,2.9vw,18px); line-height:1.5; letter-spacing:.04em; }
+  .home-page .hero-reserve { width:83%; height:32px; margin-top:10px; font-size:11px; letter-spacing:.12em; }
+  .home-page .hero-reserve>span { font-size:inherit; text-align:center; }
+  .home-page .hero-reserve i { width:30px; right:-15px; }
+  .home-page .intro { position:relative; padding:var(--home-mobile-space) var(--home-mobile-gutter); color:#fff; isolation:isolate; }
+  .home-page .intro-image { position:absolute; inset:0; height:100%; margin:0; z-index:-2; }
+  .home-page .intro::before { content:""; position:absolute; inset:0; background:rgba(15,22,32,.6); z-index:-1; }
+  .home-page .intro-copy { position:relative; }
+  .home-page .intro-copy h2,.home-page .split-copy h2 { font-size:clamp(22px,6vw,32px); margin:20px 0; }
+  .home-page .intro-copy p:last-child,.home-page .split-copy>p:last-of-type { font-size:14px; line-height:1.8; }
+  .home-page .split { padding-top:var(--home-mobile-space); }
+  .home-page .split-media, .home-page .split.reverse .split-media { height:auto; min-height:0; aspect-ratio:5/4; }
+  .home-page .split-copy, .home-page .split.reverse .split-copy { padding:20px var(--home-mobile-gutter) 0; }
+  .home-page .duo { margin-top:var(--home-mobile-space); padding-left:10%; gap:1px; }
+  .home-page .duo>a { height:auto; aspect-ratio:5/4; }
+  .home-page .duo b { font-size:32px; }
+  .home-page .staff-strip,.home-page .journal-preview,.home-page .feature-home { padding:var(--home-mobile-space) var(--home-mobile-gutter); }
+  .home-page .staff-strip-heading>.eyebrow,.home-page .journal-preview>header h2 { font-size:32px; }
+  .home-page .section-title h2 { font-size:32px; }
+  .home-page .home-staff-slide { padding:0 0 20px; }
+  .home-page .home-staff-photo { aspect-ratio:3/4; }
+  .home-page .home-staff-profile { padding:0 14px; }
+  .home-page .home-staff-arrow { top:calc((100vw - 40px) * 2 / 3); }
+  .home-page .journal-card-featured figure { height:auto; aspect-ratio:4/3; }
+  .home-page .journal-card-featured h3 { font-size:22px; }
+  .home-page .access-home { height:auto; min-height:0; aspect-ratio:5/4; }
+  .home-page .access-home>div { left:20px; right:20px; bottom:20px; }
+  .home-page .access-home h2 { font-size:clamp(24px,7vw,48px); }
+  .home-page .feature-grid { display:grid; grid-template-columns:1fr; overflow:visible; gap:20px; }
+  .home-page .feature-grid article { width:100%; min-width:0; min-height:0; aspect-ratio:4/3; }
+  .home-page .feature-grid span { padding:12px 20px; }
+}
