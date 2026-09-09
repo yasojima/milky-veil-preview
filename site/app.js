@@ -1,11 +1,12 @@
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-039";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-039";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-039";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-039";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-039";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-039";
-import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-039";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-039";
+import { socialIcons, translationControl } from "./shared-social-tools.js";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260909-040";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260909-040";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260909-040";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260909-040";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260909-040";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260909-040";
+import { sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260909-040";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260909-040";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -273,26 +274,6 @@ function link(routeId, cls = "", currentPath = "", labelOverride = "") {
   const normalizedCurrent = currentPath.endsWith("/") ? currentPath : `${currentPath}/`;
   const isCurrent = currentPath && path === normalizedCurrent;
   return `<a class="${cls}" href="${path}" data-link${isCurrent ? ' aria-current="page"' : ""}>${labelOverride || label}</a>`;
-}
-
-function socialIcons() {
-  return `<div class="social-icons" aria-label="SNS（デモ・リンク未設定）">
-    ${shellData.socials.map(({name,file})=>`<span class="social-icon social-${name.toLowerCase()}" title="${name}"><img src="/milky-veil-preview/assets/ui/social/${file}" alt="${name}"></span>`).join("")}
-  </div>`;
-}
-
-function translationControl(id = "header") {
-  const menuId = `translate-menu-${id}`;
-  return `<div class="translate-control">
-    <button class="translate-toggle" type="button" aria-expanded="false" aria-controls="${menuId}" aria-label="表示言語を選択">
-      <img src="/milky-veil-preview/assets/ui/translation/translate-material-white-96.png" alt="">
-    </button>
-    <div id="${menuId}" class="translate-menu" aria-hidden="true" inert>
-      <p>言語を選択</p>
-      <div id="google-translate-${id}" class="google-translate-widget" data-google-translate></div>
-      <small>Google 翻訳でページ本文を切り替えます。</small>
-    </div>
-  </div>`;
 }
 
 let activeTranslateTargetId = "google-translate-header";
@@ -1577,7 +1558,7 @@ function render({ focusRoute = false } = {}) {
   const isConceptRoute = currentRouteId === "concept";
   const routeShell = isConceptRoute
     ? conceptHeader(current.path)
-    : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path, { content: `<div class="home-menu-content">${globalMenuContent(current.path)}</div>` })}</div>` : globalOverlay(current.path)}`;
+    : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path, { content: `<div class="home-menu-content">${globalMenuContent(current.path)}</div>` })}</div>` : currentRouteId === "blog" ? sharedConceptMenuMarkup(current.path) : globalOverlay(current.path)}`;
   const appBody = suppressSharedShell
     ? renderPage(location.pathname)
     : `${routeShell}${renderPage(location.pathname)}`;
