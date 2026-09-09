@@ -179,8 +179,9 @@
 .home-simple-menu .l-nav { padding: 100px 24px 90px; }
 
 .shared-concept-menu .l-nav {
-  height: 100dvh;
+  height: var(--shared-menu-viewport-height, 100svh);
   overflow-y: auto;
   touch-action: pan-y;
-  padding-bottom: calc(90px + env(safe-area-inset-bottom) + var(--shared-menu-bottom-space, 120px));
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  overscroll-behavior-y: auto;
 }

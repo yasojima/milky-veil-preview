@@ -1,4 +1,4 @@
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-037";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260909-038";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -45,12 +45,18 @@ export function bindSharedConceptMenu(scope = document) {
 
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
-  const syncBottomSpace = () => nav.style.setProperty("--shared-menu-bottom-space", (bottomBar?.getBoundingClientRect().height || 0) + "px");
+  const syncBottomSpace = () => {
+    const barHeight = bottomBar?.getBoundingClientRect().height || 0;
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    nav.style.setProperty("--shared-menu-viewport-height", Math.max(160, viewportHeight - barHeight) + "px");
+  };
   const bottomObserver = new ResizeObserver(syncBottomSpace);
   if (bottomBar) bottomObserver.observe(bottomBar);
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
+  window.addEventListener("resize", syncBottomSpace, { signal });
+  window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
   const text = toggle.querySelector(".js-nav-btn-txt");
   const surfaceRoot = menu.closest("#app, .l-wrapper");
   const surfaceTargets = surfaceRoot
@@ -59,6 +65,7 @@ export function bindSharedConceptMenu(scope = document) {
   const inertTargets = [...new Set([...surfaceTargets, ...document.querySelectorAll("#main, #shared-bottom-ui-root")])];
 
   const setOpen = (open, { restoreFocus = false } = {}) => {
+    syncBottomSpace();
     nav.classList.toggle("is-open", open);
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
