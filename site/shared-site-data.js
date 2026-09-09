@@ -1,6 +1,7 @@
 export const sharedBrandLogo = "/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png";
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
+  colorDesign: Object.freeze({ path: "/milky-veil-preview/#color-design", label: "COLOR & DESIGN", navigationMode: "document" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
   menu: Object.freeze({ path: "/milky-veil-preview/menu/", label: "MENU", navigationMode: "document" }),
   staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document" }),
@@ -19,10 +20,10 @@ export const sharedRouteRegistry = Object.freeze({
   column: Object.freeze({ path: "/milky-veil-preview/column/", label: "COLUMN" }),
 });
 
-export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry));
-export const sharedPrimaryRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access", "blog"]);
-export const sharedSecondaryRouteIds = Object.freeze(["feature", "featureColor", "featurePerm", "featureStraight", "featureTreatment", "featureMens", "column", "contact", "privacy", "sitemap"]);
-export const sharedFooterRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access", "blog", "feature", "contact", "privacy", "sitemap", "column"]);
+export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry).filter(id => !sharedRouteRegistry[id].path.includes("#")));
+export const sharedPrimaryRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access", "contact", "privacy", "colorDesign"]);
+export const sharedSecondaryRouteIds = Object.freeze([]);
+export const sharedFooterRouteIds = sharedPrimaryRouteIds;
 export const sharedBrandEyebrow = "COLOR & DESIGN SALON";
 export const sharedBrandHeadlineLines = Object.freeze(["BLEACH", "THE RULES."]);
 export const sharedBrandSupportingLines = Object.freeze([
