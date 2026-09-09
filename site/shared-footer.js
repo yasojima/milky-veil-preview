@@ -1,4 +1,4 @@
-import { sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260909-055";
+import { sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260909-056";
 
 export const sharedFooterSalon = sharedSalonData;
 export const sharedFooterRoutes = Object.freeze(sharedFooterRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
@@ -19,7 +19,6 @@ export function sharedFooterMarkup(currentPath = "/") {
             <section>
               <h2>SALON</h2>
               <p>〒${sharedFooterSalon.postalCode}<br>${sharedFooterSalon.addressLines.join("<br>")}</p>
-              <p>${sharedFooterSalon.phone}</p>
             </section>
             <section>
               <h2>OPEN</h2>
