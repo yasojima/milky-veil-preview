@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-068";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-068";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-068";
-import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-068";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-068";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-068";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-068";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-068";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-069";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-069";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-069";
+import { clearSharedBottomUi, mountSharedBottomUi } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-069";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-069";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-069";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-069";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-069";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -409,7 +409,7 @@ function instagramFeed() {
       ${instagramPosts.map((post, index) => `<article class="instagram-card"><div class="instagram-card-media">
         <button type="button" class="instagram-open" data-instagram-post="${index}" aria-haspopup="dialog" aria-label="${post.title}の${post.video ? "動画" : "写真と本文"}を見る">
           ${responsiveImage(post.images[0], post.alt, { sizes: "(max-width: 767px) 85vw, 33vw" })}
-          <span class="instagram-card-icon" aria-hidden="true"><img src="/milky-veil-preview/assets/ui/social/${sharedSocials.find(social => social.name === "Instagram").file}" alt=""></span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
+          <span class="instagram-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><defs><linearGradient id="instagram-stroke-${index}" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb846"/><stop offset=".45" stop-color="#ff285c"/><stop offset="1" stop-color="#c02bdd"/></linearGradient></defs><g stroke="url(#instagram-stroke-${index})" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="#e8349c"/></svg></span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
           ${post.video ? '<span class="instagram-play" aria-hidden="true">▶</span>' : ""}
         </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
       </article>`).join("")}
