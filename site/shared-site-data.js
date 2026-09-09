@@ -26,7 +26,7 @@ export const sharedBrandEyebrow = "COLOR & DESIGN SALON";
 export const sharedBrandHeadlineLines = Object.freeze(["BLEACH", "THE RULES."]);
 export const sharedBrandSupportingLines = Object.freeze([
   "これがいいの。",
-  "だって、昨日より今日のほうが可愛いんだもん。",
+  "だって、今日のほうが可愛いんだもん。",
 ]);
 export const sharedFooterTickerText = "MORE COLOR, MORE ME.";
 
