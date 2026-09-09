@@ -1160,7 +1160,30 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   height:auto;
   padding:100px 0 100px 10%;
   gap:0;
-  background:var(--ink);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#fff;
+}
+.home-page .duo-atmosphere {
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  opacity:.35;
+  pointer-events:none;
+}
+.home-page .duo-atmosphere img { min-width:0; height:100%; object-fit:cover; }
+.home-page .duo::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:var(--milky-glass-background);
+  -webkit-backdrop-filter:var(--milky-glass-filter);
+  backdrop-filter:var(--milky-glass-filter);
+  pointer-events:none;
 }
 .home-page .duo>a {
   height:clamp(400px,38vw,600px);

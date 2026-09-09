@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-083";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-083";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-083";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-083";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-083";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-083";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-083";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-083";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-084";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-084";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-084";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-084";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-084";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-084";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-084";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-084";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -519,6 +519,11 @@ function bindInstagramFeed() {
   sync();
 }
 
+const homeDuoCards = Object.freeze([
+  { routeId: "menu", image: `${A}home-role-locked-pack-v1/home-menu-color-service-v4.png` },
+  { routeId: "items", image: `${A}home-role-locked-pack-v1/home-items-customer-06-v1.png` },
+]);
+
 function home() {
   const { hotpepper } = shellData.actions;
   return `
@@ -537,13 +542,13 @@ function home() {
       ${instagramFeed()}
       ${homeSplitSections.map(({ label, heading, text, image, reverse, routeId, sectionId }) => splitSection(label, heading, text, image, reverse, routeId, sectionId)).join("")}
       <section class="duo">
-        <a href="${routePath("menu")}" data-link>${responsiveImage(`${A}home-role-locked-pack-v1/home-menu-color-service-v4.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<span><b>MENU</b></span></a>
-        <a href="${routePath("items")}" data-link>${responsiveImage(`${A}home-role-locked-pack-v1/home-items-customer-06-v1.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<span><b>ITEMS</b></span></a>
+        <div class="duo-atmosphere" aria-hidden="true">${homeDuoCards.map(({ image }) => responsiveImage(image, "", { sizes: "50vw" })).join("")}</div>
+        ${homeDuoCards.map(({ routeId, image }) => `<a href="${routePath(routeId)}" data-link>${responsiveImage(image, "", { sizes: "(max-width: 1100px) 90vw, 45vw" })}<span><b>${routeRegistry[routeId].label}</b></span></a>`).join("")}
       </section>
       ${staffStrip()}
       <section class="access-home">
         ${responsiveImage(`${A}home-access/interior-collage-night-v1.png`, "夜の渋谷を望むMILKY VEILの店内コラージュ")}
-        <div><p class="eyebrow">ACCESS</p><h2>SHIBUYA<br>COLOR SALON</h2><p>${shellData.salon.accessLabel}</p>${link("access","outline-link light wave-cta","","VIEW ACCESS")}</div>
+        <div><h2>SHIBUYA<br>COLOR SALON</h2><p>${shellData.salon.accessLabel}</p>${link("access","outline-link light wave-cta","","VIEW ACCESS")}</div>
       </section>
       <section class="feature-home" id="color-design">
         <div class="section-title"><h2>COLOR &amp; DESIGN</h2></div>
