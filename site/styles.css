@@ -1246,10 +1246,11 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   position:relative;
   border-bottom:1px solid var(--milky-heading-accent);
   padding:0 0 5px 20px;
-  margin-bottom:26px;
+  margin-bottom:20px;
 }
 .home-page .split-heading-frame .eyebrow { margin:0 0 8px; font-size:clamp(36px,3.8vw,54px); line-height:1.2; letter-spacing:.02em; }
 .home-page .split-heading-frame h2 { margin:0; font-size:clamp(16px,1.5vw,21px); line-height:1.6; letter-spacing:.04em; }
+.home-page :is(#concept-home,#menu-home) .split-copy > p { margin:0; }
 .home-page :is(#concept-home,#menu-home) .outline-link {
   width:200px;
   max-width:100%;
@@ -1261,6 +1262,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   align-self:flex-start;
 }
 @media (max-width:900px) {
+  .home-page :is(#concept-home,#menu-home) .split-copy { padding-top:16px; }
   .home-page .split-heading-frame { padding-left:16px; padding-bottom:5px; margin-bottom:20px; }
   .home-page .split-heading-frame .eyebrow { margin-bottom:8px; }
 }
