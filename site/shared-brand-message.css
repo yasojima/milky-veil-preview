@@ -5,7 +5,7 @@
   height: auto;
   align-items: center;
   justify-content: center;
-  padding: var(--brand-vertical-space) clamp(28px, 5vw, 72px);
+  padding: var(--brand-vertical-space) clamp(22px, 3.2vw, 72px);
   padding-bottom: max(0px, calc(var(--brand-vertical-space) - 25px));
   background: var(--milky-home-paper, #fff);
   color: #172133;
@@ -45,6 +45,7 @@
   text-align: left;
   text-rendering: auto;
   word-break: normal;
+  white-space: nowrap;
   -webkit-font-smoothing: auto;
   -webkit-line-break: auto;
 }
@@ -79,4 +80,3 @@
     font-size: 15px;
   }
 }
-
