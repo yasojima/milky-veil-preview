@@ -3,6 +3,7 @@
   box-sizing: border-box;
   --brand-vertical-space: 200px;
   height: auto;
+  container-type: inline-size;
   align-items: center;
   justify-content: center;
   padding: var(--brand-vertical-space) clamp(22px, 3.2vw, 72px);
@@ -66,7 +67,7 @@
   }
 
   .shared-brand-message-copy > p {
-    font-size: min(19.270833vw, calc((100vw - 44px) / 4.7));
+    font-size: min(19.270833vw, calc(100cqw / 4.7));
     line-height: 1.05;
   }
 
