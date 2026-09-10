@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-084";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-084";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-084";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-084";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-084";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-084";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-084";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-084";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-085";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-085";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-085";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-085";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-085";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-085";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-085";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-085";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -344,6 +344,7 @@ function pageHead(routeId, title, lead, text) {
 }
 
 function splitSection(title, sub, body, image, reverse = false, routeId = "", id = "") {
+  const homeIntro = id === "concept-home" || id === "menu-home";
   const heading = Array.isArray(sub)
     ? sub.map((line) => `<span class="split-heading-line">${line}</span>`).join("")
     : sub;
@@ -351,10 +352,12 @@ function splitSection(title, sub, body, image, reverse = false, routeId = "", id
     <section class="split ${reverse ? "reverse" : ""}" ${id ? `id="${id}"` : ""}>
       <div class="split-media">${responsiveImage(image, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}</div>
       <div class="split-copy">
+        ${homeIntro ? '<header class="split-heading-frame">' : ""}
         <p class="eyebrow">${title}</p>
         <h2>${heading}</h2>
+        ${homeIntro ? "</header>" : ""}
         <p>${body}</p>
-        ${routeId ? `<a class="outline-link wave-cta" href="${routePath(routeId)}" data-link>VIEW ${title}</a>` : ""}
+        ${routeId ? `<a class="outline-link wave-cta" href="${routePath(routeId)}" data-link>${homeIntro ? title : `VIEW ${title}`}</a>` : ""}
       </div>
     </section>`;
 }
@@ -551,7 +554,7 @@ function home() {
         <div><h2>SHIBUYA<br>COLOR SALON</h2><p>${shellData.salon.accessLabel}</p>${link("access","outline-link light wave-cta","","VIEW ACCESS")}</div>
       </section>
       <section class="feature-home" id="color-design">
-        <div class="section-title"><h2>COLOR &amp; DESIGN</h2></div>
+        <div class="section-title"><h2>HAIR GALLERY</h2></div>
         <div class="feature-grid">${homeFeatureCards.map(([n,img,label,description])=>`<article class="feature-card feature-card-${n.toLowerCase()}">${responsiveImage(img, description, { sizes: "(max-width: 900px) 50vw, 20vw" })}<span><b>${label}</b></span></article>`).join("")}</div>
       </section>
     </main>`;

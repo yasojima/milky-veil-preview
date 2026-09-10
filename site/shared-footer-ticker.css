@@ -20,7 +20,7 @@
 .shared-footer-ticker .heading.block_header_4 .h {
   margin: 0 0 -2.4%;
   padding: 0 30px;
-  color: #970200;
+  color: var(--milky-heading-accent);
   font-family: var(--mv-font-text);
   font-size: 120px !important;
   font-weight: 400;

@@ -1231,3 +1231,26 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 @media (prefers-reduced-motion:reduce) {
   .home-page .duo b::before,.home-page .duo b::after { transition:none; }
 }
+
+.home-page .split-heading-frame {
+  border-left:3px solid var(--milky-heading-accent);
+  border-bottom:1px solid var(--milky-heading-accent);
+  padding:0 0 20px 20px;
+  margin-bottom:26px;
+}
+.home-page .split-heading-frame .eyebrow { margin:0 0 22px; font-size:16.5px; }
+.home-page .split-heading-frame h2 { margin:0; }
+.home-page :is(#concept-home,#menu-home) .outline-link {
+  width:200px;
+  max-width:100%;
+  height:auto;
+  min-height:48px;
+  padding:14px 24px;
+  line-height:1.5;
+  letter-spacing:.1em;
+  align-self:flex-start;
+}
+@media (max-width:900px) {
+  .home-page .split-heading-frame { padding-left:16px; padding-bottom:16px; margin-bottom:20px; }
+  .home-page .split-heading-frame .eyebrow { margin-bottom:16px; }
+}

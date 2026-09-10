@@ -1,7 +1,7 @@
 export const sharedBrandLogo = "/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png";
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
-  colorDesign: Object.freeze({ path: "/milky-veil-preview/#color-design", label: "COLOR & DESIGN", navigationMode: "document" }),
+  colorDesign: Object.freeze({ path: "/milky-veil-preview/#color-design", label: "HAIR GALLERY", navigationMode: "document" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
   menu: Object.freeze({ path: "/milky-veil-preview/menu/", label: "MENU", navigationMode: "document" }),
   staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document" }),
