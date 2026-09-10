@@ -18,6 +18,9 @@
 @media (max-width: 900px) {
   :root {
     --shared-menu-anchor-right: 30px;
+    --shared-mobile-logo-x:15px;
+    --shared-mobile-logo-y:12px;
+    --shared-mobile-logo-height:55px;
     --shared-menu-anchor-y: 58.5px;
     --shared-scroll-home-bottom: calc(66px + env(safe-area-inset-bottom));
 

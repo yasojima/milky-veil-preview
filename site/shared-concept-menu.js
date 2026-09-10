@@ -1,7 +1,7 @@
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-117";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-118";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -10,7 +10,7 @@ const normalizePath = (path) => {
   return `/${String(path).replace(/^\/+|\/+$/g, "")}/`;
 };
 
-export function sharedConceptMenuMarkup(currentPath = "/concept/", { content } = {}) {
+export function sharedConceptMenuMarkup(currentPath = "/concept/") {
   const activePath = normalizePath(currentPath);
   const items = sharedConceptMenuRoutes.map(({ path, label }) => `
     <li class="l-nav-list__item" itemprop="name">
@@ -21,8 +21,9 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/", { content } =
       <button class="shared-nav-toggle l-nav-btn u-alpha" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
         <span class="shared-nav-label l-nav-btn__txt u-font-en u-uppercase">menu</span>
       </button>
-      <nav id="global-nav" class="shared-nav-content l-nav${content === undefined ? " is-compact-menu" : ""}" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-        ${content ?? `<ul class="l-nav-list">${items}</ul><div class="menu-social-tools">${socialIcons()}${translationControl("compact-menu")}</div>`}
+      <nav id="global-nav" class="shared-nav-content l-nav is-compact-menu" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+        <a class="menu-brand" href="${sharedRouteRegistry.home.path}" data-link aria-label="MILKY VEIL HOME"><img src="${sharedBrandLogo}" alt="MILKY VEIL"></a>
+        <ul class="l-nav-list">${items}</ul><div class="menu-social-tools">${socialIcons()}${translationControl("compact-menu")}</div>
         ${menuContactMarkup()}
       </nav>
     </div>
@@ -67,14 +68,6 @@ export function bindSharedConceptMenu(scope = document) {
   const controller = new AbortController();
   const { signal } = controller;
   const compact = nav.classList.contains("is-compact-menu");
-  let reviewSpace = Math.max(window.innerHeight * 3, 2400);
-  if (!compact) nav.style.setProperty("--menu-review-space", reviewSpace + "px");
-  nav.addEventListener("scroll", () => {
-    if (compact) return;
-    if (nav.scrollHeight - nav.scrollTop - nav.clientHeight > nav.clientHeight) return;
-    reviewSpace += Math.max(window.innerHeight * 3, 2400);
-    nav.style.setProperty("--menu-review-space", reviewSpace + "px");
-  }, { passive: true, signal });
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("scroll", syncBottomSpace, { signal });
