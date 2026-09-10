@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-101";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-101";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-101";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-101";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-101";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-101";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-101";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-101";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-102";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-102";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-102";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-102";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-102";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-102";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-102";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-102";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -456,7 +456,7 @@ function instagramFeed() {
       </article>`).join("")}
     </div>
     <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / ${instagramPosts.length}</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>
-    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
+    <dialog class="instagram-dialog" tabindex="-1" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
   </section>`;
 }
 
@@ -536,9 +536,10 @@ function bindInstagramFeed() {
     dialog.scrollTop = 0;
     fitDetail();
   };
-  section.querySelectorAll("[data-instagram-post]").forEach(button => button.addEventListener("click", () => {
+  section.querySelectorAll("[data-instagram-post]").forEach(button => button.addEventListener("click", event => {
     opener = button;
     showPost(Number(button.dataset.instagramPost));
+    if (event.detail > 0) dialog.focus({ preventScroll: true });
   }));
   detail.addEventListener("touchstart", event => {
     if (event.touches.length !== 1 || event.target.closest("video,a,button,.instagram-detail-copy") || detail.querySelectorAll(".instagram-album img").length > 1) return;

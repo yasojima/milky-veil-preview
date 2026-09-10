@@ -1092,6 +1092,9 @@ html body {
 .instagram-caption p{margin:8px 0 0;font:13px/1.7 var(--mv-font-text);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .instagram-controls{display:none}
 .instagram-dialog{width:var(--detail-width, min(900px,calc(100vw - 32px)));max-width:calc(100vw - 32px);max-height:90dvh;padding:0;border:0;border-radius:12px;background:#fff;color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.instagram-dialog:focus{outline:none}
+.instagram-close{-webkit-tap-highlight-color:transparent}
+.instagram-close:focus:not(:focus-visible){outline:none}
 .instagram-dialog::backdrop{background:#111a;backdrop-filter:blur(3px)}
 body:has(.instagram-dialog[open]){overflow:hidden}
 .instagram-detail{display:grid;grid-template-columns:var(--detail-media-width, 1fr) minmax(0,1fr)}
@@ -1137,6 +1140,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .instagram-count{font:12px var(--mv-font-text);letter-spacing:.15em}
 .instagram-dialog{position:fixed;inset:16px;margin:0;width:calc(100% - 32px);max-width:none;height:calc(100dvh - 32px);max-height:none;overflow:hidden;border-radius:16px;background:#f3f2f8}
 .instagram-dialog::backdrop{background:rgba(0,0,0,.85);backdrop-filter:none}
+.instagram-album-controls{display:none}
 .instagram-detail{display:grid;height:100%;grid-template-columns:minmax(0,1fr);grid-template-rows:min(calc(100vw - 32px),60%) minmax(0,1fr)}
 .instagram-detail-image{height:100%;min-height:0;align-self:stretch;overflow:hidden;touch-action:pan-y}
 .instagram-detail-image img,.instagram-detail-image video{max-height:none;object-fit:cover;object-position:center top}
