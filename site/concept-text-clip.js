@@ -1,4 +1,5 @@
-import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js";
+import { sharedSalonData } from "./shared-site-data.js";
+import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-130";
 
 function loadScript(path) {
   return new Promise((resolve, reject) => {
@@ -21,7 +22,7 @@ export async function mountConceptTextClip(stage) {
   });
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-129", import.meta.url).href;
+  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-130", import.meta.url).href;
   const ready = new Promise((resolve, reject) => {
     stylesheet.onload = resolve;
     stylesheet.onerror = reject;
@@ -40,7 +41,7 @@ export async function mountConceptTextClip(stage) {
     stage.closest(".home-concept")?.classList.add("has-text-clip");
     const content = document.createElement("div");
     content.className = "content";
-    const letters = [..."kelpforests"].map((letter, index) => `<text x="${index}ch" y="50%" dominant-baseline="middle" text-anchor="middle" class="font-6 size-3">${letter}</text>`).join("");
+    const letters = [...sharedSalonData.name.toLowerCase()].map((letter, index) => `<text x="${index}ch" y="50%" dominant-baseline="middle" text-anchor="middle" class="font-6 size-3">${letter}</text>`).join("");
     content.innerHTML = `<svg><clipPath id="concept-original-clip">${letters}</clipPath></svg><div class="poster" style="clip-path:url(#concept-original-clip)"><div class="poster__inner"></div></div>`;
     content.querySelector(".poster__inner").style.backgroundImage = `url("${image.src}")`;
     stage.replaceChildren(content);

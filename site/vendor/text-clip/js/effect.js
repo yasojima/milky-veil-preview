@@ -12,13 +12,13 @@ const applyCustomEffect_7 = (contentElement) => {
             trigger: poster[0],
             start: 'top bottom',
             end: 'bottom top',
-            scrub: true
+            scrub: 0.45
         }
     })
     .fromTo(contentElement, {
-        filter: 'drop-shadow(-100px -20px 5px #6b0c0c)'
+        filter: 'drop-shadow(-100px -20px 5px rgba(111, 137, 155, 0.3))'
     }, {
-        filter: 'drop-shadow(100px 20px 20px #2a1554)'
+        filter: 'drop-shadow(100px 20px 20px rgba(111, 137, 155, 0.3))'
     }, 0)
     .fromTo(clipPath, {
         xPercent: 140
