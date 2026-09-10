@@ -230,7 +230,6 @@
   .l-nav.is-open .menu-brand { animation:menu-brand-arrive .28s ease-out var(--mh--duration, .3s) both; }
   .menu-brand img { display:block; width:auto; height:100%; }
   .menu-social-tools .social-icon,.menu-social-tools .translate-toggle { width:36px; height:36px; }
-  .menu-social-tools .social-icon img { filter:grayscale(1); }
   .menu-contact-details { display:grid; grid-template-rows:30px 22px 44px; justify-items:center; align-items:center; gap:2px; text-align:center; color:#172133; font:400 14px/1.4 var(--mv-font-text); }
   .menu-contact-details a,.menu-contact-details button { display:flex; align-items:center; justify-content:center; height:100%; min-height:0; padding:0 12px; border:0; background:none; color:inherit; font:inherit; text-decoration:none; cursor:pointer; }
   .menu-contact-details .menu-contact-phone { font-size:23px; }
