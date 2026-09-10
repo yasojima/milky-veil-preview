@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-108";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-108";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-108";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-108";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-108";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-108";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-108";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-108";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-109";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-109";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-109";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-109";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-109";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-109";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-109";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-109";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -1347,6 +1347,7 @@ function bind(sharedBottomScope) {
     let animationLogicalTarget = 0;
     let actionGeneration = 0;
     let state = "idle";
+    let activeRequestOrigin = "auto";
     let pendingRequest = null;
     let disposed = false;
     let timerId = 0;
@@ -1430,6 +1431,7 @@ function bind(sharedBottomScope) {
       else scheduleAuto();
     };
     const animateRequest = async (request) => {
+      activeRequestOrigin = request.origin;
       state = "decoding";
       const generation = ++actionGeneration;
       try {
@@ -1471,6 +1473,13 @@ function bind(sharedBottomScope) {
     };
     const requestSlide = (nextIndex, focusDot = false, origin = "manual", direction = "direct") => {
       clearTimer();
+      if (origin === "manual" && window.matchMedia("(max-width:900px)").matches) {
+        rotationRequested = false;
+        updateRotationControl();
+        if (state !== "idle" && activeRequestOrigin === "auto" && direction !== "direct") {
+          nextIndex = logicalIndex + (direction === "next" ? 1 : -1);
+        }
+      }
       requestedLogicalIndex = normalizeLogical(nextIndex);
       const request = {target: requestedLogicalIndex, focusDot, origin, direction};
       if (state !== "idle") {
@@ -1518,6 +1527,7 @@ function bind(sharedBottomScope) {
       if (event.pointerType !== "touch") return;
       if (!event.isPrimary) { finishSwipe(); return; }
       if (!event.target.closest(".home-staff-photo")) return;
+      rotationRequested = false;
       swipeStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
       homeStaffCarousel.setPointerCapture(event.pointerId);
       pauseReasons.add("touch");
