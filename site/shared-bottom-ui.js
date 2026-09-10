@@ -1,8 +1,8 @@
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260910-093";
-import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260910-093";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-093";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260910-093";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260910-093";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260910-095";
+import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260910-095";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-095";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260910-095";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260910-095";
 
 const activityCleanup = new WeakMap();
 const styleReadiness = new WeakMap();
@@ -12,15 +12,38 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260910-093",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260910-093",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-093&edit=1789010084254",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260910-093",
-  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260910-093",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260910-093",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260910-095",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260910-095",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260910-095",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260910-095",
+  "/milky-veil-preview/site/shared-footer.css?v=20260902-09&pages=20260910-095",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260910-095",
 ]);
 
+function mountViewportHud() {
+  if (document.getElementById("viewport-hud")) return;
+  const hud = document.createElement("div");
+  hud.id = "viewport-hud";
+  const shadow = hud.attachShadow({ mode: "open" });
+  shadow.innerHTML = `<style>
+    :host { all:initial; position:fixed; right:0; bottom:0; z-index:2147483647; pointer-events:none; display:block; }
+    output { display:block; padding:4px 7px; border-radius:3px 0 0; background:rgba(0,0,0,.85); color:#fff; font:600 10px/1.4 Arial,sans-serif; white-space:nowrap; }
+  </style><output aria-label="Viewport size"></output>`;
+  document.body.append(hud);
+  const output = shadow.querySelector("output");
+  const update = () => {
+    const width = Math.round(window.innerWidth);
+    const height = Math.round(window.innerHeight);
+    const breakpoint = width <= 900 ? "MOBILE" : width <= 1300 ? "TABLET" : "DESKTOP";
+    output.textContent = `${width} × ${height} px · ${breakpoint}`;
+  };
+  update();
+  window.addEventListener("resize", update, { passive: true });
+  window.visualViewport?.addEventListener("resize", update, { passive: true });
+}
+
 export function mountSharedBottomUi(host, currentPath) {
+  mountViewportHud();
   if (!(host instanceof HTMLElement)) return null;
   const root = host.shadowRoot || host.attachShadow({ mode: "open" });
   if (!root.querySelector("[data-shared-bottom-ui-component]")) {
