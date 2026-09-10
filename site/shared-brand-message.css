@@ -38,8 +38,8 @@
 
 .shared-brand-message-copy > p {
   margin: 0;
-  font: 400 clamp(57px, 11vw, 159px) / 1.02 var(--mv-font-text);
-  letter-spacing: normal;
+  font: 400 19.270833vw / 1.02 var(--mv-font-text);
+  letter-spacing: -.045em;
   line-break: auto;
   overflow-wrap: normal;
   text-align: left;
@@ -65,7 +65,7 @@
   }
 
   .shared-brand-message-copy > p {
-    font-size: 54px;
+    font-size: min(19.270833vw, calc((100vw - 44px) / 4.7));
     line-height: 1.05;
   }
 
