@@ -1,4 +1,4 @@
-import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260909-008&pages=20260910-085";
+import { responsiveImageManifest } from "./responsive-image-manifest.js?v=20260909-008&pages=20260910-086";
 
 export function resolveMedia(src) {
   return responsiveImageManifest[src] || { src, width: 0, height: 0, candidates: [] };

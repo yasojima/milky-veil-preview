@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-085";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-085";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-085";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-085";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-085";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-085";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-085";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-085";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-086";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-086";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-086";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-086";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-086";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-086";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-086";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-086";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -55,7 +55,7 @@ const pageCopy = {
     text: "得意な色、質感、シルエットが異なる6名のスタイリストが、一人ひとりのなりたいムードへ向き合います。",
   },
   MENU: {
-    lead: "カラーを軸に、必要なメニューを組み合わせる。",
+    lead: "デザインカラーを軸に、必要なメニューを組み合わせる。",
     text: "下記はデモ用の仮メニュー・仮価格です。履歴や長さに合わせて無理のない施術プランをご案内します。",
   },
   ITEMS: {
@@ -83,7 +83,7 @@ const homeSplitSections = Object.freeze([
   Object.freeze({
     label: "CONCEPT",
     heading: Object.freeze(["ダメージを抑えて", "カラーをもっと自由に"]),
-    text: "繰り返すブリーチやハイトーンを前提に<br>髪の状態に合わせて薬剤とケア工程を細かく調整します",
+    text: "あなたらしい髪色をデザインするために<br>ブリーチでつくる明るさや透明感まで丁寧に調整します",
     image: `${P}02-concept-closeup-purple.png`,
     reverse: false,
     routeId: "concept",
@@ -92,7 +92,7 @@ const homeSplitSections = Object.freeze([
   Object.freeze({
     label: "MENU",
     heading: Object.freeze(["今っぽさを", "自分らしく似合わせる"]),
-    text: "トレンドカラーやエクステからデザインパーマやカットまで<br>骨格や髪質とファッションに合わせて<br>あなたらしいバランスに仕上げます",
+    text: "デザインカラーを軸にカットや質感を組み合わせて<br>骨格や髪質とファッションに合う<br>あなたらしいバランスに仕上げます",
     image: `${A}home-role-locked-pack-v1/home-service-customer-05-v1.png`,
     reverse: true,
     routeId: "menu",
@@ -588,7 +588,7 @@ function staffStrip() {
       <header class="staff-strip-heading">
         <p class="eyebrow">STAFF</p>
         <h2 id="home-staff-title">6つの感性で<br>ひとりの“好き”を形に</h2>
-        <p>カラーやエクステからパーマやカットまで<br>異なる得意分野を持つ6名が髪の履歴と今の気分から<br>あなただけのバランスを見つけます</p>
+        <p>色づくりやカットなど<br>異なる得意分野を持つ6名が髪の履歴と今の気分から<br>あなたらしいデザインカラーを一緒に考えます</p>
       </header>
       <div class="home-staff-carousel-root" data-home-staff-carousel role="region" aria-roledescription="カルーセル" aria-label="MILKY VEIL スタイリスト紹介">
         <div class="home-staff-controls">
@@ -666,7 +666,7 @@ function conceptPage() {
             <div class="concept-sticky" aria-hidden="true"><img src="${C}S03-concept-consultation-v1.png" alt=""><span class="concept-word">LISTEN</span></div>
             <div class="concept-copy">
               <p class="eyebrow">MILKY VEILが大切にしていること</p><h2 id="concept-title"><span class="copy-line">髪を変えたら、</span><span class="copy-line">新しい自分が見えてくる。</span></h2>
-              <p class="concept-intro"><span class="copy-line">いつもの服やメイクはそのままなのに、髪を変えたら、鏡の中の自分が少し新しく見える。</span><span class="copy-line">カラーを中心に、ブリーチ、エクステ、パーマまで組み合わせて、これまで選ばなかったかわいさをご提案します。</span><span class="copy-line">「こんな自分も好きかも」と思える変化を、ここから始めてみませんか。</span></p>
+              <p class="concept-intro"><span class="copy-line">いつもの服やメイクはそのままなのに、髪を変えたら、鏡の中の自分が少し新しく見える。</span><span class="copy-line">デザインカラーを軸に、色と質感のバランスをご提案します。ブリーチで明るさや透明感を調整し、あなたらしい髪色へ。</span><span class="copy-line">「こんな自分も好きかも」と思える変化を、ここから始めてみませんか。</span></p>
               <dl class="concept-notes"><div><dt>01 / LISTEN</dt><dd><span class="copy-line">最近気になる色や</span><span class="copy-line">いつも選ぶ服を教えてください</span></dd></div><div><dt>02 / TOUCH</dt><dd><span class="copy-line">今の髪を一緒に見ながら</span><span class="copy-line">できる色とケアを相談していく</span></dd></div><div><dt>03 / LIGHT</dt><dd><span class="copy-line">店内でも 外に出たときでも</span><span class="copy-line">顔まわりがきれいに見える色を選ぶ</span></dd></div></dl>
             </div>
           </section>
