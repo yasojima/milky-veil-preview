@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-118";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-119";
 import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js";
 
 const sharedFixedShellData = Object.freeze({

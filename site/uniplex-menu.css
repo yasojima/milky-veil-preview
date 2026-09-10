@@ -213,7 +213,7 @@
 @media (max-width: 900px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height:calc((var(--shared-menu-screen-height, 100svh) - 318px) / 6);
-    grid-template-rows:minmax(0, 1fr) 36px 140px;
+    grid-template-rows:minmax(0, 1fr) 36px 160px;
     width:100vw;
     max-width:none;
     left:0;
@@ -226,12 +226,13 @@
     overscroll-behavior:none;
   }
   .is-compact-menu .l-nav-list { height:100%; grid-template-rows:repeat(6,minmax(0,1fr))!important; font-size:clamp(18px,3.1svh,23px); }
-  .menu-brand { display:block; position:absolute; top:var(--shared-mobile-logo-y); left:var(--shared-mobile-logo-x); height:var(--shared-mobile-logo-height); }
+  .menu-brand { display:block; position:absolute; top:var(--shared-mobile-logo-y); left:var(--shared-mobile-logo-x); height:var(--shared-mobile-logo-height); opacity:0; transform:scale(.88); transform-origin:center; }
+  .l-nav.is-open .menu-brand { animation:menu-brand-arrive .28s ease-out var(--mh--duration, .3s) both; }
   .menu-brand img { display:block; width:auto; height:100%; }
   .menu-social-tools .social-icon,.menu-social-tools .translate-toggle { width:36px; height:36px; }
-  .menu-contact-details { display:grid; grid-template-rows:30px 50px 30px 30px; justify-items:center; align-items:center; gap:0; text-align:center; color:#172133; font:400 12px/1.4 var(--mv-font-text); }
+  .menu-contact-details { display:grid; grid-template-rows:32px 60px 34px 34px; justify-items:center; align-items:center; gap:0; text-align:center; color:#172133; font:400 14px/1.4 var(--mv-font-text); }
   .menu-contact-details a,.menu-contact-details button { display:flex; align-items:center; justify-content:center; height:100%; min-height:0; padding:0 12px; border:0; background:none; color:inherit; font:inherit; text-decoration:none; cursor:pointer; }
-  .menu-contact-details .menu-contact-phone { font-size:20px; }
+  .menu-contact-details .menu-contact-phone { font-size:23px; }
   .menu-contact-hours { margin:0; }
   .menu-contact-details :focus-visible { outline:2px solid currentColor; outline-offset:2px; }
   .shared-concept-menu:has(.l-nav-btn[aria-expanded="false"]) {
@@ -244,3 +245,12 @@
 }
 
 .translation-retry { padding: 8px 12px; border: 1px solid currentColor; background: #fff; color: #172133; font: 400 12px/1.5 var(--mv-font-text); cursor: pointer; }
+
+@keyframes menu-brand-arrive {
+  0% { opacity:0; transform:scale(.88); }
+  70% { opacity:1; transform:scale(1.04); }
+  100% { opacity:1; transform:scale(1); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .l-nav.is-open .menu-brand { animation:none; opacity:1; transform:none; }
+}
