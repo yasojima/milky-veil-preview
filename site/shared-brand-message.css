@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--brand-vertical-space) clamp(28px, 5vw, 72px);
+  padding-bottom: max(0px, calc(var(--brand-vertical-space) - 26px));
   background: var(--milky-home-paper, #fff);
   color: #172133;
   font-family: var(--mv-font-text);
@@ -60,6 +61,7 @@
   .shared-brand-message {
     height: auto;
     padding-inline: 22px;
+    padding-bottom: max(0px, calc(var(--brand-vertical-space) - 18px));
   }
 
   .shared-brand-message-copy > p {
