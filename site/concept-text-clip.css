@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Milky Luna";
+  src: url("../assets/fonts/h19a-luna/h19a-luna-webfont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+.concept-text-clip {
+  --clip-top: 96px;
+  top: var(--clip-top);
+  height: calc(100svh - var(--clip-top) - 20px - var(--clip-dock, 0px));
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+}
+
+.concept-text-clip > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.concept-text-clip text {
+  font-family: "Milky Luna";
+  font-size: 100px;
+  font-weight: 400;
+}
+
+@media (max-width: 767px) {
+  .concept-text-clip { --clip-top: 80px; }
+}
