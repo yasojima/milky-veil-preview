@@ -229,12 +229,12 @@
   .menu-brand { display:block; position:fixed; z-index:141; top:var(--shared-mobile-logo-y); left:var(--shared-mobile-logo-x); height:var(--shared-mobile-logo-height); visibility:hidden; pointer-events:none; }
   .shared-concept-menu:has(.l-nav.is-open) .menu-brand { visibility:visible; pointer-events:auto; }
   #app:has(.shared-nav-content.is-open) .header-on-hero .brand { visibility:hidden; }
-  .menu-brand img { display:block; width:auto; height:100%; }
+  .menu-brand img { display:block; width:auto; height:100%; filter:brightness(.78) saturate(1.2); }
   .menu-social-tools .social-icon,.menu-social-tools .translate-toggle { width:36px; height:36px; }
   .menu-contact-details { display:grid; grid-template-rows:30px 22px 44px; justify-items:center; align-items:center; gap:2px; text-align:center; color:#172133; font:400 14px/1.4 var(--mv-font-text); }
   .menu-contact-details a,.menu-contact-details button { display:flex; align-items:center; justify-content:center; height:100%; min-height:0; padding:0 12px; border:0; background:none; color:inherit; font:inherit; text-decoration:none; cursor:pointer; }
   .menu-contact-details .menu-contact-phone { font-size:23px; }
-  .menu-contact-hours { margin:0; white-space:nowrap; font-size:clamp(8px,2.2vw,10px); letter-spacing:0; }
+  .menu-contact-hours { margin:0; white-space:nowrap; font-size:clamp(10px,2.9vw,12px); letter-spacing:0; }
   .menu-contact-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; height:44px; }
   .menu-contact-actions a,.menu-contact-actions button { border:1px solid #000; background:#fff; color:#000; padding:0 4px; font-size:clamp(10px,3vw,14px); }
   .menu-contact-details :focus-visible { outline:2px solid currentColor; outline-offset:2px; }
