@@ -303,6 +303,7 @@ body#home {
 .home-movie__marquee {
   --movie-ticker-tile: max(68vw, 255px);
   --movie-ticker-duration: 10s;
+  background: var(--milky-footer);
   display: block;
   width: 100%;
   min-width: 0;
