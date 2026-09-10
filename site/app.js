@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-110";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-110";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-110";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-110";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-110";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-110";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-110";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-110";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-111";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-111";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-111";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-111";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-111";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-111";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-111";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-111";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -615,7 +615,7 @@ function staffStrip() {
         <div class="home-staff-profile">
           <div class="home-staff-identity"><span>${profile.role}</span><h3>${profile.name}</h3></div>
           <dl>
-            <div class="home-staff-intro"><dt>紹介文</dt><dd>${profile.profile.replaceAll("、", "").split("。").filter(Boolean).join("<br>")}</dd></div>
+            <div class="home-staff-intro"><dt>紹介文</dt><dd>${profile.profile}</dd></div>
             <div><dt>スタイリスト歴</dt><dd>${profile.career}</dd></div>
             <div><dt>得意なメニュー</dt><dd>${profile.specialty}</dd></div>
             <div><dt>デザインムード</dt><dd>${profile.design}</dd></div>
@@ -628,7 +628,7 @@ function staffStrip() {
     <section class="staff-strip" aria-labelledby="home-staff-title">
       <header class="staff-strip-heading">
         <p class="eyebrow">STAFF</p>
-        <h2 id="home-staff-title">6つの感性で<br>ひとりの“好き”を形に</h2>
+        <h2 id="home-staff-title">技術でお客様のニーズに応えるスタイリスト</h2>
         <p>色づくりやカットなど<br>異なる得意分野を持つ6名が髪の履歴と今の気分から<br>あなたらしいデザインカラーを一緒に考えます</p>
       </header>
       <div class="home-staff-carousel-root" data-home-staff-carousel role="region" aria-roledescription="カルーセル" aria-label="MILKY VEIL スタイリスト紹介">
