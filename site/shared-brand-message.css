@@ -1,7 +1,7 @@
 .shared-brand-message {
   display: flex;
   box-sizing: border-box;
-  --brand-vertical-space: 230px;
+  --brand-vertical-space: 200px;
   height: auto;
   container-type: inline-size;
   align-items: center;
