@@ -23,7 +23,7 @@ export const sharedRouteRegistry = Object.freeze({
 export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry).filter(id => !sharedRouteRegistry[id].path.includes("#")));
 export const sharedPrimaryRouteIds = Object.freeze(["home", "concept", "menu", "staff", "items", "access"]);
 export const sharedSecondaryRouteIds = Object.freeze(["contact", "privacy", "colorDesign"]);
-export const sharedFooterRouteIds = Object.freeze([...sharedPrimaryRouteIds, ...sharedSecondaryRouteIds]);
+export const sharedFooterRouteIds = Object.freeze(["home", "menu", "access", "contact", "privacy"]);
 export const sharedBrandEyebrow = "DESIGN COLOR SALON";
 export const sharedBrandHeadlineLines = Object.freeze(["COLOR", "YOUR WAY."]);
 export const sharedBrandSupportingLines = Object.freeze([
