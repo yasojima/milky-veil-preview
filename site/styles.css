@@ -1158,7 +1158,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 
 .home-page{--home-section-space:130px;display:flex;flex-direction:column;gap:var(--home-section-space);padding-bottom:0;background:#fff}
 .home-page>section:is(.hero,.instagram-home,.split,.duo,.staff-strip,.access-home,.feature-home){flex-shrink:0;margin-block:0;padding-block:0}
-@media(max-width:900px){.home-page{--home-section-space:100px}}
+@media(max-width:900px){.home-page{--home-section-space:67px}}
 
 .feature-home .section-title h2{margin-left:auto}
 
@@ -1237,6 +1237,9 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   .home-page .duo b::after { width:30px; height:30px; transform:rotate(45deg) translate(-14px,-7px); }
   .home-page .duo a:is(:hover,:focus-visible) b::before,
   .home-page .duo a:is(:hover,:focus-visible) b::after { right:-8px; }
+}
+@media (max-width:900px) {
+  .home-page>section.duo { padding-block:67px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .home-page .duo b::before,.home-page .duo b::after { transition:none; }

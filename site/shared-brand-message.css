@@ -63,11 +63,12 @@
   .shared-brand-message {
     height: auto;
     padding-inline: 22px;
-    padding-bottom: max(0px, calc(var(--brand-vertical-space) - 17px));
+    padding-top: calc(var(--brand-vertical-space) * 2 / 3);
+    padding-bottom: max(0px, calc(var(--brand-vertical-space) * 2 / 3 - 17px));
   }
 
   .shared-brand-message-copy > p {
-    font-size: min(9.6354165vw, calc(100cqw / 9.4));
+    font-size: min(19.270833vw, calc(100cqw / 4.7));
     line-height: 1.05;
   }
 
