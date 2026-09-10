@@ -300,11 +300,40 @@ body#home {
   backdrop-filter: var(--milky-glass-filter);
 }
 
-/* Keep the saved UNIPLEX marquee geometry and motion; replace only its adopted copy artwork. */
-.home-movie__marquee::before,
-.home-movie__marquee::after {
-  background-image: url(./wp-content/themes/uniplex/img/home/txt_movie_milky_veil.svg);
+.home-movie__marquee {
+  --movie-ticker-tile: max(68vw, 255px);
+  --movie-ticker-duration: 10s;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
 }
+
+.home-movie__marquee::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(100% + var(--movie-ticker-tile));
+  background: url(./wp-content/themes/uniplex/img/home/txt_movie_milky_veil.svg) repeat-x left center / var(--movie-ticker-tile) auto;
+  image-rendering: auto;
+  animation: milky-movie-ticker var(--movie-ticker-duration) linear infinite;
+  animation-play-state: running;
+}
+
+.home-movie__marquee::after { content: none; }
+
+@keyframes milky-movie-ticker {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-1 * var(--movie-ticker-tile)), 0, 0); }
+}
+
+@media (min-width: 768px) {
+  .home-movie__marquee {
+    --movie-ticker-tile: max(22.2395833333vw, 427px);
+    --movie-ticker-duration: 12s;
+  }
+}
+
 
 /* Reuse MILKY VEIL's pale-pink surface for the two marquee rules. */
 .home-movie__marquee.is-top {
