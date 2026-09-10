@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-107";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-107";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-107";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-107";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-107";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-107";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-107";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-107";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-108";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-108";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-108";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-108";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-108";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-108";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-108";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-108";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -181,6 +181,7 @@ const staffProfiles = Object.freeze([
 
 const HOME_STAFF_AUTO_INTERVAL_MS = 5000;
 const HOME_STAFF_TRANSITION_MS = 700;
+const HOME_STAFF_MOBILE_TRANSITION_MS = 240;
 const HOME_STAFF_TRANSITION_FALLBACK_MS = 900;
 let disposeHomeStaffCarousel = () => {};
 let disposeSubpageMotion = () => {};
@@ -1385,7 +1386,8 @@ function bind(sharedBottomScope) {
     const normalizeLogical = (index) => (index + staffProfiles.length) % staffProfiles.length;
     const setTrackPosition = (index, animate) => {
       physicalIndex = index;
-      track.style.transitionDuration = animate && !reducedMotion ? `${HOME_STAFF_TRANSITION_MS}ms` : "0ms";
+      const duration = window.matchMedia("(max-width:900px)").matches ? HOME_STAFF_MOBILE_TRANSITION_MS : HOME_STAFF_TRANSITION_MS;
+      track.style.transitionDuration = animate && !reducedMotion ? `${duration}ms` : "0ms";
       track.style.transform = `translate3d(${-100 * physicalIndex}%,0,0)`;
     };
     const syncAccessibleState = () => {
@@ -1462,7 +1464,8 @@ function bind(sharedBottomScope) {
       if (reducedMotion) {
         requestAnimationFrame(completeTransition);
       } else {
-        transitionFallbackId = window.setTimeout(completeTransition, HOME_STAFF_TRANSITION_FALLBACK_MS);
+        const fallback = window.matchMedia("(max-width:900px)").matches ? HOME_STAFF_MOBILE_TRANSITION_MS + 200 : HOME_STAFF_TRANSITION_FALLBACK_MS;
+        transitionFallbackId = window.setTimeout(completeTransition, fallback);
       }
       if (request.focusDot) dots[request.target]?.focus();
     };

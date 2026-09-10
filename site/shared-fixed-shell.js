@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-107";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-108";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -92,8 +92,17 @@ export function bindSharedFixedShell(scope = document) {
     if (mobile.matches) {
       bar.classList.remove("is-scrolling", "is-docked");
       if (dock) dock.style.height = "0px";
+      const hidden = footer instanceof HTMLElement && footer.getBoundingClientRect().top < viewportBottom() - 1;
+      if (hidden && !bar.classList.contains("is-footer-hidden")) {
+        setSocialOpen(false);
+        setContactOpen(false);
+      }
+      bar.classList.toggle("is-footer-hidden", hidden);
+      bar.inert = hidden;
       return;
     }
+    bar.classList.remove("is-footer-hidden");
+    bar.inert = false;
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {
       const height = `${bar.getBoundingClientRect().height}px`;

@@ -120,7 +120,7 @@ main{overflow:hidden}
   .split,.split.reverse{display:flex;flex-direction:column;min-height:0}.split-media,.split.reverse .split-media{order:1;min-height:0;height:460px}.split-copy,.split.reverse .split-copy{order:2;padding:65px 22px}.split-copy h2{font-size:clamp(28px,7.5vw,40px)}
   .duo{grid-template-columns:1fr;height:auto;margin-top:56px;gap:1px}.duo a{height:470px}
   .staff-strip,.article-preview,.feature-home{padding:80px 22px}.section-title{display:block}.section-title h2{font-size:46px}
-  .staff-strip{padding-top:72px}.staff-strip-heading{margin-bottom:26px;text-align:left}.staff-strip-heading>.eyebrow{font-size:48px;line-height:1.25}.staff-strip-heading h2{margin:10px 0;font-size:15px;line-height:1.55;letter-spacing:.04em}.staff-strip-heading>p:last-child{font-size:14px;line-height:1.75}.home-staff-slide{grid-template-columns:1fr;gap:24px;min-height:0;padding:18px 18px 25px}.home-staff-photo{width:100%;max-width:520px;height:auto;aspect-ratio:4/5;margin-inline:auto}.home-staff-profile{align-self:stretch}.home-staff-identity{min-height:0;gap:16px;margin-bottom:14px}.home-staff-identity h3{font-size:42px}.home-staff-profile dl>div{grid-template-columns:72px minmax(0,1fr)}.home-staff-profile dt,.home-staff-profile dd{padding:10px 0;font-size:11px;line-height:1.65}.home-staff-profile dt{padding-right:10px;font-size:9px}.home-staff-profile dd{padding-left:8px;text-align:center;overflow-wrap:anywhere;text-wrap:pretty}.home-staff-profile .home-staff-intro dd{min-height:0}.home-staff-arrow{top:calc(18px + min(62.5vw - 60.625px,325px));width:40px;height:58px;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.4)}.home-staff-prev{left:18px}.home-staff-next{right:18px}.home-staff-prev span{left:12px}.home-staff-next span{right:12px}.home-staff-rotation{right:calc(50% + 68px)}.staff-strip-link{margin-top:24px}
+  .staff-strip{padding-top:72px}.staff-strip-heading{margin-bottom:26px;text-align:left}.staff-strip-heading>.eyebrow{font-size:48px;line-height:1.25}.staff-strip-heading h2{margin:10px 0;font-size:15px;line-height:1.55;letter-spacing:.04em}.staff-strip-heading>p:last-child{font-size:14px;line-height:1.75}.home-staff-slide{grid-template-columns:1fr;gap:24px;min-height:0;padding:18px 18px 25px}.home-staff-photo{width:100%;max-width:520px;height:auto;aspect-ratio:4/5;margin-inline:auto}.home-staff-profile{align-self:stretch}.home-staff-identity{min-height:0;gap:16px;margin-bottom:14px}.home-staff-identity h3{font-size:42px}.home-staff-profile dl>div{grid-template-columns:minmax(0,1fr);padding:10px 0;text-align:center}.home-staff-profile dt,.home-staff-profile dd{padding:10px 0;font-size:11px;line-height:1.65}.home-page .home-staff-profile dt{padding:0 0 4px;font-size:9px;text-align:center}.home-page .home-staff-profile dd{padding:0;text-align:center;overflow-wrap:anywhere;text-wrap:pretty}.home-staff-profile .home-staff-intro dd{min-height:0}.home-staff-arrow{top:calc(18px + min(62.5vw - 60.625px,325px));width:40px;height:58px;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.4)}.home-staff-prev{left:18px}.home-staff-next{right:18px}.home-staff-prev span{left:12px}.home-staff-next span{right:12px}.home-staff-rotation{right:calc(50% + 68px)}.staff-strip-link{margin-top:24px}
   .article-list article{grid-template-columns:90px 1fr 25px;padding:22px 0}.article-list h3{font-size:13px}.journal-card-featured figure{height:430px}.journal-card-featured h3{font-size:25px}.journal-card{grid-template-columns:96px 1fr 18px;gap:4px 12px}.journal-card figure{width:96px;height:120px}.journal-card h3{font-size:14px;line-height:1.55}.journal-card>p{font-size:8px;gap:10px}
   .access-home{height:620px}.access-home>div{left:22px;bottom:55px}.access-home h2{font-size:56px}
   .feature-grid{display:flex;overflow:auto}.feature-grid article{min-width:75vw;min-height:430px}
@@ -1255,6 +1255,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .home-page .split-heading-frame h2 { margin:0; font-size:clamp(16px,1.5vw,21px); line-height:1.6; letter-spacing:.04em; }
 .home-page :is(#concept-home,#menu-home) .split-copy > p { margin:0; }
 .home-page :is(#concept-home,#menu-home) .outline-link {
+  margin-top:20px;
   width:200px;
   max-width:100%;
   height:auto;
@@ -1263,6 +1264,9 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   line-height:1.5;
   letter-spacing:.1em;
   align-self:flex-start;
+}
+@media (max-width:900px) {
+  .home-staff-track { transition-timing-function:cubic-bezier(.2,.8,.2,1); }
 }
 @media (max-width:900px) {
   .home-page :is(#concept-home,#menu-home) .split-copy { padding-top:16px; }

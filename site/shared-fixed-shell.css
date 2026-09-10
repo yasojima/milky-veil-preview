@@ -143,9 +143,10 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
     border:0;
     background:transparent;
     transform:none;
-    transition:none;
+    transition:transform .4s cubic-bezier(.645,.045,.355,1);
     pointer-events:none;
   }
+  .fixed-cta.is-footer-hidden { transform:translateX(100%); }
   .fixed-cta::after { content:none; }
   .fixed-contact-toggle {
     position:absolute;
@@ -193,5 +194,5 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .fixed-cta .fixed-social-rail { bottom:92px; pointer-events:auto; }
 }
 @media (prefers-reduced-motion:reduce) {
-  .fixed-contact-panel { transition:none; }
+  .fixed-contact-panel,.fixed-cta { transition:none!important; }
 }
