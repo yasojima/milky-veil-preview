@@ -1,10 +1,11 @@
 .shared-brand-message {
   display: flex;
   box-sizing: border-box;
-  height: 1000px;
+  --brand-vertical-space: 130px;
+  height: auto;
   align-items: center;
   justify-content: center;
-  padding: 0 clamp(28px, 5vw, 72px);
+  padding: var(--brand-vertical-space) clamp(28px, 5vw, 72px);
   background: var(--milky-home-paper, #fff);
   color: #172133;
   font-family: var(--mv-font-text);
@@ -31,7 +32,7 @@
   letter-spacing: .25em;
   line-height: 1.9;
   text-align: left;
-  transform: translateY(50%);
+
 }
 
 .shared-brand-message-copy > p {
@@ -58,7 +59,7 @@
 @media (max-width: 900px) {
   .shared-brand-message {
     height: auto;
-    padding: 56px 22px;
+    padding-inline: 22px;
   }
 
   .shared-brand-message-copy > p {
