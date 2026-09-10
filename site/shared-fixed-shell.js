@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-113";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-114";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -126,7 +126,7 @@ export function bindSharedFixedShell(scope = document) {
   function handleScroll() {
     scrolling = true;
     window.clearTimeout(scrollIdleTimer);
-    update();
+    schedule();
     scrollIdleTimer = window.setTimeout(() => {
       scrolling = false;
       bar.classList.remove("is-scrolling");

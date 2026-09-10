@@ -1,6 +1,6 @@
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-113";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-114";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -17,10 +17,10 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/", { content } =
     </li>`).join("");
   return `<header class="shared-concept-menu l-header" data-shared-concept-menu>
     <div class="l-header__inner">
-      <button class="js-nav-btn l-nav-btn u-alpha" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
-        <span class="js-nav-btn-txt l-nav-btn__txt u-font-en u-uppercase">menu</span>
+      <button class="shared-nav-toggle l-nav-btn u-alpha" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
+        <span class="shared-nav-label l-nav-btn__txt u-font-en u-uppercase">menu</span>
       </button>
-      <nav id="global-nav" class="js-nav-content l-nav${content === undefined ? " is-compact-menu" : ""}" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+      <nav id="global-nav" class="shared-nav-content l-nav${content === undefined ? " is-compact-menu" : ""}" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
         ${content ?? `<ul class="l-nav-list">${items}</ul><div class="menu-social-tools">${socialIcons()}${translationControl("compact-menu")}</div>`}
       </nav>
     </div>
@@ -38,8 +38,8 @@ let disposeActiveMenu = () => {};
 export function bindSharedConceptMenu(scope = document) {
   disposeActiveMenu();
   const menu = scope.querySelector?.("[data-shared-concept-menu]");
-  const toggle = menu?.querySelector(".js-nav-btn");
-  const nav = menu?.querySelector(".js-nav-content");
+  const toggle = menu?.querySelector(".shared-nav-toggle");
+  const nav = menu?.querySelector(".shared-nav-content");
   if (!(menu instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement) || !(nav instanceof HTMLElement)) {
     disposeActiveMenu = () => {};
     return disposeActiveMenu;
@@ -76,7 +76,7 @@ export function bindSharedConceptMenu(scope = document) {
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("scroll", syncBottomSpace, { signal });
-  const text = toggle.querySelector(".js-nav-btn-txt");
+  const text = toggle.querySelector(".shared-nav-label");
   const surfaceRoot = menu.closest("#app, .l-wrapper");
   const surfaceTargets = surfaceRoot
     ? [...surfaceRoot.children].filter((target) => target !== menu && !target.contains(menu))
