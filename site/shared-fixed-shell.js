@@ -1,4 +1,5 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-115";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-117";
+import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -26,8 +27,8 @@ export function sharedFixedCtaMarkup() {
         <span class="cta-hours">${sharedFixedShellData.hours.join(" / ")}</span>
       </div>
       <div class="fixed-cta-actions">
-        <a class="fixed-cta-action" href="/milky-veil-preview/contact/" data-link>お問い合わせはこちら</a>
-        <button class="fixed-cta-action" type="button" data-demo-reserve>ご予約はこちら</button>
+        <a class="fixed-cta-action" href="/milky-veil-preview/contact/" data-link>${contactLabel}</a>
+        <button class="fixed-cta-action" type="button" data-demo-reserve>${reservationLabel}</button>
       </div>
       <div class="page-top-cell">
         <button type="button" class="page-top" aria-label="ページ上部へ"></button>
@@ -194,10 +195,10 @@ export function bindSharedFixedShell(scope = document) {
   socialItems.forEach((item) => item.addEventListener("click", (event) => event.preventDefault(), { signal }));
   pageTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }), { signal });
   bar.querySelector("[data-demo-phone]")?.addEventListener("click", () => {
-    alert("デモ表示のため電話リンクは未設定です。");
+    showContactDemo("phone");
   }, { signal });
   reserveButtons.forEach((button) => button.addEventListener("click", () => {
-    alert("デモ表示のため予約リンクは未設定です。");
+    showContactDemo("reserve");
   }, { signal }));
   document.addEventListener("click", (event) => {
     if (!event.composedPath().includes(socialRail)) setSocialOpen(false);

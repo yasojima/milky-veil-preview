@@ -1,6 +1,7 @@
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-115";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js";
+import { sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260910-117";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -22,6 +23,7 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/", { content } =
       </button>
       <nav id="global-nav" class="shared-nav-content l-nav${content === undefined ? " is-compact-menu" : ""}" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
         ${content ?? `<ul class="l-nav-list">${items}</ul><div class="menu-social-tools">${socialIcons()}${translationControl("compact-menu")}</div>`}
+        ${menuContactMarkup()}
       </nav>
     </div>
   </header>`;
@@ -51,7 +53,7 @@ export function bindSharedConceptMenu(scope = document) {
   let savedBodyStyle;
   const savedRootBackground = document.documentElement.style.background;
   const syncBottomSpace = () => {
-    const barHeight = bottomBar?.getBoundingClientRect().height || 0;
+    const barHeight = window.matchMedia("(max-width: 900px)").matches ? 0 : bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
     nav.style.setProperty("--shared-menu-bar-height", barHeight + "px");
     nav.style.setProperty("--shared-menu-screen-height", viewportHeight + "px");
@@ -97,6 +99,7 @@ export function bindSharedConceptMenu(scope = document) {
   if (list) itemsObserver.observe(list, { childList: true });
 
   const setOpen = (open, { restoreFocus = false } = {}) => {
+    bottomBar?.toggleAttribute("data-global-menu-open", open);
     syncBottomSpace();
     if (compact) {
       if (open && lockedScroll === null) {
@@ -143,6 +146,8 @@ export function bindSharedConceptMenu(scope = document) {
     firstLink.focus();
   }, { signal });
   nav.addEventListener("click", (event) => {
+    const action = event.target instanceof Element && event.target.closest("[data-menu-contact]");
+    if (action) showContactDemo(action.dataset.menuContact);
     if (event.target instanceof Element && event.target.closest("a[href]")) setOpen(false);
   }, { signal });
   document.addEventListener("keydown", (event) => {
@@ -174,6 +179,7 @@ export function bindSharedConceptMenu(scope = document) {
   setOpen(false);
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   disposeActiveMenu = () => {
+    bottomBar?.removeAttribute("data-global-menu-open");
     if (compact) setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
