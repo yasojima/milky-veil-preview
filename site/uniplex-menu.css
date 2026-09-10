@@ -213,7 +213,7 @@
 @media (max-width: 900px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height:calc((var(--shared-menu-screen-height, 100svh) - 318px) / 6);
-    grid-template-rows:minmax(0, 1fr) 36px 160px;
+    grid-template-rows:minmax(0, 1fr) 36px 100px;
     width:100vw;
     max-width:none;
     left:0;
@@ -230,10 +230,13 @@
   .l-nav.is-open .menu-brand { animation:menu-brand-arrive .28s ease-out var(--mh--duration, .3s) both; }
   .menu-brand img { display:block; width:auto; height:100%; }
   .menu-social-tools .social-icon,.menu-social-tools .translate-toggle { width:36px; height:36px; }
-  .menu-contact-details { display:grid; grid-template-rows:32px 60px 34px 34px; justify-items:center; align-items:center; gap:0; text-align:center; color:#172133; font:400 14px/1.4 var(--mv-font-text); }
+  .menu-social-tools .social-icon img { filter:grayscale(1); }
+  .menu-contact-details { display:grid; grid-template-rows:30px 22px 44px; justify-items:center; align-items:center; gap:2px; text-align:center; color:#172133; font:400 14px/1.4 var(--mv-font-text); }
   .menu-contact-details a,.menu-contact-details button { display:flex; align-items:center; justify-content:center; height:100%; min-height:0; padding:0 12px; border:0; background:none; color:inherit; font:inherit; text-decoration:none; cursor:pointer; }
   .menu-contact-details .menu-contact-phone { font-size:23px; }
-  .menu-contact-hours { margin:0; }
+  .menu-contact-hours { margin:0; white-space:nowrap; font-size:clamp(8px,2.2vw,10px); letter-spacing:0; }
+  .menu-contact-actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%; height:44px; }
+  .menu-contact-actions a,.menu-contact-actions button { border:1px solid #000; background:#fff; color:#000; padding:0 4px; font-size:clamp(10px,3vw,14px); }
   .menu-contact-details :focus-visible { outline:2px solid currentColor; outline-offset:2px; }
   .shared-concept-menu:has(.l-nav-btn[aria-expanded="false"]) {
     z-index: 1001;

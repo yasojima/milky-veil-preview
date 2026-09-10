@@ -3,7 +3,7 @@
   "repository": "milky-veil-preview",
   "publicBasePath": "/milky-veil-preview/",
   "generatedAt": "2026-09-09T14:43:30.532Z",
-  "deploymentVersion": "20260910-119",
+  "deploymentVersion": "20260910-120",
   "assetCount": 283,
   "assetBytes": 221321584,
   "source": "runtime-only static export"
