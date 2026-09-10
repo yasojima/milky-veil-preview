@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-087";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-087";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-087";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-087";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-087";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-087";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-087";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-087";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-088";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-088";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-088";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-088";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-088";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-088";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-088";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-088";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -82,8 +82,8 @@ const pageCopy = {
 const homeSplitSections = Object.freeze([
   Object.freeze({
     label: "CONCEPT",
-    heading: Object.freeze(["ダメージを抑えて", "カラーをもっと自由に"]),
-    text: "あなたらしい髪色をデザインするために<br>ブリーチでつくる明るさや透明感まで丁寧に調整します",
+    heading: Object.freeze(["カラーをもっと自由に"]),
+    text: "髪への負担に配慮しながら<br>ブリーチでつくる明るさや透明感まで丁寧に調整<br>あなたらしい髪色をデザインします",
     image: `${P}02-concept-closeup-purple.png`,
     reverse: false,
     routeId: "concept",
@@ -91,8 +91,8 @@ const homeSplitSections = Object.freeze([
   }),
   Object.freeze({
     label: "MENU",
-    heading: Object.freeze(["今っぽさを", "自分らしく似合わせる"]),
-    text: "デザインカラーを軸にカットや質感を組み合わせて<br>骨格や髪質とファッションに合う<br>あなたらしいバランスに仕上げます",
+    heading: Object.freeze(["自分らしく似合わせる"]),
+    text: "今の気分やトレンドを取り入れながら<br>デザインカラーを軸にカットや質感を組み合わせて<br>骨格や髪質とファッションに合うバランスに仕上げます",
     image: `${A}home-role-locked-pack-v1/home-service-customer-05-v1.png`,
     reverse: true,
     routeId: "menu",
@@ -350,7 +350,7 @@ function splitSection(title, sub, body, image, reverse = false, routeId = "", id
     : sub;
   return `
     <section class="split ${reverse ? "reverse" : ""}" ${id ? `id="${id}"` : ""}>
-      <div class="split-media">${responsiveImage(image, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}</div>
+      <div class="split-media">${homeIntro ? `<button type="button" class="split-image-open" data-image-src="${image}" aria-label="${title}の写真を拡大" aria-haspopup="dialog">` : ""}${responsiveImage(image, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}${homeIntro ? "</button>" : ""}</div>
       <div class="split-copy">
         ${homeIntro ? '<header class="split-heading-frame">' : ""}
         <p class="eyebrow">${title}</p>
@@ -360,6 +360,36 @@ function splitSection(title, sub, body, image, reverse = false, routeId = "", id
         ${routeId ? `<a class="outline-link wave-cta" href="${routePath(routeId)}" data-link>${homeIntro ? title : `VIEW ${title}`}</a>` : ""}
       </div>
     </section>`;
+}
+
+function bindHomeImageViewer() {
+  const buttons = document.querySelectorAll(".split-image-open");
+  if (!buttons.length) return;
+  const dialog = document.createElement("dialog");
+  dialog.className = "home-image-viewer";
+  dialog.setAttribute("aria-label", "写真の拡大表示");
+  dialog.innerHTML = '<button type="button" class="home-image-close" aria-label="写真を閉じる" autofocus>×</button><img alt="">';
+  document.querySelector(".home-page").append(dialog);
+  let opener;
+  let previousOverflow = "";
+  let scrollPosition = 0;
+  buttons.forEach(button => button.addEventListener("click", () => {
+    opener = button;
+    const image = dialog.querySelector("img");
+    image.src = button.dataset.imageSrc;
+    image.alt = button.getAttribute("aria-label").replace("を拡大", "");
+    scrollPosition = window.scrollY;
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.showModal();
+  }));
+  dialog.querySelector("button").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+  dialog.addEventListener("close", () => {
+    document.body.style.overflow = previousOverflow;
+    opener?.focus({ preventScroll: true });
+    window.scrollTo({ top: scrollPosition, behavior: "instant" });
+  });
 }
 
 function related() {
@@ -1144,6 +1174,7 @@ function bindSubpageMotion() {
 
 function bind(sharedBottomScope) {
   bindInstagramFeed();
+  bindHomeImageViewer();
   bindSubpageMotion();
   bindSharedFixedShell(sharedBottomScope);
   document.querySelectorAll("[data-link]").forEach((el)=>el.addEventListener("click",(e)=>{

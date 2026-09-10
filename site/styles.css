@@ -1233,13 +1233,13 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 }
 
 .home-page .split-heading-frame {
-  border-left:3px solid var(--milky-heading-accent);
+  position:relative;
   border-bottom:1px solid var(--milky-heading-accent);
-  padding:0 0 20px 20px;
+  padding:0 0 5px 20px;
   margin-bottom:26px;
 }
-.home-page .split-heading-frame .eyebrow { margin:0 0 22px; font-size:16.5px; }
-.home-page .split-heading-frame h2 { margin:0; }
+.home-page .split-heading-frame .eyebrow { margin:0 0 8px; font-size:clamp(36px,3.8vw,54px); line-height:1.2; letter-spacing:.02em; }
+.home-page .split-heading-frame h2 { margin:0; font-size:clamp(16px,1.5vw,21px); line-height:1.6; letter-spacing:.04em; }
 .home-page :is(#concept-home,#menu-home) .outline-link {
   width:200px;
   max-width:100%;
@@ -1251,6 +1251,17 @@ body:has(.instagram-dialog[open]){overflow:hidden}
   align-self:flex-start;
 }
 @media (max-width:900px) {
-  .home-page .split-heading-frame { padding-left:16px; padding-bottom:16px; margin-bottom:20px; }
-  .home-page .split-heading-frame .eyebrow { margin-bottom:16px; }
+  .home-page .split-heading-frame { padding-left:16px; padding-bottom:5px; margin-bottom:20px; }
+  .home-page .split-heading-frame .eyebrow { margin-bottom:8px; }
 }
+
+.home-page .split-heading-frame::before { content:""; position:absolute; left:0; bottom:2%; width:3px; height:96%; background:var(--milky-heading-accent); }
+.split-image-open { display:block; border:0; padding:0; width:100%; height:100%; background:none; cursor:zoom-in; }
+.split-image-open:focus-visible { outline:3px solid var(--ink); outline-offset:-3px; }
+.home-image-viewer { position:fixed; inset:0; width:100%; height:100%; max-width:none; max-height:none; margin:0; padding:40px 5vw; border:0; background:transparent; overflow:auto; }
+.home-image-viewer[open] { display:flex; align-items:center; justify-content:center; animation:home-photo-reveal .4s ease-in-out; }
+.home-image-viewer::backdrop { background:rgba(255,255,255,.7); }
+.home-image-viewer img { display:block; width:auto; height:auto; max-width:100%; max-height:calc(100dvh - 80px); object-fit:contain; }
+.home-image-close { position:fixed; top:12px; right:16px; width:44px; height:44px; padding:0; border:0; background:transparent; color:var(--ink); font:300 44px/1 Arial,sans-serif; cursor:pointer; }
+@keyframes home-photo-reveal { from { opacity:0; } to { opacity:1; } }
+@media(prefers-reduced-motion:reduce) { .home-image-viewer[open] { animation:none; } }
