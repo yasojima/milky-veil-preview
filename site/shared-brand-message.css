@@ -1,7 +1,7 @@
 .shared-brand-message {
   display: flex;
   box-sizing: border-box;
-  height: 1500px;
+  height: 1000px;
   align-items: center;
   justify-content: center;
   padding: 0 clamp(28px, 5vw, 72px);
