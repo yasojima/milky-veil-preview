@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-099";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-099";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-099";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-099&edit=1789011697861";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-099";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-099";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-099";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-099";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-100";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-100";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-100";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-100";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-100";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-100";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-100";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-100";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -456,7 +456,7 @@ function instagramFeed() {
       </article>`).join("")}
     </div>
     <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / ${instagramPosts.length}</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>
-    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus>×</button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
+    <dialog class="instagram-dialog" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
   </section>`;
 }
 
@@ -488,6 +488,7 @@ function bindInstagramFeed() {
     go(active + (event.key === "ArrowRight" ? 1 : -1));
   });
   let currentPost = 0;
+  let touchOrigin;
   let currentPhoto = 0;
   const fitDetail = () => {
     if (!dialog.open) return;
@@ -539,6 +540,18 @@ function bindInstagramFeed() {
     opener = button;
     showPost(Number(button.dataset.instagramPost));
   }));
+  detail.addEventListener("touchstart", event => {
+    if (event.touches.length !== 1 || event.target.closest("video,a,button,.instagram-detail-copy") || detail.querySelectorAll(".instagram-album img").length > 1) return;
+    touchOrigin = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  }, { passive: true });
+  detail.addEventListener("touchend", event => {
+    if (!touchOrigin || !event.changedTouches.length) return;
+    const dx = event.changedTouches[0].clientX - touchOrigin.x;
+    const dy = event.changedTouches[0].clientY - touchOrigin.y;
+    touchOrigin = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) showPost(currentPost + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+  detail.addEventListener("touchcancel", () => { touchOrigin = null; }, { passive: true });
   dialog.querySelectorAll("[data-post-step]").forEach(button => button.addEventListener("click", () => showPost(currentPost + Number(button.dataset.postStep))));
   dialog.addEventListener("keydown", event => {
     if (!["ArrowLeft", "ArrowRight"].includes(event.key) || event.target.closest("video,.instagram-album-controls")) return;
