@@ -1,4 +1,4 @@
-import { sharedBrandLogo, sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260910-086";
+import { sharedBrandLogo, sharedBrandHeadlineLines, sharedFooterRouteIds, sharedRouteRegistry, sharedSalonData } from "./shared-site-data.js?v=20260906-02&pages=20260910-087";
 
 export const sharedFooterSalon = sharedSalonData;
 export const sharedFooterRoutes = Object.freeze(sharedFooterRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
@@ -14,7 +14,7 @@ export function sharedFooterMarkup(currentPath = "/") {
     <footer class="site-footer">
       <div class="footer-shell">
         <div class="footer-info">
-          <p class="footer-kicker">COLOR YOUR OWN WAY.</p>
+          <p class="footer-kicker">${sharedBrandHeadlineLines.join(" ")}</p>
           <div class="footer-info-grid">
             <section>
               <h2>SALON</h2>
