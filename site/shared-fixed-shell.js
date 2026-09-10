@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-111";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-112";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -22,7 +22,7 @@ export function sharedFixedCtaMarkup() {
       </button>
       <div class="fixed-contact-panel" id="fixed-contact-panel">
       <div class="cta-tel">
-        <span class="cta-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 2.8 9.3 8l-2.1 1.7c1.4 3.1 3.9 5.6 7.1 7.1l1.7-2.1 5.2 2.6-.8 3.7c-.2.8-.9 1.3-1.7 1.3C9.3 21.7 2.3 14.7 1.7 5.3c-.1-.8.5-1.5 1.3-1.7l3.7-.8Z"/></svg><strong>${sharedFixedShellData.phone}</strong></span>
+        <button type="button" class="cta-phone" data-demo-phone aria-label="電話（デモ・リンク未設定）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.7 2.8 9.3 8l-2.1 1.7c1.4 3.1 3.9 5.6 7.1 7.1l1.7-2.1 5.2 2.6-.8 3.7c-.2.8-.9 1.3-1.7 1.3C9.3 21.7 2.3 14.7 1.7 5.3c-.1-.8.5-1.5 1.3-1.7l3.7-.8Z"/></svg><strong>${sharedFixedShellData.phone}</strong></button>
         <span class="cta-hours">${sharedFixedShellData.hours.join(" / ")}</span>
       </div>
       <div class="fixed-cta-actions">
@@ -162,11 +162,16 @@ export function bindSharedFixedShell(scope = document) {
   mobile.addEventListener("change", () => { setContactOpen(false); schedule(); }, { signal });
   setContactOpen(false);
 
+  let tabNavigation = false;
+  document.addEventListener("keydown", (event) => { tabNavigation = event.key === "Tab"; }, { capture: true, signal });
+  document.addEventListener("keyup", () => { tabNavigation = false; }, { signal });
+  document.addEventListener("pointerdown", () => { tabNavigation = false; }, { capture: true, signal });
+
   function keepFocusedElementVisible(event) {
     const target = event.composedPath()[0];
-    if (!(target instanceof HTMLElement) || !target.closest("main, .site-footer")) return;
+    if (!tabNavigation || !(target instanceof HTMLElement) || !target.closest("main, .site-footer") || target.closest("dialog[open]")) return;
     requestAnimationFrame(() => {
-      if (!target.isConnected) return;
+      if (!target.isConnected || !target.matches(":focus") || document.querySelector("dialog[open]")) return;
       const overlap = target.getBoundingClientRect().bottom - (bar.getBoundingClientRect().top - 8);
       if (overlap <= 0) return;
       const root = document.documentElement;
@@ -188,6 +193,9 @@ export function bindSharedFixedShell(scope = document) {
   socialRail?.addEventListener("pointerleave", () => socialRail.classList.remove("is-hovered"), { signal });
   socialItems.forEach((item) => item.addEventListener("click", (event) => event.preventDefault(), { signal }));
   pageTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }), { signal });
+  bar.querySelector("[data-demo-phone]")?.addEventListener("click", () => {
+    alert("デモ表示のため電話リンクは未設定です。");
+  }, { signal });
   reserveButtons.forEach((button) => button.addEventListener("click", () => {
     alert("デモ表示のため予約リンクは未設定です。");
   }, { signal }));
