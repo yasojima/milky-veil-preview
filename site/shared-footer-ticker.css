@@ -93,6 +93,7 @@
 }
 
 @media screen and (max-width: 900px) {
+  .shared-footer-ticker-rule { padding-bottom:60px; }
   .shared-footer-ticker {
     margin-top: 0;
   }
