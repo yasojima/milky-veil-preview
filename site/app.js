@@ -1,14 +1,14 @@
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-102";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-102";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-102";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-102&edit=1789017777337";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-102";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-102";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-102";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-102";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260910-104";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260910-104";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260902-06&pages=20260910-104";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260908-01&pages=20260910-104";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260910-104";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260902-03&pages=20260910-104";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260910-104";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260910-104";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -455,7 +455,6 @@ function instagramFeed() {
         </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
       </article>`).join("")}
     </div>
-    <div class="instagram-controls"><button type="button" data-instagram-step="-1" aria-label="前の投稿">←</button><span class="instagram-count" aria-live="polite">1 / ${instagramPosts.length}</span><button type="button" data-instagram-step="1" aria-label="次の投稿">→</button></div>
     <dialog class="instagram-dialog" tabindex="-1" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
   </section>`;
 }
@@ -467,21 +466,14 @@ function bindInstagramFeed() {
   const cards = [...track.children];
   const dialog = section.querySelector("dialog");
   const detail = section.querySelector(".instagram-detail");
-  const count = section.querySelector(".instagram-count");
-  const previous = section.querySelector('[data-instagram-step="-1"]');
-  const next = section.querySelector('[data-instagram-step="1"]');
   let active = 0;
   let opener;
   const sync = () => {
     active = cards.reduce((best, card, i) => Math.abs(card.offsetLeft - cards[0].offsetLeft - track.scrollLeft) < Math.abs(cards[best].offsetLeft - cards[0].offsetLeft - track.scrollLeft) ? i : best, 0);
-    count.textContent = `${active + 1} / ${cards.length}`;
-    previous.disabled = active === 0;
-    next.disabled = active === cards.length - 1;
   };
   let scrollTimer;
   track.addEventListener("scroll", () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(sync, 120); }, { passive: true });
   const go = index => track.scrollTo({ left: cards[Math.max(0, Math.min(cards.length - 1, index))].offsetLeft - cards[0].offsetLeft, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-  section.querySelectorAll("[data-instagram-step]").forEach(button => button.addEventListener("click", () => go(active + Number(button.dataset.instagramStep))));
   track.addEventListener("keydown", event => {
     if (!matchMedia("(max-width: 767px)").matches || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     event.preventDefault();
@@ -1512,7 +1504,33 @@ function bind(sharedBottomScope) {
         requestSlide(requestedLogicalIndex + (event.key === "ArrowRight" ? 1 : -1), true, "manual", event.key === "ArrowRight" ? "next" : "prev");
       }
     };
-    const onPointerDown = () => { keyboardModality = false; };
+    let swipeStart = null;
+    const finishSwipe = () => {
+      swipeStart = null;
+      pauseReasons.delete("touch");
+      scheduleAuto();
+    };
+    const onPointerDown = (event) => {
+      keyboardModality = false;
+      if (event.pointerType !== "touch") return;
+      if (!event.isPrimary) { finishSwipe(); return; }
+      if (!event.target.closest(".home-staff-photo")) return;
+      swipeStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      homeStaffCarousel.setPointerCapture(event.pointerId);
+      pauseReasons.add("touch");
+      clearTimer();
+      updateRotationControl();
+    };
+    const onPointerUp = (event) => {
+      if (!swipeStart || swipeStart.id !== event.pointerId) return;
+      const dx = event.clientX - swipeStart.x;
+      const dy = event.clientY - swipeStart.y;
+      if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0) onNext(); else onPrevious();
+      }
+      finishSwipe();
+    };
+    const onPointerCancel = () => { finishSwipe(); };
     const onMouseEnter = () => { pauseReasons.add("hover"); clearTimer(); updateRotationControl(); };
     const onMouseLeave = () => { pauseReasons.delete("hover"); scheduleAuto(); };
     const onFocusIn = (event) => {
@@ -1555,6 +1573,8 @@ function bind(sharedBottomScope) {
     track.addEventListener("transitionend", onTransitionEnd);
     homeStaffCarousel.addEventListener("keydown", onKeyDown);
     homeStaffCarousel.addEventListener("pointerdown", onPointerDown);
+    homeStaffCarousel.addEventListener("pointerup", onPointerUp);
+    homeStaffCarousel.addEventListener("pointercancel", onPointerCancel);
     homeStaffCarousel.addEventListener("mouseenter", onMouseEnter);
     homeStaffCarousel.addEventListener("mouseleave", onMouseLeave);
     homeStaffCarousel.addEventListener("focusin", onFocusIn);
@@ -1583,6 +1603,8 @@ function bind(sharedBottomScope) {
       track.removeEventListener("transitionend", onTransitionEnd);
       homeStaffCarousel.removeEventListener("keydown", onKeyDown);
       homeStaffCarousel.removeEventListener("pointerdown", onPointerDown);
+      homeStaffCarousel.removeEventListener("pointerup", onPointerUp);
+      homeStaffCarousel.removeEventListener("pointercancel", onPointerCancel);
       homeStaffCarousel.removeEventListener("mouseenter", onMouseEnter);
       homeStaffCarousel.removeEventListener("mouseleave", onMouseLeave);
       homeStaffCarousel.removeEventListener("focusin", onFocusIn);
