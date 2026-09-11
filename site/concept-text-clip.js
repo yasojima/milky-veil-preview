@@ -1,5 +1,5 @@
 import { sharedSalonData } from "./shared-site-data.js";
-import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-132";
+import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-133";
 
 function loadScript(path) {
   return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ function loadScript(path) {
   });
 }
 
-export async function mountConceptTextClip(stage) {
+export async function mountConceptTextClip(stage, trigger) {
   if (!stage) return;
   let disposed = false;
   let context;
@@ -22,7 +22,7 @@ export async function mountConceptTextClip(stage) {
   });
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-132", import.meta.url).href;
+  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-133", import.meta.url).href;
   const ready = new Promise((resolve, reject) => {
     stylesheet.onload = resolve;
     stylesheet.onerror = reject;
@@ -46,7 +46,7 @@ export async function mountConceptTextClip(stage) {
     content.querySelector(".poster__inner").style.backgroundImage = `url("${image.src}")`;
     stage.replaceChildren(content);
     context = window.gsap.context(() => {
-      applyCustomEffect_7(content);
+      applyCustomEffect_7(content, trigger);
     }, stage);
     window.ScrollTrigger.refresh();
   } catch (error) {

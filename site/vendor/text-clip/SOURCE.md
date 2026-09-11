@@ -1,9 +1,9 @@
-# Codrops TextClipScroll integration
+# Codrops TextClipScroll adaptation
 
 Source: https://tympanus.net/Development/TextClipScroll/
 Repository: https://github.com/codrops/TextClipScroll
 License: LICENSE (MIT); bundled libraries retain their license headers.
 
-The applyCustomEffect_7 function is adapted: scrub is 0.45 seconds and both shadow colors are rgba(111,137,155,0.3). Other motion values remain original. GSAP, ScrollTrigger and img/2.jpg are copied from the original one-row reference under site/roughs/text-clip-original/. Font: assets/fonts/h19a-luna/h19a-luna-webfont.woff2 (original H19A Luna).
+Original GSAP, ScrollTrigger and img/2.jpg are retained. The letter fold uses original rotation -45 to 0, scale 0 to 1, expo.inOut, duration .25 and stagger .03. The H19A Luna font and 30vw / 1ch layout remain. Salon name is read from sharedSalonData.
 
-site/concept-text-clip.js mounts one row from sharedSalonData.name with the original SVG text layout. site/concept-text-clip.css preserves the original effect dimensions and adds scoped flow spacing for the CONCEPT header and following body. The existing page scroll is used; the standalone demo Lenis scroll manager is deliberately not added to the integrated page. Rotation, easing, stagger, shadow geometry, horizontal travel and ScrollTrigger start/end are unchanged. No reversal or duplication yet.
+The integrated trajectory is adapted to the split first view: a fixed background plane, measured completed glyph bounds, linear horizontal travel and cubic upward displacement. One scrub .45 progress value drives the trajectory, letter unfolding and shadow. Letters begin at time .2 underneath the hero so the leading glyph is visible when the split reveals it. This is not the original demo's page-flow trajectory. The original standalone comparison remains under site/roughs/text-clip-original/.

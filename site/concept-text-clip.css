@@ -6,11 +6,10 @@
 }
 
 .concept-text-clip {
-  position: relative;
-  top: auto;
+  position: fixed;
+  inset: 0;
   width: 100%;
-  height: auto;
-  padding-top: calc(100svh + 96px);
+  height: 100svh;
   overflow: visible;
   pointer-events: none;
 }
@@ -20,8 +19,8 @@
 }
 
 .concept-text-clip .content {
-  min-height: 60vh;
-  margin: 15vh auto;
+  height: 100%;
+  margin: 0;
   display: grid;
   place-items: center;
 }
@@ -59,7 +58,6 @@
 }
 
 @media (max-width: 767px) {
-  .concept-text-clip { padding-top: calc(100svh + 80px); }
   .home-concept.has-text-clip { padding-top: calc(215svh + 80px); }
 }
 
