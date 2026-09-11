@@ -1,4 +1,4 @@
-import { conceptSerifGlyphs } from "./concept-serif-glyphs.js";
+import { conceptSerifGlyphs } from "./concept-serif-glyphs.js?v=20260912-157";
 const copy = value => structuredClone(value);
 const outline = points => ({v:points,i:points.map(()=>[0,0]),o:points.map(()=>[0,0]),c:false});
 const transform = {ty:"tr",p:{a:0,k:[0,0]},a:{a:0,k:[0,0]},s:{a:0,k:[100,100]},r:{a:0,k:0},o:{a:0,k:100}};
