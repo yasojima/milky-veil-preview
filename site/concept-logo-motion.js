@@ -80,7 +80,7 @@ export function brandConceptLogoMotion(source, name) {
           const trim = layer.shapes[0].it.find(item => item.ty === "tm");
           // Constant path speed prevents a burst through the ascent-to-valley turn.
           trim.s.k.forEach((key, index) => {
-            key.t = (timing[index].t - 2.298) * 1.6;
+            key.t = (timing[index].t - 2.298) * 1.45;
             if (timing[index].i) key.i = { x: [1], y: [1] };
             if (timing[index].o) key.o = { x: [0], y: [0] };
           });
