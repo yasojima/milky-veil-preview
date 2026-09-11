@@ -21,10 +21,10 @@ export function brandConceptLogoMotion(source, name) {
   const ink = base.shapes[0].it.find(item => item.ty === "fl");
   const transform = base.shapes[0].it.find(item => item.ty === "tr");
   const masks = [], artwork = [];
-  let motionEnd = data.op;
-  let cursor = 0, ordinal = 0;
+  let cursor = 0;
   const letters = [...name.toUpperCase()];
-  const count = letters.filter(letter => letter !== " ").length;
+  const finalLetterStart = letters.slice(0, -1).reduce((sum, letter) =>
+    sum + (letter === " " ? 36 : (glyphs[letter]?.width ?? drawnGlyphs[letter]?.width ?? 0) + 20), 0);
   const shiftTimes = (node, offset) => {
     if (!node || typeof node !== "object") return;
     if (typeof node.t === "number") node.t += offset;
@@ -40,7 +40,7 @@ export function brandConceptLogoMotion(source, name) {
   };
   for (const letter of letters) {
     if (letter === " ") { cursor += 36; continue; }
-    const time = ordinal * 11.492 / (count - 1);
+    const time = finalLetterStart ? cursor * 11.492 / finalLetterStart : 0;
     const existing = glyphs[letter];
     if (existing) {
       const group = clone(base.shapes[existing.group]);
@@ -76,22 +76,13 @@ export function brandConceptLogoMotion(source, name) {
           layer.ks.p.k = [0, 0, 0];
           layer.ks.a.k = [0, 0, 0];
           layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(phase === "open" ? [...points].reverse() : points);
-          const timing = originals.find(item => item.nm === `I_${phase}`).shapes.find(item => item.ty === "tm").s.k;
-          const trim = layer.shapes[0].it.find(item => item.ty === "tm");
-          // Constant path speed prevents a burst through the ascent-to-valley turn.
-          trim.s.k.forEach((key, index) => {
-            key.t = (timing[index].t - 2.298) * 1.45;
-            if (timing[index].i) key.i = { x: [1], y: [1] };
-            if (timing[index].o) key.o = { x: [0], y: [0] };
-          });
           shiftTimes(layer.shapes, time);
-          motionEnd = Math.max(motionEnd, Math.ceil(trim.s.k.at(-1).t + Math.max(...data.layers.map(row => row.st)) + 1));
           masks.push(layer);
         }
       }
       cursor += glyph.width;
     }
-    cursor += 20; ordinal++;
+    cursor += 20;
   }
   const offset = (data.w - (cursor - 20)) / 2;
   // Extend only the stationary endpoints; round caps bite into partially revealed glyphs.
@@ -121,7 +112,6 @@ export function brandConceptLogoMotion(source, name) {
     layer.ks.p.k[0] += offset;
     return layer;
   });
-  data.op = motionEnd;
   data.nm = `${name} logo motion`;
   return data;
 }
