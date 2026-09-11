@@ -83,8 +83,8 @@ export function brandConceptLogoMotion(source, name) {
           const dy = vertices[end][1] - vertices[neighbor][1];
           const length = Math.hypot(dx, dy);
           if (!length) continue;
-          vertices[end][0] += .8 * dx / length;
-          vertices[end][1] += .8 * dy / length;
+          vertices[end][0] += 1.2 * dx / length;
+          vertices[end][1] += 1.2 * dy / length;
         }
       }
     }
