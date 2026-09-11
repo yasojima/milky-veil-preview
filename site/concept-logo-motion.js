@@ -21,6 +21,7 @@ export function brandConceptLogoMotion(source, name) {
   const ink = base.shapes[0].it.find(item => item.ty === "fl");
   const transform = base.shapes[0].it.find(item => item.ty === "tr");
   const masks = [], artwork = [];
+  let motionEnd = data.op;
   let cursor = 0, ordinal = 0;
   const letters = [...name.toUpperCase()];
   const count = letters.filter(letter => letter !== " ").length;
@@ -79,11 +80,12 @@ export function brandConceptLogoMotion(source, name) {
           const trim = layer.shapes[0].it.find(item => item.ty === "tm");
           // Preserve N's continuous wipe direction while matching the other letters' easing.
           trim.s.k.forEach((key, index) => {
-            key.t = timing[index].t - 2.298;
+            key.t = (timing[index].t - 2.298) * 1.2;
             if (timing[index].i) key.i = clone(timing[index].i);
             if (timing[index].o) key.o = clone(timing[index].o);
           });
           shiftTimes(layer.shapes, time);
+          motionEnd = Math.max(motionEnd, Math.ceil(trim.s.k.at(-1).t + Math.max(...data.layers.map(row => row.st)) + 1));
           masks.push(layer);
         }
       }
@@ -119,6 +121,7 @@ export function brandConceptLogoMotion(source, name) {
     layer.ks.p.k[0] += offset;
     return layer;
   });
+  data.op = motionEnd;
   data.nm = `${name} logo motion`;
   return data;
 }
