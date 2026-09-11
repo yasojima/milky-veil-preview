@@ -38,6 +38,8 @@ export function mountConceptTypography(stage, name, { gsap }) {
       z: 0,
       onComplete: () => stage.classList.add("is-end"),
     });
+    // UNIPLEX bg_logo01.json: frames 0..92 at 24fps, default playback speed.
+    animation.timeScale(animation.totalDuration() / (92 / 24));
     const syncHero = () => {
       stage.classList.remove("is-end");
       if (hero.classList.contains("is-out")) animation.restart();

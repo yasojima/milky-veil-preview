@@ -9,3 +9,5 @@ The character transform, opacity, perspective, ease and .05 stagger are adapted 
 Playback and page composition follow the UNIPLEX split hero: its is-out state starts one playback; returning resets it; completion hides the background with is-end. The original absolute background / sticky stage and foreground content spacing are restored. This integration deliberately uses time-based playback instead of Codrops scroll scrubbing.
 
 License: MIT, see LICENSE.
+
+Playback duration follows https://uniplex.jp/wp-content/themes/uniplex/json/bg_logo01.json (ip=0, op=92, fr=24): 92/24 seconds. A uniform GSAP timeScale preserves the character motion proportions.
