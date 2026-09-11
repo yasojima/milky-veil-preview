@@ -1,3 +1,6 @@
+import { brandConceptLogoMotion } from "../../concept-logo-motion.js?v=20260911-136";
+import { sharedSalonData } from "../../shared-site-data.js?v=20260906-02";
+
 if (document.body.dataset.pageRouteId === "concept") {
   const stage = document.querySelector(".concept-fv-background-stage");
   if (stage) {
@@ -7,7 +10,7 @@ if (document.body.dataset.pageRouteId === "concept") {
     try {
       const response = await fetch(source);
       if (!response.ok) throw new Error(`Logo motion: ${response.status}`);
-      const data = await response.json();
+      const data = brandConceptLogoMotion(await response.json(), sharedSalonData.name);
       const surface = getComputedStyle(stage.closest(".home-concept")).backgroundColor.match(/[\d.]+/g).slice(0, 3).map(value => Number(value) / 255);
       const recolor = node => {
         if (!node || typeof node !== "object") return;
