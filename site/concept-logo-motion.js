@@ -78,11 +78,11 @@ export function brandConceptLogoMotion(source, name) {
           layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(phase === "open" ? [...points].reverse() : points);
           const timing = originals.find(item => item.nm === `I_${phase}`).shapes.find(item => item.ty === "tm").s.k;
           const trim = layer.shapes[0].it.find(item => item.ty === "tm");
-          // Preserve N's continuous wipe direction while matching the other letters' easing.
+          // Constant path speed prevents a burst through the ascent-to-valley turn.
           trim.s.k.forEach((key, index) => {
             key.t = (timing[index].t - 2.298) * 1.6;
-            if (timing[index].i) key.i = clone(timing[index].i);
-            if (timing[index].o) key.o = clone(timing[index].o);
+            if (timing[index].i) key.i = { x: [1], y: [1] };
+            if (timing[index].o) key.o = { x: [0], y: [0] };
           });
           shiftTimes(layer.shapes, time);
           motionEnd = Math.max(motionEnd, Math.ceil(trim.s.k.at(-1).t + Math.max(...data.layers.map(row => row.st)) + 1));
