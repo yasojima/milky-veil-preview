@@ -71,6 +71,17 @@ export function brandConceptLogoMotion(source, name) {
     cursor += 20; ordinal++;
   }
   const offset = (data.w - (cursor - 20)) / 2;
+  // Round mask caps cover the glyph endpoints, including antialiased corner pixels.
+  for (const layer of masks) {
+    for (const group of layer.shapes) {
+      for (const item of group.it || []) {
+        if (item.ty === "st") {
+          item.lc = 2;
+          item.w.k += 2;
+        }
+      }
+    }
+  }
   const art = clone(template);
   art.nm = name;
   art.ks.p.k = [0, 0, 0];
