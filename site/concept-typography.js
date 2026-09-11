@@ -17,15 +17,13 @@ export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
   }
   stage.replaceChildren(title);
   const chars = title.querySelectorAll(".concept-type-char");
-  const region = stage.parentElement;
   const heroTrigger = document.querySelector(".js-home-mv-trigger");
-  const startOffset = () => heroTrigger.offsetHeight;
-  // Translate the reference's center-bottom / bottom-top+20% travel
-  // past the split hero, which otherwise conceals the animation's first half.
-  const travel = () => innerHeight * .8 + title.offsetHeight * .5;
-  const sizeRegion = () => { region.style.height = `${startOffset() + travel() + innerHeight}px`; };
-  sizeRegion();
-  ScrollTrigger.addEventListener("refreshInit", sizeRegion);
+  // Put the reference's center-bottom start just after the split hero opens.
+  const positionTitle = () => {
+    stage.style.paddingTop = `${Math.max(0, heroTrigger.offsetHeight + innerHeight - title.offsetHeight * .5)}px`;
+  };
+  positionTitle();
+  ScrollTrigger.addEventListener("refreshInit", positionTitle);
   const media = gsap.matchMedia();
   media.add("(prefers-reduced-motion: no-preference)", () => {
     chars.forEach(char => gsap.set(char.parentNode, { perspective: 1000 }));
@@ -40,14 +38,16 @@ export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
     gsap.set(chars, initial);
     gsap.fromTo(chars, initial, {
       ease: "power1",
+      duration: .5,
       opacity: 1,
-      stagger: 0.05,
+      // Reference: 13 characters with .05s between them = .6s total stagger.
+      stagger: { amount: .6 },
       rotationX: 0,
       z: 0,
       scrollTrigger: {
-        trigger: region,
-        start: () => `top top-=${startOffset()}`,
-        end: () => `+=${travel()}`,
+        trigger: title,
+        start: "center bottom",
+        end: "bottom top+=20%",
         scrub: true,
         invalidateOnRefresh: true
       }
@@ -57,7 +57,7 @@ export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
   addEventListener("pagehide", event => {
     if (!event.persisted) {
       media.revert();
-      ScrollTrigger.removeEventListener("refreshInit", sizeRegion);
+      ScrollTrigger.removeEventListener("refreshInit", positionTitle);
     }
   });
 }
