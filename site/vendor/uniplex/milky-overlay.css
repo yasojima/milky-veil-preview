@@ -439,7 +439,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-.concept-fv-background-stage.home-concept__bg-in { width: 59%; }
-@media (min-width: 768px) {
-  .concept-fv-background-stage.home-concept__bg-in { width: 50%; }
+.concept-fv-background-stage.home-concept__bg-in canvas {
+  transform: scaleX(1.12);
+  transform-origin: center;
 }
