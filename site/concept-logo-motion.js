@@ -38,7 +38,7 @@ export function brandConceptLogoMotion(source, name) {
     masks.push(layer);
   };
   for (const letter of letters) {
-    if (letter === " ") { cursor += 36; continue; }
+    if (letter === " ") { cursor += 52; continue; }
     const time = ordinal * 11.492 / (count - 1);
     const existing = glyphs[letter];
     if (existing) {
@@ -81,9 +81,9 @@ export function brandConceptLogoMotion(source, name) {
       }
       cursor += glyph.width;
     }
-    cursor += 20; ordinal++;
+    cursor += 4; ordinal++;
   }
-  const offset = (data.w - (cursor - 20)) / 2;
+  const offset = (data.w - (cursor - 4)) / 2;
   // Extend only the stationary endpoints; round caps bite into partially revealed glyphs.
   for (const layer of masks) {
     for (const group of layer.shapes) {
