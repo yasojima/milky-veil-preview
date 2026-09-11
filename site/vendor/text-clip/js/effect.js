@@ -1,4 +1,4 @@
-const applyCustomEffect_7 = (contentElement, layoutLetters) => {
+const applyCustomEffect_7 = (contentElement) => {
     
     const clipPath = contentElement.querySelectorAll('svg clipPath');
     const poster = contentElement.querySelectorAll('.poster');
@@ -12,24 +12,19 @@ const applyCustomEffect_7 = (contentElement, layoutLetters) => {
             trigger: poster[0],
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 0.45,
-            onRefreshInit: layoutLetters,
-            invalidateOnRefresh: true
+            scrub: 0.45
         }
     })
     .fromTo(contentElement, {
         filter: 'drop-shadow(-100px -20px 5px rgba(111, 137, 155, 0.3))'
     }, {
-        duration: 1.6,
         filter: 'drop-shadow(100px 20px 20px rgba(111, 137, 155, 0.3))'
     }, 0)
     .fromTo(clipPath, {
         xPercent: 140
     }, {
-        duration: 0.55,
-        xPercent: 0
+        xPercent: -140
     }, 0)
-    .to(clipPath, { duration: 0.6, xPercent: -140 }, 1)
     .fromTo(texts, {
         transformOrigin: '0% 50%',
         rotation: -45,
