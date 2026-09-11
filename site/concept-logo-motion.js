@@ -81,9 +81,9 @@ export function brandConceptLogoMotion(source, name) {
       }
       cursor += glyph.width;
     }
-    cursor += 20; ordinal++;
+    cursor += 32; ordinal++;
   }
-  const offset = (data.w - (cursor - 20)) / 2;
+  const offset = (data.w - (cursor - 32)) / 2;
   // Extend only the stationary endpoints; round caps bite into partially revealed glyphs.
   for (const layer of masks) {
     for (const group of layer.shapes) {
@@ -111,10 +111,10 @@ export function brandConceptLogoMotion(source, name) {
     layer.ks.p.k[0] += offset;
     return layer;
   });
-  // Static row scaling matches the reference ink bounds without changing keyframes.
+  // Static layout leaves room between glyphs and rows without changing keyframes.
   for (const row of data.layers) {
-    row.ks.s.k[0] *= 849 / 812;
-    row.ks.s.k[1] *= 126 / 125;
+    row.ks.s.k[0] *= 849 / 908;
+    row.ks.s.k[1] *= 0.9;
   }
   data.nm = `${name} logo motion`;
   return data;
