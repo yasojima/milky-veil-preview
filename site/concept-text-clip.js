@@ -1,5 +1,5 @@
 import { sharedSalonData } from "./shared-site-data.js";
-import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-133";
+import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-134";
 
 function loadScript(path) {
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export async function mountConceptTextClip(stage, trigger) {
   });
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-133", import.meta.url).href;
+  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-134", import.meta.url).href;
   const ready = new Promise((resolve, reject) => {
     stylesheet.onload = resolve;
     stylesheet.onerror = reject;

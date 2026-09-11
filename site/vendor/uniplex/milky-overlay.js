@@ -1,4 +1,4 @@
-import { mountConceptTextClip } from "/milky-veil-preview/site/concept-text-clip.js?v=20260911-133";
+import { mountConceptTextClip } from "/milky-veil-preview/site/concept-text-clip.js?v=20260911-134";
 import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260909-064";
 import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260909-064";
 import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260902-06&pages=20260909-064";

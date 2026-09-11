@@ -43,7 +43,12 @@ const applyCustomEffect_7 = (contentElement, trigger) => {
         progress: 1, ease: 'none', onUpdate: render,
         scrollTrigger: {
             trigger, start: 'bottom top', end: () => `+=${poster.clientHeight * 1.6}`,
-            scrub: 0.45, onRefreshInit: measure, onRefresh: render
+            scrub: 0.45, onRefreshInit: measure, onRefresh: render,
+            onLeaveBack: self => {
+                self.getTween()?.progress(1);
+                travel.progress = 0;
+                render();
+            }
         }
     });
     render();

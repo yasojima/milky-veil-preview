@@ -64,3 +64,7 @@
 @media (prefers-reduced-motion: reduce) {
   .concept-text-clip .content { visibility: hidden; }
 }
+
+body:has(.js-home-mv:not(.is-out)) .concept-text-clip {
+  visibility: hidden;
+}
