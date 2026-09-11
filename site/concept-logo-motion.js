@@ -80,7 +80,7 @@ export function brandConceptLogoMotion(source, name) {
           const trim = layer.shapes[0].it.find(item => item.ty === "tm");
           // Preserve N's continuous wipe direction while matching the other letters' easing.
           trim.s.k.forEach((key, index) => {
-            key.t = (timing[index].t - 2.298) * 1.2;
+            key.t = (timing[index].t - 2.298) * 1.6;
             if (timing[index].i) key.i = clone(timing[index].i);
             if (timing[index].o) key.o = clone(timing[index].o);
           });
