@@ -438,3 +438,8 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
     -webkit-text-stroke-width: .5px;
   }
 }
+
+.concept-fv-background-stage.home-concept__bg-in { width: 59%; }
+@media (min-width: 768px) {
+  .concept-fv-background-stage.home-concept__bg-in { width: 50%; }
+}
