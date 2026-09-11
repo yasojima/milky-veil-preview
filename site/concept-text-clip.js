@@ -1,5 +1,5 @@
 import { sharedSalonData } from "./shared-site-data.js";
-import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-130";
+import { applyCustomEffect_7 } from "./vendor/text-clip/js/effect.js?v=20260911-131";
 
 function loadScript(path) {
   return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export async function mountConceptTextClip(stage) {
   });
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-130", import.meta.url).href;
+  stylesheet.href = new URL("./concept-text-clip.css?v=20260911-131", import.meta.url).href;
   const ready = new Promise((resolve, reject) => {
     stylesheet.onload = resolve;
     stylesheet.onerror = reject;
@@ -41,12 +41,39 @@ export async function mountConceptTextClip(stage) {
     stage.closest(".home-concept")?.classList.add("has-text-clip");
     const content = document.createElement("div");
     content.className = "content";
-    const letters = [...sharedSalonData.name.toLowerCase()].map((letter, index) => `<text x="${index}ch" y="50%" dominant-baseline="middle" text-anchor="middle" class="font-6 size-3">${letter}</text>`).join("");
+    const letters = [...sharedSalonData.name.toLowerCase()].map((letter, index) => `<text x="${index}ch" y="50%" dominant-baseline="middle" text-anchor="start" class="font-6 size-3">${letter}</text>`).join("");
     content.innerHTML = `<svg><clipPath id="concept-original-clip">${letters}</clipPath></svg><div class="poster" style="clip-path:url(#concept-original-clip)"><div class="poster__inner"></div></div>`;
     content.querySelector(".poster__inner").style.backgroundImage = `url("${image.src}")`;
     stage.replaceChildren(content);
+    const layoutLetters = () => {
+      const texts = [...content.querySelectorAll("text")];
+      window.gsap.set(texts, { clearProps: "transform" });
+      const boxes = texts.map(text => {
+        text.style.fontSize = "100px";
+        text.setAttribute("x", "0");
+        return text.getBBox();
+      });
+      let cursor = 0;
+      const positions = boxes.map((box, index) => {
+        if (!texts[index].textContent.trim()) {
+          cursor += 12;
+          return cursor;
+        }
+        const position = cursor - box.x;
+        cursor += box.width + 1.5;
+        return position;
+      });
+      const width = cursor - 1.5;
+      const scale = stage.clientWidth * 0.92 / width;
+      const left = stage.clientWidth * 0.04;
+      texts.forEach((text, index) => {
+        text.style.fontSize = `${100 * scale}px`;
+        text.setAttribute("x", String(left + positions[index] * scale));
+      });
+    };
+    layoutLetters();
     context = window.gsap.context(() => {
-      applyCustomEffect_7(content);
+      applyCustomEffect_7(content, layoutLetters);
     }, stage);
     window.ScrollTrigger.refresh();
   } catch (error) {
