@@ -71,13 +71,20 @@ export function brandConceptLogoMotion(source, name) {
     cursor += 20; ordinal++;
   }
   const offset = (data.w - (cursor - 20)) / 2;
-  // Round mask caps cover the glyph endpoints, including antialiased corner pixels.
+  // Extend only the stationary endpoints; round caps bite into partially revealed glyphs.
   for (const layer of masks) {
     for (const group of layer.shapes) {
       for (const item of group.it || []) {
-        if (item.ty === "st") {
-          item.lc = 2;
-          item.w.k += 2;
+        if (item.ty !== "sh" || item.ks.a !== 0 || item.ks.k.c) continue;
+        const vertices = item.ks.k.v;
+        const endpoints = [[0, 1], [vertices.length - 1, vertices.length - 2]];
+        for (const [end, neighbor] of endpoints) {
+          const dx = vertices[end][0] - vertices[neighbor][0];
+          const dy = vertices[end][1] - vertices[neighbor][1];
+          const length = Math.hypot(dx, dy);
+          if (!length) continue;
+          vertices[end][0] += .8 * dx / length;
+          vertices[end][1] += .8 * dy / length;
         }
       }
     }
