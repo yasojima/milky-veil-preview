@@ -1,7 +1,7 @@
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260911-123";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260911-123";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -32,6 +32,9 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/") {
 
 export function mountSharedConceptMenu(host, currentPath = "/concept/") {
   if (!(host instanceof HTMLElement)) return null;
+  if (document.querySelector(".js-home-mv")) {
+    host.classList.add("has-split-hero", "is-logo-hidden");
+  }
   host.innerHTML = sharedConceptMenuMarkup(currentPath);
   return host.querySelector("[data-shared-concept-menu]");
 }
