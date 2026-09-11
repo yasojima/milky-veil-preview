@@ -64,7 +64,20 @@ export function brandConceptLogoMotion(source, name) {
         const polygon = [[x1 + nx*a, y1 + ny*a], [x2 + nx*b, y2 + ny*b], [x2 - nx*b, y2 - ny*b], [x1 - nx*a, y1 - ny*a]].map(([x,y]) => [x + cursor, y]);
         const tr = clone(transform); tr.p.k = [0, 0];
         artwork.push({ ty: "gr", it: [{ ty: "sh", ks: { a: 0, k: path(polygon, true) } }, clone(ink), tr] });
-        for (const phase of ["open", "close"]) mask(phase, [[cursor+x1,y1],[cursor+x2,y2]], time - 2.298, width);
+        if (letter !== "M") for (const phase of ["open", "close"]) mask(phase, [[cursor+x1,y1],[cursor+x2,y2]], time - 2.298, width);
+      }
+      if (letter === "M") {
+        // A continuous mask crosses the valley without competing stroke endpoints.
+        const points = [[8,160],[8,40],[55,139],[102,40],[102,160]].map(([x,y]) => [cursor+x,y]);
+        for (const phase of ["open", "close"]) {
+          const layer = clone(originals.find(item => item.nm === `N_${phase}`));
+          layer.nm = `M_${phase}`;
+          layer.ks.p.k = [0, 0, 0];
+          layer.ks.a.k = [0, 0, 0];
+          layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(phase === "open" ? [...points].reverse() : points);
+          shiftTimes(layer.shapes, time);
+          masks.push(layer);
+        }
       }
       cursor += glyph.width;
     }
