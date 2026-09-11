@@ -1,4 +1,4 @@
-import { brandConceptLogoMotion } from "../../concept-logo-motion.js?v=20260912-153";
+import { brandConceptLogoMotion } from "../../concept-logo-motion.js?v=20260912-154";
 import { sharedSalonData } from "../../shared-site-data.js?v=20260906-02";
 
 if (document.body.dataset.pageRouteId === "concept") {

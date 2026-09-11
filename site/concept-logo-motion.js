@@ -1,117 +1,51 @@
-const clone = value => structuredClone(value);
-const path = (vertices, closed = false) => ({
-  i: vertices.map(() => [0, 0]), o: vertices.map(() => [0, 0]), v: vertices, c: closed,
-});
-
-// New straight-sided glyphs use the reference's tapered Roman stroke proportions.
-const drawnGlyphs = {
-  M: { width: 110, strokes: [[8, 160, 8, 40, 7], [8, 40, 55, 139, 12], [55, 139, 102, 40, 6], [102, 40, 102, 160, 12]] },
-  K: { width: 85, strokes: [[8, 40, 8, 160, 12], [77, 40, 8, 110, 6], [35, 82, 79, 160, 12]] },
-  Y: { width: 90, strokes: [[7, 40, 45, 103, 12], [83, 40, 45, 103, 6], [45, 103, 45, 160, 11]] },
-  V: { width: 100, strokes: [[7, 40, 50, 160, 12], [50, 160, 93, 40, 6]] },
+import { conceptSerifGlyphs } from "./concept-serif-glyphs.js";
+const copy = value => structuredClone(value);
+const outline = points => ({v:points,i:points.map(()=>[0,0]),o:points.map(()=>[0,0]),c:false});
+const transform = {ty:"tr",p:{a:0,k:[0,0]},a:{a:0,k:[0,0]},s:{a:0,k:[100,100]},r:{a:0,k:0},o:{a:0,k:100}};
+const strokes = {
+ M: [[[190,0],[190,1419],[900,0],[1630,1419],[1630,0],430]],
+ I: [[[400,0],[400,1419],670]],
+ L: [[[270,1419],[270,90],[1220,90],400]],
+ K: [[[260,1419],[260,0],380],[[1360,1419],[270,670],[1370,0],440]],
+ Y: [[[70,1419],[640,680],[1210,1419],370],[[640,680],[640,0],550]],
+ V: [[[90,1419],[680,0],[1300,1419],360]],
+ E: [[[260,1419],[260,0],380],[[230,1300],[1250,1300],380],[[230,710],[1150,710],340],[[230,100],[1250,100],380]],
 };
-
-export function brandConceptLogoMotion(source, name) {
-  const data = clone(source);
-  const composition = data.assets.find(asset => asset.id === data.layers[0].refId);
-  const originals = composition.layers;
-  const base = originals.at(-1);
-  const template = originals.find(layer => layer.nm === "I_close");
-  const glyphs = { I: { group: 8, x: 331.959, width: 18.436, time: 2.298 }, L: { group: 0, x: 541.82, width: 65.998, time: 6.896 }, E: { group: 1, x: 655.195, width: 64.8, time: 9.194 } };
-  const ink = base.shapes[0].it.find(item => item.ty === "fl");
-  const transform = base.shapes[0].it.find(item => item.ty === "tr");
-  const masks = [], artwork = [];
-  let cursor = 0, ordinal = 0, previous = "";
-  const letters = [...name.toUpperCase()];
-  const count = letters.filter(letter => letter !== " ").length;
-  const shiftTimes = (node, offset) => {
-    if (!node || typeof node !== "object") return;
-    if (typeof node.t === "number") node.t += offset;
-    Object.values(node).forEach(child => shiftTimes(child, offset));
-  };
-  const mask = (phase, points, offset, strokeWidth) => {
-    const layer = clone(originals.find(item => item.nm === `I_${phase}`));
-    layer.ks.p.k = [0, 0, 0];
-    layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(points);
-    layer.shapes[0].it.find(item => item.ty === "st").w.k = strokeWidth * 1.04 + 2;
-    shiftTimes(layer.shapes, offset);
-    masks.push(layer);
-  };
-  for (const letter of letters) {
-    if (letter === " ") { cursor += 52; previous = ""; continue; }
-    cursor += ({ MI: 4, IL: 4, LK: -9, KY: -10, EI: 4 })[previous + letter] ?? 0;
-    const time = ordinal * 11.492 / (count - 1);
-    const existing = glyphs[letter];
-    if (existing) {
-      const group = clone(base.shapes[existing.group]);
-      const tr = group.it.find(item => item.ty === "tr");
-      tr.p.k[0] += cursor - existing.x + 10;
-      tr.p.k[1] += 36.5;
-      artwork.push(group);
-      for (const original of originals.filter(item => item.nm.startsWith(`${letter}_`))) {
-        const layer = clone(original);
-        layer.ks.p.k[0] += cursor - existing.x;
-        shiftTimes(layer.shapes, time - existing.time);
-        masks.push(layer);
-      }
-      cursor += existing.width;
-    } else {
-      const glyph = drawnGlyphs[letter];
-      if (!glyph) throw new Error(`Unsupported logo glyph: ${letter}`);
-      for (const [x1, y1, x2, y2, width] of glyph.strokes) {
-        const length = Math.hypot(x2 - x1, y2 - y1);
-        const nx = -(y2 - y1) / length, ny = (x2 - x1) / length;
-        const a = width * .52, b = width * .43;
-        const polygon = [[x1 + nx*a, y1 + ny*a], [x2 + nx*b, y2 + ny*b], [x2 - nx*b, y2 - ny*b], [x1 - nx*a, y1 - ny*a]].map(([x,y]) => [x + cursor, y]);
-        const tr = clone(transform); tr.p.k = [0, 0];
-        artwork.push({ ty: "gr", it: [{ ty: "sh", ks: { a: 0, k: path(polygon, true) } }, clone(ink), tr] });
-        if (letter !== "M") for (const phase of ["open", "close"]) mask(phase, [[cursor+x1,y1],[cursor+x2,y2]], time - 2.298, width);
-      }
-      if (letter === "M") {
-        // A continuous mask crosses the valley without competing stroke endpoints.
-        const points = [[8,160],[8,40],[55,139],[102,40],[102,160]].map(([x,y]) => [cursor+x,y]);
-        for (const phase of ["open", "close"]) {
-          const layer = clone(originals.find(item => item.nm === `N_${phase}`));
-          layer.nm = `M_${phase}`;
-          layer.ks.p.k = [0, 0, 0];
-          layer.ks.a.k = [0, 0, 0];
-          layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(phase === "open" ? [...points].reverse() : points);
-          shiftTimes(layer.shapes, time);
-          masks.push(layer);
-        }
-      }
-      cursor += glyph.width;
-    }
-    cursor += 4; ordinal++; previous = letter;
+export function brandConceptLogoMotion(source,name){
+ const data=copy(source),comp=data.assets.find(a=>a.id===data.layers[0].refId),original=comp.layers;
+ const letters=[...name.toUpperCase()],count=letters.filter(c=>c!==" ").length;
+ const tracking=-.065*2048;
+ const width=letters.reduce((n,c)=>n+(c===" "?494:conceptSerifGlyphs[c].advance)+tracking,0)-tracking;
+ const scale=849/width;
+ let cursor=(data.w-width*scale)/2,ordinal=0;
+ const result=[];
+ const shift=(o,dt)=>{if(!o||typeof o!=="object")return;if(typeof o.t==="number")o.t+=dt;Object.values(o).forEach(v=>shift(v,dt));};
+ for(const c of letters){
+  if(c===" "){cursor+=(494+tracking)*scale;continue;}
+  const glyph=conceptSerifGlyphs[c],time=ordinal*11.492/(count-1);
+  const point=([x,y])=>[cursor+x*scale,160-y*scale];
+  const maskShapes=[];
+  for(const stroke of strokes[c]) for(const phase of ["open","close"]){
+   const continuous=c==="M"||c==="V"||c==="L";
+   const m=copy(original.find(l=>l.nm===`${continuous?"N":"I"}_${phase}`));
+   let points=stroke.slice(0,-1).map(point);
+   for(const [a,b] of [[0,1],[points.length-1,points.length-2]]){
+    const dx=points[a][0]-points[b][0],dy=points[a][1]-points[b][1],length=Math.hypot(dx,dy);
+    points[a][0]+=dx/length*12;points[a][1]+=dy/length*12;
+   }
+   if(continuous&&phase==="open")points.reverse();
+   const gr=m.shapes.find(s=>s.ty==="gr");
+   gr.it.find(s=>s.ty==="sh").ks={a:0,k:outline(points)};
+   gr.it.find(s=>s.ty==="st").w={a:0,k:stroke.at(-1)*scale*2.5};
+   shift(m.shapes,time-(continuous?0:2.298));
+   maskShapes.push({ty:"gr",it:[...m.shapes,copy(transform)]});
   }
-  const offset = (data.w - (cursor - 4)) / 2;
-  // Extend only the stationary endpoints; round caps bite into partially revealed glyphs.
-  for (const layer of masks) {
-    for (const group of layer.shapes) {
-      for (const item of group.it || []) {
-        if (item.ty !== "sh" || item.ks.a !== 0 || item.ks.k.c) continue;
-        const vertices = item.ks.k.v;
-        const endpoints = [[0, 1], [vertices.length - 1, vertices.length - 2]];
-        for (const [end, neighbor] of endpoints) {
-          const dx = vertices[end][0] - vertices[neighbor][0];
-          const dy = vertices[end][1] - vertices[neighbor][1];
-          const length = Math.hypot(dx, dy);
-          if (!length) continue;
-          vertices[end][0] += 1.2 * dx / length;
-          vertices[end][1] += 1.2 * dy / length;
-        }
-      }
-    }
-  }
-  const art = clone(template);
-  art.nm = name;
-  art.ks.p.k = [0, 0, 0];
-  art.shapes = artwork;
-  composition.layers = [...masks, art].map((layer, index) => {
-    layer.ind = index + 1;
-    layer.ks.p.k[0] += offset;
-    return layer;
-  });
-  data.nm = `${name} logo motion`;
-  return data;
+  const template=copy(original.find(l=>l.nm==="I_close"));
+  template.ks.p.k=[0,0,0];template.ks.a.k=[0,0,0];
+  const mask={...copy(template),nm:`${c} mask`,td:1,shapes:maskShapes};
+  const shapes=glyph.paths.map(p=>({ty:"sh",ks:{a:0,k:{c:true,v:p.v.map(point),i:p.i.map(([x,y])=>[x*scale,-y*scale]),o:p.o.map(([x,y])=>[x*scale,-y*scale])}}}));
+  const art={...copy(template),nm:c,tt:2,shapes:[{ty:"gr",it:[...shapes,{ty:"fl",c:{a:0,k:[.09,.13,.2,1]},o:{a:0,k:100},r:1},copy(transform)]}]};
+  result.push(mask,art);cursor+=(glyph.advance+tracking)*scale;ordinal++;
+ }
+ comp.layers=result.map((l,i)=>({...l,ind:i+1}));data.nm=`${name} serif motion`;return data;
 }

@@ -438,15 +438,3 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
     -webkit-text-stroke-width: .5px;
   }
 }
-
-/* Let the lettering occupy the viewport width rather than a narrow center column. */
-.concept-fv-background-stage.home-concept__bg-in {
-  width: 88%;
-}
-.concept-fv-background-stage.home-concept__bg-in canvas {
-  height: auto;
-  aspect-ratio: 870 / 1000;
-}
-@media (min-width: 768px) {
-  .concept-fv-background-stage.home-concept__bg-in { width: 72%; }
-}
