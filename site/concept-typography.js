@@ -1,6 +1,6 @@
 // Motion adapted from Codrops OnScrollTypographyAnimations, effect19.
 // License and source: vendor/codrops-typography/SOURCE.md.
-export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
+export function mountConceptTypography(stage, name, { gsap }) {
   const title = document.createElement("div");
   title.className = "concept-type-title";
   title.setAttribute("aria-label", name);
@@ -17,15 +17,7 @@ export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
   }
   stage.replaceChildren(title);
   const chars = title.querySelectorAll(".concept-type-char");
-  const region = stage.parentElement;
-  const heroTrigger = document.querySelector(".js-home-mv-trigger");
-  const startOffset = () => heroTrigger.offsetHeight;
-  // Translate the reference's center-bottom / bottom-top+20% travel
-  // past the split hero, which otherwise conceals the animation's first half.
-  const travel = () => innerHeight * .8 + title.offsetHeight * .5;
-  const sizeRegion = () => { region.style.height = `${startOffset() + travel() + innerHeight}px`; };
-  sizeRegion();
-  ScrollTrigger.addEventListener("refreshInit", sizeRegion);
+  const hero = document.querySelector(".js-home-mv");
   const media = gsap.matchMedia();
   media.add("(prefers-reduced-motion: no-preference)", () => {
     chars.forEach(char => gsap.set(char.parentNode, { perspective: 1000 }));
@@ -36,28 +28,39 @@ export function mountConceptTypography(stage, name, { gsap, ScrollTrigger }) {
       rotationX: -90,
       z: -200
     };
-    // Keep not-yet-started stagger targets hidden when the scrub seeks backward.
     gsap.set(chars, initial);
-    gsap.fromTo(chars, initial, {
+    const animation = gsap.fromTo(chars, initial, {
+      paused: true,
       ease: "power1",
       opacity: 1,
       stagger: 0.05,
       rotationX: 0,
       z: 0,
-      scrollTrigger: {
-        trigger: region,
-        start: () => `top top-=${startOffset()}`,
-        end: () => `+=${travel()}`,
-        scrub: true,
-        invalidateOnRefresh: true
+      onComplete: () => stage.classList.add("is-end"),
+    });
+    const syncHero = () => {
+      stage.classList.remove("is-end");
+      if (hero.classList.contains("is-out")) animation.restart();
+      else animation.pause(0);
+    };
+    let wasOut = hero.classList.contains("is-out");
+    syncHero();
+    const observer = new MutationObserver(() => {
+      const isOut = hero.classList.contains("is-out");
+      if (isOut !== wasOut) {
+        wasOut = isOut;
+        syncHero();
       }
     });
+    observer.observe(hero, { attributes: true, attributeFilter: ["class"] });
+    return () => {
+      observer.disconnect();
+      stage.classList.remove("is-end");
+    };
   });
-  document.fonts.ready.then(() => ScrollTrigger.refresh());
   addEventListener("pagehide", event => {
     if (!event.persisted) {
       media.revert();
-      ScrollTrigger.removeEventListener("refreshInit", sizeRegion);
     }
   });
 }

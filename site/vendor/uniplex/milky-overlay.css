@@ -439,22 +439,8 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-body[data-page-route-id="concept"] .home-concept {
-  padding-top: 0;
-}
-body[data-page-route-id="concept"] .home-concept__bg {
-  position: relative;
-  inset: auto;
-  z-index: 0;
-}
-body[data-page-route-id="concept"] .home-concept__content::before {
-  display: none;
-}
 body[data-page-route-id="concept"] .concept-fv-background-stage {
-  position: sticky;
-  top: 0;
   width: 92%;
-  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
