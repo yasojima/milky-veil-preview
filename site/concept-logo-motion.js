@@ -29,11 +29,11 @@ export function brandConceptLogoMotion(source, name) {
     if (typeof node.t === "number") node.t += offset;
     Object.values(node).forEach(child => shiftTimes(child, offset));
   };
-  const mask = (phase, points, offset, position = [0, 0, 0]) => {
+  const mask = (phase, points, offset, strokeWidth) => {
     const layer = clone(originals.find(item => item.nm === `I_${phase}`));
-    layer.ks.p.k = position;
+    layer.ks.p.k = [0, 0, 0];
     layer.shapes[0].it.find(item => item.ty === "sh").ks.k = path(points);
-    layer.shapes[0].it.find(item => item.ty === "st").w.k = 26;
+    layer.shapes[0].it.find(item => item.ty === "st").w.k = strokeWidth * 1.04 + 2;
     shiftTimes(layer.shapes, offset);
     masks.push(layer);
   };
@@ -64,7 +64,7 @@ export function brandConceptLogoMotion(source, name) {
         const polygon = [[x1 + nx*a, y1 + ny*a], [x2 + nx*b, y2 + ny*b], [x2 - nx*b, y2 - ny*b], [x1 - nx*a, y1 - ny*a]].map(([x,y]) => [x + cursor, y]);
         const tr = clone(transform); tr.p.k = [0, 0];
         artwork.push({ ty: "gr", it: [{ ty: "sh", ks: { a: 0, k: path(polygon, true) } }, clone(ink), tr] });
-        for (const phase of ["open", "close"]) mask(phase, [[cursor+x1,y1],[cursor+x2,y2]], time - 2.298);
+        for (const phase of ["open", "close"]) mask(phase, [[cursor+x1,y1],[cursor+x2,y2]], time - 2.298, width);
       }
       cursor += glyph.width;
     }
