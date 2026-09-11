@@ -451,11 +451,13 @@ body[data-page-route-id="concept"] .home-concept__content::before {
   display: none;
 }
 body[data-page-route-id="concept"] .concept-fv-background-stage {
-  position: relative;
-  top: auto;
+  position: sticky;
+  top: 0;
   width: 92%;
-  height: auto;
-  padding-bottom: 12svh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .concept-type-title {
   font-family: Georgia, "Times New Roman", serif;
