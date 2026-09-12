@@ -216,8 +216,8 @@
   transition:none;
 }
 .has-split-hero .menu-brand img { display:block; width:auto; height:100%; }
-.has-split-hero:not(.is-logo-hidden) > .menu-brand { pointer-events:auto; }
-.has-split-hero.is-logo-closing > .menu-brand {
+.has-split-hero[data-logo-state="active"] > .menu-brand { pointer-events:auto; }
+.has-split-hero[data-logo-state="closing"] > .menu-brand {
   opacity:0;
   transition:opacity .3s ease;
 }
@@ -286,7 +286,7 @@
 .translation-retry { padding: 8px 12px; border: 1px solid currentColor; background: #fff; color: #172133; font: 400 12px/1.5 var(--mv-font-text); cursor: pointer; }
 
 /* The closing controller hands logo ownership over before the footer logo enters. */
-html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .has-split-hero > .menu-brand,
+.has-split-hero[data-logo-state="covered"] > .menu-brand,
 html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .brand {
   visibility:hidden;
   pointer-events:none;

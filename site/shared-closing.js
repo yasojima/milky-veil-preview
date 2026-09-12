@@ -7,6 +7,8 @@ export function bindClosingLogo(root) {
   const component = root.querySelector("[data-shared-bottom-ui-component]");
   if (!logo || !component) return;
   let frame = 0;
+  let heroWasOpen = false;
+  let headerClosing = false;
   const update = () => {
     frame = 0;
     const bounds = component.getBoundingClientRect();
@@ -18,6 +20,17 @@ export function bindClosingLogo(root) {
     component.dataset.closingState = state;
     logo.classList.toggle("is-revealed", state === "active");
     logo.inert = state !== "active";
+    const header = document.querySelector(".has-split-hero");
+    const headerLogo = header?.querySelector(":scope > .menu-brand");
+    if (headerLogo) {
+      const heroOpen = !!document.querySelector(".js-home-mv.is-out");
+      if (heroOpen) headerClosing = false;
+      else if (heroWasOpen) headerClosing = true;
+      heroWasOpen = heroOpen;
+      const headerState = menuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? "active" : "behind-hero";
+      header.dataset.logoState = headerState;
+      headerLogo.inert = !["active", "menu"].includes(headerState);
+    }
   };
   const schedule = () => {
     if (!frame) frame = requestAnimationFrame(update);
@@ -27,6 +40,8 @@ export function bindClosingLogo(root) {
   const menuObserver = new MutationObserver(schedule);
   const observeMenu = () => {
     menuObserver.disconnect();
+    const hero = document.querySelector(".js-home-mv");
+    if (hero) menuObserver.observe(hero, { attributes: true, attributeFilter: ["class"] });
     document.querySelectorAll(".shared-nav-content").forEach(nav => menuObserver.observe(nav, { attributes: true, attributeFilter: ["class"] }));
     schedule();
   };
@@ -44,6 +59,8 @@ export function bindClosingLogo(root) {
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;
     delete component.dataset.closingState;
+    const header = document.querySelector(".has-split-hero");
+    if (header) delete header.dataset.logoState;
   });
 }
 

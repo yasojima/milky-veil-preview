@@ -53,21 +53,6 @@ export function bindSharedConceptMenu(scope = document) {
   }
 
   document.dispatchEvent(new Event("mv:menu-mounted"));
-  const logoHost = menu.closest(".has-split-hero");
-  const logo = logoHost?.querySelector(".menu-brand");
-  const hero = logoHost && document.querySelector(".js-home-mv");
-  let heroWasOpen = hero?.classList.contains("is-out") || false;
-  const syncLogo = () => {
-    const heroOpen = hero?.classList.contains("is-out") || false;
-    if (heroOpen) logoHost?.classList.remove("is-logo-closing");
-    else if (heroWasOpen) logoHost?.classList.add("is-logo-closing");
-    heroWasOpen = heroOpen;
-    if (logo) logo.inert = !heroOpen && !nav.classList.contains("is-open");
-  };
-  const logoObserver = new MutationObserver(syncLogo);
-  if (hero) logoObserver.observe(hero, { attributes: true, attributeFilter: ["class"] });
-  syncLogo();
-
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
   let lockedScroll = null;
@@ -134,7 +119,6 @@ export function bindSharedConceptMenu(scope = document) {
       if (open) { nav.scrollTop = 0; requestAnimationFrame(fitMenu); }
     }
     nav.classList.toggle("is-open", open);
-    syncLogo();
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
@@ -198,7 +182,6 @@ export function bindSharedConceptMenu(scope = document) {
     controller.abort();
     bottomObserver.disconnect();
     itemsObserver.disconnect();
-    logoObserver.disconnect();
     if (compact) { document.documentElement.style.overflow = previousOverflow; if (shareRail) shareRail.style.display = ""; }
     inertTargets.forEach((target) => { target.inert = false; });
   };
