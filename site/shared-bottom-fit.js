@@ -22,11 +22,16 @@ export function bindBottomFit(root) {
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
     title.style.removeProperty("font-size");
+    title.style.removeProperty("line-height");
     rule.style.removeProperty("padding-bottom");
     footer.style.removeProperty("padding-top");
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const viewport = window.innerHeight;
+    if (window.innerWidth > 900 && viewport < 700) {
+      const compact = Math.min(1, (700 - viewport) / 150);
+      title.style.lineHeight = String(1.02 - .08 * compact);
+    }
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
       brand.style.paddingTop = `var(${property}, ${fallback}px)`;
