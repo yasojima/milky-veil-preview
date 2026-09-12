@@ -212,6 +212,8 @@
     row-gap: clamp(12px, 3svh, 28px);
   }
   .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; }
+  .shared-concept-menu .menu-social-tools,
+  .shared-concept-menu .menu-social-tools .social-icons { gap: 18px; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item { border-bottom-color: #cdbbc3; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link { color: #172133; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #955570; }
