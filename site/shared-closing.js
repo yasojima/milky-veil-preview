@@ -16,6 +16,10 @@ export function bindClosingLogo(root) {
     const bounds = component.getBoundingClientRect();
     const mobileMenuOpen = mobileLayout.matches && !!document.querySelector(".shared-nav-content.is-open");
     const entering = bounds.top < window.innerHeight && bounds.bottom > 0;
+    if (document.documentElement.hasAttribute("data-closing-directory") !== entering) {
+      document.documentElement.toggleAttribute("data-closing-directory", entering);
+      document.dispatchEvent(new Event("mv:closing-directory"));
+    }
     const ready = entering && bounds.top + logo.offsetTop + logo.offsetHeight * .25 < window.innerHeight;
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
@@ -74,6 +78,7 @@ export function bindClosingLogo(root) {
     menuObserver.disconnect();
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;
+    document.documentElement.removeAttribute("data-closing-directory");
     delete component.dataset.closingState;
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;

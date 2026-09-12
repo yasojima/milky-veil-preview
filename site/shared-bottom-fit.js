@@ -73,6 +73,7 @@ export function bindBottomFit(root) {
     }
     const copy = title.parentElement;
     const logo = root.querySelector(".closing-brand");
+    const directory = root.querySelector(".closing-directory-slot");
     const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
     const layoutHeadline = size => {
       title.style.fontSize = size + "px";
@@ -83,6 +84,16 @@ export function bindBottomFit(root) {
       bottom = minimumBottom;
       brand.style.paddingTop = top + "px";
       brand.style.paddingBottom = bottom + "px";
+      if (directory && !usesMobileLayout()) {
+        const range = document.createRange();
+        range.selectNodeContents(title.lastChild);
+        const line = range.getBoundingClientRect();
+        const panel = directory.getBoundingClientRect();
+        if (line.right > panel.left && line.left < panel.right) {
+          top += Math.max(0, panel.bottom + 16 - line.top);
+          brand.style.paddingTop = top + "px";
+        }
+      }
     };
     // Maximize the headline against both viewport axes, reserving the logo's space.
     let lower = 32;
@@ -90,7 +101,12 @@ export function bindBottomFit(root) {
     for (let iteration = 0; iteration < 12; iteration += 1) {
       const candidate = (lower + upper) / 2;
       layoutHeadline(candidate);
-      if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= viewport) {
+      const firstLine = document.createRange();
+      firstLine.selectNodeContents(title.firstChild);
+      const firstRect = firstLine.getBoundingClientRect();
+      const directoryRect = directory?.getBoundingClientRect();
+      const overlap = directoryRect && !usesMobileLayout() && firstRect.right + 20 > directoryRect.left && firstRect.top < directoryRect.bottom && firstRect.bottom > directoryRect.top;
+      if (!overlap && title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= viewport) {
         lower = candidate;
       } else {
         upper = candidate;
@@ -122,10 +138,16 @@ export function bindBottomFit(root) {
   };
   window.addEventListener("resize", resize, { passive: true });
   window.addEventListener("scroll", scroll, { passive: true });
+  document.addEventListener("mv:closing-layout", schedule);
+  const directoryObserver = new ResizeObserver(schedule);
+  const directorySlot = root.querySelector(".closing-directory-slot");
+  if (directorySlot) directoryObserver.observe(directorySlot);
   document.fonts.ready.then(schedule);
   bindings.set(root, () => {
     window.removeEventListener("resize", resize);
     window.removeEventListener("scroll", scroll);
+    document.removeEventListener("mv:closing-layout", schedule);
+    directoryObserver.disconnect();
     window.clearTimeout(resizeTimer);
     cancelAnimationFrame(frame);
   });
