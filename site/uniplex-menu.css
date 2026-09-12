@@ -212,27 +212,44 @@
 @media (hover: hover) and (pointer: fine) {
   .shared-concept-menu .l-nav-list__item-link:hover { color: var(--menu-hover); }
 }
-/* Desktop UI scope: row sizing, shadow and social spacing. */
+/* Desktop UI scope: prioritize navigation rows and group utilities below. */
 @media (min-width: 901px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-screen-height, 100dvh);
-    grid-template-rows: minmax(0, 1fr) 38px clamp(128px, 18svh, 160px);
-    padding-top: clamp(80px, 10svh, 108px);
-    padding-bottom: clamp(20px, 5svh, 54px);
+    grid-template-columns: clamp(262px, 20vw, 270px) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 40px 32px 48px;
+    padding-top: clamp(80px, 8svh, 96px);
+    padding-bottom: clamp(24px, 3svh, 32px);
     box-shadow: -8px 0 24px rgba(23, 33, 51, .04);
-    row-gap: clamp(16px, 4svh, 44px);
+    gap: clamp(10px, 1.5svh, 16px) 24px;
   }
-  .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; max-height: 576px; align-self: center; }
-  .shared-concept-menu .menu-contact-details { grid-template-rows: 40px 28px clamp(44px, 6svh, 48px); gap: clamp(6px, calc(6px + (100svh - 551px) * .02), 12px); align-content: center; }
-  .shared-concept-menu .menu-contact-phone { font-size: clamp(30px, 4.3svh, 36px); line-height: 1.1; }
-  .shared-concept-menu .menu-contact-hours { font-size: clamp(14px, 1.8svh, 16px); }
-  .shared-concept-menu .menu-contact-actions { max-width: 500px; height: 100%; gap: 12px; }
+  .shared-concept-menu .is-compact-menu .l-nav-list {
+    grid-area: 1 / 1 / 2 / -1;
+    height: 100%; max-height: 720px; align-self: center;
+    font-size: clamp(24px, 2vw, 32px);
+  }
+  .shared-concept-menu .menu-contact-details { display: contents; }
+  .shared-concept-menu .menu-contact-phone {
+    grid-area: 2 / 1 / 3 / -1;
+    justify-self: center;
+    font-size: clamp(30px, 4.3svh, 36px); line-height: 1.1;
+  }
+  .shared-concept-menu .menu-contact-hours {
+    grid-area: 3 / 1 / 4 / -1;
+    align-self: center; text-align: center;
+    font-size: clamp(18px, 2.5svh, 20px); line-height: 1.6;
+    letter-spacing: .02em; word-spacing: .1em;
+  }
+  .shared-concept-menu .menu-contact-actions {
+    grid-area: 4 / 2 / 5 / 3;
+    max-width: none; height: 100%; gap: 12px;
+  }
   .shared-concept-menu .menu-contact-actions a,
   .shared-concept-menu .menu-contact-actions button { font-size: 13px; }
+  .shared-concept-menu .menu-social-tools { grid-area: 4 / 1 / 5 / 2; }
   .shared-concept-menu .menu-social-tools,
   .shared-concept-menu .menu-social-tools .social-icons { gap: 18px; }
-
 }
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
 .has-split-hero > .menu-brand {
