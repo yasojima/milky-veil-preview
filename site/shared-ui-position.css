@@ -3,14 +3,9 @@
   --shared-menu-anchor-y: calc(clamp(32px, 2.6vw, 37px) + 24px);
   --shared-scroll-right: 35px;
   --shared-scroll-width: 3px;
-  --shared-scroll-height: 288px;
-  --shared-scroll-home-bottom: 60px;
-}
-
-@media (min-width: 901px) and (max-width: 1300px) {
-  :root {
-    --shared-scroll-home-bottom: 110px;
-  }
+  --shared-scroll-height: clamp(216px, 36svh, 288px);
+  --shared-scroll-home-bottom: clamp(40px, 7.5svh, 60px);
+  --shared-scroll-line-tail: clamp(54px, 9svh, 72px);
 }
 
 @media (max-width: 900px) {

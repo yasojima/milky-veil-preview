@@ -92,6 +92,10 @@ export function bindSharedFixedShell(scope = document) {
 
   function update() {
     frameId = 0;
+    const reservedHeight = mobile.matches ? "0px" : `${bar.getBoundingClientRect().height}px`;
+    if (document.documentElement.style.getPropertyValue("--shared-fixed-bar-height") !== reservedHeight) {
+      document.documentElement.style.setProperty("--shared-fixed-bar-height", reservedHeight);
+    }
     syncSharedBoundary();
     if (socialRail && ticker) {
       const hidden = !mobile.matches && ticker.getBoundingClientRect().top <= viewportBottom() - bar.getBoundingClientRect().height - 15 + 12;
