@@ -1,0 +1,28 @@
+:root, :host {
+  --mv-logo-reveal-duration: .7s;
+  --mv-logo-reveal-rise: 8px;
+  --mv-logo-reveal-blur: 3px;
+  --mv-logo-reveal-ease: cubic-bezier(.22,1,.36,1);
+}
+.closing-brand {
+  opacity:0; transform:translateY(var(--mv-logo-reveal-rise)); filter:blur(var(--mv-logo-reveal-blur));
+  transition:opacity var(--mv-logo-reveal-duration) ease, transform var(--mv-logo-reveal-duration) var(--mv-logo-reveal-ease), filter var(--mv-logo-reveal-duration) ease;
+}
+.closing-brand.is-revealed, .closing-brand:focus-visible { opacity:1; transform:translateY(0); filter:blur(0); }
+@keyframes mv-logo-reveal-surface {
+  from { transform:translateY(var(--mv-logo-reveal-rise)); }
+  to { transform:translateY(0); }
+}
+@keyframes mv-logo-reveal-ink {
+  from { opacity:0; filter:blur(var(--mv-logo-reveal-blur)); }
+  to { opacity:1; filter:blur(0); }
+}
+@media(max-width:900px) {
+  :is(.shared-concept-menu, .has-split-hero):has(.l-nav.is-open) .menu-brand img {
+    animation:mv-logo-reveal-surface var(--mv-logo-reveal-duration) var(--mv-logo-reveal-ease) both, mv-logo-reveal-ink var(--mv-logo-reveal-duration) ease both;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .closing-brand { transition:none; transform:none; filter:none; }
+  :is(.shared-concept-menu, .has-split-hero):has(.l-nav.is-open) .menu-brand img { animation:none; }
+}

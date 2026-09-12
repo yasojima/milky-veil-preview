@@ -38,6 +38,3 @@
   }
 }
 
-.closing-brand { opacity:0; transform:translateY(8px); filter:blur(3px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1), filter .7s ease; }
-.closing-brand.is-revealed, .closing-brand:focus-visible { opacity:1; transform:translateY(0); filter:blur(0); }
-@media(prefers-reduced-motion:reduce) { .closing-brand { transition:none; transform:none; filter:none; } }

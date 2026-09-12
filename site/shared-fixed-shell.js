@@ -70,6 +70,8 @@ export function bindSharedFixedShell(scope = document) {
   let frameId = 0;
   let scrollIdleTimer = 0;
   let scrolling = false;
+  let mobileDockTimer = 0;
+  let mobileRetiring = false;
 
   const viewportBottom = () => {
     const viewport = window.visualViewport;
@@ -107,15 +109,27 @@ export function bindSharedFixedShell(scope = document) {
       if (hidden && !bar.classList.contains("is-footer-hidden")) {
         setSocialOpen(false);
         setContactOpen(false);
+        mobileRetiring = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.clearTimeout(mobileDockTimer);
+        if (mobileRetiring) mobileDockTimer = window.setTimeout(() => {
+          mobileRetiring = false;
+          schedule();
+        }, 400);
+      }
+      if (!hidden) {
+        window.clearTimeout(mobileDockTimer);
+        mobileRetiring = false;
       }
       bar.classList.toggle("is-footer-hidden", hidden);
-      const closingDocked = !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
+      const closingDocked = hidden && !mobileRetiring && !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
       bar.classList.toggle("is-closing-docked", closingDocked);
       bar.inert = hidden && !closingDocked;
       if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
       return;
     }
     bar.classList.remove("is-footer-hidden", "is-closing-docked");
+    window.clearTimeout(mobileDockTimer);
+    mobileRetiring = false;
     bar.inert = false;
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {
@@ -140,6 +154,7 @@ export function bindSharedFixedShell(scope = document) {
   function handleScroll() {
     scrolling = true;
     window.clearTimeout(scrollIdleTimer);
+    window.clearTimeout(mobileDockTimer);
     schedule();
     scrollIdleTimer = window.setTimeout(() => {
       scrolling = false;

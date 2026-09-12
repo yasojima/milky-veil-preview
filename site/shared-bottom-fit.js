@@ -10,9 +10,14 @@ export function bindBottomFit(root) {
   const footer = root.querySelector(".site-footer");
   const tickers = [...root.querySelectorAll(".shared-footer-ticker .h")];
   let frame = 0;
+  let resizeTimer = 0;
+  let fittedWidth = window.innerWidth;
+  let fittedHeight = window.innerHeight;
+  let atBottom = false;
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
+    const keepBottom = atBottom && fittedHeight !== window.innerHeight;
 
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
@@ -54,19 +59,62 @@ export function bindBottomFit(root) {
       title.style.fontSize = Math.max(32, originalFont * scale) + "px";
       tickers.forEach(ticker => ticker.style.setProperty("font-size", Math.max(28, tickerFont * scale) + "px", "important"));
     }
+    const copy = title.parentElement;
+    const logo = root.querySelector(".closing-brand");
+    const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    const layoutHeadline = size => {
+      title.style.fontSize = size + "px";
+      top = window.innerWidth <= 900 ? minimumTop : 64;
+      if (logo && copy.getBoundingClientRect().left < logo.getBoundingClientRect().right + 24) {
+        top = Math.max(top, logo.offsetTop + logo.offsetHeight + 24);
+      }
+      bottom = minimumBottom;
+      brand.style.paddingTop = top + "px";
+      brand.style.paddingBottom = bottom + "px";
+    };
+    // Maximize the headline against both viewport axes, reserving the logo's space.
+    let lower = 32;
+    let upper = availableWidth;
+    for (let iteration = 0; iteration < 12; iteration += 1) {
+      const candidate = (lower + upper) / 2;
+      layoutHeadline(candidate);
+      if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= viewport) {
+        lower = candidate;
+      } else {
+        upper = candidate;
+      }
+    }
+    layoutHeadline(lower);
     const remaining = viewport - component.getBoundingClientRect().height;
     if (remaining > 0) {
       brand.style.paddingTop = (top + remaining / 2) + "px";
       brand.style.paddingBottom = (bottom + remaining / 2) + "px";
     }
+    fittedWidth = window.innerWidth;
+    fittedHeight = window.innerHeight;
+    if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
   };
   const schedule = () => {
     if (!frame) frame = requestAnimationFrame(fit);
   };
-  window.addEventListener("resize", schedule, { passive: true });
+  const resize = () => {
+    window.clearTimeout(resizeTimer);
+    // Mobile browser chrome changes height during a swipe; fit once it settles.
+    if (window.innerWidth <= 900 && window.innerWidth === fittedWidth) {
+      resizeTimer = window.setTimeout(() => { resizeTimer = 0; schedule(); }, 180);
+    } else schedule();
+  };
+  const scroll = () => {
+    if (window.innerHeight === fittedHeight) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
+    if (resizeTimer) resize();
+  };
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("scroll", scroll, { passive: true });
   document.fonts.ready.then(schedule);
   bindings.set(root, () => {
-    window.removeEventListener("resize", schedule);
+    window.removeEventListener("resize", resize);
+    window.removeEventListener("scroll", scroll);
+    window.clearTimeout(resizeTimer);
     cancelAnimationFrame(frame);
   });
   fit();
