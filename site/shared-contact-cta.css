@@ -21,3 +21,13 @@
     opacity:1;
   }
 }
+@media (min-width:901px) {
+  :root,:host {
+    --contact-desktop-step:clamp(0px,calc(100vw - 1400px),40px);
+    --contact-desktop-group-width:clamp(260px,calc(25vw + var(--contact-desktop-step) * .675),387px);
+    --contact-desktop-padding:calc(10px + var(--contact-desktop-step) * .125);
+    --contact-desktop-gap:calc(8px + var(--contact-desktop-step) * .05);
+    --contact-desktop-frame-width:calc((var(--contact-desktop-group-width) - var(--contact-desktop-padding) * 2 - 1px - var(--contact-desktop-gap)) / 2);
+    --contact-desktop-frame-height:calc(40px + var(--contact-desktop-step) * .1);
+  }
+}
