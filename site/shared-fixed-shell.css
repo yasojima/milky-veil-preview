@@ -221,4 +221,20 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 }
 @media (prefers-reduced-motion:reduce) { .fixed-social-rail { transition:none!important; } }
 
-.fixed-cta[data-global-menu-open] { visibility:hidden; }
+@media (max-width:900px) {
+  .fixed-cta[data-global-menu-open] { visibility:hidden; }
+}
+@media (min-width:901px) {
+  .fixed-cta, .fixed-cta.is-docked, .fixed-cta[data-menu-open], .fixed-cta[data-menu-open].is-scrolling {
+    transition:transform .3s ease, visibility 0s;
+  }
+  .fixed-cta[data-global-menu-open], .fixed-cta[data-global-menu-open].is-scrolling {
+    transform:translateY(100%);
+    visibility:hidden;
+    pointer-events:none;
+    transition:transform .3s ease, visibility 0s .3s;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  .fixed-cta[data-global-menu-open] { transition:none!important; }
+}
