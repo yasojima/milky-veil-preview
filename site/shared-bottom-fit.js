@@ -29,7 +29,8 @@ export function bindBottomFit(root) {
     const viewport = window.innerHeight;
     const style = getComputedStyle(brand);
     const minimumTop = window.innerWidth <= 900 ? 92 : 136;
-    const minimumBottom = window.innerWidth <= 900 ? 40 : 56;
+    const compactDesktop = window.innerWidth > 900 && viewport <= 700;
+    const minimumBottom = window.innerWidth <= 900 ? 40 : compactDesktop ? 32 : 56;
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
     let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
     brand.style.paddingTop = top + "px";
@@ -64,7 +65,7 @@ export function bindBottomFit(root) {
     const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
     const layoutHeadline = size => {
       title.style.fontSize = size + "px";
-      top = window.innerWidth <= 900 ? minimumTop : 64;
+      top = window.innerWidth <= 900 ? minimumTop : compactDesktop ? 40 : 64;
       if (logo && copy.getBoundingClientRect().left < logo.getBoundingClientRect().right + 24) {
         top = Math.max(top, logo.offsetTop + logo.offsetHeight + 24);
       }
