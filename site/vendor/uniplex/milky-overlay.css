@@ -233,6 +233,25 @@ body#home {
   }
 }
 
+body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85em; }
+@media (max-width: 767px) {
+  body[data-page-route-id="concept"] .home-concept__head .c-head01__main.is-large {
+    font-size: clamp(19px, 6vw, 26px);
+    letter-spacing: .02em;
+    line-height: 1.65;
+  }
+  body[data-page-route-id="concept"] .milky-detail-card .home-concept-box__head {
+    font-size: clamp(17px, 5.5vw, 24px);
+    letter-spacing: .01em;
+    line-height: 1.6;
+  }
+  body[data-page-route-id="concept"] .milky-concept-copy > .milky-glass-strip {
+    padding: 0;
+    width: 100%;
+  }
+  body[data-page-route-id="concept"] .milky-detail-copy p + p { margin-top: .85em; }
+}
+
 .milky-kaleidoscope-stage {
   overflow: hidden;
   width: 100%;
