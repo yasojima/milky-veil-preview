@@ -1,6 +1,7 @@
 @media(min-width:901px) {
   .home-page { --pc-height-step:clamp(0px,calc(100svh - 700px),150px); --home-section-space:calc(110px + var(--pc-height-step) * .133333); }
   .home-page .hero, .l-main-img__inner { height:calc(100svh - var(--shared-fixed-bar-height, 0px)); min-height:0; }
+  .l-main-img__logo.milky-fv-wordmark { bottom:calc(3.59375svh + 15px - var(--shared-fixed-bar-height, 0px)); }
   .home-page .hero-copy { bottom:max(20px,calc(clamp(76px,calc(36svh - 176px),170px) - var(--shared-fixed-bar-height, 0px))); max-width:42vw; }
   .home-page .hero-copy h1 { font-size:min(clamp(54px,10.5svh,96px),6.4vw); margin:calc(14px + var(--pc-height-step) * .04) 0 calc(18px + var(--pc-height-step) * .04); }
   .home-page .hero-copy > span { font-size:calc(17.5px + var(--pc-height-step) * .013333); }
