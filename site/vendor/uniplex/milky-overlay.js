@@ -33,6 +33,13 @@ const scrollCue = mountSharedScrollCue(document.querySelector(".l-main-img__inne
   target: "#point-video",
   ariaLabel: `${sharedRouteRegistry[pageRouteId]?.label || "ページ"}動画セクションへ移動`,
 });
+const introCard = document.querySelector(".milky-detail-card.home-concept-box");
+const introInner = introCard?.closest(".home-concept__inner");
+const introSizeObserver = introInner && new ResizeObserver(() => {
+  introInner.style.setProperty("--intro-card-height", `${introCard.offsetHeight}px`);
+});
+if (introSizeObserver) introSizeObserver.observe(introCard);
+
 const fvTrigger = document.querySelector(".js-home-mv-trigger");
 const kaleidoscopeStage = document.querySelector(".concept-fv-background-stage");
 
@@ -60,6 +67,7 @@ void beginHeroIntro();
 addEventListener("pagehide", (event) => {
   if (event.persisted) return;
   pageDisposed = true;
+  introSizeObserver?.disconnect();
 });
 
 if (scrollCue && fvTrigger) {

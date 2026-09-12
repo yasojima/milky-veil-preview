@@ -205,11 +205,9 @@ body#home {
 }
 
 @media (min-width: 901px) {
-  .milky-detail-card .home-concept-box__label {
-    left: max(clamp(22px, 3vw, 46px), clamp(0px, calc(960px - 100svh), 150px));
-  }
+  .milky-detail-card .home-concept-box__label { left: 150px; }
   .home-concept__inner {
-    padding-bottom: max(calc(var(--shared-fixed-bar-height, 0px) + 8px), clamp(64px, calc(56.4svh - 246.4px), 205px));
+    padding-bottom: max(calc(var(--shared-fixed-bar-height, 0px) + 8px), calc(100svh - var(--intro-card-height, 490px) - 28px));
   }
 }
 
