@@ -12,7 +12,7 @@ export function bindClosingLogo(root) {
   const update = () => {
     frame = 0;
     const bounds = component.getBoundingClientRect();
-    const menuOpen = !!document.querySelector(".shared-nav-content.is-open");
+    const menuOpen = window.matchMedia("(max-width: 900px)").matches && !!document.querySelector(".shared-nav-content.is-open");
     const entering = bounds.top < window.innerHeight && bounds.bottom > 0;
     const ready = entering && bounds.top + logo.offsetTop + logo.offsetHeight * .25 < window.innerHeight;
     const state = menuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";

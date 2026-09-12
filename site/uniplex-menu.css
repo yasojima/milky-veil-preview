@@ -221,12 +221,14 @@
   opacity:0;
   transition:opacity .3s ease;
 }
+@media (max-width:900px) {
 .has-split-hero:has(.l-nav.is-open) > .menu-brand {
   z-index:143;
   opacity:1;
   visibility:visible;
   pointer-events:auto;
   transition:none;
+}
 }
 @media (max-width:900px) {
   .has-split-hero .menu-brand {
