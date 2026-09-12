@@ -36,6 +36,7 @@
 }
 .footer-links a:hover, .footer-links a:focus-visible { color: #a46282; }
 .fixed-cta-clearance { block-size: var(--fixed-cta-height); background: var(--milky-home-paper, #fff); }
+/* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   .site-footer { padding: 20px 12px 36px; }
   .footer-shell { min-height: 104px; gap: 10px; }

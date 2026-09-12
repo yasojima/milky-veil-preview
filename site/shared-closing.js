@@ -1,3 +1,4 @@
+import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
 const bindings = new WeakMap();
 
 // One state owns the handoff from the page logo to the closing logo on every route.
@@ -6,7 +7,7 @@ export function bindClosingLogo(root) {
   const logo = root.querySelector(".closing-brand");
   const component = root.querySelector("[data-shared-bottom-ui-component]");
   if (!logo || !component) return;
-  const mobileLayout = window.matchMedia("(max-width: 900px)");
+  const mobileLayout = createMobileLayout();
   let frame = 0;
   let heroWasOpen = false;
   let headerClosing = false;

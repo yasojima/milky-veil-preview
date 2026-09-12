@@ -1,3 +1,4 @@
+import { usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
@@ -56,7 +57,7 @@ export function bindSharedConceptMenu(scope = document) {
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
   const syncBottomSpace = () => {
-    const barHeight = window.matchMedia("(max-width: 900px)").matches ? 0 : bottomBar?.getBoundingClientRect().height || 0;
+    const barHeight = usesMobileLayout() ? 0 : bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
     nav.style.setProperty("--shared-menu-bar-height", barHeight + "px");
     nav.style.setProperty("--shared-menu-screen-height", viewportHeight + "px");

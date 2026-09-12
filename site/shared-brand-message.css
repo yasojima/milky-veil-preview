@@ -59,6 +59,7 @@
   text-align: left;
 }
 
+/* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   .shared-brand-message {
     height: auto;

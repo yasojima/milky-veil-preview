@@ -173,6 +173,7 @@
 
 .shared-concept-menu .u-font-en { font-family: var(--mh--font-family--en); }
 .shared-concept-menu .u-uppercase { text-transform: uppercase; }
+/* Desktop UI scope: above 900px. */
 @media (width > 900px) {
   .home-simple-menu { display: none; }
 }
@@ -221,6 +222,7 @@
   opacity:0;
   transition:opacity .3s ease;
 }
+/* Mobile UI scope: 900px and below. */
 @media (max-width:900px) {
   .has-split-hero:has(.l-nav.is-open) > .menu-brand {
     z-index:143;
@@ -246,6 +248,7 @@
 
 #app:has(.shared-concept-menu) .site-header > .menu-toggle { display: none; }
 
+/* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height:calc((var(--shared-menu-screen-height, 100svh) - 318px) / 6);

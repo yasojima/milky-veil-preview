@@ -204,6 +204,7 @@ body#home {
   line-height: 1.75;
 }
 
+/* Desktop UI scope: above 900px. */
 @media (min-width: 901px) {
   .milky-detail-card .home-concept-box__label { left: 150px; }
   .home-concept__inner {

@@ -92,6 +92,7 @@
   }
 }
 
+/* Mobile UI scope: 900px and below. */
 @media screen and (max-width: 900px) {
   .shared-footer-ticker-rule { padding-bottom:60px; }
   .shared-footer-ticker {

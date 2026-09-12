@@ -61,6 +61,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   z-index: 3;
 }
 
+/* Desktop UI scope: above 900px. */
 @media (min-width:901px) {
   :root,:host {
     --cta-width-step:clamp(0px,calc(100vw - 1400px),40px);
@@ -77,6 +78,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .page-top-cell { padding-right:calc(8px + var(--cta-width-step) * .3); }
 }
 /* Telephone and actions share one responsive dock. */
+/* Mobile UI scope: 900px and below. */
 @media (max-width:900px) {
   :root,:host { --fixed-cta-height: calc(120px + env(safe-area-inset-bottom)); --fixed-social-panel-width:240px; }
   .fixed-cta {
@@ -142,6 +144,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 
 .fixed-contact-toggle { display:none; }
 .fixed-contact-panel { display:contents; }
+/* Mobile UI scope: 900px and below. */
 @media (max-width:900px) {
   :root,:host { --fixed-cta-height:0px; }
   .fixed-cta,
@@ -212,6 +215,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .fixed-contact-panel,.fixed-cta { transition:none!important; }
 }
 
+/* Desktop UI scope: above 900px. */
 @media (min-width:901px) {
   .fixed-social-rail { transition:clip-path .4s ease, transform .4s cubic-bezier(.645,.045,.355,1), visibility 0s; }
   .fixed-social-rail.is-ticker-hidden { transform:translateX(100%); visibility:hidden; pointer-events:none; transition:clip-path .4s ease, transform .4s cubic-bezier(.645,.045,.355,1), visibility 0s .4s; }

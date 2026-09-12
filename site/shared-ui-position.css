@@ -8,6 +8,7 @@
   --shared-scroll-line-tail: 100px;
 }
 
+/* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   :root {
     --shared-menu-anchor-right: 30px;

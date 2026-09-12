@@ -1,3 +1,7 @@
+import { usesMobileLayout } from "./responsive-policy.js";
+import { desktopClosingMetrics } from "./desktop-layout-policy.js";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js";
+
 const bindings = new WeakMap();
 
 export function bindBottomFit(root) {
@@ -17,7 +21,7 @@ export function bindBottomFit(root) {
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
-    const keepBottom = window.innerWidth > 900 && atBottom && fittedHeight !== window.innerHeight;
+    const keepBottom = !usesMobileLayout() && atBottom && fittedHeight !== window.innerHeight;
 
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
@@ -28,11 +32,6 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const viewport = window.innerHeight;
-    if (window.innerWidth > 900 && viewport < 800) {
-      const progress = Math.max(0, Math.min(1, (viewport - 550) / 250));
-      const compact = (1 - progress) ** 2;
-      title.style.lineHeight = String(1.02 - .18 * compact);
-    }
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
       brand.style.paddingTop = `var(${property}, ${fallback}px)`;
@@ -40,9 +39,9 @@ export function bindBottomFit(root) {
       brand.style.removeProperty("padding-top");
       return value;
     };
-    const headlineTop = window.innerWidth <= 900 ? 92 : readSpacing("--closing-min-top", 64);
-    const minimumTop = window.innerWidth <= 900 ? 92 : 136;
-    const minimumBottom = window.innerWidth <= 900 ? (viewport < 650 ? 20 : 40) : readSpacing("--closing-min-bottom", 56);
+    const metrics = usesMobileLayout() ? mobileClosingMetrics(viewport) : desktopClosingMetrics(viewport, readSpacing);
+    const { headlineTop, minimumTop, minimumBottom } = metrics;
+    if (metrics.lineHeight !== null) title.style.lineHeight = metrics.lineHeight;
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
     let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
     brand.style.paddingTop = top + "px";
@@ -113,7 +112,7 @@ export function bindBottomFit(root) {
   const resize = () => {
     window.clearTimeout(resizeTimer);
     // Mobile browser chrome changes height during a swipe; fit once it settles.
-    if (window.innerWidth <= 900 && window.innerWidth === fittedWidth) {
+    if (usesMobileLayout() && window.innerWidth === fittedWidth) {
       resizeTimer = window.setTimeout(() => { resizeTimer = 0; schedule(); }, 180);
     } else schedule();
   };

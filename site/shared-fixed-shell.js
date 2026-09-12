@@ -1,4 +1,5 @@
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260911-123";
+import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02";
 import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
 
 const sharedFixedShellData = Object.freeze({
@@ -61,7 +62,7 @@ export function bindSharedFixedShell(scope = document) {
   const socialItems = [...bar.querySelectorAll("[data-demo-social]")];
   const contactToggle = bar.querySelector("[data-fixed-contact-toggle]");
   const contactPanel = bar.querySelector(".fixed-contact-panel");
-  const mobile = window.matchMedia("(max-width: 900px)");
+  const mobile = createMobileLayout();
   const pageTop = bar.querySelector(".page-top");
   const reserveButtons = [...bar.querySelectorAll("[data-demo-reserve]")];
   const controller = new AbortController();
@@ -106,31 +107,36 @@ export function bindSharedFixedShell(scope = document) {
       socialRail.classList.toggle("is-ticker-hidden", hidden);
       socialRail.inert = hidden;
     }
-    if (mobile.matches) {
-      bar.classList.remove("is-scrolling", "is-docked");
-      if (dock) dock.style.height = "88px";
-      const hidden = footer instanceof HTMLElement && footer.getBoundingClientRect().top < viewportBottom() - 1;
-      if (hidden && !bar.classList.contains("is-footer-hidden")) {
-        setSocialOpen(false);
-        setContactOpen(false);
-        mobileRetiring = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        window.clearTimeout(mobileDockTimer);
-        if (mobileRetiring) mobileDockTimer = window.setTimeout(() => {
-          mobileRetiring = false;
-          schedule();
-        }, 400);
-      }
-      if (!hidden) {
-        window.clearTimeout(mobileDockTimer);
+    if (mobile.matches) updateMobileBar();
+    else updateDesktopBar();
+  }
+
+  function updateMobileBar() {
+    bar.classList.remove("is-scrolling", "is-docked");
+    if (dock) dock.style.height = "88px";
+    const hidden = footer instanceof HTMLElement && footer.getBoundingClientRect().top < viewportBottom() - 1;
+    if (hidden && !bar.classList.contains("is-footer-hidden")) {
+      setSocialOpen(false);
+      setContactOpen(false);
+      mobileRetiring = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.clearTimeout(mobileDockTimer);
+      if (mobileRetiring) mobileDockTimer = window.setTimeout(() => {
         mobileRetiring = false;
-      }
-      bar.classList.toggle("is-footer-hidden", hidden);
-      const closingDocked = hidden && !mobileRetiring && !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
-      bar.classList.toggle("is-closing-docked", closingDocked);
-      bar.inert = hidden && !closingDocked;
-      if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
-      return;
+        schedule();
+      }, 400);
     }
+    if (!hidden) {
+      window.clearTimeout(mobileDockTimer);
+      mobileRetiring = false;
+    }
+    bar.classList.toggle("is-footer-hidden", hidden);
+    const closingDocked = hidden && !mobileRetiring && !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
+    bar.classList.toggle("is-closing-docked", closingDocked);
+    bar.inert = hidden && !closingDocked;
+    if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
+  }
+
+  function updateDesktopBar() {
     bar.classList.remove("is-footer-hidden", "is-closing-docked");
     window.clearTimeout(mobileDockTimer);
     mobileRetiring = false;

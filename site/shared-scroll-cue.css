@@ -53,6 +53,7 @@
 }
 
 
+/* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   .shared-scroll-cue { display: none; }
 }

@@ -1,12 +1,13 @@
+import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260911-123";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260911-123";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260912-191&pages=20260911-123";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260913-200&pages=20260911-123";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-201";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260913-201";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260911-123";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-198";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-201";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260911-123";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260911-123";
 
@@ -494,7 +495,7 @@ function bindInstagramFeed() {
   track.addEventListener("scroll", () => { clearTimeout(scrollTimer); scrollTimer = setTimeout(sync, 120); }, { passive: true });
   const go = index => track.scrollTo({ left: cards[Math.max(0, Math.min(cards.length - 1, index))].offsetLeft - cards[0].offsetLeft, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   track.addEventListener("keydown", event => {
-    if (!matchMedia("(max-width: 767px)").matches || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    if (!matchMedia(layoutQueries.instagramCompact).matches || !["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     event.preventDefault();
     go(active + (event.key === "ArrowRight" ? 1 : -1));
   });
@@ -509,7 +510,7 @@ function bindInstagramFeed() {
     const height = media.videoHeight || media.naturalHeight;
     if (!width || !height) return;
     const ratio = width / height;
-    const mobile = innerWidth < 768;
+    const mobile = matchMedia(layoutQueries.instagramCompact).matches;
     const copyWidth = mobile ? 0 : Math.min(360, innerWidth * .34);
     const maxWidth = mobile ? innerWidth - 32 : Math.min(1200, innerWidth - 144) - copyWidth;
     const maxHeight = mobile ? innerHeight * .58 : Math.min(740, innerHeight - 128);
@@ -1126,7 +1127,7 @@ function bindSubpageMotion() {
   };
   const renderMotion = () => {
     frameId = 0;
-    if (innerWidth <= 700 || reducedMotion.matches) {
+    if (matchMedia(layoutQueries.legacyMotionCompact).matches || reducedMotion.matches) {
       document.documentElement.style.removeProperty("--concept-hero-title-y");
       document.documentElement.style.removeProperty("--concept-asset-shift");
       document.documentElement.style.removeProperty("--concept-asset-scale");
@@ -1405,7 +1406,7 @@ function bind(sharedBottomScope) {
     const normalizeLogical = (index) => (index + staffProfiles.length) % staffProfiles.length;
     const setTrackPosition = (index, animate) => {
       physicalIndex = index;
-      const duration = window.matchMedia("(max-width:900px)").matches ? HOME_STAFF_MOBILE_TRANSITION_MS : HOME_STAFF_TRANSITION_MS;
+      const duration = usesMobileLayout() ? HOME_STAFF_MOBILE_TRANSITION_MS : HOME_STAFF_TRANSITION_MS;
       track.style.transitionDuration = animate && !reducedMotion ? `${duration}ms` : "0ms";
       track.style.transform = `translate3d(${-100 * physicalIndex}%,0,0)`;
     };
@@ -1484,14 +1485,14 @@ function bind(sharedBottomScope) {
       if (reducedMotion) {
         requestAnimationFrame(completeTransition);
       } else {
-        const fallback = window.matchMedia("(max-width:900px)").matches ? HOME_STAFF_MOBILE_TRANSITION_MS + 200 : HOME_STAFF_TRANSITION_FALLBACK_MS;
+        const fallback = usesMobileLayout() ? HOME_STAFF_MOBILE_TRANSITION_MS + 200 : HOME_STAFF_TRANSITION_FALLBACK_MS;
         transitionFallbackId = window.setTimeout(completeTransition, fallback);
       }
       if (request.focusDot) dots[request.target]?.focus();
     };
     const requestSlide = (nextIndex, focusDot = false, origin = "manual", direction = "direct") => {
       clearTimer();
-      if (origin === "manual" && window.matchMedia("(max-width:900px)").matches) {
+      if (origin === "manual" && usesMobileLayout()) {
         rotationRequested = false;
         updateRotationControl();
         if (state !== "idle" && activeRequestOrigin === "auto" && direction !== "direct") {
