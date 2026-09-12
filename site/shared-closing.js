@@ -30,6 +30,10 @@ export function bindClosingLogo(root) {
       const scene = [...document.querySelectorAll("[data-logo-scene]")].find(element => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
+        const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
+        const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
+        const endBoundary = visual ? visual.getBoundingClientRect().bottom : window.innerHeight;
+        if (end && end.getBoundingClientRect().top < endBoundary) return false;
         if (style.position !== "sticky") return false;
         return element.dataset.logoScene === "bottom"
           ? Math.abs(rect.bottom - window.innerHeight) <= 2
