@@ -40,7 +40,7 @@
   bottom: 0;
   display: block;
   width: 1px;
-  height: var(--shared-scroll-line-tail);
+  height: 70px;
   background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, #f2c7dc 100%);
   box-shadow: 0 0 1px rgba(100,49,78,.22);
   transition: opacity .25s;
