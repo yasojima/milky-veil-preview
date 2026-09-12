@@ -27,9 +27,19 @@ export function bindClosingLogo(root) {
       if (heroOpen) headerClosing = false;
       else if (heroWasOpen) headerClosing = true;
       heroWasOpen = heroOpen;
-      const headerState = menuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? "active" : "behind-hero";
+      const scene = [...document.querySelectorAll("[data-logo-scene]")].find(element => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        if (style.position !== "sticky") return false;
+        return element.dataset.logoScene === "bottom"
+          ? Math.abs(rect.bottom - window.innerHeight) <= 2
+          : Math.abs(rect.top - (parseFloat(style.top) || 0)) <= 2 && rect.bottom > 180;
+      });
+      const intro = document.querySelector("[data-logo-intro-end]");
+      const initialScene = intro && intro.getBoundingClientRect().top >= window.innerHeight;
+      const headerState = menuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
       header.dataset.logoState = headerState;
-      headerLogo.inert = !["active", "menu"].includes(headerState);
+      headerLogo.inert = !["active", "scene", "menu"].includes(headerState);
     }
   };
   const schedule = () => {

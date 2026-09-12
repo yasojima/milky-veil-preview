@@ -354,7 +354,6 @@ body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85
   }
 }
 
-
 /* Both movie rules share the same neutral surface. */
 .home-movie__marquee.is-top {
   border-bottom-color: var(--milky-home-paper);
@@ -479,4 +478,8 @@ body[data-page-route-id="concept"] .concept-fv-background-stage {
 }
 .concept-type-char {
   display: inline-block;
+}
+
+.home-point-ba-step.is-step03 .milky-point-ba-label {
+  left:50%; transform:translateX(-50%);
 }

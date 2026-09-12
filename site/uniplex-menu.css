@@ -291,3 +291,13 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
   visibility:hidden;
   pointer-events:none;
 }
+
+.has-split-hero[data-logo-state="scene"] > .menu-brand,
+.has-split-hero[data-logo-state="reading"] > .menu-brand {
+  transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1), filter .7s ease;
+}
+.has-split-hero[data-logo-state="scene"] > .menu-brand { opacity:1; transform:none; filter:blur(0); pointer-events:auto; }
+.has-split-hero[data-logo-state="reading"] > .menu-brand { opacity:0; transform:translateY(8px); filter:blur(3px); pointer-events:none; }
+@media(prefers-reduced-motion:reduce) {
+  .has-split-hero[data-logo-state] > .menu-brand { transition:none; transform:none; filter:none; }
+}
