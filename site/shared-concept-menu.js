@@ -70,27 +70,6 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
-  const splitHost = menu.closest(".has-split-hero");
-  const brand = menu.querySelector(".menu-brand");
-  const pointSurface = document.querySelector(".home-point");
-  let logoFrame = 0;
-  const syncLogoCoverage = () => {
-    logoFrame = 0;
-    if (!splitHost || !brand || !pointSurface) return;
-    const logoRect = brand.getBoundingClientRect();
-    const covered = Math.min(logoRect.height, Math.max(0, logoRect.bottom - pointSurface.getBoundingClientRect().top));
-    brand.style.setProperty("--split-logo-covered", `${covered}px`);
-    splitHost.classList.toggle("is-logo-covered", covered >= logoRect.height);
-  };
-  const scheduleLogoCoverage = () => {
-    if (!logoFrame) logoFrame = requestAnimationFrame(syncLogoCoverage);
-  };
-  if (splitHost) {
-    window.addEventListener("scroll", scheduleLogoCoverage, { passive: true, signal });
-    window.addEventListener("resize", scheduleLogoCoverage, { signal });
-    syncLogoCoverage();
-  }
-
   const compact = nav.classList.contains("is-compact-menu");
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
@@ -199,7 +178,6 @@ export function bindSharedConceptMenu(scope = document) {
     bottomBar?.removeAttribute("data-global-menu-open");
     if (compact) setOpen(false);
     controller.abort();
-    cancelAnimationFrame(logoFrame);
     bottomObserver.disconnect();
     itemsObserver.disconnect();
     if (compact) { document.documentElement.style.overflow = previousOverflow; if (shareRail) shareRail.style.display = ""; }
