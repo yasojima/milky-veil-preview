@@ -8,6 +8,6 @@
   .home-page .split, .home-page .split-media { min-height:594px; }
   .home-page .split-copy { padding-block:64px; }
   .home-page .access-home { height:675px; }
-  .milky-concept-copy { font-size:clamp(18px,1.5vw,22px); }
+  body:is([data-page-route-id="concept"],[data-page-route-id="menu"]) .milky-concept-copy { font-size:clamp(18px,1.5vw,22px); }
 
 }
