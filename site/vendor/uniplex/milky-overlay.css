@@ -481,5 +481,5 @@ body[data-page-route-id="concept"] .concept-fv-background-stage {
 }
 
 .home-point-ba-step.is-step03 .milky-point-ba-label {
-  left:50%; transform:translateX(-50%);
+  left:clamp(76px,20vw,300px); transform:none;
 }

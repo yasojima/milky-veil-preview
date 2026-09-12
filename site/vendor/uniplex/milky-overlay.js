@@ -30,8 +30,8 @@ mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"), curr
 const sharedBottomScope = mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"), currentPath);
 bindSharedConceptMenu(document);
 const scrollCue = mountSharedScrollCue(document.querySelector(".l-main-img__inner"), {
-  target: "#concept",
-  ariaLabel: `${sharedRouteRegistry[pageRouteId]?.label || "ページ"}本文へ移動`,
+  target: "#point-video",
+  ariaLabel: `${sharedRouteRegistry[pageRouteId]?.label || "ページ"}動画セクションへ移動`,
 });
 const fvTrigger = document.querySelector(".js-home-mv-trigger");
 const kaleidoscopeStage = document.querySelector(".concept-fv-background-stage");
