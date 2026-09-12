@@ -473,7 +473,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-body[data-page-route-id="concept"] .concept-fv-background-stage {
+.concept-fv-background-stage {
   width: 92%;
   display: flex;
   align-items: center;
