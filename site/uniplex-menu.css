@@ -209,7 +209,8 @@
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-viewport-height, 100svh);
     padding-bottom: 16px;
-    background-color: #faebd7;
+    background-color: #faf7f2;
+    box-shadow: -8px 0 24px rgba(23, 33, 51, .04);
     color: #172133;
     row-gap: clamp(12px, 3svh, 28px);
   }
