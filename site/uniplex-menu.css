@@ -221,12 +221,12 @@
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link { color: #172133; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #955570; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link:focus-visible {
-    color: #783c57;
+    color: #a65f35;
     outline: 2px solid currentColor;
     outline-offset: -3px;
   }
   @media (hover: hover) and (pointer: fine) {
-    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #783c57; }
+    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #a65f35; }
   }
 }
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
