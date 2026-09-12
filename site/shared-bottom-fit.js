@@ -28,8 +28,8 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const viewport = window.innerHeight;
-    if (window.innerWidth > 900 && viewport < 700) {
-      const compact = Math.min(1, (700 - viewport) / 150);
+    if (window.innerWidth > 900 && viewport < 800) {
+      const compact = Math.min(1, (800 - viewport) / 250);
       title.style.lineHeight = String(1.02 - .08 * compact);
     }
     const style = getComputedStyle(brand);
@@ -95,12 +95,6 @@ export function bindBottomFit(root) {
       } else {
         upper = candidate;
       }
-    }
-    if (window.innerWidth > 900 && viewport < 800) {
-      const referenceSize = brand.clientWidth * .123;
-      const progress = Math.max(0, Math.min(1, (viewport - 700) / 100));
-      const blend = progress * progress * (3 - 2 * progress);
-      lower = Math.min(lower, referenceSize + Math.max(0, lower - referenceSize) * blend);
     }
     layoutHeadline(lower);
     const remaining = viewport - component.getBoundingClientRect().height;
