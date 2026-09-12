@@ -17,7 +17,7 @@ export function bindBottomFit(root) {
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
-    const keepBottom = atBottom && fittedHeight !== window.innerHeight;
+    const keepBottom = window.innerWidth > 900 && atBottom && fittedHeight !== window.innerHeight;
 
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
@@ -42,7 +42,7 @@ export function bindBottomFit(root) {
     };
     const headlineTop = window.innerWidth <= 900 ? 92 : readSpacing("--closing-min-top", 64);
     const minimumTop = window.innerWidth <= 900 ? 92 : 136;
-    const minimumBottom = window.innerWidth <= 900 ? 40 : readSpacing("--closing-min-bottom", 56);
+    const minimumBottom = window.innerWidth <= 900 ? (viewport < 650 ? 20 : 40) : readSpacing("--closing-min-bottom", 56);
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
     let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
     brand.style.paddingTop = top + "px";

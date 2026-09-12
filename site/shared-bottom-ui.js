@@ -1,10 +1,10 @@
-import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260912-172&closing=20260912-182";
-import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260912-182&closing=20260912-182";
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260911-123&closing=20260912-182";
-import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260912-170&pages=20260911-123&closing=20260912-182";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260912-174&pages=20260911-123&closing=20260912-182";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260911-123&closing=20260912-182";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260911-123&closing=20260912-182";
+import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260912-172&closing=20260912-183";
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260912-183&closing=20260912-183";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260911-123&closing=20260912-183";
+import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260912-170&pages=20260911-123&closing=20260912-183";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260912-174&pages=20260911-123&closing=20260912-183";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260906-02&pages=20260911-123&closing=20260912-183";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&pages=20260911-123&closing=20260912-183";
 
 const activityCleanup = new WeakMap();
 const styleReadiness = new WeakMap();
@@ -14,15 +14,15 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260911-123&closing=20260912-182",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260911-123&closing=20260912-182",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260911-123&closing=20260912-183",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260911-123&closing=20260912-183",
   "/milky-veil-preview/site/shared-font-subset.css",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260911-123&closing=20260912-182",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260911-123&closing=20260912-182",
-  "/milky-veil-preview/site/shared-footer.css?v=20260912-176&pages=20260911-123&closing=20260912-182",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260912-176&pages=20260911-123&closing=20260912-182",
-  "/milky-veil-preview/site/shared-closing.css?v=20260912-182&closing=20260912-182",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&closing=20260912-182",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260911-123&closing=20260912-183",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260911-123&closing=20260912-183",
+  "/milky-veil-preview/site/shared-footer.css?v=20260912-176&pages=20260911-123&closing=20260912-183",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260912-176&pages=20260911-123&closing=20260912-183",
+  "/milky-veil-preview/site/shared-closing.css?v=20260912-183&closing=20260912-183",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&closing=20260912-183",
 ]);
 
 function mountViewportHud() {
