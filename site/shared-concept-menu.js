@@ -71,6 +71,18 @@ export function bindSharedConceptMenu(scope = document) {
   const controller = new AbortController();
   const { signal } = controller;
   const mobileQuery = mobileLayout();
+  const menuParent = menu.parentNode;
+  const menuNextSibling = menu.nextSibling;
+  const mobileOnlyMenu = Boolean(menu.closest(".home-simple-menu"));
+  let disposed = false;
+  const syncDesktopLayer = () => {
+    // The page wrapper creates a stacking context below the sibling footer host.
+    if (!disposed && !mobileOnlyMenu && !mobileQuery.matches) {
+      if (menu.parentNode !== document.body) document.body.append(menu);
+    } else if (menu.parentNode !== menuParent) {
+      menuParent.insertBefore(menu, menuNextSibling?.parentNode === menuParent ? menuNextSibling : null);
+    }
+  };
   let releaseMobileLock = null;
   const syncMobileLock = () => {
     const lock = mobileQuery.matches && nav.classList.contains("is-open");
@@ -109,6 +121,7 @@ export function bindSharedConceptMenu(scope = document) {
     if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key) && !(event.target instanceof Element && event.target.closest("input, textarea, select, [contenteditable]"))) preventMobileDrag(event);
   }, { capture: true, signal });
   mobileQuery.addEventListener("change", syncMobileLock, { signal });
+  mobileQuery.addEventListener("change", syncDesktopLayer, { signal });
   const compact = nav.classList.contains("is-compact-menu");
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
@@ -137,6 +150,7 @@ export function bindSharedConceptMenu(scope = document) {
     }
     nav.classList.toggle("is-open", open);
     syncMobileLock();
+    syncDesktopLayer();
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
@@ -194,6 +208,7 @@ export function bindSharedConceptMenu(scope = document) {
   setOpen(false);
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   disposeActiveMenu = () => {
+    disposed = true;
     bottomBar?.removeAttribute("data-global-menu-open");
     setOpen(false);
     controller.abort();
