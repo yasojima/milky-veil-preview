@@ -6,16 +6,17 @@ export function bindClosingLogo(root) {
   const logo = root.querySelector(".closing-brand");
   const component = root.querySelector("[data-shared-bottom-ui-component]");
   if (!logo || !component) return;
+  const mobileLayout = window.matchMedia("(max-width: 900px)");
   let frame = 0;
   let heroWasOpen = false;
   let headerClosing = false;
   const update = () => {
     frame = 0;
     const bounds = component.getBoundingClientRect();
-    const menuOpen = window.matchMedia("(max-width: 900px)").matches && !!document.querySelector(".shared-nav-content.is-open");
+    const mobileMenuOpen = mobileLayout.matches && !!document.querySelector(".shared-nav-content.is-open");
     const entering = bounds.top < window.innerHeight && bounds.bottom > 0;
     const ready = entering && bounds.top + logo.offsetTop + logo.offsetHeight * .25 < window.innerHeight;
-    const state = menuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
+    const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
     logo.classList.toggle("is-revealed", state === "active");
@@ -41,7 +42,7 @@ export function bindClosingLogo(root) {
       });
       const intro = document.querySelector("[data-logo-intro-end]");
       const initialScene = intro && intro.getBoundingClientRect().top >= window.innerHeight;
-      const headerState = menuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
+      const headerState = mobileMenuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
       header.dataset.logoState = headerState;
       headerLogo.inert = !["active", "scene", "menu"].includes(headerState);
     }
