@@ -164,7 +164,6 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
     pointer-events:none;
   }
   .fixed-cta.is-footer-hidden { transform:translateX(100%); }
-  .fixed-cta[data-global-menu-open] { visibility:hidden; }
   .fixed-cta::after { content:none; }
   .fixed-contact-toggle {
     position:absolute;
@@ -221,3 +220,5 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .fixed-social-rail.is-ticker-hidden { transform:translateX(100%); visibility:hidden; pointer-events:none; transition:clip-path .4s ease, transform .4s cubic-bezier(.645,.045,.355,1), visibility 0s .4s; }
 }
 @media (prefers-reduced-motion:reduce) { .fixed-social-rail { transition:none!important; } }
+
+.fixed-cta[data-global-menu-open] { visibility:hidden; }

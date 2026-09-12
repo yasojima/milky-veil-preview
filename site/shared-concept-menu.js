@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-214";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -73,11 +73,10 @@ export function bindSharedConceptMenu(scope = document) {
   const mobileQuery = mobileLayout();
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;
-  const mobileOnlyMenu = Boolean(menu.closest(".home-simple-menu"));
   let disposed = false;
   const syncDesktopLayer = () => {
     // The page wrapper creates a stacking context below the sibling footer host.
-    if (!disposed && !mobileOnlyMenu && !mobileQuery.matches) {
+    if (!disposed && !mobileQuery.matches) {
       if (menu.parentNode !== document.body) document.body.append(menu);
     } else if (menu.parentNode !== menuParent) {
       menuParent.insertBefore(menu, menuNextSibling?.parentNode === menuParent ? menuNextSibling : null);

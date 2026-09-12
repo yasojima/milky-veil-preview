@@ -1,6 +1,6 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02";
-import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
+import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-214";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -132,7 +132,7 @@ export function bindSharedFixedShell(scope = document) {
     bar.classList.toggle("is-footer-hidden", hidden);
     const closingDocked = hidden && !mobileRetiring && !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
     bar.classList.toggle("is-closing-docked", closingDocked);
-    bar.inert = hidden && !closingDocked;
+    bar.inert = bar.hasAttribute("data-global-menu-open") || (hidden && !closingDocked);
     if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
   }
 
@@ -140,7 +140,7 @@ export function bindSharedFixedShell(scope = document) {
     bar.classList.remove("is-footer-hidden", "is-closing-docked");
     window.clearTimeout(mobileDockTimer);
     mobileRetiring = false;
-    bar.inert = false;
+    bar.inert = bar.hasAttribute("data-global-menu-open");
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {
       const height = `${bar.getBoundingClientRect().height}px`;
@@ -262,11 +262,17 @@ export function bindSharedFixedShell(scope = document) {
   [document.querySelector("main"), sharedHost, footer, bar].forEach((element) => {
     if (element instanceof HTMLElement) resizeObserver?.observe(element);
   });
+  const menuObserver = new MutationObserver(() => {
+    bar.inert = bar.hasAttribute("data-global-menu-open");
+    schedule();
+  });
+  menuObserver.observe(bar, { attributes: true, attributeFilter: ["data-global-menu-open"] });
   schedule();
 
   disposeActiveShell = () => {
     controller.abort();
     resizeObserver?.disconnect();
+    menuObserver.disconnect();
     window.clearTimeout(scrollIdleTimer);
     if (frameId) cancelAnimationFrame(frameId);
   };
