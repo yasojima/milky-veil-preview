@@ -217,37 +217,37 @@
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-screen-height, 100dvh);
-    grid-template-columns: clamp(262px, 20vw, 270px) minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr) 40px 32px 48px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) 38px 136px;
     padding-top: clamp(80px, 8svh, 96px);
     padding-bottom: clamp(24px, 3svh, 32px);
     box-shadow: -8px 0 24px rgba(23, 33, 51, .04);
     gap: clamp(10px, 1.5svh, 16px) 24px;
   }
   .shared-concept-menu .is-compact-menu .l-nav-list {
-    grid-area: 1 / 1 / 2 / -1;
+    grid-area: auto;
     height: 100%; max-height: 720px; align-self: center;
     font-size: clamp(24px, 2vw, 32px);
   }
-  .shared-concept-menu .menu-contact-details { display: contents; }
+  .shared-concept-menu .menu-contact-details { display: grid; grid-template-rows: 40px 32px 48px; gap: 8px; align-content: center; }
   .shared-concept-menu .menu-contact-phone {
-    grid-area: 2 / 1 / 3 / -1;
+    grid-area: auto;
     justify-self: center;
     font-size: clamp(30px, 4.3svh, 36px); line-height: 1.1;
   }
   .shared-concept-menu .menu-contact-hours {
-    grid-area: 3 / 1 / 4 / -1;
+    grid-area: auto;
     align-self: center; text-align: center;
     font-size: clamp(18px, 2.5svh, 20px); line-height: 1.6;
     letter-spacing: .02em; word-spacing: .1em;
   }
   .shared-concept-menu .menu-contact-actions {
-    grid-area: 4 / 2 / 5 / 3;
-    max-width: none; height: 100%; gap: 12px;
+    grid-area: auto;
+    max-width: 500px; height: 100%; gap: 12px;
   }
   .shared-concept-menu .menu-contact-actions a,
   .shared-concept-menu .menu-contact-actions button { font-size: 13px; }
-  .shared-concept-menu .menu-social-tools { grid-area: 4 / 1 / 5 / 2; }
+
   .shared-concept-menu .menu-social-tools,
   .shared-concept-menu .menu-social-tools .social-icons { gap: 18px; }
 }
