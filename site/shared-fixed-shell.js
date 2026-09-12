@@ -51,6 +51,7 @@ export function bindSharedFixedShell(scope = document) {
 
   const footer = queryRoot.querySelector(".site-footer");
   const dock = queryRoot.querySelector(".fixed-cta-clearance");
+  const ticker = queryRoot.querySelector(".shared-footer-ticker");
   if (dock instanceof HTMLElement) {
     dock.removeAttribute("aria-hidden");
     dock.append(bar);
@@ -90,6 +91,15 @@ export function bindSharedFixedShell(scope = document) {
   function update() {
     frameId = 0;
     syncSharedBoundary();
+    if (socialRail && ticker) {
+      const hidden = !mobile.matches && ticker.getBoundingClientRect().top <= viewportBottom() - bar.getBoundingClientRect().height - 15 + 12;
+      if (hidden && !socialRail.classList.contains("is-ticker-hidden")) {
+        setSocialOpen(false);
+        socialRail.classList.remove("is-hovered");
+      }
+      socialRail.classList.toggle("is-ticker-hidden", hidden);
+      socialRail.inert = hidden;
+    }
     if (mobile.matches) {
       bar.classList.remove("is-scrolling", "is-docked");
       if (dock) dock.style.height = "88px";
