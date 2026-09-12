@@ -1,6 +1,6 @@
 .shared-scroll-cue {
   position: absolute;
-  z-index: 899;
+  z-index: 2;
   right: var(--shared-scroll-right);
   bottom: var(--shared-scroll-home-bottom);
   width: var(--shared-scroll-width);
@@ -40,7 +40,7 @@
   top: calc(var(--shared-scroll-height) - 72px);
   display: block;
   width: 1px;
-  height: 32px;
+  height: calc(72px + var(--shared-scroll-home-bottom));
   background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, #f2c7dc 100%);
   box-shadow: 0 0 1px rgba(100,49,78,.22);
   transition: opacity .25s;
