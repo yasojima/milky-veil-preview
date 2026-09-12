@@ -238,6 +238,7 @@
   .shared-concept-menu .menu-contact-hours {
     grid-area: auto;
     align-self: center; text-align: center;
+    font-family: "MV Shared Noto Serif JP", serif;
     font-size: clamp(18px, 2.5svh, 20px); line-height: 1.6;
     letter-spacing: .02em; word-spacing: .1em;
   }
