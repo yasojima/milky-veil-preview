@@ -1,4 +1,4 @@
-import { usesMobileLayout } from "./responsive-policy.js";
+import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
@@ -70,6 +70,45 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
+  const mobileQuery = mobileLayout();
+  let releaseMobileLock = null;
+  const syncMobileLock = () => {
+    const lock = mobileQuery.matches && nav.classList.contains("is-open");
+    if (lock === Boolean(releaseMobileLock)) return;
+    if (!lock) {
+      releaseMobileLock?.();
+      releaseMobileLock = null;
+      return;
+    }
+    const position = { left: window.scrollX, top: window.scrollY, behavior: "instant" };
+    const elements = [document.documentElement, document.body];
+    const properties = ["overflow", "overscroll-behavior", "touch-action"];
+    const saved = elements.map(element => properties.map(property => [property, element.style.getPropertyValue(property), element.style.getPropertyPriority(property)]));
+    elements.forEach(element => {
+      element.style.setProperty("overflow", "hidden");
+      element.style.setProperty("overscroll-behavior", "none");
+      element.style.setProperty("touch-action", "none");
+    });
+    // Keep the document in flow so opening the mobile menu cannot reset scroll-linked sections.
+    releaseMobileLock = () => {
+      elements.forEach((element, index) => saved[index].forEach(([property, value, priority]) => {
+        if (value) element.style.setProperty(property, value, priority);
+        else element.style.removeProperty(property);
+      }));
+      window.scrollTo(position);
+    };
+  };
+  const preventMobileDrag = event => {
+    if (!releaseMobileLock) return;
+    if (event.cancelable) event.preventDefault();
+    event.stopImmediatePropagation();
+  };
+  window.addEventListener("touchmove", preventMobileDrag, { capture: true, passive: false, signal });
+  window.addEventListener("wheel", preventMobileDrag, { capture: true, passive: false, signal });
+  window.addEventListener("keydown", event => {
+    if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key) && !(event.target instanceof Element && event.target.closest("input, textarea, select, [contenteditable]"))) preventMobileDrag(event);
+  }, { capture: true, signal });
+  mobileQuery.addEventListener("change", syncMobileLock, { signal });
   const compact = nav.classList.contains("is-compact-menu");
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
@@ -97,6 +136,7 @@ export function bindSharedConceptMenu(scope = document) {
       if (open) { nav.scrollTop = 0; requestAnimationFrame(fitMenu); }
     }
     nav.classList.toggle("is-open", open);
+    syncMobileLock();
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
@@ -155,7 +195,7 @@ export function bindSharedConceptMenu(scope = document) {
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   disposeActiveMenu = () => {
     bottomBar?.removeAttribute("data-global-menu-open");
-    if (compact) setOpen(false);
+    setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
     itemsObserver.disconnect();
