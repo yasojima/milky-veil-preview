@@ -1,3 +1,4 @@
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260912-169";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260911-123";
 import { sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260902-02&pages=20260911-123";
 import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260902-06&pages=20260911-123";
@@ -54,6 +55,8 @@ export function mountSharedBottomUi(host, currentPath) {
           all: initial !important;
           -webkit-tap-highlight-color: transparent;
           display: block !important;
+          position: relative !important;
+          z-index: 3 !important;
           width: auto !important;
           margin: 0 !important;
           padding: 0 !important;
@@ -96,7 +99,10 @@ export function mountSharedBottomUi(host, currentPath) {
         link.addEventListener("error", () => resolve(false), { once: true });
       });
     })).then(results => {
-      if (results.every(Boolean)) component.removeAttribute("data-css-pending");
+      if (results.every(Boolean)) {
+        bindBottomFit(root);
+        component.removeAttribute("data-css-pending");
+      }
     });
     styleReadiness.set(host, ready);
   }
@@ -114,6 +120,7 @@ export function clearSharedBottomUi(host) {
   activityCleanup.get(host)?.();
   activityCleanup.delete(host);
   styleReadiness.delete(host);
+  clearBottomFit(host.shadowRoot);
   host.shadowRoot?.replaceChildren();
   host.replaceChildren();
 }
