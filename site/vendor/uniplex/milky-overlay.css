@@ -252,6 +252,33 @@ body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85
   body[data-page-route-id="concept"] .milky-detail-copy p + p { margin-top: .85em; }
 }
 
+body[data-page-route-id="concept"] .milky-copy-band {
+  background: var(--milky-intro-surface, aliceblue);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+body[data-page-route-id="concept"] .home-concept .milky-glass-strip.js-c-anime-elem {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+body[data-page-route-id="concept"] .milky-glass-strip.js-c-anime-elem > .milky-copy-band {
+  -webkit-mask: linear-gradient(#fff, #fff) no-repeat left top / 0% 100%;
+  mask: linear-gradient(#fff, #fff) no-repeat left top / 0% 100%;
+  transition: mask-size .5s cubic-bezier(.76, 0, .25, 1);
+}
+body[data-page-route-id="concept"] .milky-glass-strip.js-c-anime-elem.is-animated > .milky-copy-band {
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page-route-id="concept"] .milky-glass-strip.js-c-anime-elem > .milky-copy-band {
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    transition: none;
+  }
+}
+
 .milky-kaleidoscope-stage {
   overflow: hidden;
   width: 100%;
