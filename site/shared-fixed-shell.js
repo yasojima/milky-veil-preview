@@ -97,6 +97,13 @@ export function bindSharedFixedShell(scope = document) {
       document.documentElement.style.setProperty("--shared-fixed-bar-height", reservedHeight);
     }
     syncSharedBoundary();
+    const socialRect = socialToggle?.getBoundingClientRect();
+    document.querySelectorAll(".shared-scroll-cue__line").forEach((line) => {
+      const rect = line.getBoundingClientRect();
+      const overlaps = socialRect && rect.right > socialRect.left && rect.left < socialRect.right && rect.bottom > socialRect.top && rect.top < socialRect.bottom;
+      const clip = overlaps ? `inset(0 0 ${Math.min(rect.height, rect.bottom - socialRect.top)}px)` : "none";
+      if (line.style.clipPath !== clip) line.style.clipPath = clip;
+    });
     if (socialRail && ticker) {
       const hidden = !mobile.matches && ticker.getBoundingClientRect().top <= viewportBottom() - bar.getBoundingClientRect().height - 15 + 12;
       if (hidden && !socialRail.classList.contains("is-ticker-hidden")) {
