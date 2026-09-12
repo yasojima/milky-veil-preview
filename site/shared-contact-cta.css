@@ -6,12 +6,17 @@
 .menu-contact-actions :is(a,button), .fixed-cta-action {
   font-family:var(--contact-cta-font)!important;
   font-weight:500;
+  filter:none!important;
+  box-shadow:0 7px 24px rgba(117,70,98,.08)!important;
+  transition:filter .25s ease,box-shadow .25s ease!important;
 }
 .menu-contact-actions :is(a,button):is(:focus-visible,:active),
 .fixed-cta .fixed-cta-action:is(:focus-visible,:active) {
   background:var(--contact-cta-highlight)!important;
   color:#172133!important;
   opacity:1;
+  filter:saturate(1.08) brightness(.99)!important;
+  box-shadow:0 9px 28px rgba(117,70,98,.17)!important;
 }
 @media (hover:hover) and (pointer:fine) {
   .menu-contact-actions :is(a,button):hover,
@@ -19,6 +24,8 @@
     background:var(--contact-cta-highlight)!important;
     color:#172133!important;
     opacity:1;
+  filter:saturate(1.08) brightness(.99)!important;
+  box-shadow:0 9px 28px rgba(117,70,98,.17)!important;
   }
 }
 @media (min-width:901px) {
@@ -30,4 +37,8 @@
     --contact-desktop-frame-width:calc((var(--contact-desktop-group-width) - var(--contact-desktop-padding) * 2 - 1px - var(--contact-desktop-gap)) / 2);
     --contact-desktop-frame-height:calc(40px + var(--contact-desktop-step) * .1);
   }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .menu-contact-actions :is(a,button), .fixed-cta-action { transition:none!important; }
 }
