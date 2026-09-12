@@ -209,23 +209,23 @@
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-viewport-height, 100svh);
     padding-bottom: 16px;
-    background-color: #ece9f2;
+    background-color: #faebd7;
     color: #172133;
     row-gap: clamp(12px, 3svh, 28px);
   }
   .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; }
   .shared-concept-menu .menu-social-tools,
   .shared-concept-menu .menu-social-tools .social-icons { gap: 18px; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item { border-bottom-color: #c6bfd1; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item { border-bottom-color: #cdbeb1; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link { color: #172133; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #756184; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #955570; }
   .shared-concept-menu .is-compact-menu .l-nav-list__item-link:focus-visible {
-    color: #584368;
+    color: #783c57;
     outline: 2px solid currentColor;
     outline-offset: -3px;
   }
   @media (hover: hover) and (pointer: fine) {
-    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #584368; }
+    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #783c57; }
   }
 }
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
