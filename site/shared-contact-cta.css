@@ -3,12 +3,15 @@
   --contact-cta-font: "MV Shared Noto Serif JP", serif;
   --contact-cta-highlight: linear-gradient(120deg,#fff 0%,#fff2f8 34%,#f7cfdf 72%,#efbfd7 100%);
 }
-.menu-contact-actions :is(a,button), .fixed-cta-action {
+.menu-contact-actions :is(a,button), .fixed-cta .fixed-contact-panel .fixed-cta-action, .fixed-cta .fixed-cta-action {
   font-family:var(--contact-cta-font)!important;
   font-weight:500;
+  background:var(--contact-cta-highlight)!important;
+  border:1px solid rgba(116,71,98,.34)!important;
+  color:#172133!important;
   filter:none!important;
   box-shadow:0 7px 24px rgba(117,70,98,.08)!important;
-  transition:filter .25s ease,box-shadow .25s ease!important;
+  transition:none!important;
 }
 .menu-contact-actions :is(a,button):is(:focus-visible,:active),
 .fixed-cta .fixed-cta-action:is(:focus-visible,:active) {
@@ -40,5 +43,5 @@
 }
 
 @media (prefers-reduced-motion:reduce) {
-  .menu-contact-actions :is(a,button), .fixed-cta-action { transition:none!important; }
+  .menu-contact-actions :is(a,button), .fixed-cta .fixed-contact-panel .fixed-cta-action, .fixed-cta .fixed-cta-action { transition:none!important; }
 }
