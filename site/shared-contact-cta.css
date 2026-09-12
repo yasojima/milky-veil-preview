@@ -1,0 +1,23 @@
+/* Menu and fixed-bar contact actions share typography and interaction colors. */
+:root, :host {
+  --contact-cta-font: "MV Shared Noto Serif JP", serif;
+  --contact-cta-highlight: linear-gradient(120deg,#fff 0%,#fff2f8 34%,#f7cfdf 72%,#efbfd7 100%);
+}
+.menu-contact-actions :is(a,button), .fixed-cta-action {
+  font-family:var(--contact-cta-font)!important;
+  font-weight:500;
+}
+.menu-contact-actions :is(a,button):is(:focus-visible,:active),
+.fixed-cta .fixed-cta-action:is(:focus-visible,:active) {
+  background:var(--contact-cta-highlight)!important;
+  color:#172133!important;
+  opacity:1;
+}
+@media (hover:hover) and (pointer:fine) {
+  .menu-contact-actions :is(a,button):hover,
+  .fixed-cta .fixed-cta-action:hover {
+    background:var(--contact-cta-highlight)!important;
+    color:#172133!important;
+    opacity:1;
+  }
+}

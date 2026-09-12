@@ -20,7 +20,7 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260913-214&closing=20260912-186",
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260913-214&closing=20260912-186",
   "/milky-veil-preview/site/shared-footer.css?v=20260912-176&pages=20260913-214&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-216&pages=20260913-214",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-217&pages=20260913-214",
   "/milky-veil-preview/site/shared-closing.css?v=20260912-186&pages=20260913-214&closing=20260912-186",
   "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20260913-214&closing=20260912-186",
 ]);

@@ -1,3 +1,4 @@
+@import url("./shared-contact-cta.css?v=20260913-217");
 @import url("./shared-logo-motion.css?v=20260912-174");
 
 :root {
@@ -216,16 +217,16 @@
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-screen-height, 100dvh);
-    grid-template-rows: minmax(0, 1fr) 38px clamp(112px, 18svh, 160px);
+    grid-template-rows: minmax(0, 1fr) 38px clamp(128px, 18svh, 160px);
     padding-top: clamp(80px, 10svh, 108px);
     padding-bottom: clamp(20px, 5svh, 54px);
     box-shadow: -8px 0 24px rgba(23, 33, 51, .04);
     row-gap: clamp(16px, 4svh, 44px);
   }
   .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; max-height: 576px; align-self: center; }
-  .shared-concept-menu .menu-contact-details { grid-template-rows: 32px 24px clamp(44px, 6svh, 48px); gap: clamp(6px, calc(6px + (100svh - 551px) * .02), 12px); align-content: center; }
-  .shared-concept-menu .menu-contact-phone { font-size: clamp(25px, 3.5svh, 28px); }
-  .shared-concept-menu .menu-contact-hours { font-size: clamp(12px, 1.6svh, 13px); }
+  .shared-concept-menu .menu-contact-details { grid-template-rows: 40px 28px clamp(44px, 6svh, 48px); gap: clamp(6px, calc(6px + (100svh - 551px) * .02), 12px); align-content: center; }
+  .shared-concept-menu .menu-contact-phone { font-size: clamp(30px, 4.3svh, 36px); line-height: 1.1; }
+  .shared-concept-menu .menu-contact-hours { font-size: clamp(14px, 1.8svh, 16px); }
   .shared-concept-menu .menu-contact-actions { max-width: 500px; height: 100%; gap: 12px; }
   .shared-concept-menu .menu-contact-actions a,
   .shared-concept-menu .menu-contact-actions button { font-size: 13px; }
