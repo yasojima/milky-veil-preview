@@ -5,13 +5,11 @@
   --shared-scroll-width: 3px;
   --shared-scroll-height: 288px;
   --shared-scroll-home-bottom: 60px;
-  --shared-scroll-line-extension: 60px;
 }
 
 @media (min-width: 901px) and (max-width: 1300px) {
   :root {
     --shared-scroll-home-bottom: 110px;
-    --shared-scroll-line-extension: 110px;
   }
 }
 

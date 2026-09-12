@@ -91,6 +91,12 @@ export function bindBottomFit(root) {
         upper = candidate;
       }
     }
+    if (window.innerWidth > 900 && viewport < 800) {
+      const referenceSize = brand.clientWidth * .123;
+      const progress = Math.max(0, Math.min(1, (viewport - 700) / 100));
+      const blend = progress * progress * (3 - 2 * progress);
+      lower = Math.min(lower, referenceSize + Math.max(0, lower - referenceSize) * blend);
+    }
     layoutHeadline(lower);
     const remaining = viewport - component.getBoundingClientRect().height;
     if (remaining > 0) {

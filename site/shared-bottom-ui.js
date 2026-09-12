@@ -1,5 +1,5 @@
 import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260912-172";
-import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260912-176";
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260912-177";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260911-123";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260912-170&pages=20260911-123";
 import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260912-174&pages=20260911-123";
