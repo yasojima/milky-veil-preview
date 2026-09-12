@@ -52,6 +52,11 @@
 }
 
 .shared-concept-menu {
+  --menu-background: #faf7f2;
+  --menu-text: #172133;
+  --menu-selected: #955570;
+  --menu-hover: #783c57;
+  --menu-divider: #cdbeb1;
   position: relative;
   z-index: 142;
   opacity: 1 !important;
@@ -86,8 +91,8 @@
   height: 100lvh;
   padding: calc(40px + var(--mh--header--height)) var(--mh--space--md) calc(80px + env(safe-area-inset-bottom));
   overscroll-behavior-y: none;
-  background-color: #fff;
-  color: #10182d;
+  background-color: var(--menu-background);
+  color: var(--menu-text);
   -webkit-overflow-scrolling: touch;
   overflow: auto;
   transform: translateX(120%);
@@ -119,7 +124,7 @@
 }
 
 .l-nav-list__item {
-  border-bottom: 1px solid rgba(16, 24, 45, 0.3);
+  border-bottom: 1px solid var(--menu-divider);
   padding-block: 5px;
 }
 
@@ -145,20 +150,14 @@
     transition: color var(--mh--duration) var(--mh--easing);
   }
 
-  .l-nav-list__item-link:hover {
-    color: #f7cfdf;
-  }
 }
 
-.l-nav-list__item-link:focus-visible {
-  color: #f7cfdf;
-  outline: 1px auto #101010;
-  outline-offset: 0;
+.shared-concept-menu .l-nav-list__item-link:focus-visible {
+  color: var(--menu-hover);
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 
-.l-nav-list__item-link[aria-current="page"] {
-  color: #ce7fa5;
-}
 
 .u-font-en {
   font-family: var(--mh--font-family--en);
@@ -203,31 +202,25 @@
 .menu-social-tools { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .menu-contact-details { display:none; }
 .menu-brand { display:none; }
-/* Desktop UI scope: mobile retains its own menu palette and row sizing. */
+.shared-concept-menu .l-nav-list__item-link { color: var(--menu-text); }
+.shared-concept-menu .l-nav-list__item-link[aria-current="page"] { color: var(--menu-selected); }
+.shared-concept-menu .l-nav-list__item-link:focus-visible { color: var(--menu-hover); }
+@media (hover: hover) and (pointer: fine) {
+  .shared-concept-menu .l-nav-list__item-link:hover { color: var(--menu-hover); }
+}
+/* Desktop UI scope: row sizing, shadow and social spacing. */
 @media (min-width: 901px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height: minmax(0, 1fr);
     height: var(--shared-menu-viewport-height, 100svh);
     padding-bottom: 16px;
-    background-color: #faf7f2;
     box-shadow: -8px 0 24px rgba(23, 33, 51, .04);
-    color: #172133;
     row-gap: clamp(12px, 3svh, 28px);
   }
   .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; }
   .shared-concept-menu .menu-social-tools,
   .shared-concept-menu .menu-social-tools .social-icons { gap: 18px; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item { border-bottom-color: #cdbeb1; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item-link { color: #172133; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #955570; }
-  .shared-concept-menu .is-compact-menu .l-nav-list__item-link:focus-visible {
-    color: #783c57;
-    outline: 2px solid currentColor;
-    outline-offset: -3px;
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #783c57; }
-  }
+
 }
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
 .has-split-hero > .menu-brand {
