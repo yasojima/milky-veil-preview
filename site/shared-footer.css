@@ -39,11 +39,6 @@
 @media (max-width: 900px) {
   .site-footer { padding: 20px 12px 36px; }
   .footer-shell { min-height: 104px; gap: 10px; }
-  .footer-links { column-gap: 5px; row-gap: 0; }
+  .footer-links { column-gap: clamp(4px, calc(2vw - 3px), 5px); row-gap: 0; }
   .footer-links a { font-size: clamp(10.5px, 3.15vw, 13px); letter-spacing: 0; }
-}
-@media (max-width: 380px) {
-  .footer-shell { gap: 4px; }
-  .footer-links { column-gap: 4px; }
-  .footer-links a { font-size: 10.5px; }
 }

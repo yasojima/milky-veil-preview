@@ -61,15 +61,20 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   z-index: 3;
 }
 
-@media (min-width:901px) and (max-width:1400px) {
-  :root,:host { --fixed-cta-height:56px; --fixed-cta-actions-width:clamp(260px,25vw,350px); --fixed-page-top-column-width:48px; }
-  .fixed-cta-actions { gap:8px; padding:7px 10px; }
-  .fixed-cta-action { height:40px; font-size:11px!important; flex-basis:calc((100% - 8px)/2); width:calc((100% - 8px)/2); }
-  .cta-tel { gap:clamp(10px,1.4vw,20px); padding:6px 12px 6px clamp(20px,3vw,42px); }
-  .cta-tel strong { font-size:clamp(19px,1.9vw,26px); }
-  .cta-phone svg { width:18px; height:18px; }
-  .cta-hours { font-size:clamp(9px,.88vw,12px); letter-spacing:0; }
-  .page-top-cell { padding-right:8px; }
+@media (min-width:901px) {
+  :root,:host {
+    --cta-width-step:clamp(0px,calc(100vw - 1400px),40px);
+    --fixed-cta-height:calc(56px + var(--cta-width-step) * .15);
+    --fixed-cta-actions-width:clamp(260px,calc(25vw + var(--cta-width-step) * .675),387px);
+    --fixed-page-top-column-width:calc(48px + var(--cta-width-step) * .3);
+  }
+  .fixed-cta-actions { gap:calc(8px + var(--cta-width-step) * .05); padding:calc(7px + var(--cta-width-step) * .025) calc(10px + var(--cta-width-step) * .125); }
+  .fixed-cta-action { height:calc(40px + var(--cta-width-step) * .1); font-size:calc(11px + var(--cta-width-step) * .025)!important; flex-basis:calc((100% - 8px - var(--cta-width-step) * .05)/2); width:calc((100% - 8px - var(--cta-width-step) * .05)/2); }
+  .cta-tel { gap:calc(clamp(10px,1.4vw,20px) + var(--cta-width-step) * .1); padding:6px calc(12px + var(--cta-width-step) * .5) 6px calc(clamp(20px,3vw,42px) + var(--cta-width-step) * .7); }
+  .cta-tel strong { font-size:calc(clamp(19px,1.9vw,26px) + var(--cta-width-step) * .025); }
+  .cta-phone svg { width:calc(18px + var(--cta-width-step) * .1); height:calc(18px + var(--cta-width-step) * .1); }
+  .cta-hours { font-size:calc(clamp(9px,.88vw,12px) + var(--cta-width-step) * .0125); letter-spacing:0; }
+  .page-top-cell { padding-right:calc(8px + var(--cta-width-step) * .3); }
 }
 /* Telephone and actions share one responsive dock. */
 @media (max-width:900px) {

@@ -39,8 +39,12 @@
 }
 
 
-@media(min-width:901px) and (max-height:700px) {
-  .shared-brand-message-copy > small { margin-bottom:14px; }
-  .shared-brand-message-copy > span { margin-top:22px; font-size:17.5px; line-height:1.7; }
-  .site-footer { font-size:13px; }
+@media(min-width:901px) {
+  .shared-brand-message {
+    --closing-height-step:clamp(0px,calc(100svh - 700px),150px);
+    --closing-min-top:calc(40px + var(--closing-height-step) * .16);
+    --closing-min-bottom:calc(32px + var(--closing-height-step) * .16);
+  }
+  .shared-brand-message-copy > small { margin-bottom:calc(14px + var(--closing-height-step) * .04); }
+  .shared-brand-message-copy > span { margin-top:calc(22px + var(--closing-height-step) * .066667); font-size:calc(17.5px + var(--closing-height-step) * .013333); line-height:clamp(29.75px,calc(4.866667svh - 4.316669px),37.05px); }
 }

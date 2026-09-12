@@ -1,0 +1,19 @@
+@media(min-width:901px) {
+  .home-page { --pc-height-step:clamp(0px,calc(100svh - 700px),150px); --home-section-space:calc(110px + var(--pc-height-step) * .133333); }
+  .home-page .hero { height:100svh; min-height:clamp(520px,calc(106.6667svh - 226.667px),680px); }
+  .home-page .hero-copy { bottom:clamp(76px,calc(36svh - 176px),170px); max-width:42vw; }
+  .home-page .hero-copy h1 { font-size:min(clamp(54px,10.5svh,96px),6.4vw); margin:calc(14px + var(--pc-height-step) * .04) 0 calc(18px + var(--pc-height-step) * .04); }
+  .home-page .hero-copy > span { font-size:calc(17.5px + var(--pc-height-step) * .013333); }
+  .home-page .hero-reserve { height:calc(44px + var(--pc-height-step) * .08); margin-top:calc(16px + var(--pc-height-step) * .053333); width:calc(310px + var(--pc-height-step) * .253333); }
+  .home-page .split, .home-page .split-media { min-height:calc(594px + var(--pc-height-step) * .44); }
+  .home-page .split-copy { padding-block:calc(64px + var(--pc-height-step) * .106667); }
+  .home-page .access-home { height:calc(675px + var(--pc-height-step) * .5); }
+  body:is([data-page-route-id="concept"],[data-page-route-id="menu"]) .milky-concept-copy { font-size:clamp(18px,1.5vw,24px); }
+}
+
+@media(max-width:900px) {
+  .milky-concept-copy { font-size:clamp(15.5px,calc(1.865672vw + 1.190299px),18px); }
+}
+@media(min-width:768px) and (max-width:900px) {
+  .milky-detail-copy { font-size:clamp(13px,calc(26.447761px - 1.492537vw),15px); }
+}
