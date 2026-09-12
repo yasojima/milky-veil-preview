@@ -200,23 +200,31 @@
 .menu-social-tools { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .menu-contact-details { display:none; }
 .menu-brand { display:none; }
-.has-split-hero .menu-brand {
+/* The stationary logo sits below the split photos, outside the menu stacking context. */
+.has-split-hero > .menu-brand {
   display:block;
   position:fixed;
-  z-index:141;
+  z-index:2;
   top:16px;
   left:30px;
   height:150px;
-  opacity:0;
-  visibility:hidden;
+  opacity:1;
+  visibility:visible;
   pointer-events:none;
+  transition:none;
 }
 .has-split-hero .menu-brand img { display:block; width:auto; height:100%; }
-.has-split-hero:not(.is-logo-hidden) .menu-brand,
-.has-split-hero:has(.l-nav.is-open) .menu-brand {
+.has-split-hero:not(.is-logo-hidden) > .menu-brand { pointer-events:auto; }
+.has-split-hero.is-logo-closing > .menu-brand {
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.has-split-hero:has(.l-nav.is-open) > .menu-brand {
+  z-index:143;
   opacity:1;
   visibility:visible;
   pointer-events:auto;
+  transition:none;
 }
 @media (max-width:900px) {
   .has-split-hero .menu-brand {
