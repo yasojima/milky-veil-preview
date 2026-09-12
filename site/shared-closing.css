@@ -15,14 +15,6 @@
 .footer-shell { min-height:0; justify-content:center; }
 .shared-footer-ticker-rule { padding-bottom:28px; }
 .shared-footer-ticker-rule hr { border-color:rgba(23,33,51,.24); }
-.fixed-cta.is-docked {
-  background:#F3E4E9; color:#172133;
-  border-color:rgba(23,33,51,.24);
-}
-.fixed-cta.is-docked .fixed-cta-action {
-  background:transparent!important; box-shadow:none;
-  border-color:rgba(23,33,51,.3)!important;
-}
 @media(max-width:900px) {
   .closing-brand { top:12px; left:15px; height:55px; }
   .site-footer { padding:12px 12px 16px; }
@@ -30,7 +22,7 @@
   .fixed-cta-clearance { height:88px; block-size:88px; }
   .fixed-cta.is-closing-docked {
     position:absolute; inset:0; height:88px;
-    transform:none; transition:none; background:#F3E4E9;
+    transform:none; transition:none; background:#fff;
     pointer-events:auto; border-top:1px solid rgba(23,33,51,.24);
   }
   .is-closing-docked .fixed-contact-toggle,
@@ -38,10 +30,10 @@
   .is-closing-docked .fixed-contact-panel {
     position:static; width:100%; max-width:none; height:88px;
     grid-template-rows:44px 44px; clip-path:none; transition:none;
-    background:transparent; pointer-events:auto;
+    background:#fff; pointer-events:auto;
   }
   .is-closing-docked .fixed-contact-panel .cta-tel { height:44px; }
   .is-closing-docked .fixed-contact-panel .fixed-cta-action {
-    background:transparent!important; box-shadow:none; font-size:12px!important;
+    font-size:12px!important;
   }
 }

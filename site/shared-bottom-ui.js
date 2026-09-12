@@ -20,7 +20,7 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260911-123",
   "/milky-veil-preview/site/shared-footer.css?v=20260912-170&pages=20260911-123",
   "/milky-veil-preview/site/shared-fixed-shell.css?v=20260907-07&pages=20260911-123",
-  "/milky-veil-preview/site/shared-closing.css?v=20260912-170",
+  "/milky-veil-preview/site/shared-closing.css?v=20260912-171",
 ]);
 
 function mountViewportHud() {
