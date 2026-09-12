@@ -29,8 +29,9 @@ export function bindBottomFit(root) {
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const viewport = window.innerHeight;
     if (window.innerWidth > 900 && viewport < 800) {
-      const compact = Math.min(1, (800 - viewport) / 250);
-      title.style.lineHeight = String(1.02 - .08 * compact);
+      const progress = Math.max(0, Math.min(1, (viewport - 550) / 250));
+      const compact = (1 - progress) ** 2;
+      title.style.lineHeight = String(1.02 - .18 * compact);
     }
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {

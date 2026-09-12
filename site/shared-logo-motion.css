@@ -26,3 +26,5 @@
   .closing-brand { transition:none; transform:none; filter:none; }
   :is(.shared-concept-menu, .has-split-hero):has(.l-nav.is-open) .menu-brand img { animation:none; }
 }
+
+[data-closing-state="menu"] .closing-brand { visibility:hidden; }

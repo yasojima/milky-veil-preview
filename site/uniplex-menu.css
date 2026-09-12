@@ -284,3 +284,10 @@
 }
 
 .translation-retry { padding: 8px 12px; border: 1px solid currentColor; background: #fff; color: #172133; font: 400 12px/1.5 var(--mv-font-text); cursor: pointer; }
+
+/* The closing controller hands logo ownership over before the footer logo enters. */
+html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .has-split-hero > .menu-brand,
+html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .brand {
+  visibility:hidden;
+  pointer-events:none;
+}

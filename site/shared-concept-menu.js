@@ -52,6 +52,7 @@ export function bindSharedConceptMenu(scope = document) {
     return disposeActiveMenu;
   }
 
+  document.dispatchEvent(new Event("mv:menu-mounted"));
   const logoHost = menu.closest(".has-split-hero");
   const logo = logoHost?.querySelector(".menu-brand");
   const hero = logoHost && document.querySelector(".js-home-mv");
