@@ -6,7 +6,7 @@ import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260912-191&pages=20260911-123";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260913-194&pages=20260911-123";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260911-123";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260912-186&pages=20260911-123";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-198";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260911-123";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260911-123";
 

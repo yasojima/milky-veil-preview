@@ -3,7 +3,7 @@ import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-previ
 import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260912-191&pages=20260909-064";
 import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260913-194&pages=20260909-064";
 import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260909-064";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260912-186&pages=20260909-064";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260913-198";
 import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260906-02&pages=20260909-064";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";

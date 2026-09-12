@@ -1,7 +1,7 @@
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260911-123";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260911-123";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -55,9 +55,6 @@ export function bindSharedConceptMenu(scope = document) {
   document.dispatchEvent(new Event("mv:menu-mounted"));
   const bottomHost = document.getElementById("shared-bottom-ui-root");
   const bottomBar = bottomHost?.shadowRoot?.querySelector(".fixed-cta") || document.querySelector(".fixed-cta");
-  let lockedScroll = null;
-  let savedBodyStyle;
-  const savedRootBackground = document.documentElement.style.background;
   const syncBottomSpace = () => {
     const barHeight = window.matchMedia("(max-width: 900px)").matches ? 0 : bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
@@ -77,13 +74,7 @@ export function bindSharedConceptMenu(scope = document) {
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("scroll", syncBottomSpace, { signal });
   const text = toggle.querySelector(".shared-nav-label");
-  const surfaceRoot = menu.closest("#app, .l-wrapper");
-  const surfaceTargets = surfaceRoot
-    ? [...surfaceRoot.children].filter((target) => target !== menu && !target.contains(menu))
-    : [];
-  const inertTargets = [...new Set([...surfaceTargets, ...document.querySelectorAll("#main, #shared-bottom-ui-root")])].filter(target => !compact || target !== bottomHost);
   const shareRail = bottomHost?.shadowRoot?.querySelector(".fixed-social-rail");
-  const previousOverflow = document.documentElement.style.overflow;
   const list = nav.querySelector(".l-nav-list");
   const fitMenu = () => {
     if (!compact || !list) return;
@@ -100,21 +91,7 @@ export function bindSharedConceptMenu(scope = document) {
     bottomBar?.toggleAttribute("data-global-menu-open", open);
     syncBottomSpace();
     if (compact) {
-      if (open && lockedScroll === null) {
-        lockedScroll = window.scrollY;
-        savedBodyStyle = document.body.getAttribute("style");
-        Object.assign(document.body.style, { position: "fixed", top: -lockedScroll + "px", width: "100%", overflow: "hidden" });
-        document.documentElement.style.background = "#fff";
-      } else if (!open && lockedScroll !== null) {
-        const scrollY = lockedScroll;
-        lockedScroll = null;
-        if (savedBodyStyle === null) document.body.removeAttribute("style");
-        else document.body.setAttribute("style", savedBodyStyle);
-        document.documentElement.style.background = savedRootBackground;
-        window.scrollTo({ top: scrollY, behavior: "instant" });
-      }
       bottomBar?.toggleAttribute("data-menu-open", open);
-      document.documentElement.style.overflow = open ? "hidden" : previousOverflow;
       if (shareRail) shareRail.style.display = open ? "none" : "";
       if (open) { nav.scrollTop = 0; requestAnimationFrame(fitMenu); }
     }
@@ -126,8 +103,7 @@ export function bindSharedConceptMenu(scope = document) {
     nav.inert = !open;
     syncBottomSpace();
     if (text) text.textContent = open ? "close" : "menu";
-    inertTargets.forEach((target) => { target.inert = open; });
-    if (!open && restoreFocus) requestAnimationFrame(() => toggle.focus());
+    if (!open && restoreFocus) requestAnimationFrame(() => toggle.focus({ preventScroll: true }));
   };
 
   toggle.addEventListener("click", (event) => {
@@ -182,8 +158,7 @@ export function bindSharedConceptMenu(scope = document) {
     controller.abort();
     bottomObserver.disconnect();
     itemsObserver.disconnect();
-    if (compact) { document.documentElement.style.overflow = previousOverflow; if (shareRail) shareRail.style.display = ""; }
-    inertTargets.forEach((target) => { target.inert = false; });
+    if (compact && shareRail) shareRail.style.display = "";
   };
   return disposeActiveMenu;
 }
