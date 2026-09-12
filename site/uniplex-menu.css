@@ -203,6 +203,27 @@
 .menu-social-tools { display: flex; align-items: center; justify-content: center; gap: 12px; }
 .menu-contact-details { display:none; }
 .menu-brand { display:none; }
+/* Desktop UI scope: mobile retains its own menu palette and row sizing. */
+@media (min-width: 901px) {
+  .shared-concept-menu .l-nav.is-compact-menu {
+    --menu-row-height: minmax(0, 1fr);
+    background-color: #f3e7eb;
+    color: #172133;
+    row-gap: clamp(12px, 3svh, 28px);
+  }
+  .shared-concept-menu .is-compact-menu .l-nav-list { height: 100%; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item { border-bottom-color: #cdbbc3; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item-link { color: #172133; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item-link[aria-current="page"] { color: #955570; }
+  .shared-concept-menu .is-compact-menu .l-nav-list__item-link:focus-visible {
+    color: #783c57;
+    outline: 2px solid currentColor;
+    outline-offset: -3px;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .shared-concept-menu .is-compact-menu .l-nav-list__item-link:hover { color: #783c57; }
+  }
+}
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
 .has-split-hero > .menu-brand {
   display:block;
