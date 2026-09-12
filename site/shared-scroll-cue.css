@@ -20,9 +20,9 @@
   z-index: 2;
   display: block;
   width: 1px;
-  height: 100%;
+  height: auto;
   box-sizing: border-box;
-  padding: 0 0 100px;
+  padding: 0 0 var(--shared-scroll-line-tail);
   color: inherit;
   font: 700 clamp(8px, 1.25svh, 10px)/1px var(--mv-font-text);
   letter-spacing: clamp(7px, 1.25svh, 10px);
@@ -37,10 +37,10 @@
 .shared-scroll-cue__line {
   position: absolute;
   left: 1px;
-  top: calc(var(--shared-scroll-height) - var(--shared-scroll-line-tail));
+  bottom: 0;
   display: block;
   width: 1px;
-  height: calc(var(--shared-scroll-line-tail) + var(--shared-scroll-home-bottom));
+  height: var(--shared-scroll-line-tail);
   background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, #f2c7dc 100%);
   box-shadow: 0 0 1px rgba(100,49,78,.22);
   transition: opacity .25s;

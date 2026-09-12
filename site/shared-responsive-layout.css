@@ -24,3 +24,5 @@
   .home-page .hero-copy > span { font-size:calc(17.5px - var(--hero-short-step) * .032); line-height:calc(33.25px - var(--hero-short-step) * .09); }
   .home-page .hero-reserve { height:calc(44px - var(--hero-short-step) * .073); margin-top:calc(16px - var(--hero-short-step) * .055); }
 }
+
+.header-on-hero .header-action, .home-page .hero-reserve { font-family:"MV Shared Noto Serif JP",serif; }
