@@ -72,12 +72,15 @@ export function bindSharedConceptMenu(scope = document) {
   const { signal } = controller;
   const splitHost = menu.closest(".has-split-hero");
   const brand = menu.querySelector(".menu-brand");
-  const introHeading = document.querySelector(".home-concept__head");
+  const pointSurface = document.querySelector(".home-point");
   let logoFrame = 0;
   const syncLogoCoverage = () => {
     logoFrame = 0;
-    if (!splitHost || !brand || !introHeading) return;
-    splitHost.classList.toggle("is-logo-covered", introHeading.getBoundingClientRect().top <= brand.getBoundingClientRect().bottom + 16);
+    if (!splitHost || !brand || !pointSurface) return;
+    const logoRect = brand.getBoundingClientRect();
+    const covered = Math.min(logoRect.height, Math.max(0, logoRect.bottom - pointSurface.getBoundingClientRect().top));
+    brand.style.setProperty("--split-logo-covered", `${covered}px`);
+    splitHost.classList.toggle("is-logo-covered", covered >= logoRect.height);
   };
   const scheduleLogoCoverage = () => {
     if (!logoFrame) logoFrame = requestAnimationFrame(syncLogoCoverage);

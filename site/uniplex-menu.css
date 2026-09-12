@@ -207,6 +207,7 @@
   top:16px;
   left:30px;
   height:150px;
+  clip-path:inset(0 0 var(--split-logo-covered, 0px) 0);
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -218,6 +219,7 @@
   visibility:visible;
   pointer-events:auto;
 }
+.has-split-hero:has(.l-nav.is-open) .menu-brand { clip-path:none; }
 @media (max-width:900px) {
   .has-split-hero .menu-brand {
     top:var(--shared-mobile-logo-y);
