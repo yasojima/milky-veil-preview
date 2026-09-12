@@ -13,7 +13,7 @@ export function bindBottomFit(root) {
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
-    brand.querySelector(".shared-brand-message-copy").style.width = "100%";
+
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
     title.style.removeProperty("font-size");
@@ -23,8 +23,12 @@ export function bindBottomFit(root) {
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const viewport = window.innerHeight;
     const style = getComputedStyle(brand);
-    let top = parseFloat(style.paddingTop);
-    let bottom = parseFloat(style.paddingBottom);
+    const minimumTop = window.innerWidth <= 900 ? 92 : 136;
+    const minimumBottom = window.innerWidth <= 900 ? 40 : 56;
+    let top = Math.max(minimumTop, parseFloat(style.paddingTop));
+    let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
+    brand.style.paddingTop = top + "px";
+    brand.style.paddingBottom = bottom + "px";
     const originalFont = parseFloat(getComputedStyle(title).fontSize);
     const gap = parseFloat(getComputedStyle(rule).paddingBottom);
     const footerStyle = getComputedStyle(footer);
@@ -33,10 +37,10 @@ export function bindBottomFit(root) {
     const tickerFont = parseFloat(getComputedStyle(tickers[0]).fontSize);
     let excess = component.getBoundingClientRect().height - viewport;
     // Spend decorative space before reducing the headline; keep utility text unchanged.
-    const spare = Math.max(0, top - 20) + Math.max(0, bottom - 20) + Math.max(0, gap - 16) + Math.max(0, footerTop - 12) + Math.max(0, footerBottom - 12);
+    const spare = Math.max(0, top - minimumTop) + Math.max(0, bottom - minimumBottom) + Math.max(0, gap - 16) + Math.max(0, footerTop - 12) + Math.max(0, footerBottom - 12);
     const fraction = spare ? Math.min(1, Math.max(0, excess) / spare) : 0;
-    top -= Math.max(0, top - 20) * fraction;
-    bottom -= Math.max(0, bottom - 20) * fraction;
+    top -= Math.max(0, top - minimumTop) * fraction;
+    bottom -= Math.max(0, bottom - minimumBottom) * fraction;
     brand.style.paddingTop = top + "px";
     brand.style.paddingBottom = bottom + "px";
     rule.style.paddingBottom = (gap - Math.max(0, gap - 16) * fraction) + "px";

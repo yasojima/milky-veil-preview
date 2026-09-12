@@ -92,17 +92,20 @@ export function bindSharedFixedShell(scope = document) {
     syncSharedBoundary();
     if (mobile.matches) {
       bar.classList.remove("is-scrolling", "is-docked");
-      if (dock) dock.style.height = "0px";
+      if (dock) dock.style.height = "88px";
       const hidden = footer instanceof HTMLElement && footer.getBoundingClientRect().top < viewportBottom() - 1;
       if (hidden && !bar.classList.contains("is-footer-hidden")) {
         setSocialOpen(false);
         setContactOpen(false);
       }
       bar.classList.toggle("is-footer-hidden", hidden);
-      bar.inert = hidden;
+      const closingDocked = !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
+      bar.classList.toggle("is-closing-docked", closingDocked);
+      bar.inert = hidden && !closingDocked;
+      if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
       return;
     }
-    bar.classList.remove("is-footer-hidden");
+    bar.classList.remove("is-footer-hidden", "is-closing-docked");
     bar.inert = false;
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {

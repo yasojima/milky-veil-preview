@@ -35,19 +35,15 @@
   white-space: nowrap;
 }
 .footer-links a:hover, .footer-links a:focus-visible { color: #a46282; }
-.footer-signature { flex: 0 0 auto; }
-.footer-signature img { display: block; width: 80px; height: auto; }
 .fixed-cta-clearance { block-size: var(--fixed-cta-height); background: var(--milky-home-paper, #fff); }
 @media (max-width: 900px) {
   .site-footer { padding: 20px 12px 36px; }
   .footer-shell { min-height: 104px; gap: 10px; }
   .footer-links { column-gap: 5px; row-gap: 0; }
   .footer-links a { font-size: clamp(10.5px, 3.15vw, 13px); letter-spacing: 0; }
-  .footer-signature img { width: clamp(32px, 10.6vw, 44px); }
 }
 @media (max-width: 380px) {
   .footer-shell { gap: 4px; }
   .footer-links { column-gap: 4px; }
   .footer-links a { font-size: 10.5px; }
-  .footer-signature img { width: 32px; }
 }

@@ -15,13 +15,15 @@ export function sharedFooterMarkup(currentPath = "/") {
         <nav class="footer-links" aria-label="フッターナビゲーション">
           ${sharedFooterRoutes.map(({ path, label }) => `<a href="${path}" data-link${path === activePath ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
         </nav>
-        <div class="footer-signature" aria-label="MILKY VEIL">
-          <img src="${sharedBrandLogo}" width="497" height="640" alt="MILKY VEIL">
-        </div>
+
       </div>
     </footer>`;
 }
 
 export function sharedFooterClearanceMarkup() {
   return `<div class="fixed-cta-clearance" aria-hidden="true"></div>`;
+}
+
+export function sharedClosingLogoMarkup() {
+  return `<a class="closing-brand" href="${sharedRouteRegistry.home.path}" data-link aria-label="MILKY VEIL ホーム"><img src="${sharedBrandLogo}" width="497" height="640" alt="MILKY VEIL"></a>`;
 }

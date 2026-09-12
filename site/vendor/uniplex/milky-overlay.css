@@ -322,7 +322,7 @@ body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85
 .home-movie__marquee {
   --movie-ticker-tile: max(68vw, 255px);
   --movie-ticker-duration: 10s;
-  background: var(--milky-footer);
+  background: #F7F4EE;
   display: block;
   width: 100%;
   min-width: 0;
@@ -334,7 +334,7 @@ body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85
   position: absolute;
   inset: 0 auto 0 0;
   width: calc(100% + var(--movie-ticker-tile));
-  background: url(./wp-content/themes/uniplex/img/home/txt_movie_milky_veil.svg) repeat-x left center / var(--movie-ticker-tile) auto;
+  background: url(./wp-content/themes/uniplex/img/home/txt_movie_milky_veil.svg?v=20260912-170) repeat-x left center / var(--movie-ticker-tile) auto;
   image-rendering: auto;
   animation: milky-movie-ticker var(--movie-ticker-duration) linear infinite;
   animation-play-state: running;
@@ -355,7 +355,7 @@ body[data-page-route-id="concept"] .milky-concept-copy > p + p { margin-top: .85
 }
 
 
-/* Reuse MILKY VEIL's pale-pink surface for the two marquee rules. */
+/* Both movie rules share the same neutral surface. */
 .home-movie__marquee.is-top {
   border-bottom-color: var(--milky-home-paper);
 }
