@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-226";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-226";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-214";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -26,7 +26,6 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/") {
       <nav id="global-nav" class="shared-nav-content l-nav is-compact-menu" aria-label="グローバルナビゲーション" aria-hidden="true" inert itemscope itemtype="http://www.schema.org/SiteNavigationElement">
         <ul class="l-nav-list">${items}</ul><div class="menu-social-tools">${socialIcons()}${translationControl("compact-menu")}</div>
         ${menuContactMarkup()}
-        <button class="closing-page-top" type="button" aria-label="ページ上部へ">↑</button>
       </nav>
     </div>
   </header>`;
@@ -75,14 +74,7 @@ export function bindSharedConceptMenu(scope = document) {
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;
   let disposed = false;
-  let closingInline = false;
   const syncDesktopLayer = () => {
-    if (closingInline && !disposed && bottomHost) {
-      menu.slot = "closing-directory";
-      if (menu.parentNode !== bottomHost) bottomHost.append(menu);
-      return;
-    }
-    menu.removeAttribute("slot");
     // The page wrapper creates a stacking context below the sibling footer host.
     if (!disposed && !mobileQuery.matches) {
       if (menu.parentNode !== document.body) document.body.append(menu);
@@ -137,7 +129,7 @@ export function bindSharedConceptMenu(scope = document) {
   const shareRail = bottomHost?.shadowRoot?.querySelector(".fixed-social-rail");
   const list = nav.querySelector(".l-nav-list");
   const fitMenu = () => {
-    if (!compact || !list || closingInline) return;
+    if (!compact || !list) return;
     const columns = Math.max(1, Math.ceil(list.children.length / 10));
     const rows = Math.max(1, Math.ceil(list.children.length / columns));
     nav.style.setProperty("--menu-row-count", rows);
@@ -148,7 +140,6 @@ export function bindSharedConceptMenu(scope = document) {
   if (list) itemsObserver.observe(list, { childList: true });
 
   const setOpen = (open, { restoreFocus = false } = {}) => {
-    if (closingInline) open = false;
     bottomBar?.toggleAttribute("data-global-menu-open", open);
     syncBottomSpace();
     if (compact) {
@@ -162,31 +153,12 @@ export function bindSharedConceptMenu(scope = document) {
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
-    nav.setAttribute("aria-hidden", String(!open && !closingInline));
-    nav.inert = !open && !closingInline;
+    nav.setAttribute("aria-hidden", String(!open));
+    nav.inert = !open;
     syncBottomSpace();
     if (text) text.textContent = open ? "close" : "menu";
     if (!open && restoreFocus) requestAnimationFrame(() => toggle.focus({ preventScroll: true }));
   };
-
-  const syncClosingDirectory = () => {
-    const inline = !disposed && !!bottomHost && document.documentElement.hasAttribute("data-closing-directory");
-    if (inline === closingInline) return;
-    const hadFocus = menu.contains(document.activeElement);
-    closingInline = inline;
-    menu.toggleAttribute("data-closing-inline", inline);
-    toggle.inert = inline;
-    setOpen(false);
-    const control = nav.querySelector(".translate-control");
-    control?.classList.remove("is-open");
-    control?.querySelector(".translate-toggle")?.setAttribute("aria-expanded", "false");
-    const panel = control?.querySelector(".translate-menu");
-    if (panel) { panel.inert = true; panel.setAttribute("aria-hidden", "true"); }
-    if (hadFocus) (inline ? nav.querySelector("a[href]") : toggle)?.focus({ preventScroll:true });
-    document.dispatchEvent(new Event("mv:closing-layout"));
-  };
-  document.addEventListener("mv:closing-directory", syncClosingDirectory, { signal });
-  nav.querySelector(".closing-page-top")?.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }), { signal });
 
   toggle.addEventListener("click", (event) => {
     event.preventDefault();
@@ -233,13 +205,9 @@ export function bindSharedConceptMenu(scope = document) {
     }, { signal });
   }
   setOpen(false);
-  syncClosingDirectory();
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   disposeActiveMenu = () => {
     disposed = true;
-    closingInline = false;
-    menu.removeAttribute("data-closing-inline");
-    toggle.inert = false;
     bottomBar?.removeAttribute("data-global-menu-open");
     setOpen(false);
     controller.abort();

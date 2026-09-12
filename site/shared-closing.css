@@ -15,17 +15,6 @@
 .footer-shell { min-height:0; justify-content:center; }
 .shared-footer-ticker-rule { padding-bottom:28px; }
 .shared-footer-ticker-rule hr { border-color:rgba(23,33,51,.24); }
-.closing-directory-slot {
-  position:absolute; top:28px; right:32px; z-index:3;
-  width:clamp(280px,25vw,360px); min-height:260px;
-}
-@media(min-width:901px) and (max-height:650px) { .closing-directory-slot { top:20px; min-height:230px; } }
-.fixed-cta-clearance { height:0!important; block-size:0!important; }
-.footer-links { display:flex; justify-content:center; gap:24px; }
-@media(max-width:900px) {
-  .closing-directory-slot { position:relative; top:auto; right:auto; width:auto; min-height:304px; margin:0 24px 20px; }
-  .footer-links { display:flex; gap:24px; }
-}
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
   .closing-brand { top:12px; left:15px; height:55px; }
