@@ -199,7 +199,7 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
 }
 
 @media (min-width:901px) {
-  .fixed-social-rail { transition:clip-path .3s ease, visibility 0s; }
-  .fixed-social-rail.is-ticker-hidden { clip-path:inset(0 0 0 100%); visibility:hidden; pointer-events:none; transition:clip-path .3s ease, visibility 0s .3s; }
+  .fixed-social-rail { transition:clip-path .4s ease, transform .4s cubic-bezier(.645,.045,.355,1), visibility 0s; }
+  .fixed-social-rail.is-ticker-hidden { transform:translateX(100%); visibility:hidden; pointer-events:none; transition:clip-path .4s ease, transform .4s cubic-bezier(.645,.045,.355,1), visibility 0s .4s; }
 }
 @media (prefers-reduced-motion:reduce) { .fixed-social-rail { transition:none!important; } }

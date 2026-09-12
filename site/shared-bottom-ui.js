@@ -20,7 +20,7 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260911-123",
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260911-123",
   "/milky-veil-preview/site/shared-footer.css?v=20260912-170&pages=20260911-123",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260912-172&pages=20260911-123",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260912-173&pages=20260911-123",
   "/milky-veil-preview/site/shared-closing.css?v=20260912-172",
 ]);
 
@@ -59,6 +59,7 @@ export function mountSharedBottomUi(host, currentPath) {
           display: block !important;
           position: relative !important;
           z-index: 3 !important;
+          overflow-x: clip !important;
           width: auto !important;
           margin: 0 !important;
           padding: 0 !important;
