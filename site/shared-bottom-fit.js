@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-243&pages=20260913-243";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-244&pages=20260913-244";
 
 const bindings = new WeakMap();
 
@@ -16,6 +16,7 @@ export function bindBottomFit(root) {
   let frame = 0;
   let fittedWidth = window.innerWidth;
   let fittedHeight = window.innerHeight;
+  let fittedMobileHeight = 0;
   let atBottom = false;
   const fit = () => {
     frame = 0;
@@ -41,22 +42,28 @@ export function bindBottomFit(root) {
     const metrics = usesMobileLayout() ? mobileClosingMetrics(viewport) : desktopClosingMetrics(viewport, readSpacing);
     const { headlineTop, minimumTop, minimumBottom } = metrics;
     if (metrics.lineHeight !== null) title.style.lineHeight = metrics.lineHeight;
-    // Mobile chrome resizes the viewport while scrolling; footer geometry follows width only.
+    // The large viewport stays stable while mobile browser chrome expands or retracts.
     if (usesMobileLayout()) {
       brand.style.paddingTop = headlineTop + "px";
       brand.style.paddingBottom = minimumBottom + "px";
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      const targetHeight = parseFloat(getComputedStyle(component).minHeight);
+      const shortfall = Math.max(0, 600 - targetHeight);
+      brand.style.paddingBottom = Math.max(12, minimumBottom - shortfall * .12) + "px";
+      rule.style.paddingBottom = Math.max(8, 20 - shortfall * .12) + "px";
+      footer.style.paddingBottom = Math.max(10, 16 - shortfall * .06) + "px";
       let lower = 32;
       let upper = availableWidth;
       for (let iteration = 0; iteration < 12; iteration += 1) {
         const candidate = (lower + upper) / 2;
         title.style.fontSize = candidate + "px";
-        if (title.scrollWidth <= availableWidth + .5) lower = candidate;
+        if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight) lower = candidate;
         else upper = candidate;
       }
       title.style.fontSize = lower + "px";
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
+      fittedMobileHeight = targetHeight;
       return;
     }
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
@@ -127,7 +134,7 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    if (usesMobileLayout() && window.innerWidth === fittedWidth) return;
+    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
     schedule();
   };
   const scroll = () => {

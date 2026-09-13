@@ -17,10 +17,19 @@
 .shared-footer-ticker-rule hr { border-color:rgba(23,33,51,.24); }
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
+  [data-shared-bottom-ui-component] { min-height:100lvh; display:flex; flex-direction:column; }
+  .shared-brand-message { flex:1 0 auto; }
+  .footer-shell { min-height:0; }
   .closing-brand { top:12px; left:15px; height:55px; }
   .site-footer { padding:12px 12px 16px; }
   .shared-footer-ticker-rule { padding-bottom:20px; }
   .fixed-cta-clearance { height:0; block-size:0; }
+}
+@media(max-width:900px) and (orientation:portrait) {
+  .shared-brand-message-copy { width:100%; }
+  .shared-brand-message-copy > p { white-space:normal; }
+  .brand-headline-word { display:block; white-space:nowrap; }
+  .shared-brand-message-copy > p > br { display:none; }
 }
 
 
