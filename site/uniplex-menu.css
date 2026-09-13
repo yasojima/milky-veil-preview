@@ -264,7 +264,7 @@
   .shared-concept-menu .menu-contact-details {
     grid-row:3; grid-template-columns:auto minmax(0,1fr) auto;
     grid-template-rows:1fr; zoom:1;
-    gap:10px; width:100%;
+    gap:10px; width:100%; padding-inline-end:clamp(16px,2vw,24px); box-sizing:border-box;
   }
   .shared-concept-menu .menu-contact-phone { grid-area:1 / 1; justify-self:start; padding:0; font-size:clamp(30px,2.5vw,36px); }
   .shared-concept-menu .menu-contact-hours { grid-area:1 / 2; justify-self:start; text-align:left; white-space:nowrap; font-size:clamp(12px,1vw,14px); line-height:1.55; letter-spacing:0; word-spacing:0; }
