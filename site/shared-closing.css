@@ -28,7 +28,7 @@
   .fixed-cta-clearance { height:0; block-size:0; }
 }
 @media(max-width:900px) and (orientation:portrait) {
-  .shared-brand-message-copy { width:100%; }
+
   .shared-brand-message-copy > p { white-space:normal; }
   .brand-headline-word { display:block; white-space:nowrap; }
   .shared-brand-message-copy > p > br { display:none; }
