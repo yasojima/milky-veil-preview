@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-228";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-228";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-229";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-229";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -70,10 +70,15 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
-  const homeHeader = document.querySelector(".header-on-hero");
+  const homeAnchor = document.querySelector(".header-on-hero .home-menu-anchor");
   const syncHomeHeaderOffset = () => {
-    const offset = homeHeader ? parseFloat(getComputedStyle(homeHeader).getPropertyValue("--home-header-lower-offset")) || 0 : 0;
-    menu.style.setProperty("--home-menu-lower-offset", Math.max(0, offset - window.scrollY) + "px");
+    const rect = homeAnchor?.getBoundingClientRect();
+    const active = Boolean(rect && rect.height && rect.top > 0 && !usesMobileLayout());
+    menu.classList.toggle("at-home-nav", active);
+    if (active) {
+      menu.style.setProperty("--home-menu-y", (rect.top + rect.height / 2) + "px");
+      menu.style.setProperty("--home-menu-right", (document.documentElement.clientWidth - rect.right + parseFloat(getComputedStyle(homeAnchor).paddingRight)) + "px");
+    }
   };
   syncHomeHeaderOffset();
   window.addEventListener("scroll", syncHomeHeaderOffset, { passive: true, signal });
