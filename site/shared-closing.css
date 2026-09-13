@@ -37,7 +37,7 @@
 
 /* Desktop UI scope: above 900px. */
 @media(min-width:901px) {
-  .shared-brand-message-copy { position:static; width:max-content; max-width:100%; margin-inline:auto; justify-self:center; text-align:left; }
+  .shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; margin-inline:auto; justify-self:center; text-align:left; }
 
   .shared-brand-message {
     display:grid;

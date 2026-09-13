@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-259&pages=20260913-259";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-260&pages=20260913-260";
 
 const bindings = new WeakMap();
 
@@ -31,6 +31,7 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-top");
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
+    title.parentElement.style.removeProperty("--closing-group-offset");
     const viewport = window.innerHeight;
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
@@ -127,6 +128,8 @@ export function bindBottomFit(root) {
       brand.style.paddingTop = (top + remaining / 2) + "px";
       brand.style.paddingBottom = (bottom + remaining / 2) + "px";
     }
+    const groupBounds = copy.getBoundingClientRect();
+    copy.style.setProperty("--closing-group-offset", (window.innerWidth / 2 - (groupBounds.left + groupBounds.right) / 2) + "px");
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
     if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });

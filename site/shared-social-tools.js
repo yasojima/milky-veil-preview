@@ -1,4 +1,4 @@
-import { sharedSocials } from "./shared-site-data.js?v=20260913-251&pages=20260913-259";
+import { sharedSocials } from "./shared-site-data.js?v=20260913-251&pages=20260913-260";
 
 export function socialIcons() {
   return `<div class="social-icons" aria-label="SNS（デモ・リンク未設定）">
