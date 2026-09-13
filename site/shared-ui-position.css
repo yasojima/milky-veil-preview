@@ -11,11 +11,12 @@
 /* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   :root {
-    --shared-menu-anchor-right: 30px;
+    --shared-menu-anchor-right: 16px;
     --shared-mobile-logo-x:15px;
     --shared-mobile-logo-y:12px;
-    --shared-mobile-logo-height:62px;
-    --shared-menu-anchor-y: 58.5px;
+    --shared-mobile-menu-font-size:14px;
+    --shared-mobile-logo-height:68px;
+    --shared-menu-anchor-y: 40px;
 
 
 
