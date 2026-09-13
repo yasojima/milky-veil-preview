@@ -138,6 +138,12 @@ body#home {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  body:has(.js-home-mv.is-out) .home-concept:has(.concept-fv-background-stage:not(.is-end)) .milky-glass-strip {
+    background: color-mix(in srgb, var(--milky-intro-surface, var(--milky-home-paper)) 88%, transparent);
+  }
+}
+
 .home-concept__head .c-head01__main,
 .home-concept__txt {
   width: min(100%, 1120px);
