@@ -10,7 +10,7 @@
   border:1px solid rgba(116,71,98,.34)!important;
   color:#172133!important;
   filter:none!important;
-  box-shadow:0 7px 24px rgba(117,70,98,.08)!important;
+  box-shadow:none!important;
   transition:none!important;
 }
 .menu-contact-actions :is(a,button):is(:focus-visible,:active),
@@ -19,7 +19,7 @@
   color:#172133!important;
   opacity:1;
   filter:saturate(1.08) brightness(.99)!important;
-  box-shadow:0 9px 28px rgba(117,70,98,.17)!important;
+  box-shadow:none!important;
 }
 @media (hover:hover) and (pointer:fine) {
   .menu-contact-actions :is(a,button):hover,
@@ -28,7 +28,7 @@
     color:#172133!important;
     opacity:1;
   filter:saturate(1.08) brightness(.99)!important;
-  box-shadow:0 9px 28px rgba(117,70,98,.17)!important;
+  box-shadow:none!important;
   }
 }
 @media (min-width:901px) {
