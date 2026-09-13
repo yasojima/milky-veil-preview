@@ -267,7 +267,9 @@
     gap:10px; width:100%;
   }
   .shared-concept-menu .menu-contact-phone { grid-area:1 / 1; justify-self:start; padding:0; font-size:clamp(30px,2.5vw,36px); }
-  .shared-concept-menu .menu-contact-hours { grid-area:1 / 2; justify-self:start; text-align:left; white-space:normal; font-size:clamp(11px,.9vw,14px); line-height:1.5; letter-spacing:0; word-spacing:0; }
+  .shared-concept-menu .menu-contact-hours { grid-area:1 / 2; justify-self:start; text-align:left; white-space:nowrap; font-size:clamp(12px,1vw,14px); line-height:1.55; letter-spacing:0; word-spacing:0; }
+  .shared-concept-menu .menu-contact-hours .menu-hours-separator { display:none; }
+  .shared-concept-menu .menu-contact-closed { display:block; }
   .shared-concept-menu .menu-contact-actions { grid-area:1 / 3; align-self:center; height:var(--contact-desktop-frame-height); width:clamp(250px,19.5vw,270px); gap:8px; }
   .shared-concept-menu .menu-contact-actions :is(a,button) { font-size:clamp(11px,.85vw,12px); }
   .shared-concept-menu .menu-social-tools { grid-row:2; justify-content:flex-start; }
