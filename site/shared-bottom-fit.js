@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-247&pages=20260913-247";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-248&pages=20260913-248";
 
 const bindings = new WeakMap();
 
@@ -44,7 +44,8 @@ export function bindBottomFit(root) {
     if (metrics.lineHeight !== null) title.style.lineHeight = metrics.lineHeight;
     // The large viewport stays stable while mobile browser chrome expands or retracts.
     if (usesMobileLayout()) {
-      brand.style.paddingTop = headlineTop + "px";
+      const logo = root.querySelector(".closing-brand");
+      brand.style.paddingTop = Math.max(headlineTop, logo ? logo.offsetTop + logo.offsetHeight + 12 : 0) + "px";
       brand.style.paddingBottom = minimumBottom + "px";
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       const targetHeight = parseFloat(getComputedStyle(component).minHeight);

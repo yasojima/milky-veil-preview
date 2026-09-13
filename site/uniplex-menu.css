@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260913-247");
-@import url("./shared-logo-motion.css?v=20260912-174&pages=20260913-247");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260913-248");
+@import url("./shared-logo-motion.css?v=20260912-174&pages=20260913-248");
 
 :root {
   --mh--font-family--en: var(--mv-font-text);
@@ -338,7 +338,7 @@
     right:auto;
     gap:12px;
     box-sizing:border-box;
-    padding:102px 24px 16px;
+    padding:calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 12px) 24px 16px;
     overflow:hidden;
     touch-action:pan-y;
     overscroll-behavior:auto;

@@ -1,6 +1,6 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-247";
-import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-247&pages=20260913-247";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-248";
+import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-248&pages=20260913-248";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
