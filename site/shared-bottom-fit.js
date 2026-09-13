@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-264&pages=20260914-264";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-265&pages=20260914-265";
 
 const bindings = new WeakMap();
 
@@ -46,10 +46,11 @@ export function bindBottomFit(root) {
     // The large viewport stays stable while mobile browser chrome expands or retracts.
     if (usesMobileLayout()) {
       const logo = root.querySelector(".closing-brand");
-      brand.style.paddingTop = Math.max(headlineTop, logo ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0) + "px";
+      const targetHeight = parseFloat(getComputedStyle(component).minHeight);
+      brand.style.paddingTop = Math.max(headlineTop, logo ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + (window.innerWidth > viewport ? 0 : 12) : 0) + Math.max(0, targetHeight - viewport) + "px";
       brand.style.paddingBottom = minimumBottom + "px";
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-      const targetHeight = parseFloat(getComputedStyle(component).minHeight);
+
       const shortfall = Math.max(0, 600 - targetHeight);
       brand.style.paddingBottom = Math.max(8, (minimumBottom - shortfall * .12) * 2 / 3) + "px";
       rule.style.paddingBottom = Math.max(8, 20 - shortfall * .4) + "px";
@@ -138,7 +139,7 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
+    if (usesMobileLayout() && window.innerWidth === fittedWidth && window.innerHeight === fittedHeight && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
     schedule();
   };
   const scroll = () => {
