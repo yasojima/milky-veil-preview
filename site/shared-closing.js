@@ -37,16 +37,16 @@ export function bindClosingLogo(root) {
         const style = getComputedStyle(element);
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
-        const endBoundary = visual ? visual.getBoundingClientRect().bottom : window.innerHeight;
-        if (end && end.getBoundingClientRect().top < endBoundary) return false;
         if (element.dataset.logoScene === "bottom" && visual) {
           const image = visual.getBoundingClientRect();
           const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
           const passing = mobileLayout.matches && image.top <= logoTop;
           if (!stopped && !passing) return false;
           sceneTop = Math.max(logoTop, image.top);
-          return image.bottom >= sceneTop + headerLogo.offsetHeight + 8;
+          const contactBoundary = sceneTop + headerLogo.offsetHeight + 8;
+          return image.bottom >= contactBoundary && (!end || end.getBoundingClientRect().top > contactBoundary);
         }
+        if (end && end.getBoundingClientRect().top < window.innerHeight) return false;
         if (style.position !== "sticky") return false;
         return element.dataset.logoScene === "bottom"
           ? Math.abs(rect.bottom - window.innerHeight) <= 2
