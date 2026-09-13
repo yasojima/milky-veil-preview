@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260913-244");
-@import url("./shared-logo-motion.css?v=20260912-174&pages=20260913-244");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260913-245");
+@import url("./shared-logo-motion.css?v=20260912-174&pages=20260913-245");
 
 :root {
   --mh--font-family--en: var(--mv-font-text);
@@ -361,6 +361,7 @@
   .shared-concept-menu .l-nav-btn {
     min-width: 64px;
     min-height: 44px;
+    font-size:13px;
   }
 }
 

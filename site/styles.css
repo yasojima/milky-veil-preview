@@ -1025,7 +1025,7 @@ html body {
 @media (max-width:900px) {
   .header-on-hero { height:80px; padding:var(--shared-mobile-logo-y) var(--shared-mobile-logo-x); backdrop-filter:none; }
   .header-on-hero::before { content:none; }
-  .header-on-hero .brand { width:auto; min-width:0; height:55px; margin:0; filter:none; }
+  .header-on-hero .brand { width:auto; min-width:0; height:var(--shared-mobile-logo-height); margin:0; filter:none; }
   .header-on-hero .brand-mark { width:auto; height:var(--shared-mobile-logo-height); filter:none; }
   .header-on-hero .header-desktop { display:none; top:20px; right:76px; width:auto; max-width:none; }
   .header-on-hero .header-message,
@@ -1177,7 +1177,7 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 @media(prefers-reduced-motion:reduce){.instagram-open img,.instagram-card-hover{transition:none}}
 
 
-.home-page{--home-section-space:130px;display:flex;flex-direction:column;gap:var(--home-section-space);padding-bottom:0;background:#fff}
+.home-page{--home-section-space:130px;display:flex;flex-direction:column;gap:var(--home-section-space);padding-bottom:var(--home-section-space);background:#fff}
 .home-page>section:is(.hero,.instagram-home,.split,.duo,.staff-strip,.access-home,.feature-home){flex-shrink:0;margin-block:0;padding-block:0}
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px){.home-page{--home-section-space:67px}}

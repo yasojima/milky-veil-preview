@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-244&pages=20260913-244";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-245&pages=20260913-245";
 
 const bindings = new WeakMap();
 
@@ -60,7 +60,7 @@ export function bindBottomFit(root) {
         if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight) lower = candidate;
         else upper = candidate;
       }
-      title.style.fontSize = lower + "px";
+      title.style.fontSize = Math.max(32, lower * .9) + "px";
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
       fittedMobileHeight = targetHeight;
