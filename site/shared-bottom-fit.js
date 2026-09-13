@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-258&pages=20260913-258";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-259&pages=20260913-259";
 
 const bindings = new WeakMap();
 
@@ -31,7 +31,6 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-top");
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
-    title.parentElement.style.removeProperty("--closing-ink-shift");
     const viewport = window.innerHeight;
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
@@ -127,22 +126,6 @@ export function bindBottomFit(root) {
     if (remaining > 0) {
       brand.style.paddingTop = (top + remaining / 2) + "px";
       brand.style.paddingBottom = (bottom + remaining / 2) + "px";
-    }
-    const context = document.createElement("canvas").getContext("2d");
-    if (context && "letterSpacing" in context) {
-      const titleStyle = getComputedStyle(title);
-      context.font = titleStyle.font;
-      context.letterSpacing = titleStyle.letterSpacing;
-      const edges = [...title.querySelectorAll(".brand-headline-word")].map(word => {
-        const bounds = word.getBoundingClientRect();
-        const ink = context.measureText(word.textContent);
-        return [bounds.left - ink.actualBoundingBoxLeft, bounds.left + ink.actualBoundingBoxRight];
-      });
-      if (edges.length) {
-        const bounds = brand.getBoundingClientRect();
-        const inkCenter = (Math.min(...edges.map(edge => edge[0])) + Math.max(...edges.map(edge => edge[1]))) / 2;
-        copy.style.setProperty("--closing-ink-shift", ((bounds.left + bounds.right) / 2 - inkCenter) + "px");
-      }
     }
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
