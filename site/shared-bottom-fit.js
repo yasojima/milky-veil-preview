@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-243&pages=20260913-243";
 
 const bindings = new WeakMap();
 
@@ -14,7 +14,6 @@ export function bindBottomFit(root) {
   const footer = root.querySelector(".site-footer");
   const tickers = [...root.querySelectorAll(".shared-footer-ticker .h")];
   let frame = 0;
-  let resizeTimer = 0;
   let fittedWidth = window.innerWidth;
   let fittedHeight = window.innerHeight;
   let atBottom = false;
@@ -42,6 +41,24 @@ export function bindBottomFit(root) {
     const metrics = usesMobileLayout() ? mobileClosingMetrics(viewport) : desktopClosingMetrics(viewport, readSpacing);
     const { headlineTop, minimumTop, minimumBottom } = metrics;
     if (metrics.lineHeight !== null) title.style.lineHeight = metrics.lineHeight;
+    // Mobile chrome resizes the viewport while scrolling; footer geometry follows width only.
+    if (usesMobileLayout()) {
+      brand.style.paddingTop = headlineTop + "px";
+      brand.style.paddingBottom = minimumBottom + "px";
+      const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      let lower = 32;
+      let upper = availableWidth;
+      for (let iteration = 0; iteration < 12; iteration += 1) {
+        const candidate = (lower + upper) / 2;
+        title.style.fontSize = candidate + "px";
+        if (title.scrollWidth <= availableWidth + .5) lower = candidate;
+        else upper = candidate;
+      }
+      title.style.fontSize = lower + "px";
+      fittedWidth = window.innerWidth;
+      fittedHeight = window.innerHeight;
+      return;
+    }
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
     let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
     brand.style.paddingTop = top + "px";
@@ -110,15 +127,11 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    window.clearTimeout(resizeTimer);
-    // Mobile browser chrome changes height during a swipe; fit once it settles.
-    if (usesMobileLayout() && window.innerWidth === fittedWidth) {
-      resizeTimer = window.setTimeout(() => { resizeTimer = 0; schedule(); }, 180);
-    } else schedule();
+    if (usesMobileLayout() && window.innerWidth === fittedWidth) return;
+    schedule();
   };
   const scroll = () => {
     if (window.innerHeight === fittedHeight) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
-    if (resizeTimer) resize();
   };
   window.addEventListener("resize", resize, { passive: true });
   window.addEventListener("scroll", scroll, { passive: true });
@@ -126,7 +139,6 @@ export function bindBottomFit(root) {
   bindings.set(root, () => {
     window.removeEventListener("resize", resize);
     window.removeEventListener("scroll", scroll);
-    window.clearTimeout(resizeTimer);
     cancelAnimationFrame(frame);
   });
   fit();

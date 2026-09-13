@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260913-238&pages=20260913-238";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-230";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260913-238&pages=20260913-243";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-243";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -121,8 +121,37 @@ export function bindSharedConceptMenu(scope = document) {
       window.scrollTo(position);
     };
   };
+  let swipe = null;
+  let suppressSwipeClick = false;
+  const resetSwipe = () => {
+    swipe = null;
+    nav.style.removeProperty("transform");
+    nav.style.removeProperty("transition");
+  };
+  nav.addEventListener("touchstart", event => {
+    resetSwipe();
+    suppressSwipeClick = false;
+    if (!releaseMobileLock || event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    swipe = { x: touch.clientX, y: touch.clientY, distance: 0, started: event.timeStamp, dragging: false };
+  }, { passive: true, signal });
   const preventMobileDrag = event => {
     if (!releaseMobileLock) return;
+    if (swipe && event.type === "touchmove") {
+      if (event.touches.length !== 1) resetSwipe();
+      else {
+        const touch = event.touches[0];
+        const dx = touch.clientX - swipe.x;
+        const dy = touch.clientY - swipe.y;
+        if (!swipe.dragging && Math.abs(dy) > 12 && Math.abs(dy) >= Math.abs(dx)) resetSwipe();
+        else if (swipe && (swipe.dragging || (dx > 12 && dx > Math.abs(dy) * 1.25))) {
+          swipe.dragging = true;
+          swipe.distance = Math.max(0, dx);
+          nav.style.transition = "none";
+          nav.style.transform = `translateX(${swipe.distance}px)`;
+        }
+      }
+    }
     if (event.cancelable) event.preventDefault();
     event.stopImmediatePropagation();
   };
@@ -152,6 +181,8 @@ export function bindSharedConceptMenu(scope = document) {
   if (list) itemsObserver.observe(list, { childList: true });
 
   const setOpen = (open, { restoreFocus = false } = {}) => {
+    resetSwipe();
+    if (open) suppressSwipeClick = false;
     bottomBar?.toggleAttribute("data-global-menu-open", open);
     syncBottomSpace();
     if (compact) {
@@ -172,6 +203,27 @@ export function bindSharedConceptMenu(scope = document) {
     if (text) text.textContent = open ? "close" : "menu";
     if (!open && restoreFocus) requestAnimationFrame(() => toggle.focus({ preventScroll: true }));
   };
+
+  const finishSwipe = event => {
+    if (!swipe) return;
+    const { distance, dragging, started } = swipe;
+    const elapsed = Math.max(1, event.timeStamp - started);
+    const close = event.type !== "touchcancel" && dragging &&
+      (distance >= Math.max(64, nav.clientWidth * .2) || (distance >= 40 && distance / elapsed > .5));
+    suppressSwipeClick = dragging;
+    if (dragging && event.cancelable) event.preventDefault();
+    if (close) setOpen(false, { restoreFocus: true });
+    else resetSwipe();
+  };
+  window.addEventListener("touchend", finishSwipe, { capture: true, passive: false, signal });
+  window.addEventListener("touchcancel", finishSwipe, { capture: true, passive: false, signal });
+  nav.addEventListener("click", event => {
+    if (!suppressSwipeClick) return;
+    suppressSwipeClick = false;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }, { capture: true, signal });
+  mobileQuery.addEventListener("change", resetSwipe, { signal });
 
   toggle.addEventListener("click", (event) => {
     event.preventDefault();

@@ -1,8 +1,8 @@
-export function mobileClosingMetrics(height) {
+export function mobileClosingMetrics() {
   return {
     headlineTop: 92,
     minimumTop: 92,
-    minimumBottom: height < 650 ? 20 : 40,
-    lineHeight: null,
+    minimumBottom: 36,
+    lineHeight: 1.05,
   };
 }

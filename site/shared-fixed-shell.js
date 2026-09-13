@@ -1,6 +1,6 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
-import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
-import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-238&pages=20260913-238";
+import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-243";
+import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-243";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -51,6 +51,7 @@ export function bindSharedFixedShell(scope = document) {
   }
 
   const footer = queryRoot.querySelector(".site-footer");
+  const closing = queryRoot.querySelector(".shared-brand-message");
   const dock = queryRoot.querySelector(".fixed-cta-clearance");
   const ticker = queryRoot.querySelector(".shared-footer-ticker");
   if (dock instanceof HTMLElement) {
@@ -71,8 +72,6 @@ export function bindSharedFixedShell(scope = document) {
   let frameId = 0;
   let scrollIdleTimer = 0;
   let scrolling = false;
-  let mobileDockTimer = 0;
-  let mobileRetiring = false;
 
   const viewportBottom = () => {
     const viewport = window.visualViewport;
@@ -113,33 +112,19 @@ export function bindSharedFixedShell(scope = document) {
 
   function updateMobileBar() {
     bar.classList.remove("is-scrolling", "is-docked");
-    if (dock) dock.style.height = "88px";
-    const hidden = footer instanceof HTMLElement && footer.getBoundingClientRect().top < viewportBottom() - 1;
+    if (dock) dock.style.height = "0px";
+    const hidden = closing instanceof HTMLElement && closing.getBoundingClientRect().top <= viewportBottom();
     if (hidden && !bar.classList.contains("is-footer-hidden")) {
       setSocialOpen(false);
       setContactOpen(false);
-      mobileRetiring = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      window.clearTimeout(mobileDockTimer);
-      if (mobileRetiring) mobileDockTimer = window.setTimeout(() => {
-        mobileRetiring = false;
-        schedule();
-      }, 400);
-    }
-    if (!hidden) {
-      window.clearTimeout(mobileDockTimer);
-      mobileRetiring = false;
     }
     bar.classList.toggle("is-footer-hidden", hidden);
-    const closingDocked = hidden && !mobileRetiring && !!dock && dock.getBoundingClientRect().bottom <= viewportBottom();
-    bar.classList.toggle("is-closing-docked", closingDocked);
-    bar.inert = bar.hasAttribute("data-global-menu-open") || (hidden && !closingDocked);
-    if (contactPanel) contactPanel.inert = !closingDocked && !bar.classList.contains("is-contact-open");
+    bar.inert = bar.hasAttribute("data-global-menu-open") || hidden;
+    if (contactPanel) contactPanel.inert = hidden || !bar.classList.contains("is-contact-open");
   }
 
   function updateDesktopBar() {
-    bar.classList.remove("is-footer-hidden", "is-closing-docked");
-    window.clearTimeout(mobileDockTimer);
-    mobileRetiring = false;
+    bar.classList.remove("is-footer-hidden");
     bar.inert = bar.hasAttribute("data-global-menu-open");
     if (!(footer instanceof HTMLElement)) return;
     if (dock instanceof HTMLElement) {
@@ -164,7 +149,6 @@ export function bindSharedFixedShell(scope = document) {
   function handleScroll() {
     scrolling = true;
     window.clearTimeout(scrollIdleTimer);
-    window.clearTimeout(mobileDockTimer);
     schedule();
     scrollIdleTimer = window.setTimeout(() => {
       scrolling = false;

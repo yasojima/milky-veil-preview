@@ -20,23 +20,7 @@
   .closing-brand { top:12px; left:15px; height:55px; }
   .site-footer { padding:12px 12px 16px; }
   .shared-footer-ticker-rule { padding-bottom:20px; }
-  .fixed-cta-clearance { height:88px; block-size:88px; }
-  .fixed-cta.is-closing-docked {
-    position:absolute; inset:0; height:88px;
-    transform:none; transition:none; background:#fff;
-    pointer-events:auto; border-top:1px solid rgba(23,33,51,.24);
-  }
-  .is-closing-docked .fixed-contact-toggle,
-  .is-closing-docked .fixed-social-rail { display:none; }
-  .is-closing-docked .fixed-contact-panel {
-    position:static; width:100%; max-width:none; height:88px;
-    grid-template-rows:44px 44px; clip-path:none; transition:none;
-    background:#fff; pointer-events:auto;
-  }
-  .is-closing-docked .fixed-contact-panel .cta-tel { height:44px; }
-  .is-closing-docked .fixed-contact-panel .fixed-cta-action {
-    font-size:12px!important;
-  }
+  .fixed-cta-clearance { height:0; block-size:0; }
 }
 
 
@@ -58,9 +42,4 @@
   .footer-links a { min-height:44px; font-size:14px; }
   .footer-links a:last-child { grid-column:span 2; }
   .shared-footer-ticker .heading.block_header_4 .h { font-size:clamp(32px,9vw,42px)!important; }
-}
-/* Mobile UI scope: 900px and below. */
-@media(max-width:900px) and (max-height:649px) {
-  .shared-brand-message-copy > span { margin-top:16px; font-size:14px; line-height:1.6; letter-spacing:.1em; }
-  .shared-brand-message-copy > small { margin-bottom:10px; }
 }

@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241");
-@import url("./shared-logo-motion.css?v=20260912-174");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260913-243");
+@import url("./shared-logo-motion.css?v=20260912-174&pages=20260913-243");
 
 :root {
   --mh--font-family--en: var(--mv-font-text);
@@ -331,7 +331,7 @@
 @media (max-width: 900px) {
   .shared-concept-menu .l-nav.is-compact-menu {
     --menu-row-height:calc((var(--shared-menu-screen-height, 100svh) - 318px) / 6);
-    grid-template-rows:minmax(0, 1fr) 36px 100px;
+    grid-template-rows:minmax(0, 1fr) 36px 132px;
     width:100vw;
     max-width:none;
     left:0;
@@ -344,6 +344,11 @@
     overscroll-behavior:auto;
   }
   .is-compact-menu .l-nav-list { height:100%; grid-template-rows:repeat(6,minmax(0,1fr))!important; font-size:clamp(18px,3.1svh,23px); }
+  .shared-concept-menu .menu-contact-details { grid-template-rows:34px 42px 44px; gap:6px; }
+  .shared-concept-menu .menu-contact-phone { font-size:28px; }
+  .shared-concept-menu .menu-contact-hours { font-size:clamp(12px,3.2vw,14px); line-height:1.5; }
+  .shared-concept-menu .menu-hours-separator { display:none; }
+  .shared-concept-menu .menu-contact-closed { display:block; }
   .menu-brand { display:block; position:fixed; z-index:141; top:var(--shared-mobile-logo-y); left:var(--shared-mobile-logo-x); height:var(--shared-mobile-logo-height); visibility:hidden; pointer-events:none; }
   .shared-concept-menu:has(.l-nav.is-open) .menu-brand { visibility:visible; pointer-events:auto; }
   #app:has(.shared-nav-content.is-open) .header-on-hero .brand { visibility:hidden; }
