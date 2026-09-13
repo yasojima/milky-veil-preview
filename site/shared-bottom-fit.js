@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-250&pages=20260913-250";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260913-251&pages=20260913-251";
 
 const bindings = new WeakMap();
 
@@ -50,9 +50,9 @@ export function bindBottomFit(root) {
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       const targetHeight = parseFloat(getComputedStyle(component).minHeight);
       const shortfall = Math.max(0, 600 - targetHeight);
-      brand.style.paddingBottom = Math.max(12, minimumBottom - shortfall * .12) + "px";
-      rule.style.paddingBottom = Math.max(8, 20 - shortfall * .12) + "px";
-      footer.style.paddingBottom = Math.max(10, 16 - shortfall * .06) + "px";
+      brand.style.paddingBottom = Math.max(8, (minimumBottom - shortfall * .12) * 2 / 3) + "px";
+      rule.style.paddingBottom = Math.max(8, 20 - shortfall * .4) + "px";
+      footer.style.paddingBottom = Math.max(10, 16 - shortfall * .2) + "px";
       let lower = 32;
       let upper = availableWidth;
       for (let iteration = 0; iteration < 12; iteration += 1) {
