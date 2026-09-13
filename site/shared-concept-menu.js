@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-214";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-228";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-228";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -70,6 +70,14 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
+  const homeHeader = document.querySelector(".header-on-hero");
+  const syncHomeHeaderOffset = () => {
+    const offset = homeHeader ? parseFloat(getComputedStyle(homeHeader).getPropertyValue("--home-header-lower-offset")) || 0 : 0;
+    menu.style.setProperty("--home-menu-lower-offset", Math.max(0, offset - window.scrollY) + "px");
+  };
+  syncHomeHeaderOffset();
+  window.addEventListener("scroll", syncHomeHeaderOffset, { passive: true, signal });
+  window.addEventListener("resize", syncHomeHeaderOffset, { passive: true, signal });
   const mobileQuery = mobileLayout();
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;

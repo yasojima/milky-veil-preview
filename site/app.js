@@ -2,14 +2,14 @@ import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260913-214";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260913-214";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-214&pages=20260913-214";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260913-225&pages=20260913-214";
-import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260913-214";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-214&pages=20260913-214";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-214";
-import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260913-214";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260907-01&pages=20260913-228";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260913-228";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-214&pages=20260913-228";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260913-225&pages=20260913-228";
+import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260913-228";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-228&pages=20260913-228";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260906-02&pages=20260913-228";
+import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04&pages=20260913-228";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -283,7 +283,8 @@ function header(isHome = false, currentPath = "/") {
       <a class="brand" href="/milky-veil-preview/" data-link aria-label="MILKY VEIL ホーム">
         <img class="brand-mark" src="${sharedBrandLogo}" width="497" height="640" alt="" aria-hidden="true">
       </a>
-      ${isHome ? "" : `<div class="header-desktop">
+      <div class="header-desktop">
+          ${isHome ? `<p class="header-message">${salon.headerMessage}</p>` : ""}
           <div class="header-utility">
             <div class="header-phone"><strong>${salon.phone}</strong></div>
             <div class="header-actions">
@@ -295,10 +296,10 @@ function header(isHome = false, currentPath = "/") {
               ${translationControl("header")}
             </div>
           </div>
-          <nav class="header-primary-nav" aria-label="グローバルナビゲーション">
+          ${isHome ? "" : `<nav class="header-primary-nav" aria-label="グローバルナビゲーション">
             ${navigation.primary.map((r)=>link(r, "", currentPath)).join("")}
-          </nav>
-      </div>`}
+          </nav>`}
+      </div>
       ${isHome ? "" : `<button class="menu-toggle" aria-expanded="false" aria-controls="global-nav">
         <span></span><span></span><span></span><b>MENU</b>
       </button>`}
