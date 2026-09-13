@@ -49,8 +49,8 @@
 
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
-  .footer-links { grid-template-columns:repeat(6,minmax(0,1fr)); width:min(100%,360px); gap:0 8px; justify-content:center; }
-  .footer-links a { grid-column:span 2; justify-content:center; min-height:44px; font-size:16px; }
+  .footer-links { grid-template-columns:repeat(6,minmax(0,1fr)); width:min(100%,284px); gap:0 4px; justify-content:center; }
+  .footer-links a { grid-column:span 2; justify-content:center; min-height:36px; font-size:16px; }
   .footer-links a:nth-last-child(-n+2) { grid-column:span 3; }
   .shared-footer-ticker .heading.block_header_4 .h { font-size:clamp(32px,9vw,42px)!important; }
 }
