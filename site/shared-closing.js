@@ -29,6 +29,9 @@ export function bindClosingLogo(root) {
       if (heroOpen) headerClosing = false;
       else if (heroWasOpen) headerClosing = true;
       heroWasOpen = heroOpen;
+      const logoTop = parseFloat(getComputedStyle(headerLogo).getPropertyValue("--page-logo-top")) || 16;
+      const logoBottom = logoTop + headerLogo.offsetHeight;
+      let sceneTop = logoTop;
       const scene = [...document.querySelectorAll("[data-logo-scene]")].find(element => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
@@ -36,13 +39,23 @@ export function bindClosingLogo(root) {
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
         const endBoundary = visual ? visual.getBoundingClientRect().bottom : window.innerHeight;
         if (end && end.getBoundingClientRect().top < endBoundary) return false;
+        if (element.dataset.logoScene === "bottom" && visual) {
+          const image = visual.getBoundingClientRect();
+          const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
+          const passing = mobileLayout.matches && image.top <= logoTop;
+          if (!stopped && !passing) return false;
+          sceneTop = Math.max(logoTop, image.top);
+          return image.bottom >= sceneTop + headerLogo.offsetHeight + 8;
+        }
         if (style.position !== "sticky") return false;
         return element.dataset.logoScene === "bottom"
           ? Math.abs(rect.bottom - window.innerHeight) <= 2
           : Math.abs(rect.top - (parseFloat(style.top) || 0)) <= 2 && rect.bottom > 180;
       });
       const intro = document.querySelector("[data-logo-intro-end]");
-      const initialScene = intro && intro.getBoundingClientRect().top >= window.innerHeight;
+      const introHeading = intro?.querySelector(".home-concept__head");
+      const initialScene = introHeading && introHeading.getBoundingClientRect().top > logoBottom + 12;
+      headerLogo.style.setProperty("--logo-scene-top", `${sceneTop}px`);
       const headerState = mobileMenuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
       header.dataset.logoState = headerState;
       headerLogo.inert = !["active", "scene", "menu"].includes(headerState);
@@ -77,6 +90,7 @@ export function bindClosingLogo(root) {
     delete component.dataset.closingState;
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;
+    header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-top");
   });
 }
 

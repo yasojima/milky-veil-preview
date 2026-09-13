@@ -10,7 +10,7 @@
   .home-page .split, .home-page .split-media { min-height:calc(594px + var(--pc-height-step) * .44); }
   .home-page .split-copy { padding-block:calc(64px + var(--pc-height-step) * .106667); }
   .home-page .access-home { height:calc(675px + var(--pc-height-step) * .5); }
-  body:is([data-page-route-id="concept"],[data-page-route-id="menu"]) .milky-concept-copy { font-size:clamp(18px,1.5vw,24px); }
+  body[data-page-route-id] .milky-concept-copy { font-size:clamp(18px,1.5vw,24px); }
 }
 
 /* Mobile UI scope: 900px and below. */

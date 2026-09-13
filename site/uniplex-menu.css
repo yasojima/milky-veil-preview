@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-267");
-@import url("./shared-logo-motion.css?v=20260912-174&pages=20260914-267");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-268");
+@import url("./shared-logo-motion.css?v=20260912-174&pages=20260914-268");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -297,10 +297,11 @@
 }
 /* The stationary logo sits below the split photos, outside the menu stacking context. */
 .has-split-hero > .menu-brand {
+  --page-logo-top:16px;
   display:block;
   position:fixed;
   z-index:2;
-  top:16px;
+  top:var(--page-logo-top);
   left:30px;
   height:150px;
   opacity:1;
@@ -324,7 +325,8 @@
     transition:none;
   }
   .has-split-hero .menu-brand {
-    top:var(--shared-mobile-logo-y);
+    --page-logo-top:var(--shared-mobile-logo-y);
+    top:var(--page-logo-top);
     left:var(--shared-mobile-logo-x);
     height:var(--shared-mobile-logo-height);
   }
@@ -391,8 +393,8 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
 .has-split-hero[data-logo-state="reading"] > .menu-brand {
   transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1), filter .7s ease;
 }
-.has-split-hero[data-logo-state="scene"] > .menu-brand { opacity:1; transform:none; filter:blur(0); pointer-events:auto; }
-.has-split-hero[data-logo-state="reading"] > .menu-brand { opacity:0; transform:translateY(8px); filter:blur(3px); pointer-events:none; }
+.has-split-hero[data-logo-state="scene"] > .menu-brand { top:var(--logo-scene-top,var(--page-logo-top)); opacity:1; transform:none; filter:blur(0); pointer-events:auto; }
+.has-split-hero[data-logo-state="reading"] > .menu-brand { visibility:hidden; opacity:0; transform:translateY(8px); filter:blur(3px); pointer-events:none; }
 @media(prefers-reduced-motion:reduce) {
   .has-split-hero[data-logo-state] > .menu-brand { transition:none; transform:none; filter:none; }
 }
