@@ -1,4 +1,4 @@
-import { sharedBrandLogo, sharedFooterRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260913-252";
+import { sharedBrandLogo, sharedFooterRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260913-253";
 
 export const sharedFooterRoutes = Object.freeze(sharedFooterRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -13,7 +13,7 @@ export function sharedFooterMarkup(currentPath = "/") {
     <footer class="site-footer">
       <div class="footer-shell">
         <nav class="footer-links" aria-label="フッターナビゲーション">
-          ${sharedFooterRoutes.map(({ path, label }) => `<a href="${path}" data-link${path === activePath ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
+          ${Array.from({ length: Math.ceil(sharedFooterRoutes.length / 3) }, (_, row) => `<div class="footer-link-row">${sharedFooterRoutes.slice(row * 3, row * 3 + 3).map(({ path, label }) => `<a href="${path}" data-link${path === activePath ? ' aria-current="page"' : ""}>${label}</a>`).join("")}</div>`).join("")}
         </nav>
 
       </div>
