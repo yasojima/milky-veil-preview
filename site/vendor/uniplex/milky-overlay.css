@@ -139,7 +139,7 @@ body#home {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  body:has(.js-home-mv.is-out) .home-concept:has(.concept-fv-background-stage:not(.is-end)) .milky-glass-strip {
+  body:has(.js-home-mv.is-out) .home-concept:has(.concept-fv-background-stage:not(.is-end)) :is(.milky-glass-strip, .home-concept-box__head, .milky-detail-copy > p) {
     background: color-mix(in srgb, var(--milky-intro-surface, var(--milky-home-paper)) 88%, transparent);
   }
 }

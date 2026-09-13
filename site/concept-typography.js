@@ -29,16 +29,14 @@ export function mountConceptTypography(stage, name, { gsap }) {
       z: -200
     };
     gsap.set(chars, initial);
-    const animation = gsap.fromTo(chars, initial, {
-      paused: true,
+    const animation = gsap.timeline({ paused: true }).fromTo(chars, initial, {
+      duration: 3 - (chars.length - 1) * 0.05,
       ease: "power1",
       opacity: 1,
       stagger: 0.05,
       rotationX: 0,
       z: 0,
-      onComplete: () => stage.classList.add("is-end"),
-    });
-    animation.timeScale(animation.totalDuration() / 3);
+    }).call(() => stage.classList.add("is-end"), [], 4);
     const syncHero = () => {
       stage.classList.remove("is-end");
       if (hero.classList.contains("is-out")) animation.restart();
