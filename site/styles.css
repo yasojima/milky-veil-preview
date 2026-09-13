@@ -1046,7 +1046,7 @@ html body {
 /* Mobile UI scope: 900px and below. */
 @media (max-width:900px) {
   .home-page { --home-mobile-gutter:20px; --home-mobile-space:100px; font-size:14px; }
-  .home-page .hero { height:auto; min-height:0; aspect-ratio:5/4; }
+  .home-page .hero { height:auto; min-height:330px; aspect-ratio:5/4; }
   .home-page .hero img { object-position:center; }
   .home-page .hero-copy { left:4%; right:auto; bottom:4%; width:64%; max-width:none; }
   .home-page .hero-copy>p { font-size:7px; margin:0; transform:none; }
