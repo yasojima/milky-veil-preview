@@ -40,9 +40,11 @@ export function bindClosingLogo(root) {
         if (element.dataset.logoScene === "bottom" && visual) {
           const image = visual.getBoundingClientRect();
           const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
-          const passing = mobileLayout.matches && image.top <= logoTop;
+          const lift = headerLogo.offsetHeight * .8;
+          const passing = mobileLayout.matches && image.top - lift <= logoTop;
           if (!stopped && !passing) return false;
-          sceneTop = Math.max(logoTop, image.top);
+          const copyBottom = element.querySelector(".milky-concept-copy")?.getBoundingClientRect().bottom ?? 0;
+          sceneTop = Math.max(logoTop, image.top - lift, copyBottom + 12);
           const contactBoundary = sceneTop + headerLogo.offsetHeight + 8;
           return image.bottom >= contactBoundary && (!end || end.getBoundingClientRect().top > contactBoundary);
         }
