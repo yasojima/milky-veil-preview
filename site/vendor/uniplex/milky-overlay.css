@@ -207,9 +207,6 @@ body#home {
 /* Desktop UI scope: above 900px. */
 @media (min-width: 901px) {
   .milky-detail-card .home-concept-box__label { left: 150px; }
-  .home-concept__inner {
-    padding-bottom: max(calc(var(--shared-fixed-bar-height, 0px) + 8px), calc(100svh - var(--intro-card-height, 490px) - 28px));
-  }
 }
 
 @media (max-width: 767px) {

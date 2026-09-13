@@ -1,10 +1,10 @@
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260914-266";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260914-266";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260914-266&pages=20260914-266";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260914-266&pages=20260914-266";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260914-266";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260914-266&pages=20260914-266";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260914-266";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260914-267";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260908-02&pages=20260914-267";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260914-267&pages=20260914-267";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260914-267&pages=20260914-267";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260914-267";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260914-267&pages=20260914-267";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260914-267";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
@@ -33,13 +33,6 @@ const scrollCue = mountSharedScrollCue(document.querySelector(".l-main-img__inne
   target: "#point-video",
   ariaLabel: `${sharedRouteRegistry[pageRouteId]?.label || "ページ"}動画セクションへ移動`,
 });
-const introCard = document.querySelector(".milky-detail-card.home-concept-box");
-const introInner = introCard?.closest(".home-concept__inner");
-const introSizeObserver = introInner && new ResizeObserver(() => {
-  introInner.style.setProperty("--intro-card-height", `${introCard.offsetHeight}px`);
-});
-if (introSizeObserver) introSizeObserver.observe(introCard);
-
 const fvTrigger = document.querySelector(".js-home-mv-trigger");
 const kaleidoscopeStage = document.querySelector(".concept-fv-background-stage");
 
