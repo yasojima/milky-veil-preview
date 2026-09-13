@@ -81,6 +81,8 @@ export function bindSharedConceptMenu(scope = document) {
     }
   };
   syncHomeHeaderOffset();
+  const homeAnchorObserver = new ResizeObserver(syncHomeHeaderOffset);
+  if (homeAnchor) homeAnchorObserver.observe(homeAnchor);
   window.addEventListener("scroll", syncHomeHeaderOffset, { passive: true, signal });
   window.addEventListener("resize", syncHomeHeaderOffset, { passive: true, signal });
   const mobileQuery = mobileLayout();
@@ -225,6 +227,7 @@ export function bindSharedConceptMenu(scope = document) {
     setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
+    homeAnchorObserver.disconnect();
     itemsObserver.disconnect();
     if (compact && shareRail) shareRail.style.display = "";
   };
