@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-229";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-229";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260910-120&pages=20260913-230";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260906-02&pages=20260913-230";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -70,21 +70,18 @@ export function bindSharedConceptMenu(scope = document) {
   syncBottomSpace();
   const controller = new AbortController();
   const { signal } = controller;
-  const homeAnchor = document.querySelector(".header-on-hero .home-menu-anchor");
-  const syncHomeHeaderOffset = () => {
-    const rect = homeAnchor?.getBoundingClientRect();
-    const active = Boolean(rect && rect.height && rect.top > 0 && !usesMobileLayout());
-    menu.classList.toggle("at-home-nav", active);
-    if (active) {
-      menu.style.setProperty("--home-menu-y", (rect.top + rect.height / 2) + "px");
-      menu.style.setProperty("--home-menu-right", (document.documentElement.clientWidth - rect.right + parseFloat(getComputedStyle(homeAnchor).paddingRight)) + "px");
-    }
+  const homeHeader = document.querySelector(".header-on-hero");
+  const syncHomeHeaderVisibility = () => {
+    const headerBottom = homeHeader ? Math.max(homeHeader.getBoundingClientRect().bottom, homeHeader.querySelector(".brand")?.getBoundingClientRect().bottom || 0) : 0;
+    const visible = Boolean(homeHeader && headerBottom > 0 && !usesMobileLayout());
+    menu.classList.toggle("home-header-visible", visible);
+    toggle.inert = visible && !nav.classList.contains("is-open");
   };
-  syncHomeHeaderOffset();
-  const homeAnchorObserver = new ResizeObserver(syncHomeHeaderOffset);
-  if (homeAnchor) homeAnchorObserver.observe(homeAnchor);
-  window.addEventListener("scroll", syncHomeHeaderOffset, { passive: true, signal });
-  window.addEventListener("resize", syncHomeHeaderOffset, { passive: true, signal });
+  syncHomeHeaderVisibility();
+  const homeHeaderObserver = new ResizeObserver(syncHomeHeaderVisibility);
+  if (homeHeader) homeHeaderObserver.observe(homeHeader);
+  window.addEventListener("scroll", syncHomeHeaderVisibility, { passive: true, signal });
+  window.addEventListener("resize", syncHomeHeaderVisibility, { passive: true, signal });
   const mobileQuery = mobileLayout();
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;
@@ -163,6 +160,7 @@ export function bindSharedConceptMenu(scope = document) {
       if (open) { nav.scrollTop = 0; requestAnimationFrame(fitMenu); }
     }
     nav.classList.toggle("is-open", open);
+    syncHomeHeaderVisibility();
     syncMobileLock();
     syncDesktopLayer();
     toggle.classList.toggle("is-open", open);
@@ -227,7 +225,7 @@ export function bindSharedConceptMenu(scope = document) {
     setOpen(false);
     controller.abort();
     bottomObserver.disconnect();
-    homeAnchorObserver.disconnect();
+    homeHeaderObserver.disconnect();
     itemsObserver.disconnect();
     if (compact && shareRail) shareRail.style.display = "";
   };
