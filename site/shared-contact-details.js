@@ -1,4 +1,4 @@
-import { sharedSalonData, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-274";
+import { sharedSalonData, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-275";
 
 export const contactLabel = "お問い合わせはこちら";
 export const reservationLabel = "ご予約はこちら";
