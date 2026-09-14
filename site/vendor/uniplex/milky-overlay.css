@@ -467,6 +467,10 @@ body[data-page-route-id="menu"] .service-menu-artwork {
   filter: drop-shadow(0 20px 45px rgba(82, 46, 66, .08));
 }
 
+body[data-page-route-id="menu"] #point02 {
+  background: var(--milky-home-paper);
+}
+
 body[data-page-route-id="menu"] .service-menu-artwork img {
   display: block;
   width: 100%;
