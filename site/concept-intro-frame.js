@@ -1,4 +1,58 @@
 // Content fits the canonical frame; sticky rules and layer travel remain untouched.
+export function fitConceptPointFrame() {
+  const template = document.getElementById("concept-point02-frame");
+  const section = document.getElementById("point02");
+  if (!template || !section) return;
+  const selectors = [
+    ".home-point-section__inner",
+    ".c-head01",
+    ".c-head01__sub",
+    ".c-head01 > .home-point-section__lead",
+    ".c-head01__main",
+    ".home-point-section__inner > .home-point-section__lead",
+    ".home-point-section__note",
+  ];
+  const properties = ["box-sizing", "block-size", "padding-top", "padding-right", "padding-bottom", "padding-left", "margin-top", "margin-bottom"];
+  const elements = selectors.map(selector => section.querySelector(selector));
+  const measure = () => {
+    elements.forEach(element => properties.forEach(property => element.style.removeProperty(property)));
+    if (!matchMedia("(min-width: 901px)").matches) return;
+    const probe = template.content.firstElementChild.cloneNode(true);
+    probe.removeAttribute("id");
+    probe.querySelectorAll("[id]").forEach(element => element.removeAttribute("id"));
+    probe.inert = true;
+    probe.style.cssText = `position:absolute;top:0;left:0;visibility:hidden;pointer-events:none;width:${section.getBoundingClientRect().width}px;`;
+    section.after(probe);
+    // The complete description frame and each text slot use the canonical rendered dimensions.
+    selectors.forEach((selector, index) => {
+      const reference = probe.querySelector(selector);
+      const style = getComputedStyle(reference);
+      properties.forEach(property => elements[index].style.setProperty(property, style.getPropertyValue(property)));
+      elements[index].style.boxSizing = "border-box";
+      elements[index].style.blockSize = `${reference.getBoundingClientRect().height}px`;
+    });
+    probe.remove();
+  };
+  let width = -1;
+  const observer = new ResizeObserver(entries => {
+    const nextWidth = entries[0].contentRect.width;
+    if (nextWidth === width) return;
+    width = nextWidth;
+    measure();
+  });
+  observer.observe(section);
+  let disposed = false;
+  document.fonts.ready.then(() => { if (!disposed) measure(); });
+  addEventListener("resize", measure);
+  measure();
+  addEventListener("pagehide", event => {
+    if (event.persisted) return;
+    disposed = true;
+    observer.disconnect();
+    removeEventListener("resize", measure);
+  });
+}
+
 export function fitConceptIntroFrame() {
   const template = document.getElementById("concept-intro-frame");
   const inner = document.querySelector(".home-concept__inner");

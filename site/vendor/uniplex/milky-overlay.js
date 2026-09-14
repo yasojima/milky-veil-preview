@@ -1,11 +1,11 @@
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260915-312";
-import { fitConceptIntroFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260915-312&pages=20260915-312";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260915-312&pages=20260915-312";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260915-312&pages=20260915-312";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260915-312&pages=20260915-312";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260915-312";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260915-312&pages=20260915-312";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260915-312";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260915-313";
+import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260915-313&pages=20260915-313";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260915-313&pages=20260915-313";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260915-313&pages=20260915-313";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260915-313&pages=20260915-313";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260915-313";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260915-313&pages=20260915-313";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260915-313";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
@@ -22,6 +22,7 @@ if (pointVideo) {
 }
 bindAmbientMotion(document);
 fitConceptIntroFrame();
+fitConceptPointFrame();
 
 document.querySelectorAll("[data-concept-portrait]").forEach((slot) => {
   slot.innerHTML = firstViewImage(slot.dataset.conceptPortrait, pageRouteId);
