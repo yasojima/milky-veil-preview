@@ -542,20 +542,8 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-.menu-detail-media { display: contents; }
 @media (min-width: 901px) {
-  .milky-detail-card:has(.menu-detail-media) { width: min(100%, 980px); overflow: visible; }
-  .menu-detail-media {
-    display: block;
-    position: sticky;
-    top: var(--concept-detail-stop, 0px);
-    align-self: start;
-  }
-  .menu-detail-media > .home-concept-box__label {
-    left: calc(var(--detail-label-left) - var(--detail-card-inset-x));
-    top: calc(12px - var(--detail-card-inset-y));
-    white-space: nowrap;
+  body[data-page-route-id="menu"] .home-concept__inner {
+    bottom: var(--concept-detail-bottom, 0px);
   }
 }
-
-

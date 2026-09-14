@@ -1,11 +1,11 @@
-import { bindConceptDetailAnchor } from "/milky-veil-preview/site/concept-detail-anchor.js?v=20260915-299&pages=20260915-299";
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260915-299";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260915-299&pages=20260915-299";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260915-299&pages=20260915-299";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260915-299&pages=20260915-299";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260915-299";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260915-299&pages=20260915-299";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260915-299";
+import { bindConceptDetailAnchor } from "/milky-veil-preview/site/concept-detail-anchor.js?v=20260915-300&pages=20260915-300";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260915-300";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260915-300&pages=20260915-300";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260915-300&pages=20260915-300";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260915-300&pages=20260915-300";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260915-300";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260915-300&pages=20260915-300";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260915-300";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
