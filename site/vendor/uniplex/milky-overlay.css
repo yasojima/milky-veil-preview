@@ -543,10 +543,10 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 }
 
 @media (min-width: 901px) {
-  body[data-page-route-id="menu"] .home-concept {
-    margin-bottom: calc(-125svh + var(--concept-detail-bottom, 0px));
+  .home-concept {
+    margin-bottom: calc(-125svh + var(--concept-section-bottom, 0px));
   }
-  body[data-page-route-id="menu"] .home-concept__inner {
+  .home-concept__inner {
     bottom: var(--concept-detail-bottom, 0px);
   }
 }

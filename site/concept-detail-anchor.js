@@ -9,9 +9,15 @@ export function bindConceptDetailAnchor() {
   const inner = card?.closest(".home-concept__inner");
   if (!template || !content || !image || !inner) return;
   const section = inner.closest(".home-concept");
+  const leadTemplate = document.getElementById("concept-lead-reference");
+  const leadParts = [inner.querySelector(".home-concept__head"), inner.querySelector(".home-concept__txt")];
   const desktop = matchMedia("(min-width: 901px)");
   const measure = () => {
-    if (!desktop.matches) { section.style.removeProperty("--concept-detail-bottom"); return; }
+    if (!desktop.matches) {
+      section.style.removeProperty("--concept-detail-bottom");
+      section.style.removeProperty("--concept-section-bottom");
+      return;
+    }
     const probe = document.createElement("div");
     probe.className = content.className;
     probe.inert = true;
@@ -22,10 +28,25 @@ export function bindConceptDetailAnchor() {
     probe.remove();
     const actualHeight = Math.max(image.getBoundingClientRect().height, content.getBoundingClientRect().height);
     section.style.setProperty("--concept-detail-bottom", `${referenceHeight - actualHeight}px`);
+    let leadDifference = 0;
+    if (leadTemplate) {
+      const leadProbe = document.createElement("div");
+      leadProbe.className = inner.className;
+      leadProbe.inert = true;
+      leadProbe.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${inner.getBoundingClientRect().width}px;`;
+      leadProbe.append(leadTemplate.content.cloneNode(true));
+      inner.after(leadProbe);
+      leadDifference = [".home-concept__head", ".home-concept__txt"].reduce((sum, selector, index) =>
+        sum + leadProbe.querySelector(selector).getBoundingClientRect().height - leadParts[index].getBoundingClientRect().height, 0);
+      leadProbe.remove();
+    }
+    // Section handoff depends on the entire introduction, not only the image-side copy.
+    section.style.setProperty("--concept-section-bottom", `${referenceHeight - actualHeight + leadDifference}px`);
   };
   const observer = new ResizeObserver(measure);
   observer.observe(content);
   observer.observe(image);
+  leadParts.forEach(part => observer.observe(part));
   addEventListener("resize", measure);
   let disposed = false;
   document.fonts.ready.then(() => { if (!disposed) measure(); });
