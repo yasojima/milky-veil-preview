@@ -20,6 +20,13 @@ body#home {
 }
 
 @media (min-width: 901px) {
+  /* PCのPOINT説明枠は導入2行・見出し2行・本文3行。短い原稿でも各枠を縮めない。
+     上限を超える原稿は後続枠へはみ出すため、改行を含めて各PC幅で確認する。 */
+  .home-point-section__inner > .c-head01 > .home-point-section__lead,
+  .home-point-section__inner > .c-head01 > .c-head01__main {
+    block-size: 2lh;
+  }
+
   /* PC本文は上限3行。4行以上は固定枠を越えて次のセクション側へはみ出すため、対応する各PC幅で改行・文字量を確認する。 */
   .home-point-section__inner > .home-point-section__lead {
     block-size: 3lh;
