@@ -10,7 +10,7 @@
   display:block; height:150px; width:auto;
 }
 .closing-brand img { display:block; height:100%; width:auto; }
-.shared-brand-message-copy { width:max-content; max-width:100%; }
+.shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; }
 .shared-brand-message { --brand-vertical-space:150px; }
 .site-footer { padding:16px 30px 20px; }
 .footer-shell { min-height:0; justify-content:center; }
@@ -22,7 +22,7 @@
   .shared-brand-message { flex:1 0 auto; }
   .footer-shell { min-height:0; }
   .closing-brand-track { display:block; position:absolute; inset:0; z-index:2; box-sizing:border-box; padding-top:var(--shared-mobile-logo-y); pointer-events:none; }
-  .closing-brand { position:sticky; top:var(--shared-mobile-logo-y); left:auto; margin-left:var(--shared-mobile-logo-x); width:max-content; height:var(--shared-mobile-logo-height); pointer-events:auto; }
+  .closing-brand { position:sticky; top:var(--shared-mobile-logo-y); left:auto; margin-left:var(--shared-mobile-logo-x); width:max-content; height:clamp(85px,calc(85px + (100vw - 450px) * .144444),150px); pointer-events:auto; }
   .shared-brand-message-copy > small { font-size:11px; }
   .shared-brand-message-copy > span { font-size:clamp(15px,3.86vw,17px); line-height:1.85; letter-spacing:.1em; }
   .site-footer { padding:12px 12px 16px; }

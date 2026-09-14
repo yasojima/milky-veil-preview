@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-280&pages=20260914-280";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-281&pages=20260914-281";
 
 const bindings = new WeakMap();
 
@@ -18,6 +18,30 @@ export function bindBottomFit(root) {
   let fittedHeight = window.innerHeight;
   let fittedMobileHeight = 0;
   let atBottom = false;
+  const centerHeadline = () => {
+    const context = document.createElement("canvas").getContext("2d");
+    const walker = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
+    let left = Infinity;
+    let right = -Infinity;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const textStyle = getComputedStyle(node.parentElement);
+      context.font = `${textStyle.fontWeight} ${textStyle.fontSize} ${textStyle.fontFamily}`;
+      for (let index = 0; index < node.length; index += 1) {
+        if (/\s/.test(node.data[index])) continue;
+        const range = document.createRange();
+        range.setStart(node, index);
+        range.setEnd(node, index + 1);
+        const bounds = range.getBoundingClientRect();
+        const ink = context.measureText(node.data[index]);
+        left = Math.min(left, bounds.left - ink.actualBoundingBoxLeft);
+        right = Math.max(right, bounds.left + ink.actualBoundingBoxRight);
+      }
+    }
+    if (Number.isFinite(left) && Number.isFinite(right)) {
+      title.parentElement.style.setProperty("--closing-group-offset", (document.documentElement.clientWidth / 2 - (left + right) / 2) + "px");
+    }
+  };
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
@@ -82,6 +106,7 @@ export function bindBottomFit(root) {
         if (lineWidth + 2 <= availableWidth) headlineSize = Math.max(headlineSize, headlineSize * (lineWidth + 2) / headlineWidth);
       }
       title.style.fontSize = headlineSize + "px";
+      if (window.innerWidth > 450) centerHeadline();
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
       fittedMobileHeight = targetHeight;
@@ -147,8 +172,7 @@ export function bindBottomFit(root) {
       brand.style.paddingTop = (top + remaining / 2) + "px";
       brand.style.paddingBottom = (bottom + remaining / 2) + "px";
     }
-    const groupBounds = copy.getBoundingClientRect();
-    copy.style.setProperty("--closing-group-offset", (document.documentElement.clientWidth / 2 - (groupBounds.left + groupBounds.right) / 2) + "px");
+    centerHeadline();
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
     if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
