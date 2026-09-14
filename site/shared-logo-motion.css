@@ -19,6 +19,11 @@
 }
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
+  .closing-brand, .closing-brand.is-revealed {
+    transform:none;
+    filter:none;
+    transition:opacity var(--mv-logo-reveal-duration) ease;
+  }
   :is(.shared-concept-menu, .has-split-hero):has(.l-nav.is-open) .menu-brand img {
     animation:mv-logo-reveal-surface var(--mv-logo-reveal-duration) var(--mv-logo-reveal-ease) both, mv-logo-reveal-ink var(--mv-logo-reveal-duration) ease both;
   }

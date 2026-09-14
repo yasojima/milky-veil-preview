@@ -1,10 +1,10 @@
-import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260914-284&pages=20260914-284";
-import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260914-284&pages=20260914-284";
-import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260914-284&closing=20260912-186";
-import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260914-284&pages=20260914-284&closing=20260912-186";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260914-284&pages=20260914-284";
-import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260914-284&pages=20260914-284&closing=20260912-186";
-import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260914-284&pages=20260914-284&closing=20260912-186";
+import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260914-285&pages=20260914-285";
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260914-285&pages=20260914-285";
+import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009&pages=20260914-285&closing=20260912-186";
+import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260914-285&pages=20260914-285&closing=20260912-186";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260914-285&pages=20260914-285";
+import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260914-285&pages=20260914-285&closing=20260912-186";
+import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260914-285&pages=20260914-285&closing=20260912-186";
 
 const activityCleanup = new WeakMap();
 const styleReadiness = new WeakMap();
@@ -14,15 +14,15 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260914-284&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260914-284&closing=20260912-186",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260914-285&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260914-285&closing=20260912-186",
   "/milky-veil-preview/site/shared-font-subset.css",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260914-284&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260914-284&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer.css?v=20260914-284&pages=20260914-284&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-241&pages=20260914-284",
-  "/milky-veil-preview/site/shared-closing.css?v=20260914-284&pages=20260914-284&closing=20260912-186",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20260914-284&closing=20260912-186",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260914-285&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260914-285&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer.css?v=20260914-285&pages=20260914-285&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-241&pages=20260914-285",
+  "/milky-veil-preview/site/shared-closing.css?v=20260914-285&pages=20260914-285&closing=20260912-186",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20260914-285&pages=20260914-285&closing=20260912-186",
 ]);
 
 function mountViewportHud() {
@@ -74,6 +74,9 @@ export function mountSharedBottomUi(host, currentPath) {
           text-size-adjust: 100%;
           -webkit-text-size-adjust: 100%;
           zoom: 1;
+        }
+        @media (max-width:900px) {
+          :host { overflow:visible !important; }
         }
         [data-shared-bottom-ui-component][data-css-pending] { opacity: 0 !important; pointer-events: none !important; }
         [data-shared-bottom-ui-component] {

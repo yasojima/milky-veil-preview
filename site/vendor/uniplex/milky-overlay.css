@@ -502,6 +502,10 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   display: inline-block;
 }
 
+@media (max-width: 900px) {
+  .concept-type-title { font-size: min(29vw, 39.1svh); }
+}
+
 .home-point-ba-step.is-step03 .milky-point-ba-label {
   left:clamp(76px,20vw,300px); transform:none;
 }

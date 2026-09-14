@@ -8,7 +8,7 @@ function bindMobileTypography(stage, title, hero) {
       { opacity: 0, transform: "translate3d(0, 24px, 0)", offset: 0 },
       { opacity: 1, transform: "translate3d(0, 0, 0)", offset: .45 },
       { opacity: 1, transform: "translate3d(0, 0, 0)", offset: .85 },
-      { opacity: 0, transform: "translate3d(12px, 8px, 0)", offset: 1 },
+      { opacity: 0, transform: "translate3d(0, 8px, 0)", offset: 1 },
     ], { duration: 4000 - index * 100, delay: index * 100, fill: "both", easing: "ease-in-out" });
     animation.pause();
     return animation;

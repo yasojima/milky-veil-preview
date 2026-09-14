@@ -15,8 +15,11 @@ export function bindClosingLogo(root) {
     frame = 0;
     const bounds = component.getBoundingClientRect();
     const mobileMenuOpen = mobileLayout.matches && !!document.querySelector(".shared-nav-content.is-open");
-    const entering = bounds.top < window.innerHeight && bounds.bottom > 0;
-    const ready = entering && bounds.top + logo.offsetTop + logo.offsetHeight * .25 < window.innerHeight;
+    const viewport = mobileLayout.matches ? window.visualViewport : null;
+    const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
+    const entering = bounds.top < viewportBottom && bounds.bottom > 0;
+    const naturalLogoTop = parseFloat(getComputedStyle(logo).top) || 0;
+    const ready = entering && bounds.top + naturalLogoTop + logo.offsetHeight * .25 < viewportBottom;
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
@@ -78,12 +81,16 @@ export function bindClosingLogo(root) {
   };
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule, { passive: true });
+  window.visualViewport?.addEventListener("resize", schedule, { passive: true });
+  window.visualViewport?.addEventListener("scroll", schedule, { passive: true });
   document.addEventListener("mv:menu-mounted", observeMenu);
   observeMenu();
   update();
   bindings.set(root, () => {
     window.removeEventListener("scroll", schedule);
     window.removeEventListener("resize", schedule);
+    window.visualViewport?.removeEventListener("resize", schedule);
+    window.visualViewport?.removeEventListener("scroll", schedule);
     document.removeEventListener("mv:menu-mounted", observeMenu);
     resizeObserver.disconnect();
     menuObserver.disconnect();

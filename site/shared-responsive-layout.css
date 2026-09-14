@@ -1,4 +1,8 @@
 .home-concept { overflow-x:clip; }
+/* WebKit sticky descendants can jitter under an overflow:clip ancestor. */
+@media (max-width:900px) {
+  .home-concept { overflow-x:visible; }
+}
 /* Desktop UI scope: above 900px. */
 @media(min-width:901px) {
   .home-page { --pc-height-step:clamp(0px,calc(100svh - 700px),150px); --home-section-space:calc(110px + var(--pc-height-step) * .133333); }
