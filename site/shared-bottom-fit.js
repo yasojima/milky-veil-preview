@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-279&pages=20260914-279";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-280&pages=20260914-280";
 
 const bindings = new WeakMap();
 
@@ -63,7 +63,25 @@ export function bindBottomFit(root) {
         if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight) lower = candidate;
         else upper = candidate;
       }
-      title.style.fontSize = Math.max(32, lower * .9) + "px";
+      let headlineSize = Math.max(32, lower * .9);
+      if (window.innerWidth > 450 && window.innerWidth <= window.innerHeight && viewport > 600) {
+        const supporting = title.nextElementSibling;
+        const supportingStyle = getComputedStyle(supporting);
+        const canvas = document.createElement("canvas").getContext("2d");
+        canvas.font = supportingStyle.font;
+        const spacing = parseFloat(supportingStyle.letterSpacing) || 0;
+        const lineWidth = Math.max(...[...supporting.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => canvas.measureText(node.textContent).width + spacing * node.textContent.length));
+        title.style.fontSize = headlineSize + "px";
+        const wordWidths = [...title.querySelectorAll(".brand-headline-word")].map(word => {
+          const range = document.createRange();
+          range.selectNodeContents(word);
+          return range.getBoundingClientRect().width;
+        });
+        const headlineWidth = Math.max(...wordWidths);
+        // Keep the shared left edge and two-line supporting copy without shifting the headline alone.
+        if (lineWidth + 2 <= availableWidth) headlineSize = Math.max(headlineSize, headlineSize * (lineWidth + 2) / headlineWidth);
+      }
+      title.style.fontSize = headlineSize + "px";
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
       fittedMobileHeight = targetHeight;
@@ -130,7 +148,7 @@ export function bindBottomFit(root) {
       brand.style.paddingBottom = (bottom + remaining / 2) + "px";
     }
     const groupBounds = copy.getBoundingClientRect();
-    copy.style.setProperty("--closing-group-offset", (window.innerWidth / 2 - (groupBounds.left + groupBounds.right) / 2) + "px");
+    copy.style.setProperty("--closing-group-offset", (document.documentElement.clientWidth / 2 - (groupBounds.left + groupBounds.right) / 2) + "px");
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
     if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });

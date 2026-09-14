@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260914-279&pages=20260914-279";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-279";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260914-280&pages=20260914-280";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-280";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -59,6 +59,7 @@ export function bindSharedConceptMenu(scope = document) {
   const syncBottomSpace = () => {
     const barHeight = usesMobileLayout() ? 0 : bottomBar?.getBoundingClientRect().height || 0;
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    nav.style.setProperty("--menu-utility-scale", String(Math.min(1.2, Math.max(.85, .85 + (window.innerWidth - 901) * .35 / 1019))));
     nav.style.setProperty("--shared-menu-bar-height", barHeight + "px");
     nav.style.setProperty("--shared-menu-screen-height", viewportHeight + "px");
     nav.style.setProperty("--shared-menu-screen-top", (window.visualViewport?.offsetTop || 0) + "px");
