@@ -35,11 +35,22 @@ export function bindClosingLogo(root) {
       const logoTop = parseFloat(getComputedStyle(headerLogo).getPropertyValue("--page-logo-top")) || 16;
       const logoBottom = logoTop + headerLogo.offsetHeight;
       let sceneTop = logoTop;
+      let sceneLeft = null;
       const scene = [...document.querySelectorAll("[data-logo-scene]")].find(element => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
+        if (mobileLayout.matches && element.matches(".home-point-ingredient__vi-btn")) {
+          const image = element.querySelector(".home-point-ingredient__vi-btn-img").getBoundingClientRect();
+          const copyBottom = element.closest(".home-point-section")?.querySelector(".home-point-section__inner")?.getBoundingClientRect().bottom ?? 0;
+          const top = Math.max(logoTop, image.top - headerLogo.offsetHeight * .8, copyBottom + 12);
+          const bottom = top + headerLogo.offsetHeight;
+          if (bottom >= viewportBottom || image.bottom < bottom + 8) return false;
+          sceneTop = top;
+          sceneLeft = Math.max(parseFloat(getComputedStyle(headerLogo).getPropertyValue("--shared-mobile-logo-x")) || 0, image.left - headerLogo.offsetWidth * .5);
+          return true;
+        }
         if (element.dataset.logoScene === "bottom" && visual) {
           const image = visual.getBoundingClientRect();
           const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
@@ -61,6 +72,8 @@ export function bindClosingLogo(root) {
       const introHeading = intro?.querySelector(".home-concept__head");
       const initialScene = introHeading && introHeading.getBoundingClientRect().top > logoBottom + 12;
       headerLogo.style.setProperty("--logo-scene-top", `${sceneTop}px`);
+      if (sceneLeft === null) headerLogo.style.removeProperty("--logo-scene-left");
+      else headerLogo.style.setProperty("--logo-scene-left", `${sceneLeft}px`);
       const headerState = mobileMenuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
       header.dataset.logoState = headerState;
       headerLogo.inert = !["active", "scene", "menu"].includes(headerState);
@@ -100,6 +113,7 @@ export function bindClosingLogo(root) {
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;
     header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-top");
+    header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-left");
   });
 }
 
