@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-282&pages=20260914-282";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-283&pages=20260914-283";
 
 const bindings = new WeakMap();
 
@@ -56,7 +56,7 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     title.parentElement.style.removeProperty("--closing-group-offset");
-    const viewport = window.innerHeight;
+    const viewport = usesMobileLayout() ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
       brand.style.paddingTop = `var(${property}, ${fallback}px)`;
@@ -186,7 +186,7 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    if (usesMobileLayout() && window.innerWidth === fittedWidth && window.innerHeight === fittedHeight && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
+    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
     schedule();
   };
   const scroll = () => {

@@ -19,9 +19,19 @@ export function mountConceptTypography(stage, name, { gsap }) {
   const chars = title.querySelectorAll(".concept-type-char");
   const hero = document.querySelector(".js-home-mv");
   const media = gsap.matchMedia();
-  media.add("(prefers-reduced-motion: no-preference)", () => {
-    chars.forEach(char => gsap.set(char.parentNode, { perspective: 1000 }));
-    const initial = {
+  media.add({ motion: "(prefers-reduced-motion: no-preference)", mobile: "(max-width: 900px)" }, context => {
+    if (!context.conditions.motion) return;
+    const mobile = context.conditions.mobile;
+    if (!mobile) chars.forEach(char => gsap.set(char.parentNode, { perspective: 1000 }));
+    const initial = mobile ? {
+      "will-change": "opacity, transform",
+      transformOrigin: "50% 0%",
+      opacity: 0,
+      scaleX: .88,
+      scaleY: .05,
+      y: -12,
+      force3D: true,
+    } : {
       "will-change": "opacity, transform",
       transformOrigin: "50% 0%",
       opacity: 0,
@@ -34,8 +44,7 @@ export function mountConceptTypography(stage, name, { gsap }) {
       ease: "power1",
       opacity: 1,
       stagger: 0.05,
-      rotationX: 0,
-      z: 0,
+      ...(mobile ? { scaleX: 1, scaleY: 1, y: 0, force3D: true } : { rotationX: 0, z: 0 }),
     }).call(() => stage.classList.add("is-end"), [], 4);
     const syncHero = () => {
       stage.classList.remove("is-end");

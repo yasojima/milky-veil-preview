@@ -467,10 +467,13 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 }
 
 @media (max-width: 900px) and (orientation: portrait) {
+  .l-main-img__inner {
+    container-type: inline-size;
+  }
   .l-main-img__logo.milky-fv-wordmark {
     inset: 50% 0 auto;
-    font-size: 19vw;
-    transform: translateY(-50%) scaleY(1.15);
+    font-size: 18.5cqw;
+    transform: translateY(-50%) scaleY(1.35);
     transform-origin: center;
     -webkit-text-stroke-width: .5px;
   }
