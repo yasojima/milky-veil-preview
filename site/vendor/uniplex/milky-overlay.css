@@ -86,7 +86,8 @@ body#home {
 
 @media (width < 768px) and (orientation: portrait) {
   .home-point-ba-step.is-step03 .home-point-ba-step__vi-img > img {
-    transform: translateY(clamp(0px, calc(30svh - 38.5vw), 104px));
+    transform: translateY(max(0px, calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 23px - 13svh))) scale(1.12);
+    transform-origin: center bottom;
   }
 }
 
