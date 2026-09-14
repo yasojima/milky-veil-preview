@@ -505,3 +505,11 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 .home-point-ba-step.is-step03 .milky-point-ba-label {
   left:clamp(76px,20vw,300px); transform:none;
 }
+
+@media (max-width: 900px) {
+  .home-point-ba-step.is-step03 .milky-point-ba-label {
+    top: var(--shared-menu-anchor-y);
+    left: calc(var(--shared-mobile-logo-x) + var(--shared-mobile-logo-height) + 20px);
+    transform: translateY(-50%);
+  }
+}
