@@ -466,7 +466,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-@media (orientation: portrait) {
+@media (max-width: 900px) and (orientation: portrait) {
   .l-main-img__logo.milky-fv-wordmark {
     inset: 50% 0 auto;
     font-size: 19vw;
