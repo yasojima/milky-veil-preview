@@ -214,6 +214,11 @@ body#home {
 @media (min-width: 901px) {
   .milky-detail-card .home-concept-box__label { left: 150px; }
 }
+@media (max-width: 900px) {
+  .milky-detail-card .home-concept-box__label {
+    left: calc(var(--shared-mobile-logo-height) + 20px);
+  }
+}
 
 @media (max-width: 767px) {
   .home-concept__head .c-head01__main.is-large {
