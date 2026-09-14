@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260915-304&pages=20260915-304";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260915-305&pages=20260915-305";
 
 const bindings = new WeakMap();
 

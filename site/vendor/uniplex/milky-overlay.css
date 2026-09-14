@@ -542,11 +542,3 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-@media (min-width: 901px) {
-  .home-concept {
-    margin-bottom: calc(-125svh + var(--concept-section-bottom, 0px));
-  }
-  .home-concept__inner {
-    bottom: var(--concept-detail-bottom, 0px);
-  }
-}
