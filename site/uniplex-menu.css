@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-290");
-@import url("./shared-logo-motion.css?v=20260914-290&pages=20260914-290");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-292");
+@import url("./shared-logo-motion.css?v=20260914-292&pages=20260914-292");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -396,8 +396,18 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
 }
 .has-split-hero[data-logo-state="scene"] > .menu-brand { top:var(--logo-scene-top,var(--page-logo-top)); opacity:1; transform:none; filter:blur(0); pointer-events:auto; }
 .has-split-hero[data-logo-state="reading"] > .menu-brand { visibility:hidden; opacity:0; transform:translateY(8px); filter:blur(3px); pointer-events:none; }
+.mobile-video-brand { display:none; }
 @media(max-width:900px) {
-  .has-split-hero[data-logo-state="scene"] > .menu-brand { left:var(--logo-scene-left,var(--shared-mobile-logo-x)); }
+  /* The video and mark share one scroll layer; no JS viewport-position updates. */
+  .mobile-video-brand {
+    display:block; position:absolute; top:-28px; left:0; z-index:3;
+    height:var(--shared-mobile-logo-height); width:auto;
+    transform:translateX(-50%); pointer-events:none;
+  }
+  .home-point-ingredient__vi-btn-img .mobile-video-brand img {
+    display:block; width:auto; height:100%; object-fit:contain;
+  }
+  body:has(.l-nav.is-open) .mobile-video-brand { visibility:hidden; }
 }
 @media(prefers-reduced-motion:reduce) {
   .has-split-hero[data-logo-state] > .menu-brand { transition:none; transform:none; filter:none; }
