@@ -11,26 +11,27 @@ export function bindClosingLogo(root) {
   let frame = 0;
   let heroWasOpen = false;
   let headerClosing = false;
-  const videoLogos = [];
-  const videoObserver = new IntersectionObserver(entries => {
+  const mediaLogos = new Map();
+  const mediaObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      entry.target.querySelector(".mobile-video-brand")?.classList.toggle("is-revealed", entry.isIntersecting);
+      mediaLogos.get(entry.target)?.classList.toggle("is-revealed", entry.isIntersecting);
     });
   }, { threshold: 0 });
-  const mountVideoLogos = () => {
+  const mountMediaLogos = () => {
     const image = document.querySelector(".has-split-hero .menu-brand img");
     if (!image) return;
-    document.querySelectorAll(".home-point-ingredient__vi-btn-img").forEach(visual => {
-      if (visual.querySelector(".mobile-video-brand")) return;
+    document.querySelectorAll(".home-point-ingredient__vi-btn-img, .milky-detail-card .home-concept-box__img").forEach(visual => {
+      if (mediaLogos.has(visual)) return;
+      const isTry = visual.matches(".home-concept-box__img");
       const mark = document.createElement("span");
-      mark.className = "mobile-video-brand";
+      mark.className = isTry ? "mobile-try-brand" : "mobile-video-brand";
       mark.setAttribute("aria-hidden", "true");
       const logoImage = image.cloneNode(true);
       logoImage.alt = "";
       mark.append(logoImage);
-      visual.append(mark);
-      videoLogos.push(mark);
-      videoObserver.observe(visual);
+      (isTry ? visual.closest(".milky-detail-card") : visual).append(mark);
+      mediaLogos.set(visual, mark);
+      mediaObserver.observe(visual);
     });
   };
   const update = () => {
@@ -62,15 +63,14 @@ export function bindClosingLogo(root) {
         const style = getComputedStyle(element);
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
-        if (mobileLayout.matches && element.matches(".home-point-ingredient__vi-btn")) {
+        if (mobileLayout.matches && (element.matches(".home-point-ingredient__vi-btn") || visual?.matches(".home-concept-box__img"))) {
           return false;
         }
         if (element.dataset.logoScene === "bottom" && visual) {
           const image = visual.getBoundingClientRect();
           const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
           const lift = headerLogo.offsetHeight * .8;
-          const passing = mobileLayout.matches && image.top - lift <= logoTop;
-          if (!stopped && !passing) return false;
+          if (!stopped) return false;
           const copyBottom = element.querySelector(".milky-concept-copy")?.getBoundingClientRect().bottom ?? 0;
           sceneTop = Math.max(logoTop, image.top - lift, copyBottom + 12);
           const contactBoundary = sceneTop + headerLogo.offsetHeight + 8;
@@ -98,7 +98,7 @@ export function bindClosingLogo(root) {
   resizeObserver.observe(component);
   const menuObserver = new MutationObserver(schedule);
   const observeMenu = () => {
-    mountVideoLogos();
+    mountMediaLogos();
     menuObserver.disconnect();
     const hero = document.querySelector(".js-home-mv");
     if (hero) menuObserver.observe(hero, { attributes: true, attributeFilter: ["class"] });
@@ -119,8 +119,8 @@ export function bindClosingLogo(root) {
     window.visualViewport?.removeEventListener("scroll", schedule);
     document.removeEventListener("mv:menu-mounted", observeMenu);
     resizeObserver.disconnect();
-    videoObserver.disconnect();
-    videoLogos.forEach(mark => mark.remove());
+    mediaObserver.disconnect();
+    mediaLogos.forEach(mark => mark.remove());
     menuObserver.disconnect();
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;

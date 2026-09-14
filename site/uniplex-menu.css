@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-294");
-@import url("./shared-logo-motion.css?v=20260914-294&pages=20260914-294");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260915-295");
+@import url("./shared-logo-motion.css?v=20260915-295&pages=20260915-295");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -409,7 +409,7 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
   .home-point-ingredient__vi-btn-img .mobile-video-brand img {
     display:block; width:auto; height:100%; object-fit:contain;
   }
-  body:has(.l-nav.is-open) .mobile-video-brand { visibility:hidden; }
+  body:has(.l-nav.is-open) :is(.mobile-video-brand, .mobile-try-brand) { visibility:hidden; }
 }
 @media(prefers-reduced-motion:reduce) {
   .has-split-hero[data-logo-state] > .menu-brand { transition:none; transform:none; filter:none; }
