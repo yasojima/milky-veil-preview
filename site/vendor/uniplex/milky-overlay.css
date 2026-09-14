@@ -15,6 +15,16 @@ body#home {
   background-color: var(--milky-home-paper);
 }
 
+.home-point-section__inner > .home-point-section__lead {
+  min-block-size: 3lh;
+}
+
+@media (min-width: 901px) {
+  .home-point-section__inner > .home-point-section__lead {
+    block-size: 3lh;
+  }
+}
+
 .home-point-section .c-head01__sub .c-marker01.is-point {
   --marker-bg-color: #382431;
   --marker-cover-color: #f7cfdf;
