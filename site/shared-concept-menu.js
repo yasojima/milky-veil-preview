@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260914-281&pages=20260914-281";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-281";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260914-282&pages=20260914-282";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251&pages=20260914-282";
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -86,13 +86,23 @@ export function bindSharedConceptMenu(scope = document) {
   const mobileQuery = mobileLayout();
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;
+  const sceneLogo = document.querySelector(".has-split-hero > .menu-brand");
+  const sceneLogoParent = sceneLogo?.parentElement;
   let disposed = false;
-  const syncDesktopLayer = () => {
+  const syncMenuLayer = () => {
     // The page wrapper creates a stacking context below the sibling footer host.
-    if (!disposed && !mobileQuery.matches) {
+    if (!disposed) {
       if (menu.parentNode !== document.body) document.body.append(menu);
     } else if (menu.parentNode !== menuParent) {
       menuParent.insertBefore(menu, menuNextSibling?.parentNode === menuParent ? menuNextSibling : null);
+    }
+    if (sceneLogo) {
+      if (!disposed && mobileQuery.matches && nav.classList.contains("is-open")) {
+        menu.prepend(sceneLogo);
+        sceneLogo.inert = false;
+      } else if (sceneLogo.parentElement !== sceneLogoParent) {
+        sceneLogoParent.prepend(sceneLogo);
+      }
     }
   };
   let releaseMobileLock = null;
@@ -162,7 +172,7 @@ export function bindSharedConceptMenu(scope = document) {
     if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key) && !(event.target instanceof Element && event.target.closest("input, textarea, select, [contenteditable]"))) preventMobileDrag(event);
   }, { capture: true, signal });
   mobileQuery.addEventListener("change", syncMobileLock, { signal });
-  mobileQuery.addEventListener("change", syncDesktopLayer, { signal });
+  mobileQuery.addEventListener("change", syncMenuLayer, { signal });
   const compact = nav.classList.contains("is-compact-menu");
   window.addEventListener("resize", syncBottomSpace, { signal });
   window.visualViewport?.addEventListener("resize", syncBottomSpace, { signal });
@@ -194,7 +204,7 @@ export function bindSharedConceptMenu(scope = document) {
     nav.classList.toggle("is-open", open);
     syncHomeHeaderVisibility();
     syncMobileLock();
-    syncDesktopLayer();
+    syncMenuLayer();
     toggle.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");

@@ -1,6 +1,6 @@
 import { usesMobileLayout } from "./responsive-policy.js";
 import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-281&pages=20260914-281";
+import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260914-282&pages=20260914-282";
 
 const bindings = new WeakMap();
 
@@ -71,7 +71,12 @@ export function bindBottomFit(root) {
     if (usesMobileLayout()) {
       const logo = root.querySelector(".closing-brand");
       const targetHeight = parseFloat(getComputedStyle(component).minHeight);
-      brand.style.paddingTop = Math.max(headlineTop, logo ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + (window.innerWidth > viewport ? 0 : 12) : 0) + Math.max(0, targetHeight - viewport) + "px";
+      const layoutMobileHeadline = size => {
+        title.style.fontSize = size + "px";
+        const overlapsLogo = logo && title.parentElement.getBoundingClientRect().left < logo.getBoundingClientRect().right + 16;
+        const logoClearance = logo && (viewport > 600 || overlapsLogo) ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
+        brand.style.paddingTop = Math.max(viewport <= 600 ? 24 : headlineTop, logoClearance) + Math.max(0, targetHeight - viewport) + "px";
+      };
       brand.style.paddingBottom = minimumBottom + "px";
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
 
@@ -83,12 +88,12 @@ export function bindBottomFit(root) {
       let upper = availableWidth;
       for (let iteration = 0; iteration < 12; iteration += 1) {
         const candidate = (lower + upper) / 2;
-        title.style.fontSize = candidate + "px";
+        layoutMobileHeadline(candidate);
         if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight) lower = candidate;
         else upper = candidate;
       }
       let headlineSize = Math.max(32, lower * .9);
-      if (window.innerWidth > 450 && window.innerWidth <= window.innerHeight && viewport > 600) {
+      if (window.innerWidth > 450 && window.innerWidth <= 600 && window.innerWidth <= window.innerHeight && viewport > 600) {
         const supporting = title.nextElementSibling;
         const supportingStyle = getComputedStyle(supporting);
         const canvas = document.createElement("canvas").getContext("2d");
@@ -105,7 +110,7 @@ export function bindBottomFit(root) {
         // Keep the shared left edge and two-line supporting copy without shifting the headline alone.
         if (lineWidth + 2 <= availableWidth) headlineSize = Math.max(headlineSize, headlineSize * (lineWidth + 2) / headlineWidth);
       }
-      title.style.fontSize = headlineSize + "px";
+      layoutMobileHeadline(headlineSize);
       if (window.innerWidth > 450) centerHeadline();
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;

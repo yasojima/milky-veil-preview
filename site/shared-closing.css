@@ -29,7 +29,7 @@
   .shared-footer-ticker-rule { padding-bottom:20px; }
   .fixed-cta-clearance { height:0; block-size:0; }
 }
-@media(max-width:900px) and (orientation:portrait) {
+@media(max-width:600px) and (orientation:portrait) {
 
   .shared-brand-message-copy > p { white-space:normal; }
   .brand-headline-word { display:block; white-space:nowrap; }
@@ -62,11 +62,12 @@
 }
 
 @media(max-width:900px) and (max-height:600px) {
+  .closing-brand { height:clamp(85px,20svh,120px); }
   .shared-brand-message-copy > small { margin-bottom:8px; }
   .shared-brand-message-copy > span { margin-top:10px; line-height:1.6; }
   .footer-links a { min-height:28px; }
 }
-@media(max-width:900px) and (orientation:landscape) {
+@media(min-width:601px) and (max-width:900px), (max-width:900px) and (orientation:landscape) {
   .footer-links { flex-direction:row; flex-wrap:wrap; justify-content:center; column-gap:16px; }
   .footer-link-row { display:contents; }
 }
@@ -76,6 +77,6 @@
   .shared-brand-message-copy > p > br { display:initial; }
 }
 
-@media(min-width:451px) and (max-width:900px) and (orientation:portrait) {
+@media(min-width:451px) and (max-width:600px) and (orientation:portrait) {
   .shared-brand-message-copy > span { width:0; min-width:100%; }
 }
