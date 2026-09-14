@@ -20,8 +20,20 @@ body#home {
 }
 
 @media (min-width: 901px) {
+  /* PC本文は上限3行。4行以上は固定枠を越えて次のセクション側へはみ出すため、対応する各PC幅で改行・文字量を確認する。 */
   .home-point-section__inner > .home-point-section__lead {
     block-size: 3lh;
+  }
+}
+
+@media (min-width: 901px) {
+  /* PCカードは見出し上限2行・本文上限6行。超過すると枠外へはみ出すため、各PC幅で確認する。 */
+  .home-point-ingredient-box__name {
+    block-size: 2lh;
+  }
+
+  .home-point-ingredient-box__txt {
+    block-size: 6lh;
   }
 }
 
