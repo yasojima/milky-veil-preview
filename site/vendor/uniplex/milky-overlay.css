@@ -503,7 +503,12 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 }
 
 @media (max-width: 900px) {
-  .concept-type-title { font-size: min(29vw, 39.1svh); }
+  .concept-fv-background-stage { align-items: flex-start; }
+  .concept-type-title {
+    font-size: min(29vw, 39.1svh);
+    /* Match the desktop title's top edge: (100svh - 2 * .95 * 39.1svh) / 2. */
+    margin-top: max(0px, calc(12.855svh - 20px));
+  }
 }
 
 .home-point-ba-step.is-step03 .milky-point-ba-label {

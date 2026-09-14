@@ -1,4 +1,4 @@
-import { sharedFooterTickerText } from "./shared-site-data.js?v=20260913-251&pages=20260914-286";
+import { sharedFooterTickerText } from "./shared-site-data.js?v=20260913-251&pages=20260914-287";
 
 const tickerItems = Object.freeze(Array.from({ length: 5 }, () => sharedFooterTickerText));
 
