@@ -12,6 +12,11 @@ export function bindClosingLogo(root) {
   let heroWasOpen = false;
   let headerClosing = false;
   const videoLogos = [];
+  const videoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.querySelector(".mobile-video-brand")?.classList.toggle("is-revealed", entry.isIntersecting);
+    });
+  }, { threshold: 0 });
   const mountVideoLogos = () => {
     const image = document.querySelector(".has-split-hero .menu-brand img");
     if (!image) return;
@@ -25,6 +30,7 @@ export function bindClosingLogo(root) {
       mark.append(logoImage);
       visual.append(mark);
       videoLogos.push(mark);
+      videoObserver.observe(visual);
     });
   };
   const update = () => {
@@ -113,6 +119,7 @@ export function bindClosingLogo(root) {
     window.visualViewport?.removeEventListener("scroll", schedule);
     document.removeEventListener("mv:menu-mounted", observeMenu);
     resizeObserver.disconnect();
+    videoObserver.disconnect();
     videoLogos.forEach(mark => mark.remove());
     menuObserver.disconnect();
     cancelAnimationFrame(frame);

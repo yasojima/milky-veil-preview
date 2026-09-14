@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-292");
-@import url("./shared-logo-motion.css?v=20260914-292&pages=20260914-292");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260914-293");
+@import url("./shared-logo-motion.css?v=20260914-293&pages=20260914-293");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -399,10 +399,12 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
 .mobile-video-brand { display:none; }
 @media(max-width:900px) {
   /* The video and mark share one scroll layer; no JS viewport-position updates. */
+  .home-point-ingredient { container-type:inline-size; }
   .mobile-video-brand {
-    display:block; position:absolute; top:-28px; left:0; z-index:3;
+    display:block; position:absolute; top:-28px;
+    left:calc((100% - 100cqw) / 2 + var(--shared-mobile-logo-x)); z-index:3;
     height:var(--shared-mobile-logo-height); width:auto;
-    transform:translateX(-50%); pointer-events:none;
+    pointer-events:none;
   }
   .home-point-ingredient__vi-btn-img .mobile-video-brand img {
     display:block; width:auto; height:100%; object-fit:contain;
