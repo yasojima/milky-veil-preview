@@ -1,5 +1,5 @@
-import { mountConceptTypography } from "../../concept-typography.js?v=20260915-296&pages=20260915-296";
-import { sharedSalonData } from "../../shared-site-data.js?v=20260913-251&pages=20260915-296";
+import { mountConceptTypography } from "../../concept-typography.js?v=20260915-299&pages=20260915-299";
+import { sharedSalonData } from "../../shared-site-data.js?v=20260913-251&pages=20260915-299";
 const stage = document.querySelector(".concept-fv-background-stage");
 if (stage) stage.classList.remove("milky-kaleidoscope-stage", "js-home-concept-lt");
 const VENDOR_RUNTIME_SRC = "/milky-veil-preview/site/vendor/uniplex/wp-content/themes/uniplex/js/script.js?ver=20260912-162";
