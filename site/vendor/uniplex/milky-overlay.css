@@ -484,6 +484,12 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   height: auto;
 }
 
+@media (min-width: 901px) and (max-width: 1280px) {
+  body[data-page-route-id="menu"] .service-menu-artwork {
+    width: 90%;
+  }
+}
+
 @media (width < 768px) {
   body[data-page-route-id="menu"] .service-menu-stage {
     --milky-menu-artwork-gap: 82px;
