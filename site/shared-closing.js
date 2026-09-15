@@ -63,9 +63,12 @@ export function bindClosingLogo(root) {
         const style = getComputedStyle(element);
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
-        // Start revealing as the flow section enters the viewport, before it reaches the logo anchor.
         if (element.dataset.logoScene === "range") {
-          return rect.top < viewportBottom && rect.bottom > logoBottom;
+          const image = element.querySelector("[data-service-menu-artwork] img")?.getBoundingClientRect();
+          if (!image) return false;
+          // Reveal at the 120px viewport line; hide when the image midpoint crosses it.
+          const revealLine = 120;
+          return image.top <= revealLine && image.top + image.height * .5 > revealLine;
         }
         if (mobileLayout.matches && (element.matches(".home-point-ingredient__vi-btn") || visual?.matches(".home-concept-box__img"))) {
           return false;
