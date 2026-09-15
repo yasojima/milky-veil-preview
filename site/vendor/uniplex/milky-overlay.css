@@ -16,9 +16,9 @@ body#home {
 }
 
 @media (max-width: 767px) {
-  /* 背景の末尾100svhはstickyの移動領域。寸法は維持し、POINT側への描画だけを遮断する。 */
-  .home-concept__bg {
-    clip-path: inset(0 0 100svh);
+  /* POINTは負の字下げを使う。シャッフル用overflow:hiddenで文字の左端を切らない。 */
+  .home-point__inner > .js-c-shuffle.c-en-head {
+    overflow: visible;
   }
 }
 
