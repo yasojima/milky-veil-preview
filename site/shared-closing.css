@@ -7,7 +7,7 @@
 .closing-brand-track { display:contents; }
 .closing-brand {
   position:absolute; top:16px; left:30px; z-index:2;
-  display:block; height:150px; width:auto;
+  display:block; height:var(--shared-desktop-logo-height); width:auto;
 }
 .closing-brand img { display:block; height:100%; width:auto; }
 .shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; }

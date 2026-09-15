@@ -1,4 +1,6 @@
 :root {
+  --shared-desktop-logo-height:150px;
+
   --shared-menu-anchor-right: clamp(28px, 2.4vw, 34px);
   --shared-menu-anchor-y: calc(clamp(32px, 2.6vw, 37px) + 24px);
   --shared-scroll-right: 35px;
@@ -11,6 +13,7 @@
 /* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
   :root {
+
     --shared-menu-anchor-right: 16px;
     --shared-mobile-logo-x:15px;
     --shared-mobile-logo-y:12px;
@@ -21,4 +24,9 @@
 
 
   }
+}
+
+/* Compact desktop viewport; mobile keeps its own logo sizing. */
+@media (min-width:901px) and (max-width:1280px) {
+  :root { --shared-desktop-logo-height:115px; }
 }

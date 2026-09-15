@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260915-318");
-@import url("./shared-logo-motion.css?v=20260915-318&pages=20260915-318");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260915-319");
+@import url("./shared-logo-motion.css?v=20260915-319&pages=20260915-319");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -304,7 +304,7 @@
   z-index:2;
   top:var(--page-logo-top);
   left:30px;
-  height:115px;
+  height:var(--shared-desktop-logo-height);
   opacity:1;
   visibility:visible;
   pointer-events:none;
