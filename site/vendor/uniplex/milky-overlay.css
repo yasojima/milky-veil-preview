@@ -486,7 +486,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 
 @media (min-width: 901px) and (max-width: 1280px) {
   body[data-page-route-id="menu"] .service-menu-artwork {
-    width: 90%;
+    width: min(100%, 800px);
   }
 }
 
