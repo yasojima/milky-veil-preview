@@ -15,3 +15,38 @@
   /* Keep the blue layer inside its section to prevent iPhone POINT occlusion. */
   body[data-page-route-id="menu"] .home-concept__bg { bottom: 0; }
 }
+.service-menu-mobile { display: none; }
+@media (max-width: 900px) {
+  body[data-page-route-id="menu"] .service-menu-stage__inner { padding-inline: 20px; }
+  body[data-page-route-id="menu"] .service-menu-artwork { width: 100%; max-width: 520px; filter: none; }
+  body[data-page-route-id="menu"] .service-menu-artwork > img,
+  body[data-page-route-id="menu"] .service-menu-artwork__caption { display: none; }
+  .service-menu-mobile {
+    display: grid;
+    gap: 28px;
+    color: #382c30;
+    letter-spacing: .02em;
+    line-height: 1.65;
+  }
+  .service-menu-mobile__panel {
+    padding: 42px 30px 20px;
+    border: 1px solid #e4c8c8;
+    border-radius: 160px 160px 24px 24px / 80px 80px 24px 24px;
+    background: radial-gradient(ellipse at top left, #f7e6e9, transparent 65%), linear-gradient(140deg, #fffdfb, #fbf3f2);
+    box-shadow: inset 0 0 0 5px #fffaf8;
+  }
+  .service-menu-mobile__heading { margin-bottom: 20px; text-align: center; color: #99455e; }
+  .service-menu-mobile__heading h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(38px, 11vw, 48px); font-weight: 400; letter-spacing: .015em; line-height: 1.15; }
+  .service-menu-mobile__heading h2 span { display: block; margin-top: 6px; font-size: 17px; letter-spacing: .3em; padding-left: .3em; }
+  .service-menu-mobile__heading p { margin: 16px 0 0; font-size: 12px; letter-spacing: .1em; }
+  .service-menu-mobile dl { margin: 0; }
+  .service-menu-mobile__row { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: center; gap: 12px; padding-block: 17px; border-bottom: 1px dotted #d9b5bd; }
+  .service-menu-mobile__row:last-child { border-bottom: 0; }
+  .service-menu-mobile__row dt { min-width: 0; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+  .service-menu-mobile__row dd { margin: 0; color: #99455e; font-family: Georgia, 'Times New Roman', serif; font-size: 21px; white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+  .service-menu-mobile__notes { padding: 24px 30px; background: #fbf5f3; border-radius: 20px; }
+  .service-menu-mobile__notes h3 { margin: 0 0 16px; color: #99455e; font-size: 17px; font-weight: 400; }
+  .service-menu-mobile__notes ul { margin: 0; padding-left: 1.15em; list-style: disc; }
+  .service-menu-mobile__notes li { font-size: 14px; line-height: 1.85; }
+  .service-menu-mobile__notes li + li { margin-top: 8px; }
+}

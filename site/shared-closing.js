@@ -64,7 +64,7 @@ export function bindClosingLogo(root) {
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
         if (element.dataset.logoScene === "range") {
-          const image = element.querySelector("[data-service-menu-artwork] img")?.getBoundingClientRect();
+          const image = element.querySelector("[data-service-menu-artwork]")?.getBoundingClientRect();
           if (!image) return false;
           // Reveal at the 120px viewport line; hide when the image midpoint crosses it.
           const revealLine = 120;

@@ -1,11 +1,11 @@
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260916-332";
-import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260916-332&pages=20260916-332";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260916-332&pages=20260916-332";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260916-332&pages=20260916-332";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260916-332&pages=20260916-332";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260916-332";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260916-332&pages=20260916-332";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260916-332";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260916-336";
+import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260915-313&pages=20260916-336";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260914-274&pages=20260916-336";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260913-244&pages=20260916-336";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260914-265&pages=20260916-336";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260916-336";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260913-244&pages=20260916-336";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260916-336";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
