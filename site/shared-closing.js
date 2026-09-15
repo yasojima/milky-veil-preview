@@ -63,6 +63,10 @@ export function bindClosingLogo(root) {
         const style = getComputedStyle(element);
         const end = element.dataset.logoSceneEnd && document.querySelector(element.dataset.logoSceneEnd);
         const visual = element.dataset.logoSceneVisual && element.querySelector(element.dataset.logoSceneVisual);
+        // Flow sections reveal the existing logo only while its anchor is inside the section.
+        if (element.dataset.logoScene === "range") {
+          return rect.top <= logoTop && rect.bottom > logoBottom;
+        }
         if (mobileLayout.matches && (element.matches(".home-point-ingredient__vi-btn") || visual?.matches(".home-concept-box__img"))) {
           return false;
         }
