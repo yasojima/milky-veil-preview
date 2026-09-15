@@ -1,11 +1,11 @@
-import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260916-331";
-import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260916-331&pages=20260916-331";
-import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260916-331&pages=20260916-331";
-import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260916-331&pages=20260916-331";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260916-331&pages=20260916-331";
-import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260916-331";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260916-331&pages=20260916-331";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260916-331";
+import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/shared-activity.js?v=20260909-009&pages=20260916-332";
+import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260916-332&pages=20260916-332";
+import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260916-332&pages=20260916-332";
+import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260916-332&pages=20260916-332";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260916-332&pages=20260916-332";
+import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01&pages=20260916-332";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260916-332&pages=20260916-332";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251&pages=20260916-332";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
@@ -72,19 +72,4 @@ if (scrollCue && fvTrigger) {
 }
 
 bindSharedFixedShell(sharedBottomScope);
-
-if (new URLSearchParams(location.search).get("point-check") === "no-logos") {
-  const roots = [document, document.getElementById("shared-bottom-ui-root")?.shadowRoot].filter(Boolean);
-  const removeLogos = () => roots.forEach(root => {
-    root.querySelectorAll('.menu-brand, .mobile-try-brand, .mobile-video-brand, .closing-brand, img[src*="logo-mv-monogram"]').forEach(element => element.remove());
-  });
-  const observer = new MutationObserver(removeLogos);
-  roots.forEach(root => observer.observe(root, { childList: true, subtree: true }));
-  removeLogos();
-  const label = document.createElement("span");
-  label.textContent = "POINT診断：ロゴ除去";
-  label.style.cssText = "position:fixed;top:0;right:0;z-index:10000;background:#172133;color:white;font:12px/1.5 sans-serif;padding:2px 6px;pointer-events:none";
-  document.body.append(label);
-  addEventListener("pagehide", event => { if (!event.persisted) observer.disconnect(); });
-}
 
