@@ -1,0 +1,12 @@
+/* Reference POINT surface: mobile 50px, desktop 100px top spacing. */
+#point[data-menu-point] {
+  position: relative;
+  z-index: 1;
+  min-height: 125svh;
+  padding-top: 50px;
+  background-color: var(--milky-home-paper);
+}
+@media (min-width: 768px) {
+  #point[data-menu-point] { padding-top: 100px; }
+}
+.menu-point-title { overflow: hidden; white-space: nowrap; }
