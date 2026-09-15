@@ -15,6 +15,13 @@ body#home {
   background-color: var(--milky-home-paper);
 }
 
+@media (max-width: 767px) {
+  /* 背景の末尾100svhはstickyの移動領域。寸法は維持し、POINT側への描画だけを遮断する。 */
+  .home-concept__bg {
+    clip-path: inset(0 0 100svh);
+  }
+}
+
 .home-point-section__inner > .home-point-section__lead {
   min-block-size: 3lh;
 }
