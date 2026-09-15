@@ -15,13 +15,6 @@ body#home {
   background-color: var(--milky-home-paper);
 }
 
-@media (max-width: 767px) {
-  /* POINTは負の字下げを使う。シャッフル用overflow:hiddenで文字の左端を切らない。 */
-  .home-point__inner > .js-c-shuffle.c-en-head {
-    overflow: visible;
-  }
-}
-
 .home-point-section__inner > .home-point-section__lead {
   min-block-size: 3lh;
 }

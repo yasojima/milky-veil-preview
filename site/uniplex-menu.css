@@ -1,5 +1,5 @@
-@import url("./shared-contact-cta.css?v=20260913-241&pages=20260915-329");
-@import url("./shared-logo-motion.css?v=20260915-329&pages=20260915-329");
+@import url("./shared-contact-cta.css?v=20260913-241&pages=20260916-330");
+@import url("./shared-logo-motion.css?v=20260916-330&pages=20260916-330");
 
 /* Shared menu typography must not inherit page-level body styles. */
 .shared-concept-menu {
@@ -396,6 +396,14 @@ html:is([data-mv-closing="entering"], [data-mv-closing="active"]) .site-header .
 }
 .has-split-hero[data-logo-state="scene"] > .menu-brand { top:var(--logo-scene-top,var(--page-logo-top)); opacity:1; transform:none; filter:blur(0); pointer-events:auto; }
 .has-split-hero[data-logo-state="reading"] > .menu-brand { visibility:hidden; opacity:0; transform:translateY(8px); filter:blur(3px); pointer-events:none; }
+@media(max-width:900px) {
+  /* Inactive fixed logos must not retain a filtered compositing surface over later sections. */
+  .has-split-hero[data-logo-state] > .menu-brand { filter:none; transform:none; }
+  .has-split-hero:is([data-logo-state="reading"], [data-logo-state="covered"], [data-logo-state="behind-hero"]) > .menu-brand {
+    display:none;
+    transition:none;
+  }
+}
 .mobile-video-brand { display:none; }
 @media(max-width:900px) {
   /* The video and mark share one scroll layer; no JS viewport-position updates. */

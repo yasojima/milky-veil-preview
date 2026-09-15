@@ -55,8 +55,11 @@ export function bindClosingLogo(root) {
       if (heroOpen) headerClosing = false;
       else if (heroWasOpen) headerClosing = true;
       heroWasOpen = heroOpen;
-      const logoTop = parseFloat(getComputedStyle(headerLogo).getPropertyValue("--page-logo-top")) || 16;
-      const logoBottom = logoTop + headerLogo.offsetHeight;
+      const logoStyle = getComputedStyle(headerLogo);
+      const logoTop = parseFloat(logoStyle.getPropertyValue("--page-logo-top")) || 16;
+      // Mobile hides inactive logo layers with display:none; use the declared height for handoff geometry.
+      const logoHeight = mobileLayout.matches ? parseFloat(logoStyle.height) || headerLogo.offsetHeight : headerLogo.offsetHeight;
+      const logoBottom = logoTop + logoHeight;
       let sceneTop = logoTop;
       const scene = [...document.querySelectorAll("[data-logo-scene]")].find(element => {
         const rect = element.getBoundingClientRect();
@@ -76,11 +79,11 @@ export function bindClosingLogo(root) {
         if (element.dataset.logoScene === "bottom" && visual) {
           const image = visual.getBoundingClientRect();
           const stopped = style.position === "sticky" && Math.abs(rect.bottom - window.innerHeight) <= 2;
-          const lift = headerLogo.offsetHeight * .8;
+          const lift = logoHeight * .8;
           if (!stopped) return false;
           const copyBottom = element.querySelector(".milky-concept-copy")?.getBoundingClientRect().bottom ?? 0;
           sceneTop = Math.max(logoTop, image.top - lift, copyBottom + 12);
-          const contactBoundary = sceneTop + headerLogo.offsetHeight + 8;
+          const contactBoundary = sceneTop + logoHeight + 8;
           return image.bottom >= contactBoundary && (!end || end.getBoundingClientRect().top > contactBoundary);
         }
         if (end && end.getBoundingClientRect().top < window.innerHeight) return false;
