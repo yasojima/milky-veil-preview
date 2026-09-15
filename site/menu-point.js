@@ -1,3 +1,11 @@
+if (new URLSearchParams(location.search).get("point-check") === "background-end") {
+  document.documentElement.dataset.pointBackgroundCheck = "end";
+  const label = document.createElement("span");
+  label.className = "point-background-check-label";
+  label.textContent = "比較版：水色のはみ出し停止";
+  document.body.append(label);
+}
+
 // Match the reference's 30ms character stagger and six substitutions per letter.
 const title = document.querySelector("[data-menu-point] .menu-point-title");
 if (title) {
