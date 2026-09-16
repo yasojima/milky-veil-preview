@@ -25,7 +25,7 @@
     --pc-portrait-origin:50% 0%;
   }
   [data-page-route-id="staff"] [data-concept-portrait="right"] [data-staff-fv-image] {
-    scale:1.08;
+    scale:1.38;
     --pc-portrait-origin:50% 30%;
   }
 }
