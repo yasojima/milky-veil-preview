@@ -1,7 +1,4 @@
 /* Staff assets retain the shared frames and motion; only their crop differs. */
-[data-page-route-id="staff"] #point {
-  padding-bottom: var(--milky-section-media-gap);
-}
 [data-page-route-id="staff"] .home-concept-box__img > img {
   object-position:50% 45%;
 }
