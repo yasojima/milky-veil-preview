@@ -490,21 +490,6 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-@media (width < 768px) {
-  body[data-page-route-id="menu"] .service-menu-stage {
-    --milky-menu-artwork-gap: 82px;
-  }
-
-  body[data-page-route-id="menu"] .service-menu-stage__inner {
-    padding: 0 14px;
-  }
-
-  body[data-page-route-id="menu"] .service-menu-artwork {
-    width: 100%;
-    filter: drop-shadow(0 12px 28px rgba(82, 46, 66, .07));
-  }
-}
-
 
 @media (max-width: 900px) and (orientation: portrait) {
   .l-main-img__inner {
