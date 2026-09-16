@@ -1,6 +1,7 @@
 const portrait = (name, alt) => ({ src: `/milky-veil-preview/assets/references/staff-page/${name}.png`, alt, width: 1152, height: 2048 });
 
 export const staffPageContent = Object.freeze({
+  pointLabel: "代表挨拶",
   firstView: {
     left: { ...portrait("fv-left", "グレーの服と白いロングヘアのスタッフ"), position: "50% 20%", scale: 1, origin: "center", headTop: 202 },
     right: { ...portrait("fv-right", "ピンクの服と白から紫のロングヘアのスタッフ"), position: "50% 10%", scale: 1, origin: "center", headTop: 88 },
