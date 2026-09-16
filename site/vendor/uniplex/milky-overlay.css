@@ -7,7 +7,7 @@
   :root { --milky-section-media-gap: var(--mh--space--lg); }
 }
 @media (min-width: 768px) and (max-width: 900px) {
-  :root { --milky-section-media-gap: min(22500vw / var(--breakpoint), 150px); }
+  body { --milky-section-media-gap: min(22500vw / var(--breakpoint), 150px); }
 }
 
 body#home {
