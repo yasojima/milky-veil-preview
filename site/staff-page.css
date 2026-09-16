@@ -25,7 +25,12 @@
     --pc-portrait-origin:50% 0%;
   }
   [data-page-route-id="staff"] [data-concept-portrait="right"] [data-staff-fv-image] {
-    scale:1.38;
+    scale:1.08;
     --pc-portrait-origin:50% 30%;
+  }
+}
+@media (width:1280px) and (height:551px) {
+  [data-page-route-id="staff"] [data-concept-portrait="right"] [data-staff-fv-image] {
+    translate:0 -38px;
   }
 }
