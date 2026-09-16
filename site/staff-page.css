@@ -1,0 +1,20 @@
+/* Staff assets retain the shared frames and motion; only their crop differs. */
+[data-page-route-id="staff"] .home-point-ingredient__vi-btn-img > img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+[data-page-route-id="staff"] .home-point-ingredient-box__img img {
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  object-position:center top;
+}
+@media (min-width:901px) {
+  [data-staff-fv-image] {
+    --staff-rendered-width:max(50vw, calc((100svh - var(--shared-fixed-bar-height, 0px)) * var(--staff-width-per-height)));
+    --pc-portrait-height:calc(100% + var(--staff-rendered-width) * var(--staff-head-offset));
+    --pc-portrait-position:50% calc(0px - var(--staff-rendered-width) * var(--staff-head-offset));
+    --pc-portrait-origin:50% 0%;
+  }
+}

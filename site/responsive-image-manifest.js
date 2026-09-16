@@ -1120,5 +1120,138 @@ export const responsiveImageManifest = Object.freeze({
         "width": 1920
       }
     ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/fv-left.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-left-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-left-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-left-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-left-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/fv-right.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-right-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-right-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-right-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/fv-right-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/try.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/point-main.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-main-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-main-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-main-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-main-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/point-01.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-01-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-01-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-01-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-01-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/point-02.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-02-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-02-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-02-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-02-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/staff-page/point-03.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-03-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-03-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-03-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/point-03-png-1152.webp",
+        "width": 1152
+      }
+    ]
   }
 });
