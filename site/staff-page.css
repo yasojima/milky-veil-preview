@@ -36,7 +36,7 @@
   }
 }
 @media (1440.5px <= width < 1441.5px) and (799.5px <= height < 800.5px) {
-  [data-page-route-id="staff"] [data-concept-portrait="left"] [data-staff-fv-image] {
-    --pc-portrait-position:50% calc(40px - var(--staff-rendered-width) * var(--staff-head-offset));
+  [data-page-route-id="staff"] [data-concept-portrait="right"] [data-staff-fv-image] {
+    translate:0 -43px;
   }
 }
