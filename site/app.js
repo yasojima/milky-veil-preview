@@ -1,9 +1,10 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
+import { staffPageContent } from "./staff-page-content.js?v=20260917-351&pages=20260917-353";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260916-332&pages=20260916-332";
-import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260909-009&pages=20260916-332";
+import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351&pages=20260917-353";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260916-332&pages=20260916-332";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260916-332&pages=20260916-332";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01&pages=20260916-332";
@@ -121,7 +122,7 @@ const staffProfiles = Object.freeze([
   Object.freeze({
     name: "MIU",
     role: "STYLIST",
-    image: `${A}staff-shibuya/staff-miu-editorial-v4.png`,
+    image: staffPageContent.detail.src,
     career: "4年",
     specialty: "ペールブロンド / ホワイトカラー",
     design: "ミルキー・ガーリー・透明感",

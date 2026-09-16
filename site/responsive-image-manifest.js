@@ -1216,21 +1216,21 @@ export const responsiveImageManifest = Object.freeze({
       }
     ]
   },
-  "/milky-veil-preview/assets/references/staff-page/try.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-1152.webp",
+  "/milky-veil-preview/assets/references/staff-page/miu-portrait-351.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/miu-portrait-351-png-1152.webp",
     "width": 1152,
     "height": 2048,
     "candidates": [
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-480.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/miu-portrait-351-png-480.webp",
         "width": 480
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-768.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/miu-portrait-351-png-768.webp",
         "width": 768
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/try-png-1152.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/references/staff-page/miu-portrait-351-png-1152.webp",
         "width": 1152
       }
     ]

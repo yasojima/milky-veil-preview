@@ -1,12 +1,12 @@
 const portrait = (name, alt) => ({ src: `/milky-veil-preview/assets/references/staff-page/${name}.png`, alt, width: 1152, height: 2048 });
 
 export const staffPageContent = Object.freeze({
-  pointLabel: "代表挨拶",
+  pointLabel: "伝えたいこと",
   firstView: {
     left: { ...portrait("fv-left", "グレーの服と白いロングヘアのスタッフ"), position: "50% 20%", scale: 1, origin: "center", headTop: 202 },
     right: { ...portrait("fv-right", "ピンクの服と白から紫のロングヘアのスタッフ"), position: "50% 10%", scale: 1, origin: "center", headTop: 88 },
   },
-  detail: portrait("try", "頬に手を添えた白いロングヘアのスタッフ"),
+  detail: portrait("miu-portrait-351", "頬に手を添えた白いロングヘアのスタッフ"),
   pointMain: portrait("point-main", "グレーの服で椅子に腰掛けたスタッフ"),
   pointCards: [
     portrait("point-01", "頬に片手を添えたスタッフ"),

@@ -1,5 +1,13 @@
 :root {
   --milky-ink: #172133;
+  --milky-section-media-gap: clamp(88px, 10vw, 150px);
+}
+
+@media (max-width: 900px) {
+  :root { --milky-section-media-gap: var(--mh--space--lg); }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  :root { --milky-section-media-gap: min(22500vw / var(--breakpoint), 150px); }
 }
 
 body#home {
@@ -456,7 +464,7 @@ body[data-page-route-id] .milky-concept-copy > p + p { margin-top: .85em; }
 }
 
 body[data-page-route-id="menu"] .service-menu-stage {
-  --milky-menu-artwork-gap: clamp(88px, 10vw, 150px);
+  --milky-menu-artwork-gap: var(--milky-section-media-gap);
   margin: 0;
   padding: 0 0 var(--milky-menu-artwork-gap);
   background: var(--milky-home-paper);
