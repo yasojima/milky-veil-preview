@@ -29,7 +29,8 @@
     --pc-portrait-origin:50% 30%;
   }
 }
-@media (width:1280px) and (height:551px) {
+/* Match the HUD's rounded viewport dimensions, including fractional browser zoom. */
+@media (1279.5px <= width < 1280.5px) and (550.5px <= height < 551.5px) {
   [data-page-route-id="staff"] [data-concept-portrait="right"] [data-staff-fv-image] {
     translate:0 -38px;
   }
