@@ -7,4 +7,4 @@
   pointer-events: none;
 }
 .home-movie__bg::after { background: rgb(40 42 45 / .5); }
-.home-movie [data-menu-still] { color: #fff; }
+.home-movie__marquee::before { background-image: url('/milky-veil-preview/assets/ui/menu-movie-ticker.svg'); }
