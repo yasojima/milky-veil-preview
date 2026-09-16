@@ -1111,7 +1111,6 @@ html body {
 .instagram-open:focus-visible{outline:2px solid #172133;outline-offset:-3px}
 .instagram-caption{padding:16px 0 0}
 .instagram-caption h3{margin:0;font:400 clamp(16px,1.5vw,20px)/1.3 var(--mv-font-text)}
-.instagram-caption p{margin:8px 0 0;font:13px/1.7 var(--mv-font-text);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .instagram-dialog{width:var(--detail-width, min(900px,calc(100vw - 32px)));max-width:calc(100vw - 32px);max-height:90dvh;padding:0;border:0;border-radius:12px;background:#fff;color:var(--ink);overflow:auto;overscroll-behavior:contain}
 .instagram-dialog:focus{outline:none}
 .instagram-close{-webkit-tap-highlight-color:transparent}

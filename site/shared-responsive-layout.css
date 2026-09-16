@@ -53,6 +53,7 @@
     --pc-portrait-position:50% calc(0px - var(--portrait-rendered-width) * var(--portrait-head-offset));
   }
   .home-page .hero-copy { bottom:max(20px,calc(clamp(76px,calc(36svh - 176px),170px) - var(--shared-fixed-bar-height, 0px))); max-width:42vw; }
+  .home-page .hero-copy > p { font-size:clamp(10px,calc(1.25vw - 6px),12px); }
   .home-page .hero-copy h1 { font-size:min(clamp(54px,10.5svh,96px),6.4vw); margin:calc(14px + var(--pc-height-step) * .04) 0 calc(18px + var(--pc-height-step) * .04); }
   .home-page .hero-copy > span { font-size:calc(17.5px + var(--pc-height-step) * .013333); }
   .home-page .hero-reserve { height:calc(44px + var(--pc-height-step) * .08); margin-top:calc(16px + var(--pc-height-step) * .053333); width:calc(310px + var(--pc-height-step) * .253333); }

@@ -1,5 +1,5 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
-import { staffPageContent } from "./staff-page-content.js?v=20260917-351&pages=20260917-353";
+import { staffPageContent } from "./staff-page-content.js?v=20260917-351&pages=20260917-360";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
@@ -473,7 +473,7 @@ function instagramFeed() {
           ${responsiveImage(post.images[0], post.alt, { sizes: "(max-width: 767px) 85vw, 33vw" })}
           <span class="instagram-card-icon" aria-hidden="true">${instagramIcon(index)}</span><span class="instagram-card-hover">${post.video ? "VIEW REEL" : "VIEW FEED"}</span>
           ${post.video ? '<span class="instagram-play" aria-hidden="true">▶</span>' : ""}
-        </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3><p>${post.caption}</p></div>
+        </button><a class="instagram-card-account" href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer" aria-label="@${instagramProfile.username}のInstagramを見る"><span class="instagram-account-logo"><img src="${sharedBrandLogo}" alt=""></span><span>@${instagramProfile.username}</span></a></div><div class="instagram-caption"><h3>${post.title}</h3></div>
       </article>`).join("")}
     </div>
     <dialog class="instagram-dialog" tabindex="-1" aria-labelledby="instagram-post-heading"><button type="button" class="instagram-close" aria-label="投稿を閉じる" autofocus><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button><button type="button" class="instagram-post-prev instagram-post-arrow" data-post-step="-1" aria-label="前の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><button type="button" class="instagram-post-next instagram-post-arrow" data-post-step="1" aria-label="次の投稿を見る"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button><div class="instagram-detail"></div><span class="sr-only" data-post-status aria-live="polite"></span></dialog>
@@ -648,8 +648,8 @@ function staffStrip() {
     <section class="staff-strip" aria-labelledby="home-staff-title">
       <header class="staff-strip-heading">
         <p class="eyebrow">STAFF</p>
-        <h2 id="home-staff-title">技術でお客様のニーズに応えるスタイリスト</h2>
-        <p>色づくりやカットなど<br>異なる得意分野を持つ6名が髪の履歴と今の気分から<br>あなたらしいデザインカラーを一緒に考えます</p>
+        <h2 id="home-staff-title">「好き」を気軽に話せる、6人のスタッフ。</h2>
+        <p>おしゃれが好きで、人と話すことが好きな私たち。<br>やってみたい髪色も、いつもの髪の悩みも、気軽に聞かせてください。<br>それぞれの得意を生かして、あなたに似合うスタイルを一緒に見つけます。</p>
       </header>
       <div class="home-staff-carousel-root" data-home-staff-carousel role="region" aria-roledescription="カルーセル" aria-label="MILKY VEIL スタイリスト紹介">
         <div class="home-staff-controls">
