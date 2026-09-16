@@ -15,38 +15,127 @@
   /* Keep the blue layer inside its section to prevent iPhone POINT occlusion. */
   body[data-page-route-id="menu"] .home-concept__bg { bottom: 0; }
 }
+/* Desktop keeps the adopted artwork; mobile reflows the same price data. */
 .service-menu-mobile { display: none; }
 @media (max-width: 900px) {
-  body[data-page-route-id="menu"] .service-menu-stage__inner { padding-inline: 20px; }
+  body[data-page-route-id="menu"] .service-menu-stage__inner { padding-inline: 14px; }
   body[data-page-route-id="menu"] .service-menu-artwork { width: 100%; max-width: 520px; filter: none; }
   body[data-page-route-id="menu"] .service-menu-artwork > img,
   body[data-page-route-id="menu"] .service-menu-artwork__caption { display: none; }
   .service-menu-mobile {
+    --menu-rose: #ab425e;
+    --menu-border: #e2b9ad;
     display: grid;
-    gap: 28px;
+    gap: 22px;
+    padding: 36px 12px 30px;
+    background: #fcf6f5 url("/milky-veil-preview/assets/generated/menu-mobile/silk-background-v1.webp") center / 100% 100% no-repeat;
     color: #382c30;
-    letter-spacing: .02em;
-    line-height: 1.65;
+    font-family: "MV Shared Noto Serif JP", "Yu Mincho", serif;
+    font-weight: 400;
+    letter-spacing: .015em;
+    line-height: 1.7;
+  }
+  .service-menu-mobile__brand {
+    margin: 0 0 7px;
+    color: var(--menu-rose);
+    font: 400 clamp(25px, 7vw, 34px)/1.4 "MV Shared Playfair Display", Georgia, serif;
+    text-align: center;
+    letter-spacing: .17em;
+    padding-left: .17em;
+  }
+  .service-menu-mobile__panel,
+  .service-menu-mobile__notes {
+    position: relative;
+    border: 1px solid var(--menu-border);
+    background: linear-gradient(145deg, #fffaf7e8, #fffaf8db 50%, #f9efecd9);
+    box-shadow: 0 0 0 3px #fffaf8a3;
   }
   .service-menu-mobile__panel {
-    padding: 42px 30px 20px;
-    border: 1px solid #e4c8c8;
-    border-radius: 160px 160px 24px 24px / 80px 80px 24px 24px;
-    background: radial-gradient(ellipse at top left, #f7e6e9, transparent 65%), linear-gradient(140deg, #fffdfb, #fbf3f2);
-    box-shadow: inset 0 0 0 5px #fffaf8;
+    padding: 56px 24px 26px;
+    border-radius: 50% 50% 30px 30px / 108px 108px 30px 30px;
   }
-  .service-menu-mobile__heading { margin-bottom: 20px; text-align: center; color: #99455e; }
-  .service-menu-mobile__heading h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(38px, 11vw, 48px); font-weight: 400; letter-spacing: .015em; line-height: 1.15; }
-  .service-menu-mobile__heading h2 span { display: block; margin-top: 6px; font-size: 17px; letter-spacing: .3em; padding-left: .3em; }
-  .service-menu-mobile__heading p { margin: 16px 0 0; font-size: 12px; letter-spacing: .1em; }
+  .service-menu-mobile__panel::before,
+  .service-menu-mobile__notes::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid #edcfc2;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .service-menu-mobile__heading { margin-bottom: 17px; text-align: center; color: var(--menu-rose); }
+  .service-menu-mobile__heading::before,
+  .service-menu-mobile__heading::after,
+  .service-menu-mobile__notes h3::after {
+    content: "";
+    display: block;
+    width: 112px;
+    height: 5px;
+    margin: 0 auto 15px;
+    background: radial-gradient(circle, #bd6b80 0 1.6px, transparent 1.8px) center / 7px 5px no-repeat,
+      linear-gradient(#db9eac, #db9eac) left center / 44% 1px no-repeat,
+      linear-gradient(#db9eac, #db9eac) right center / 44% 1px no-repeat;
+  }
+  .service-menu-mobile__heading::after { margin: 20px auto 0; }
+  .service-menu-mobile__heading h2 {
+    margin: 0;
+    font-family: "MV Shared Playfair Display", Georgia, serif;
+    font-size: clamp(43px, 12vw, 60px);
+    font-weight: 400;
+    letter-spacing: -.025em;
+    line-height: 1.12;
+    color: var(--menu-rose);
+  }
+  .service-menu-mobile__heading h2 span {
+    display: block;
+    margin-top: 8px;
+    font-size: 22px;
+    letter-spacing: .26em;
+    padding-left: .26em;
+  }
   .service-menu-mobile dl { margin: 0; }
-  .service-menu-mobile__row { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: center; gap: 12px; padding-block: 17px; border-bottom: 1px dotted #d9b5bd; }
-  .service-menu-mobile__row:last-child { border-bottom: 0; }
-  .service-menu-mobile__row dt { min-width: 0; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
-  .service-menu-mobile__row dd { margin: 0; color: #99455e; font-family: Georgia, 'Times New Roman', serif; font-size: 21px; white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: 0; }
-  .service-menu-mobile__notes { padding: 24px 30px; background: #fbf5f3; border-radius: 20px; }
-  .service-menu-mobile__notes h3 { margin: 0 0 16px; color: #99455e; font-size: 17px; font-weight: 400; }
-  .service-menu-mobile__notes ul { margin: 0; padding-left: 1.15em; list-style: disc; }
-  .service-menu-mobile__notes li { font-size: 14px; line-height: 1.85; }
-  .service-menu-mobile__notes li + li { margin-top: 8px; }
+  .service-menu-mobile__row {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    padding-block: 13px;
+  }
+  .service-menu-mobile__row::after {
+    content: "";
+    order: 1;
+    flex: 1 0 7px;
+    border-bottom: 1px dotted #d79baa;
+  }
+  .service-menu-mobile__row dt {
+    min-width: 0;
+    flex: 0 1 auto;
+    font-size: 16px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+  .service-menu-mobile__row dd {
+    order: 2;
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--menu-rose);
+    font-family: "MV Shared Playfair Display", Georgia, serif;
+    font-size: 22px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+  .service-menu-mobile__word { display: inline-block; white-space: nowrap; }
+  .service-menu-mobile__notes { padding: 28px 22px; border-radius: 34px; }
+  .service-menu-mobile__notes h3 {
+    margin: 0 0 22px;
+    text-align: center;
+    color: var(--menu-rose);
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: .06em;
+  }
+  .service-menu-mobile__notes h3::after { margin: 15px auto 0; }
+  .service-menu-mobile__notes ul { margin: 0; padding-left: 1.1em; list-style: disc; }
+  .service-menu-mobile__notes li { font-size: 14px; line-height: 1.9; }
+  .service-menu-mobile__notes li + li { margin-top: 9px; }
 }
