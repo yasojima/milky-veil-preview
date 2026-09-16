@@ -490,7 +490,6 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
-
 @media (max-width: 900px) and (orientation: portrait) {
   .l-main-img__inner {
     container-type: inline-size;
@@ -543,3 +542,7 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
   }
 }
 
+
+/* Keep the original card frame when a portrait source has a different ratio. */
+.home-point-ingredient-box__img img[src*="/concept-point-cards/"] { aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; }
+.home-point-ingredient-box__img img[src*="/concept-point-cards/03-wave"] { object-position: 50% 80%; }

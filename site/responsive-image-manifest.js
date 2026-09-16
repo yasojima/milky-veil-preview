@@ -681,6 +681,63 @@ export const responsiveImageManifest = Object.freeze({
       }
     ]
   },
+  "/milky-veil-preview/assets/references/concept-point-cards/01-tone.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/01-tone-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/01-tone-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/01-tone-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/01-tone-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/concept-point-cards/02-face-line.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/02-face-line-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/02-face-line-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/02-face-line-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/02-face-line-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/concept-point-cards/03-wave.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/03-wave-png-1143.webp",
+    "width": 1143,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/03-wave-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/03-wave-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/03-wave-png-1143.webp",
+        "width": 1143
+      }
+    ]
+  },
   "/milky-veil-preview/assets/generated/home-role-locked-pack-v1/home-service-customer-05-v1.png": {
     "src": "/milky-veil-preview/assets/generated/responsive/home-role-locked-pack-v1/home-service-customer-05-v1-png-1448.webp",
     "width": 1448,
