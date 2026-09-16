@@ -1253,5 +1253,62 @@ export const responsiveImageManifest = Object.freeze({
         "width": 1152
       }
     ]
+  },
+  "/milky-veil-preview/assets/references/menu-point/01-styling.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/01-styling-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/01-styling-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/01-styling-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/01-styling-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/menu-point/02-reception.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/02-reception-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/02-reception-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/02-reception-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/02-reception-png-1152.webp",
+        "width": 1152
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/references/menu-point/03-shampoo.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/03-shampoo-png-1152.webp",
+    "width": 1152,
+    "height": 2048,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/03-shampoo-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/03-shampoo-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/menu-point/03-shampoo-png-1152.webp",
+        "width": 1152
+      }
+    ]
   }
 });
