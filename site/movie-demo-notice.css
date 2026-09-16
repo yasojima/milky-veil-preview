@@ -1,0 +1,11 @@
+.movie-demo-notice {
+  position: absolute;
+  inset: 70px 24px auto;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 600;
+  line-height: 1.8;
+  text-align: center;
+  text-wrap: balance;
+}
