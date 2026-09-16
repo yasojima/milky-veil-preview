@@ -18,6 +18,11 @@
 /* Desktop keeps the adopted artwork; mobile reflows the same price data. */
 .service-menu-mobile { display: none; }
 @media (max-width: 900px) {
+  body[data-page-route-id="menu"] { --menu-price-gap: var(--mh--space--lg); }
+  body[data-page-route-id="menu"] #point02 .home-point-section__inner { padding-block: var(--menu-price-gap); }
+  /* The empty CONCEPT note must not add a second gap above the price table. */
+  body[data-page-route-id="menu"] #point02 .home-point-section__note:empty { display: none; }
+  body[data-page-route-id="menu"] .service-menu-stage { --milky-menu-artwork-gap: var(--menu-price-gap); }
   body[data-page-route-id="menu"] .service-menu-stage__inner { padding-inline: 14px; }
   body[data-page-route-id="menu"] .service-menu-artwork { width: 100%; max-width: 520px; filter: none; }
   body[data-page-route-id="menu"] .service-menu-artwork > img,
@@ -138,4 +143,7 @@
   .service-menu-mobile__notes ul { margin: 0; padding-left: 1.1em; list-style: disc; }
   .service-menu-mobile__notes li { font-size: 14px; line-height: 1.9; }
   .service-menu-mobile__notes li + li { margin-top: 9px; }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  body[data-page-route-id="menu"] { --menu-price-gap: min(22500vw / var(--breakpoint), 150px); }
 }
