@@ -6,7 +6,7 @@ export const staffPageContent = Object.freeze({
     "intro-heading-first": "髪のことも、何気ないことも。",
     "intro-heading-second": "気軽に話せる場所でありたい。",
     "detail-label": "OUR PEOPLE",
-    "detail-heading": "このスタッフたちに、<br>会いに来ていただけたら。",
+    "detail-heading": "また会いたくなる、<br>気さくなスタッフたち。",
     "point01-lead": "私自身、髪やファッションを通して、<br>自分の好きなところを増やしていくのが好きです。",
     "point01-heading": "あなたの「これが好き」を、<br>もっと似合うかたちに。",
     "point01-body": "好きな色を選ぶこと。なりたい雰囲気を楽しむこと。<br>その人のこだわりには、その人らしい魅力があると思っています。<br>一人ひとりの「好き」に向き合うことが、MILKY VEILのデザインの出発点です。",
