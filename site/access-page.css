@@ -77,6 +77,7 @@
 @media (max-width:380px) {
   .access-main { width:86%; }
   .access-info > div { gap:12px; }
+  .access-info dd .access-hours-line { grid-template-columns:3.1em max-content; column-gap:4px; }
 }
 
 @media (max-width:600px) and (orientation:portrait) {
@@ -84,4 +85,8 @@
   .access-heading h1 { font-size:32px; }
   .access-salon { align-self:start; gap:20px; }
   .access-map-section { margin-top:32px; }
+}
+
+@media (max-width:600px) and (max-height:600px) and (orientation:portrait) {
+  .access-photo img { height:clamp(80px,calc(100svh - 448px),152px); }
 }
