@@ -3,12 +3,12 @@ import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260916-332";
+import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260914-274";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-244";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260916-332";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260917-375";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260916-332";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-244";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260913-251";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04";
 
@@ -784,16 +784,6 @@ function menuPage() {
   </main>`;
 }
 
-function itemsPage() {
-  const products = [["SHAMPOO","VEIL WASH","髪色をやさしく洗うポンプボトル","pump"],["TREATMENT","MILK REPAIR","毛先を包むトリートメントチューブ","tube"],["DAMAGE CARE","LAVENDER DROP","熱の前に使う補修ドロッパー","dropper"],["HAIR BRUSH","AIR VEIL BRUSH","濡れた髪をほどくエアブラシ","brush"],["HAND TOWEL","SOFT VEIL TOWEL","水分を奪いすぎないハンドタオル","towel"]];
-  return `<main id="main" class="subpage subpage-items">${routeBreadcrumb("items")}
-    <section class="items-original-store"><header class="mv-reveal"><small>MILKY VEIL ORIGINALS / 01–05</small><h1>サロンの棚から<br>あなたのバスルームへ</h1><p>あの日の手触りを<br>次に会う日まで途切れさせないために</p></header>
-      <div class="items-product-rail">${products.map(([kind,name,alt,shape])=>`<article class="items-product"><div class="items-product-media ${shape}" role="img" aria-label="${alt}"><em>MV</em><small>MILKY VEIL</small><span>${kind}</span></div><p>${kind}</p><h2>${name}</h2><b>PRICE TBA</b></article>`).join("")}</div>
-      <div class="items-store-marquee" aria-hidden="true"><span>MILKY VEIL ORIGINAL CARE　 MADE FROM SALON EXPERIENCE　</span><span>MILKY VEIL ORIGINAL CARE　 MADE FROM SALON EXPERIENCE　</span></div>
-    </section>
-  </main>`;
-}
-
 function accessPage() {
   const { salon } = shellData;
   return `<main id="main" class="subpage subpage-access">${routeBreadcrumb("access")}
@@ -976,7 +966,7 @@ function renderPage(path) {
   if (key === "CONCEPT") return conceptPage();
   if (key === "STAFF") return staffPage();
   if (key === "MENU") return menuPage();
-  if (key === "ITEMS") return itemsPage();
+  if (key === "ITEMS") { location.replace(routeRegistry.items.path); return ""; }
   if (key === "ACCESS") return accessPage();
   if (key === "JOURNAL") return journalPage();
   if (key === "COLUMN") return archivePage(key);
