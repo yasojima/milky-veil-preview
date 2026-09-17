@@ -40,9 +40,3 @@
     translate:0 -43px;
   }
 }
-@media (826.5px <= width < 827.5px) and (741.5px <= height < 742.5px) {
-  [data-page-route-id="staff"] .mobile-video-brand {
-    top:var(--shared-mobile-logo-y);
-    left:var(--shared-mobile-logo-x);
-  }
-}
