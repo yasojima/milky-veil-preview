@@ -21,7 +21,7 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260916-336&closing=20260912-186",
   "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20260916-336&closing=20260912-186",
   "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-241&pages=20260916-336",
-  "/milky-veil-preview/site/shared-closing.css?v=20260914-265&pages=20260916-336&closing=20260912-186",
+  "/milky-veil-preview/site/shared-closing.css?v=20260917-372&pages=20260916-336&closing=20260912-186",
   "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20260916-336&closing=20260912-186",
 ]);
 
