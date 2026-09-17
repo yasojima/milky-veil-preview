@@ -1367,5 +1367,50 @@ export const responsiveImageManifest = Object.freeze({
         "width": 1152
       }
     ]
+  },
+  "/milky-veil-preview/assets/generated/web-video/menu-movie-01-first-frame.webp": {
+    "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-01-first-frame-webp-720.webp",
+    "width": 720,
+    "height": 1280,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-01-first-frame-webp-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-01-first-frame-webp-720.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/generated/web-video/menu-movie-02-first-frame.webp": {
+    "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-02-first-frame-webp-720.webp",
+    "width": 720,
+    "height": 1280,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-02-first-frame-webp-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-02-first-frame-webp-720.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/generated/web-video/menu-movie-03-first-frame.webp": {
+    "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-03-first-frame-webp-720.webp",
+    "width": 720,
+    "height": 1280,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-03-first-frame-webp-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/web-video/menu-movie-03-first-frame-webp-720.webp",
+        "width": 720
+      }
+    ]
   }
 });
