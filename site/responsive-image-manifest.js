@@ -1463,29 +1463,29 @@ export const responsiveImageManifest = Object.freeze({
       }
     ]
   },
-  "/milky-veil-preview/assets/generated/items-originals/collection-panorama-v1.png": {
-    "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-2048.webp",
+  "/milky-veil-preview/assets/generated/items-originals/collection-empty-background-v1.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-2048.webp",
     "width": 2172,
     "height": 724,
     "candidates": [
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-480.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-480.webp",
         "width": 480
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-768.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-768.webp",
         "width": 768
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-1200.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-1200.webp",
         "width": 1200
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-1600.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-1600.webp",
         "width": 1600
       },
       {
-        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-panorama-v1-png-2048.webp",
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-empty-background-v1-png-2048.webp",
         "width": 2048
       }
     ]
