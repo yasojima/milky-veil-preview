@@ -1,4 +1,4 @@
-import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260917-375";
+import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260917-376";
 import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260914-265";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260913-253&closing=20260912-186";
@@ -14,15 +14,15 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260917-375&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260917-375&closing=20260912-186",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20260917-376&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20260917-376&closing=20260912-186",
   "/milky-veil-preview/site/shared-font-subset.css",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260917-375&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260917-375&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20260917-375&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-241&pages=20260917-375",
-  "/milky-veil-preview/site/shared-closing.css?v=20260917-372&pages=20260917-375&closing=20260912-186",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20260917-375&closing=20260912-186",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260906-03&pages=20260917-376&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260908-01&pages=20260917-376&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20260917-376&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260913-241&pages=20260917-376",
+  "/milky-veil-preview/site/shared-closing.css?v=20260917-372&pages=20260917-376&closing=20260912-186",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20260917-376&closing=20260912-186",
 ]);
 
 function mountViewportHud() {

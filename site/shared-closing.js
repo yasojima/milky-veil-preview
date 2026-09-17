@@ -93,7 +93,7 @@ export function bindClosingLogo(root) {
       const introHeading = intro?.querySelector(".home-concept__head");
       const initialScene = introHeading && introHeading.getBoundingClientRect().top > logoBottom + 12;
       headerLogo.style.setProperty("--logo-scene-top", `${sceneTop}px`);
-      const headerState = mobileMenuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : header.hasAttribute("data-logo-static") ? "active" : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
+      const headerState = mobileMenuOpen ? "menu" : entering ? "covered" : headerClosing ? "closing" : header.hasAttribute("data-logo-top-only") ? (window.scrollY <= 0 ? "active" : "reading") : heroOpen ? (scene ? "scene" : initialScene ? "active" : "reading") : "behind-hero";
       header.dataset.logoState = headerState;
       headerLogo.inert = !["active", "scene", "menu"].includes(headerState);
     }
