@@ -681,6 +681,33 @@ export const responsiveImageManifest = Object.freeze({
       }
     ]
   },
+  "/milky-veil-preview/assets/references/access/salon-interior-shibuya-v1.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-2048.webp",
+    "width": 2048,
+    "height": 1152,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-1600.webp",
+        "width": 1600
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/references/access/salon-interior-shibuya-v1-png-2048.webp",
+        "width": 2048
+      }
+    ]
+  },
   "/milky-veil-preview/assets/references/concept-point-cards/01-tone.png": {
     "src": "/milky-veil-preview/assets/generated/responsive/references/concept-point-cards/01-tone-png-1152.webp",
     "width": 1152,
@@ -1432,6 +1459,67 @@ export const responsiveImageManifest = Object.freeze({
       },
       {
         "src": "/milky-veil-preview/assets/generated/responsive/items-originals/collection-v2-png-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/generated/items-originals/wash-repair-v1.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/items-originals/wash-repair-v1-png-1122.webp",
+    "width": 1122,
+    "height": 1402,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/wash-repair-v1-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/wash-repair-v1-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/wash-repair-v1-png-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/generated/items-originals/lavender-drop-v1.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/items-originals/lavender-drop-v1-png-1122.webp",
+    "width": 1122,
+    "height": 1402,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/lavender-drop-v1-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/lavender-drop-v1-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/lavender-drop-v1-png-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/milky-veil-preview/assets/generated/items-originals/glass-prisms-v1.png": {
+    "src": "/milky-veil-preview/assets/generated/responsive/items-originals/glass-prisms-v1-png-1536.webp",
+    "width": 1536,
+    "height": 1024,
+    "candidates": [
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/glass-prisms-v1-png-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/glass-prisms-v1-png-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/glass-prisms-v1-png-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/milky-veil-preview/assets/generated/responsive/items-originals/glass-prisms-v1-png-1536.webp",
         "width": 1536
       }
     ]

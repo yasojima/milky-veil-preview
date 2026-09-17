@@ -8,7 +8,6 @@
 .access-main h1, .access-main h2 { font-weight:400; }
 .access-heading { margin-bottom:64px; text-align:center; }
 .access-heading h1 { font-family:var(--mv-font-text); font-size:clamp(52px,5.5vw,80px); line-height:1.1; letter-spacing:.055em; }
-.access-heading p { margin-top:16px; font-size:16px; letter-spacing:.1em; text-wrap:balance; }
 .access-salon { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:clamp(40px,5vw,80px); align-items:center; }
 .access-photo img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; }
 .access-photo figcaption { margin-top:14px; font-size:11px; letter-spacing:.2em; color:#72737a; }
@@ -22,19 +21,14 @@
 .access-map-section { margin-top:88px; }
 .access-map-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:24px; }
 .access-map-heading h2 { margin-top:6px; font-size:24px; letter-spacing:.09em; }
-.access-map-link { display:inline-flex; align-items:center; justify-content:space-between; gap:30px; min-height:44px; padding:10px 2px; border-bottom:1px solid #b99aa8; font-size:13px; }
-.access-map-link > span[aria-hidden] { font-size:20px; }
-.access-map-link:hover { color:#99667d; border-color:currentColor; }
 .access-map { display:block; width:100%; height:clamp(330px,34vw,480px); border:0; background:#f1efed; }
 .access-demo-note { margin-top:20px !important; font-size:12px; color:#747079; text-align:center; text-wrap:balance; }
-.access-visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 .access-skip { position:fixed; top:10px; left:10px; z-index:99999; padding:10px 18px; background:#fff; transform:translateY(-200%); }
 .access-skip:focus { transform:none; }
 @media (max-width:900px) {
   .access-main { width:88%; padding:155px 0 64px; }
   .access-heading { margin-bottom:38px; }
   .access-heading h1 { font-size:52px; }
-  .access-heading p { font-size:14px; letter-spacing:.045em; }
   .access-salon { grid-template-columns:minmax(0,1fr); gap:30px; }
   .access-photo img { aspect-ratio:3/2; }
   .access-details h2 { margin-bottom:18px; font-size:29px; }
@@ -42,7 +36,6 @@
   .access-map-section { margin-top:54px; }
   .access-map-heading { align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px; }
   .access-map-heading h2 { font-size:22px; }
-  .access-map-link { margin-left:auto; }
   .access-map { height:360px; }
   .access-demo-note { line-height:1.9; text-align:left; }
 }
@@ -50,5 +43,4 @@
   .access-main { width:86%; }
   .access-info > div { grid-template-columns:5.5em minmax(0,1fr); gap:10px; }
   .access-info dd { font-size:13px; }
-  .access-map-link { margin-left:0; }
 }

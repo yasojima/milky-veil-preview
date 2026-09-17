@@ -41,10 +41,8 @@ export const sharedSalonData = Object.freeze({
   locationLabel: "DEMO SALON / SHIBUYA",
   accessLabel: "渋谷駅△△出口より徒歩約○分",
   demoLocation: Object.freeze({
-    area: "東京都渋谷区・渋谷駅周辺",
+    area: "東京都渋谷区",
     station: "渋谷駅",
-    mapQuery: "渋谷駅",
-    mapPlaceId: "ChIJnxAAO1aLGGARJqvi8d4oczM",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7701633469483!2d139.697129688855!3d35.658033900000035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b563b00109f%3A0x337328def1e2ab26!2z5riL6LC36aeF!5e0!3m2!1sja!2sjp!4v1789649689122!5m2!1sja!2sjp",
     notice: "MILKY VEILは架空のサロンです。地図のピンはデモ用に渋谷駅を示しており、実在する店舗の所在地ではありません。",
   }),
