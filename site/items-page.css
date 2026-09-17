@@ -22,12 +22,15 @@
 .items-hero-jp { font-size:20px; letter-spacing:.16em; line-height:1.9; }
 .items-mobile-break { display:none; }
 .items-hero-photo { position:absolute; z-index:1; width:62%; right:-1.5%; top:50%; transform:translateY(-45%) rotate(-5deg); }
-.items-page main .items-glass { position:absolute; z-index:1; width:var(--glass-width,260px); height:auto; pointer-events:none; user-select:none; }
-.items-glass-hero { --glass-width:clamp(170px,20vw,300px); left:1.5%; bottom:0; transform:rotate(-12deg); }
-.items-glass-intro { --glass-width:190px; right:3%; top:75px; transform:rotate(28deg); }
-.items-glass-pair { --glass-width:clamp(180px,19vw,270px); right:-90px; bottom:-55px; transform:rotate(12deg); }
-.items-glass-care { --glass-width:clamp(180px,18vw,250px); left:-85px; bottom:-45px; transform:rotate(-18deg); }
-.items-glass-tools { --glass-width:220px; left:-70px; bottom:-40px; transform:rotate(15deg); }
+.items-glass { position:absolute; z-index:1; width:clamp(170px,21vw,310px); height:100%; pointer-events:none; user-select:none; }
+.items-glass-shard { position:absolute; display:block; left:var(--x); top:var(--y); width:calc(var(--size) * var(--glass-scale,1px)); height:auto; overflow:hidden; transform:translate(-50%,-50%) rotate(var(--angle)); }
+.items-glass-shard:nth-child(3n) { opacity:.65; }
+.items-glass-hero { --glass-scale:.8px; z-index:0; width:43%; height:20%; left:-5%; bottom:-4%; transform:rotate(-7deg); }
+.items-glass-intro { right:-3%; top:-3%; transform:rotate(12deg); }
+.items-glass-intro-left { left:-5%; top:5%; transform:rotate(186deg); }
+.items-glass-pair { right:-33%; top:-8%; height:116%; transform:rotate(-7deg); }
+.items-glass-care { left:-33%; top:-8%; height:116%; transform:rotate(172deg); }
+.items-glass-tools { right:-27%; top:-12%; height:120%; transform:rotate(16deg); }
 .items-intro > :not(.items-glass) { position:relative; z-index:2; }
 .items-intro { position:relative; padding:110px 7% 90px; text-align:center; }
 .items-intro h2 { padding:25px 0 22px; font-size:clamp(16px,1.65vw,24px); }
@@ -82,11 +85,13 @@
   .items-hero h1 { font-size:clamp(48px,9.7vw,80px); padding:22px 0 16px; }
   .items-hero-jp { font-size:16px; }
   .items-hero-photo { position:relative; width:calc(100% + 16px); right:auto; top:auto; margin:30px -8px 0; transform:rotate(-5deg); }
-  .items-glass-hero { --glass-width:150px; z-index:2; left:0; bottom:-5px; }
-  .items-glass-intro { --glass-width:120px; top:5px; right:-30px; }
-  .items-glass-pair { --glass-width:160px; right:-45px; bottom:-28px; }
-  .items-glass-care { --glass-width:155px; left:-45px; bottom:-25px; }
-  .items-glass-tools { --glass-width:150px; left:-15px; bottom:-25px; }
+  .items-glass { --glass-scale:.6px; width:110px; }
+  .items-glass-hero { width:100%; height:18%; left:-10%; bottom:-2%; }
+  .items-glass-intro { width:75px; right:-30px; top:0; }
+  .items-glass-intro-left { width:75px; left:-35px; top:3%; }
+  .items-glass-pair { right:-57px; }
+  .items-glass-care { left:-57px; }
+  .items-glass-tools { right:-45px; }
   .items-intro { padding:75px 24px 60px; }
   .items-intro h2 { font-size:16px; padding:20px 0; }
   .items-intro-lead { font-size:27px; }
