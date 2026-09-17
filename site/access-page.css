@@ -16,8 +16,8 @@
 .access-info > div { display:grid; grid-template-columns:6em minmax(0,1fr); gap:16px; padding:14px 0; border-bottom:1px solid #e9e4e6; }
 .access-info dt { font-size:13px; color:#707077; }
 .access-info dd { font-size:14px; overflow-wrap:anywhere; }
-.access-info dd span, .access-info dd small { display:block; }
-.access-info dd small { margin-top:3px; font-size:11px; color:#737078; }
+.access-info dd span { display:block; }
+.access-info dd .access-number { display:inline; font-size:18px; font-variant-numeric:lining-nums tabular-nums; white-space:nowrap; }
 .access-map-section { margin-top:88px; }
 .access-map-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:24px; }
 .access-map-heading h2 { margin-top:6px; font-size:24px; letter-spacing:.09em; }
@@ -33,6 +33,7 @@
   .access-photo img { aspect-ratio:3/2; }
   .access-details h2 { margin-bottom:18px; font-size:29px; }
   .access-info > div { grid-template-columns:6em minmax(0,1fr); padding:13px 0; }
+  .access-info dd .access-number { font-size:16px; }
   .access-map-section { margin-top:54px; }
   .access-map-heading { align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px; }
   .access-map-heading h2 { font-size:22px; }
