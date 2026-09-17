@@ -784,18 +784,6 @@ function menuPage() {
   </main>`;
 }
 
-function accessPage() {
-  const { salon } = shellData;
-  return `<main id="main" class="subpage subpage-access">${routeBreadcrumb("access")}
-    <section class="access-map-poster">
-      <div class="access-map-copy mv-reveal"><small>SHIBUYA / 6 MIN WALK</small><h1>街のざわめきから<br>白い入口へ</h1><p>迷いやすい交差点だけを<br>私たちが歩いた目線で残す</p></div>
-      <div class="access-graphic-map"><svg viewBox="0 0 600 420" role="img" aria-label="渋谷駅からMILKY VEILまでの抽象案内図"><path d="M40 340 C160 300 150 170 290 205 S440 110 570 65"/><path class="road" d="M30 120 L570 300 M190 20 L230 400 M430 10 L350 410"/><circle cx="44" cy="340" r="10"/><circle cx="568" cy="65" r="16"/></svg><span class="station">SHIBUYA ST</span><strong>MILKY<br>VEIL</strong><i>6 MIN</i></div>
-      <div class="access-landmarks"><span>01 GLASS BUILDING</span><span>02 WHITE CORNER</span><span>03 MV SIGN</span></div>
-    </section>
-    <section class="access-arrival"><div>${subpageImageSlot("ENTRANCE / WHITE LIGHT","白い入口と小さなMVサイン")}</div><dl><div><dt>ADDRESS</dt><dd>〒${salon.postalCode}<br>${salon.addressLines.join(" ")}</dd></div><div><dt>HOURS</dt><dd>${salon.hours.join("<br>")}</dd></div><div><dt>ACCESS</dt><dd>${salon.accessLabel}</dd></div></dl></section>
-  </main>`;
-}
-
 function archivePage(kind) {
   if (kind === "JOURNAL") return journalPage();
   const list = kind==="BLOG" ? posts : columns;
@@ -967,7 +955,7 @@ function renderPage(path) {
   if (key === "STAFF") return staffPage();
   if (key === "MENU") return menuPage();
   if (key === "ITEMS") { location.replace(routeRegistry.items.path); return ""; }
-  if (key === "ACCESS") return accessPage();
+  if (key === "ACCESS") { location.replace(routeRegistry.access.path); return ""; }
   if (key === "JOURNAL") return journalPage();
   if (key === "COLUMN") return archivePage(key);
   if (key === "FEATURE") return featurePage();
