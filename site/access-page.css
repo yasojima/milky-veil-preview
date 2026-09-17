@@ -78,3 +78,10 @@
   .access-main { width:86%; }
   .access-info > div { gap:12px; }
 }
+
+@media (max-width:600px) and (orientation:portrait) {
+  .access-first-view { --access-top:110px; --access-title-height:38px; --access-title-gap:24px; --access-bottom:0px; min-height:0; grid-template-rows:auto auto; }
+  .access-heading h1 { font-size:32px; }
+  .access-salon { align-self:start; gap:20px; }
+  .access-map-section { margin-top:32px; }
+}
