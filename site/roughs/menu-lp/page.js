@@ -25,7 +25,12 @@ for (const part of document.querySelectorAll("#hero-title > span")) {
   const outline = document.createElement("span");
   outline.className = "hero-outline";
   outline.setAttribute("aria-hidden","true");
-  outline.textContent = part.textContent;
+  for (const character of part.textContent) {
+    const glyph = document.createElement("span");
+    glyph.className = "hero-outline-character";
+    glyph.textContent = character;
+    outline.append(glyph);
+  }
   part.append(outline);
 }
 const heroPrices = [

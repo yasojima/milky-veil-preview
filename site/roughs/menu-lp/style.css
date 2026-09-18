@@ -179,7 +179,11 @@
   .menu-lp h1 { gap:.02em; padding-top:16px; font-size:clamp(148px,17cqw,286px); line-height:1.22; letter-spacing:-.06em; }
   .hero-headline h1 > span { position:relative; isolation:isolate; }
   .hero-headline .hero-outline { display:block; position:absolute; z-index:-1; inset:0; color:transparent; -webkit-text-stroke:1px #c8709166; text-shadow:none; transform:translate(.08em,.3em); pointer-events:none; }
-  .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1.25px #7291a3cc; transform:translate(.14em,.26em); }
+  .hero-outline-character { display:inline-block; }
+  .hero-headline h1 > span:first-child .hero-outline-character:last-child { transform:translateY(-.1em); }
+  .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:none; }
+  .hero-headline h1 > span:last-child .hero-outline-character:first-child { transform:translate(.08em,.2em); }
+  .hero-headline h1 > span:last-child .hero-outline-character:last-child { transform:translate(.035em,.1em); }
   .hero-headline h1 > span:last-child { transform:translateY(.32em); }
   .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:33.1%; right:auto; gap:1.9cqw; transform:none; }
   .price-circle { gap:10px; }
