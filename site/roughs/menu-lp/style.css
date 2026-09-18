@@ -164,8 +164,8 @@
 #preview-viewport-hud { display:none !important; }
 /* Desktop composition uses the image width as its scale, independent of viewport height. */
 @media (min-width:901px) {
-  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
-  .hero-visual { height:var(--hero-stage-height); }
+  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --hero-copy-space:clamp(32px,3.5cqw,64px); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
+  .hero-visual { height:calc(var(--hero-stage-height) + var(--hero-copy-space)*2); }
   .hero-photo { inset:0 auto auto 10%; width:100%; height:auto; object-fit:contain; object-position:center; mask-image:linear-gradient(90deg,transparent,#000 8%),linear-gradient(#000 90%,transparent); mask-composite:intersect; }
   .hero-visual::before { background:linear-gradient(90deg,#fffdfa66,transparent 48%); mask-image:none; }
   .hero-ribbons { display:block; position:absolute; z-index:-1; inset:0; width:100%; height:100%; pointer-events:none; mask-image:linear-gradient(#000 88%,transparent); }
@@ -185,7 +185,7 @@
   .price-circle { gap:10px; }
   .circle-english { font-size:clamp(13px,1.4cqw,23px); }
   .price-circle strong { font-size:clamp(30px,3.8cqw,64px); }
-  .hero-message { position:absolute; z-index:4; top:calc(var(--hero-stage-height)*.79); left:0; width:100%; padding:0 5%; }
+  .hero-message { position:absolute; z-index:4; top:calc(var(--hero-stage-height)*.79 + var(--hero-copy-space)); left:0; width:100%; padding:0 5%; }
   .hero-message::before { content:none; }
   .hero-subcopy { text-align:left; color:inherit; text-shadow:none; }
   .hero-subcopy span:first-child { font-size:20px; line-height:1.5; letter-spacing:.14em; }
