@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-438");
-@import url("../../shared-theme.css?pages=20260919-438");
-@import url("../../shared-hair-gallery.css?pages=20260919-438");
+@import url("../../shared-lp-palette.css?pages=20260919-439");
+@import url("../../shared-theme.css?pages=20260919-439");
+@import url("../../shared-hair-gallery.css?pages=20260919-439");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -181,6 +181,7 @@
   .hero-headline h1 > span { position:relative; isolation:isolate; }
   .hero-headline .hero-outline { display:block; position:absolute; z-index:-1; inset:0; color:transparent; -webkit-text-stroke:1px #c8709166; text-shadow:none; transform:translate(.08em,.3em); pointer-events:none; }
   .hero-outline-character { display:inline-block; }
+  .hero-lead-character,.hero-headline h1 > span:first-child .hero-outline-character:first-child { display:inline-block; margin-inline:.09em .1em; transform:scale(1.26); transform-origin:center; }
   .hero-headline h1 > span:first-child .hero-outline-character:last-child { transform:translateY(-.1em); }
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:none; }
   .hero-headline h1 > span:last-child .hero-outline-character:first-child { transform:translate(.08em,.2em); }
