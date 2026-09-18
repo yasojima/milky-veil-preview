@@ -1,0 +1,24 @@
+{
+  "change": "CHG-405",
+  "version": "20260918-405",
+  "mainBaseline": "090edad39e46868968f1017e9cc50b25de3e88b4",
+  "entry": "site/roughs/menu-lp/index.html",
+  "files": [
+    "site/shared-hair-gallery.css",
+    "site/shared-hair-gallery.js",
+    "site/shared-lp-palette.css",
+    "site/shared-theme.css",
+    "site/roughs/menu-lp/index.html",
+    "site/roughs/menu-lp/page.js",
+    "site/roughs/menu-lp/style.css",
+    "site/roughs/menu-price/index.html",
+    "site/roughs/menu-price/menu-data.js",
+    "site/roughs/menu-price/menu.js",
+    "site/roughs/menu-price/style.css",
+    "assets/generated/menu-lp-atmosphere/curtain-blush-v1.png",
+    "assets/generated/menu-lp-atmosphere/satin-blush-v1.png",
+    "assets/generated/menu-lp-atmosphere/window-close-daylight-v4.png"
+  ],
+  "scope": "Separate phone-review URL; existing main pages preserved. Shared theme only adds the existing ice-blue token without changing its value.",
+  "sourceCommit": "4cb2a5e"
+}

@@ -1,0 +1,51 @@
+:root { color-scheme:light; --ink:#433640; }
+* { box-sizing:border-box; }
+body { margin:0; color:var(--ink); background:#e9e2e9; font-family:"MV Text Japanese","Yu Gothic",sans-serif; -webkit-text-size-adjust:100%; }
+main { padding:64px 28px; }
+.price-sheet { --corner-fade:clamp(14px,2vw,22px); isolation:isolate; container-type:inline-size; position:relative; width:100%; max-width:896px; margin:auto; overflow:hidden; border-radius:clamp(14px,4vw,36px) / clamp(10px,2.7vw,24px); background:#e5dff0; box-shadow:0 22px 65px #443b4b2b; mask-image:radial-gradient(circle at top left,transparent,#000 var(--corner-fade)),radial-gradient(circle at top right,transparent,#000 var(--corner-fade)),radial-gradient(circle at bottom left,transparent,#000 var(--corner-fade)),radial-gradient(circle at bottom right,transparent,#000 var(--corner-fade)); mask-composite:intersect; }
+.portrait { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:100% 40%; transform:scale(1.12); transform-origin:55% 45%; }
+.photo-caption { position:absolute; z-index:-1; left:-1.4%; bottom:-2%; color:#fff9f1d9; font:200 31cqw/1 "Segoe UI Light","Segoe UI",sans-serif; letter-spacing:-.065em; }
+.price-panel { position:relative; display:flex; flex-direction:column; width:67.7%; min-height:177.7cqw; margin-left:auto; padding:9.2cqw 4.7cqw 5.7cqw; border-radius:12cqw 0 0 12cqw; background:linear-gradient(120deg,rgba(250,239,244,.64),rgba(247,235,245,.48) 65%,rgba(237,225,245,.46)); }
+p,h1,dl,dd { margin:0; }
+.price-header { text-align:center; margin-bottom:8.6cqw; }
+.brand { font:400 clamp(19px,2.68cqw,24px)/1.3 "MV Shared Playfair Display",Georgia,serif; letter-spacing:.14em; }
+h1 { margin-top:6.4cqw; font:200 13.7cqw/1 "Segoe UI Light","Segoe UI",sans-serif; letter-spacing:-.055em; }
+#price-groups { display:flex; flex:1; }
+dl { display:grid; width:100%; gap:3.8cqw; align-content:space-between; }
+.price-row { display:grid; grid-template-columns:minmax(0,1fr) max-content; column-gap:2cqw; align-items:baseline; }
+dt { font-size:clamp(15px,1.9cqw,17px); font-weight:400; line-height:1.4; letter-spacing:0; }
+.amount { white-space:nowrap; font:400 clamp(16px,2.01cqw,18px)/1.4 "MV Text Japanese","Yu Gothic",sans-serif; font-variant-numeric:tabular-nums; letter-spacing:0; }
+.tax { margin-left:1px; font-size:10px; }
+.detail { grid-column:1; margin-top:4px; color:#55424f; font-size:11px; line-height:1.5; }
+.price-notes { margin-top:5cqw; color:#55424f; font-size:10px; line-height:1.75; }
+.price-notes p + p { margin-top:3px; }
+#preview-viewport-hud { display:none !important; }
+body[data-embedded] { background:transparent; }
+body[data-embedded] main { padding:0; }
+body[data-embedded] .price-sheet { box-shadow:none; }
+@media (min-width:761px) and (max-width:1000px) {
+  main { padding:38px 24px; }
+  dl { gap:3.7cqw; }
+  .tax { font-size:9px; }
+  .detail { font-size:10px; }
+}
+@media (max-width:760px) {
+  main { padding:20px 12px; }
+  .price-panel { width:74%; min-height:177.7cqw; padding:9cqw 4cqw 7cqw; border-radius:12cqw 0 0 12cqw; }
+  .portrait { object-position:42% 25%; transform:scale(1.04); transform-origin:45% 20%; }
+  .price-header { margin-bottom:9cqw; }
+  .brand { font-size:clamp(15px,3.6cqw,23px); letter-spacing:.08em; }
+  h1 { margin-top:7cqw; font-size:15cqw; }
+  dl { gap:25px; }
+  .price-row { grid-template-columns:minmax(0,1fr) max-content; column-gap:8px; }
+  dt { font-size:clamp(12px,2.8cqw,16px); line-height:1.55; }
+  .amount { font-size:clamp(13px,3.1cqw,18px); line-height:1.4; }
+  .tax { display:block; margin:3px 0 0; text-align:right; font-size:9px; }
+  .detail { grid-column:1 / -1; font-size:10px; line-height:1.6; }
+  .price-notes { margin-top:30px; font-size:9px; line-height:1.8; }
+}
+@media print {
+  body { background:#fff; }
+  main { padding:0; }
+  .price-sheet { box-shadow:none; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+}

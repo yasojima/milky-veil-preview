@@ -3,6 +3,7 @@
   --milky-canvas: #FAF8F9;
   --milky-surface: #FFFFFF;
   --milky-footer: #F3E4E9;
+  --milky-ice-blue: #F0F8FF;
   --milky-home-paper: var(--milky-surface);
 }
 
@@ -10,7 +11,7 @@ body { background-color: var(--milky-canvas); }
 #main { background-color: var(--milky-surface); }
 
 body:has(.concept-fv-background-stage) {
-  --milky-canvas: #F0F8FF;
+  --milky-canvas: var(--milky-ice-blue);
   --milky-intro-surface: var(--milky-canvas);
 }
 
