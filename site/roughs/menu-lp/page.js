@@ -1,8 +1,8 @@
 import { sharedBrandEyebrow, sharedBrandSupportingLines, sharedFooterTickerText, sharedRouteRegistry } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260918-405";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260918-405";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260918-405";
-import { priceItems } from "../menu-price/menu-data.js?pages=20260918-405";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-418";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-418";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-418";
+import { priceItems } from "../menu-price/menu-data.js?pages=20260919-418";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260917-376";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260913-244";
@@ -65,21 +65,20 @@ reducedMotion.addEventListener("change",event => {
   if (event.matches) { showDesignPhotos(); showScenes(); }
 });
 
-const salonCopy = [
-  ["RECEPTION", "好きな色の話を、ゆっくりと。", "木の質感とやわらかな光の受付"],
-  ["STYLING SPACE", "変わっていく自分を、楽しむ時間。", "渋谷の街を望むセット面"],
-  ["SHAMPOO SPACE", "少しだけ、力を抜いて。", "間接照明が灯るシャンプースペース"],
+const salonDescriptions = [
+  "木の質感とやわらかな光の受付",
+  "渋谷の街を望むセット面",
+  "間接照明が灯るシャンプースペース",
 ];
 document.querySelector("[data-salon-grid]").innerHTML = MENU_STILL_ASSETS.map((src,index) => `<figure class="salon-photo">
-  <button class="salon-media" type="button" aria-disabled="true" aria-label="${salonCopy[index][2]}の動画（静止画サンプル・再生不可）">
-  <img ${responsiveImageAttributes(src,"(max-width: 600px) 52vw, 30vw")} alt="${salonCopy[index][2]}" width="720" height="1280" loading="lazy" decoding="async">
+  <button class="salon-media" type="button" aria-disabled="true" aria-label="${salonDescriptions[index]}の動画（静止画サンプル・再生不可）">
+  <img ${responsiveImageAttributes(src,"(max-width: 600px) 52vw, 30vw")} alt="${salonDescriptions[index]}" width="720" height="1280" loading="lazy" decoding="async">
   <span class="salon-play" aria-hidden="true"><span class="salon-play-icon"></span></span>
   </button>
-  <figcaption><span class="eyebrow">0${index+1} / ${salonCopy[index][0]}</span><p>${salonCopy[index][1]}</p></figcaption>
 </figure>`).join("");
 
 for (const button of document.querySelectorAll("[data-lp-reserve]")) {
-  button.innerHTML = `<span class="reservation-label">${reservationLabel}</span><span class="reservation-arrow" aria-hidden="true">›</span>`;
+  button.innerHTML = `<span class="reservation-label">${reservationLabel}</span><span class="reservation-arrow" aria-hidden="true"></span>`;
   button.addEventListener("click", () => document.getElementById("reservation-dialog").showModal());
 }
 
