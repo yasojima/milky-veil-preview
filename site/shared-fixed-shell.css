@@ -73,7 +73,8 @@ body:has(.fixed-social-rail:focus-within) .scroll-mark {
   .fixed-cta-actions { gap:var(--contact-desktop-gap); padding:calc(7px + var(--cta-width-step) * .025) var(--contact-desktop-padding); }
   .fixed-cta-action { height:var(--contact-desktop-frame-height); font-size:calc(11px + var(--cta-width-step) * .025)!important; flex-basis:var(--contact-desktop-frame-width); width:var(--contact-desktop-frame-width); }
   .cta-tel { gap:calc(clamp(10px,1.4vw,20px) + var(--cta-width-step) * .1); padding:6px calc(12px + var(--cta-width-step) * .5) 6px calc(clamp(20px,3vw,42px) + var(--cta-width-step) * .7); }
-  .cta-tel strong { font-size:calc(clamp(19px,1.9vw,26px) + var(--cta-width-step) * .025); }
+  /* Align the visible Playfair numerals, whose ink sits below the line-box center. */
+  .cta-tel strong { font-size:calc(clamp(19px,1.9vw,26px) + var(--cta-width-step) * .025); transform:translateY(-.12em); }
   .cta-phone svg { width:calc(18px + var(--cta-width-step) * .1); height:calc(18px + var(--cta-width-step) * .1); }
   .cta-hours { font-size:calc(clamp(9px,.88vw,12px) + var(--cta-width-step) * .0125); letter-spacing:0; }
   .page-top-cell { padding-right:calc(8px + var(--cta-width-step) * .3); }
