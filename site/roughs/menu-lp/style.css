@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-422");
-@import url("../../shared-theme.css?pages=20260919-422");
-@import url("../../shared-hair-gallery.css?pages=20260919-422");
+@import url("../../shared-lp-palette.css");
+@import url("../../shared-theme.css");
+@import url("../../shared-hair-gallery.css");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -141,7 +141,7 @@
 .review-author h3 span { display:block; font-size:12px; line-height:1.8; margin-top:6px; }
 .review-body { font-size:13px; line-height:2.15; overflow-wrap:anywhere; }
 .review-body p + p { margin-top:1em; }
-.lp-booking { position:relative; isolation:isolate; display:flex; align-items:center; min-height:700px; margin-top:-60px; padding:140px max(6%,calc((100% - 1200px)/2)) 80px; border-bottom:1px solid #ca9aaf80; }
+.lp-booking { position:relative; isolation:isolate; display:flex; align-items:center; min-height:700px; margin-top:-60px; padding:140px max(6%,calc((100% - 1200px)/2)) 80px; border-bottom:0; background:linear-gradient(transparent 70%,var(--milky-footer)); }
 .booking-photo { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:38% center; mask-image:linear-gradient(transparent,#000 24%,#000 85%,transparent); }
 .lp-booking::before { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#fffdfb85,transparent 78%); mask-image:linear-gradient(transparent,#000 100px,#000 calc(100% - 50px),transparent); }
 .booking-copy { width:min(620px,58%); padding:46px 30px; text-align:center; border-radius:80px 8px 80px 8px; background:var(--milky-glass-background); box-shadow:var(--milky-glass-shadow); backdrop-filter:var(--milky-glass-filter); -webkit-backdrop-filter:var(--milky-glass-filter); }
@@ -161,24 +161,31 @@
 .lp-design .section-heading.scene-enter { --scene-x:18px; --scene-y:0; }
 .lp-salon .section-heading.scene-enter { --scene-x:-18px; --scene-y:0; }
 #preview-viewport-hud { display:none !important; }
-/* Desktop UI scope: headline support copy is independent of mobile typography. */
+/* Desktop composition uses the image width as its scale, independent of viewport height. */
 @media (min-width:901px) {
-  .hero-subcopy span:first-child { font-size:20px; }
-}
-/* Desktop UI scope: short PC viewport only. */
-@media (min-width:901px) and (max-height:750px) {
-  .lp-hero { --circle:104px; min-height:470px; grid-template-rows:minmax(0,1fr) 100px 108px; }
-  .hero-headline { top:105px; }
-  .hero-headline .eyebrow { min-width:260px; padding:5px 18px; font-size:10px; }
-  .menu-lp h1 { font-size:clamp(64px,7.2vw,100px); padding-top:7px; }
-  .hero-prices { bottom:-32px; left:auto; right:32px; gap:16px; transform:none; }
-  .price-circle strong { font-size:25px; }
-  .circle-english { font-size:11px; }
-  .hero-message { padding-top:38px; }
-  .hero-subcopy span:first-child { font-size:16px; }
-  .hero-subcopy span:last-child { font-size:23px; }
-  .hero-action { padding-top:4px; }
+  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
+  .hero-visual { height:var(--hero-stage-height); }
+  .hero-photo { object-position:64% center; mask-image:linear-gradient(#000 94%,transparent); }
+  .hero-visual::before { background:linear-gradient(90deg,#fffdfa66,transparent 48%); mask-image:none; }
+  .hero-visual::after { content:""; position:absolute; z-index:-1; inset:60% 0 0; background:linear-gradient(110deg,#c9a9bb70,#baacc078 50%,#d49aaf85); clip-path:ellipse(90% 100% at 54% 100%); mask-image:linear-gradient(#000 85%,transparent); pointer-events:none; }
+  .hero-headline { top:calc(var(--hero-stage-height)*.11); left:2.3%; width:95%; }
+  .hero-headline .eyebrow { display:block; width:37%; min-width:0; margin-left:19%; padding:12px 20px; font-size:clamp(12px,1.4cqw,21px); line-height:1.5; letter-spacing:.13em; }
+  .menu-lp h1 { gap:.02em; padding-top:16px; font-size:clamp(148px,17cqw,286px); line-height:1.22; letter-spacing:-.06em; }
+  .hero-headline h1 > span:last-child { transform:translateY(.32em); }
+  .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:33.1%; right:auto; gap:1.9cqw; transform:none; }
+  .price-circle { gap:10px; }
+  .circle-english { font-size:clamp(13px,1.4cqw,23px); }
+  .price-circle strong { font-size:clamp(30px,3.8cqw,64px); }
+  .hero-message { position:absolute; z-index:4; top:calc(var(--hero-stage-height)*.79); left:0; width:100%; padding:0 5%; }
+  .hero-message::before { content:none; }
+  .hero-subcopy { text-align:center; color:#fff; text-shadow:0 1px 5px #705c6b66,0 0 14px #ffffff66; }
+  .hero-subcopy span:first-child { font-size:clamp(20px,2cqw,32px); line-height:1.5; letter-spacing:.12em; }
+  .hero-subcopy span:last-child { font-size:clamp(27px,3.7cqw,62px); line-height:1.65; letter-spacing:.02em; white-space:nowrap; }
+  .hero-action { padding:28px 24px 10px; }
   .hero-side-note { display:none; }
+  .lp-intro { padding-top:56px; padding-bottom:48px; }
+  .intro-card { min-height:224px; padding:40px 28px; }
+  .lp-intro::after { margin-top:24px; }
 }
 /* Mobile UI scope: wide mobile content; shared shell uses the same 900px boundary. */
 @media (min-width:601px) and (max-width:900px) {
