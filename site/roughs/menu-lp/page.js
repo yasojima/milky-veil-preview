@@ -21,6 +21,13 @@ for (const [selector,src] of [
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
 document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLines.map(line => `<span>${line}</span>`).join("");
+for (const part of document.querySelectorAll("#hero-title > span")) {
+  const outline = document.createElement("span");
+  outline.className = "hero-outline";
+  outline.setAttribute("aria-hidden","true");
+  outline.textContent = part.textContent;
+  part.append(outline);
+}
 const heroPrices = [
   { english:"CUT", item:priceItems[5] },
   { english:"COLOR", item:priceItems[3] },
