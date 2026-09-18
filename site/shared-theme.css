@@ -1,5 +1,5 @@
+@import url("./shared-color-tokens.css?v=20260919-424");
 :root {
-  --milky-heading-accent: #970200;
   --milky-canvas: #FAF8F9;
   --milky-surface: #FFFFFF;
   --milky-footer: #F3E4E9;
