@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-420");
-@import url("../../shared-theme.css?pages=20260919-420");
-@import url("../../shared-hair-gallery.css?pages=20260919-420");
+@import url("../../shared-lp-palette.css?pages=20260919-421");
+@import url("../../shared-theme.css?pages=20260919-421");
+@import url("../../shared-hair-gallery.css?pages=20260919-421");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -34,8 +34,9 @@
 @keyframes reservation-light { to { background-position:-60% 0; } }
 .reservation-button:hover { transform:translateY(-1px); }
 .menu-lp .reservation-button:focus-visible { outline:2px solid #fff; outline-offset:-6px; }
-.menu-lp [data-lp-reserve] { width:clamp(154px,66.6667%,347px); max-width:100%; min-height:54px; padding:10px 44px 10px 24px; box-shadow:none; }
-.reservation-label { font:700 20px/1.4 "MV Text Japanese","Yu Gothic",sans-serif; letter-spacing:.04em; white-space:nowrap; }
+.menu-lp [data-lp-reserve] { width:clamp(154px,66.6667%,347px); max-width:100%; min-height:54px; padding:10px 44px 10px 24px; border:0; border-radius:0; background:#c87091; box-shadow:0 3px 5px -2px #98526d33; }
+.menu-lp [data-lp-reserve]::before,.menu-lp [data-lp-reserve]::after { content:none; animation:none; }
+.reservation-label { font:400 20px/1.4 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.04em; white-space:nowrap; }
 .reservation-arrow { position:absolute; right:20px; top:50%; width:20px; height:20px; transform:translateY(-50%); }
 .reservation-arrow::before,.reservation-arrow::after { content:""; position:absolute; top:4px; width:11px; height:11px; border-top:1.25px solid currentColor; border-right:1.25px solid currentColor; transform:rotate(45deg); }
 .reservation-arrow::before { left:0; opacity:.65; }
