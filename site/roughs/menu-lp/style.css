@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css");
-@import url("../../shared-theme.css");
-@import url("../../shared-hair-gallery.css");
+@import url("../../shared-lp-palette.css?pages=20260919-438");
+@import url("../../shared-theme.css?pages=20260919-438");
+@import url("../../shared-hair-gallery.css?pages=20260919-438");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -164,12 +164,12 @@
 #preview-viewport-hud { display:none !important; }
 /* Desktop composition uses the image width as its scale, independent of viewport height. */
 @media (min-width:901px) {
-  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --hero-copy-space:clamp(32px,3.5cqw,64px); --hero-decoration-height:calc((var(--hero-stage-height) + var(--hero-copy-space)*2)*1000/880); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
+  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --hero-copy-space:clamp(32px,3.5cqw,64px); --hero-wave-lift:calc(var(--circle)*.3); --hero-decoration-height:calc((var(--hero-stage-height) + var(--hero-copy-space)*2)*1000/880 - var(--hero-wave-lift)); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
   /* Match the extended SVG viewBox while preserving the upper curves' scale. */
   .hero-visual { height:var(--hero-decoration-height); }
   .hero-photo { inset:0 auto auto 10%; width:100%; height:auto; object-fit:contain; object-position:center; mask-image:linear-gradient(90deg,transparent,#000 8%),linear-gradient(#000 90%,transparent); mask-composite:intersect; }
   .hero-visual::before { background:linear-gradient(90deg,#fffdfa66,transparent 48%); mask-image:none; }
-  .hero-ribbons { display:block; position:absolute; z-index:-1; inset:0; width:100%; height:100%; pointer-events:none; mask-image:linear-gradient(#000 88%,transparent); }
+  .hero-ribbons { display:block; position:absolute; z-index:-1; inset:0; width:100%; height:calc(100% + var(--hero-wave-lift)); transform:translateY(calc(-1*var(--hero-wave-lift))); pointer-events:none; mask-image:linear-gradient(#000 88%,transparent); }
   .ribbon-cool { stop-color:#b9d2dc; }
   .ribbon-rose { stop-color:#d5a5b7; }
   .hero-ribbons path { fill:url(#menu-hero-ribbon); }
