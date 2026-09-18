@@ -1,8 +1,8 @@
 import { sharedBrandEyebrow, sharedBrandSupportingLines, sharedFooterTickerText, sharedRouteRegistry } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-422";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-422";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-422";
-import { priceItems } from "../menu-price/menu-data.js?pages=20260919-422";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-439";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-439";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-439";
+import { priceItems } from "../menu-price/menu-data.js?pages=20260919-439";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
@@ -21,7 +21,9 @@ for (const [selector,src] of [
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
 document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLines.map(line => `<span>${line}</span>`).join("");
-for (const part of document.querySelectorAll("#hero-title > span")) {
+const heroTitle = document.getElementById("hero-title");
+heroTitle.setAttribute("aria-label",heroTitle.textContent);
+for (const part of heroTitle.children) {
   const outline = document.createElement("span");
   outline.className = "hero-outline";
   outline.setAttribute("aria-hidden","true");
