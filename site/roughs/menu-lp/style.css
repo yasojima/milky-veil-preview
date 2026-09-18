@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-419");
-@import url("../../shared-theme.css?pages=20260919-419");
-@import url("../../shared-hair-gallery.css?pages=20260919-419");
+@import url("../../shared-lp-palette.css?pages=20260919-420");
+@import url("../../shared-theme.css?pages=20260919-420");
+@import url("../../shared-hair-gallery.css?pages=20260919-420");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -139,8 +139,8 @@
 .review-grid { padding:28px 32px 10px; border-radius:65px 8px 65px 8px; background:var(--milky-glass-background); box-shadow:var(--milky-glass-shadow); backdrop-filter:var(--milky-glass-filter); -webkit-backdrop-filter:var(--milky-glass-filter); }
 .review-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); column-gap:32px; padding:30px 0; border-bottom:1px solid #bd9daf7d; }
 .review-card:last-child { border-bottom:0; }
-.review-category { display:flex; flex-wrap:wrap; align-items:center; gap:15px; color:var(--lp-rose-ink); font-size:10px; letter-spacing:.14em; }
-.review-category span { font:400 9px/1.5 "MV Text Japanese",sans-serif; letter-spacing:0; }
+.review-author { align-self:center; text-align:center; }
+.review-category { color:var(--lp-rose-ink); font-size:10px; letter-spacing:.14em; }
 .review-card h3 { position:relative; padding:15px 0 0; font-size:21px; line-height:1.85; }
 .review-author h3 span { display:block; font-size:12px; line-height:1.8; margin-top:6px; }
 .review-body { font-size:13px; line-height:2.15; overflow-wrap:anywhere; }
