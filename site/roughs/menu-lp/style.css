@@ -160,7 +160,7 @@
 .lp-price.scene-enter { --scene-y:12px; }
 .lp-design .section-heading.scene-enter { --scene-x:18px; --scene-y:0; }
 .lp-salon .section-heading.scene-enter { --scene-x:-18px; --scene-y:0; }
-#preview-viewport-hud, #viewport-hud { display:none !important; }
+#preview-viewport-hud { display:none !important; }
 /* Desktop UI scope: headline support copy is independent of mobile typography. */
 @media (min-width:901px) {
   .hero-subcopy span:first-child { font-size:20px; }
