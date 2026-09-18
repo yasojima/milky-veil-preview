@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-418");
-@import url("../../shared-theme.css?pages=20260919-418");
-@import url("../../shared-hair-gallery.css?pages=20260919-418");
+@import url("../../shared-lp-palette.css?pages=20260919-419");
+@import url("../../shared-theme.css?pages=20260919-419");
+@import url("../../shared-hair-gallery.css?pages=20260919-419");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -105,8 +105,10 @@
 .design-photo.is-visible { opacity:1; transform:none; }
 .design-word { position:absolute; isolation:isolate; font-size:clamp(12px,4cqw,28px); line-height:1.55; letter-spacing:.06em; color:var(--lp-rose-ink); text-shadow:0 2px 14px #fff; }
 .design-word::before { inset:-2cqw; }
-.design-word-two { left:37%; top:43%; writing-mode:vertical-rl; }
-.design-word-three { left:4%; top:72%; writing-mode:vertical-rl; }
+.design-word > span { display:block; white-space:nowrap; }
+.design-word > span + span { margin-inline-start:var(--word-column-offset); }
+.design-word-two { --word-column-offset:3.18em; left:37%; top:43%; writing-mode:vertical-rl; }
+.design-word-three { --word-column-offset:1.06em; left:4%; top:72%; writing-mode:vertical-rl; }
 .lp-salon { position:relative; padding:70px 0; }
 .lp-salon .section-heading { position:relative; z-index:2; width:fit-content; max-width:84%; margin:0 8% -40px; padding:22px 32px; text-align:left; border-radius:45px 5px 45px 5px; background:var(--milky-glass-background); box-shadow:var(--milky-glass-shadow); backdrop-filter:var(--milky-glass-filter); -webkit-backdrop-filter:var(--milky-glass-filter); }
 .lp-salon .section-heading h2 { padding:8px 0; }
