@@ -1,8 +1,10 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260916-332";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
 import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251";
+
+export const sharedHeaderLogoLink = 'href="#top" data-page-top-logo aria-label="このページの先頭へ"';
 
 export const sharedConceptMenuRoutes = Object.freeze(sharedPrimaryRouteIds.map((routeId) => sharedRouteRegistry[routeId]));
 
@@ -19,7 +21,7 @@ export function sharedConceptMenuMarkup(currentPath = "/concept/") {
     </li>`).join("");
   return `<header class="shared-concept-menu l-header" data-shared-concept-menu>
     <div class="l-header__inner">
-      <a class="menu-brand" href="${sharedRouteRegistry.home.path}" data-link aria-label="MILKY VEIL HOME"><img src="${sharedBrandLogo}" alt="MILKY VEIL"></a>
+      <a class="menu-brand" ${sharedHeaderLogoLink}><img src="${sharedBrandLogo}" alt="MILKY VEIL"></a>
       <button class="shared-nav-toggle l-nav-btn u-alpha" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
         <span class="shared-nav-label l-nav-btn__txt u-font-en u-uppercase">menu</span>
       </button>
@@ -45,11 +47,21 @@ let disposeActiveMenu = () => {};
 
 export function bindSharedConceptMenu(scope = document) {
   disposeActiveMenu();
+  const controller = new AbortController();
+  const { signal } = controller;
+  scope.querySelectorAll("[data-page-top-logo]").forEach(logo => {
+    logo.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }, { capture: true, signal });
+  });
   const menu = scope.querySelector?.("[data-shared-concept-menu]");
   const toggle = menu?.querySelector(".shared-nav-toggle");
   const nav = menu?.querySelector(".shared-nav-content");
   if (!(menu instanceof HTMLElement) || !(toggle instanceof HTMLButtonElement) || !(nav instanceof HTMLElement)) {
-    disposeActiveMenu = () => {};
+    disposeActiveMenu = () => controller.abort();
     return disposeActiveMenu;
   }
 
@@ -69,8 +81,6 @@ export function bindSharedConceptMenu(scope = document) {
   const bottomObserver = new ResizeObserver(syncBottomSpace);
   if (bottomBar) bottomObserver.observe(bottomBar);
   syncBottomSpace();
-  const controller = new AbortController();
-  const { signal } = controller;
   const homeHeader = document.querySelector(".header-on-hero");
   const syncHomeHeaderVisibility = () => {
     const headerBottom = homeHeader ? Math.max(homeHeader.getBoundingClientRect().bottom, homeHeader.querySelector(".brand")?.getBoundingClientRect().bottom || 0) : 0;

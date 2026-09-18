@@ -8,7 +8,7 @@ import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-244";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260917-376";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup } from "./shared-concept-menu.js?v=20260913-244";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260919-423";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260913-251";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04";
 
@@ -281,7 +281,7 @@ function header(isHome = false, currentPath = "/") {
   const { salon, navigation, actions } = shellData;
   return `
     <header class="site-header ${isHome ? "header-on-hero" : "header-on-page"}">
-      <a class="brand" href="/milky-veil-preview/" data-link aria-label="MILKY VEIL ホーム">
+      <a class="brand" ${sharedHeaderLogoLink}>
         <img class="brand-mark" src="${sharedBrandLogo}" width="497" height="640" alt="" aria-hidden="true">
       </a>
       <div class="header-desktop">
