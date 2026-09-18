@@ -165,7 +165,7 @@
 @media (min-width:901px) {
   .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
   .hero-visual { height:var(--hero-stage-height); }
-  .hero-photo { object-position:64% center; mask-image:linear-gradient(#000 94%,transparent); }
+  .hero-photo { inset:0 auto auto 10%; width:100%; height:auto; object-fit:contain; object-position:center; mask-image:linear-gradient(#000 94%,transparent); }
   .hero-visual::before { background:linear-gradient(90deg,#fffdfa66,transparent 48%); mask-image:none; }
   .hero-visual::after { content:""; position:absolute; z-index:-1; inset:60% 0 0; background:linear-gradient(110deg,#c9a9bb70,#baacc078 50%,#d49aaf85); clip-path:ellipse(90% 100% at 54% 100%); mask-image:linear-gradient(#000 85%,transparent); pointer-events:none; }
   .hero-headline { top:calc(var(--hero-stage-height)*.11); left:2.3%; width:95%; }
