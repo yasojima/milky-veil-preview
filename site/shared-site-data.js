@@ -7,17 +7,8 @@ export const sharedRouteRegistry = Object.freeze({
   staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document", introTitle: "MILKY VEILが誇るスタッフ" }),
   items: Object.freeze({ path: "/milky-veil-preview/items/", label: "ITEMS", navigationMode: "document", introTitle: "MILKY VEILが選んだアイテム" }),
   access: Object.freeze({ path: "/milky-veil-preview/access/", label: "ACCESS", navigationMode: "document", introTitle: "MILKY VEILがお迎えする場所" }),
-  blog: Object.freeze({ path: "/milky-veil-preview/blog/", label: "JOURNAL" }),
-  feature: Object.freeze({ path: "/milky-veil-preview/feature/", label: "FEATURE" }),
-  featureColor: Object.freeze({ path: "/milky-veil-preview/feature/color/", label: "COLOR", parentId: "feature" }),
-  featurePerm: Object.freeze({ path: "/milky-veil-preview/feature/perm/", label: "PERM", parentId: "feature" }),
-  featureStraight: Object.freeze({ path: "/milky-veil-preview/feature/hair-straightening/", label: "STRAIGHT", parentId: "feature" }),
-  featureTreatment: Object.freeze({ path: "/milky-veil-preview/feature/treatment/", label: "TREATMENT", parentId: "feature" }),
-  featureMens: Object.freeze({ path: "/milky-veil-preview/feature/mens/", label: "MEN'S", parentId: "feature" }),
   contact: Object.freeze({ path: "/milky-veil-preview/contact/", label: "CONTACT" }),
   privacy: Object.freeze({ path: "/milky-veil-preview/privacy/", label: "PRIVACY POLICY" }),
-  sitemap: Object.freeze({ path: "/milky-veil-preview/sitemap/", label: "SITE MAP" }),
-  column: Object.freeze({ path: "/milky-veil-preview/column/", label: "COLUMN" }),
 });
 
 export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry).filter(id => !sharedRouteRegistry[id].path.includes("#")));

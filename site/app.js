@@ -9,12 +9,11 @@ import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-244";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260919-423";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260913-251";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
-const J = `${A}journal-model-06-pack-v2/`;
 const HF = `${A}home-feature-roles-v1/`;
 
 const routeRegistry = sharedRouteRegistry;
@@ -68,17 +67,8 @@ const pageCopy = {
     lead: "渋谷の街から、少しだけ気分を切り替える場所へ。",
     text: "白と乳白色を基調にした明るい空間で、カラーを相談しやすい落ち着いた時間をご用意します。",
   },
-  JOURNAL: { lead: "髪とファッションの、いまを静かに記録する。", text: "色、質感、ケア、渋谷の空気。MILKY VEILの視点で編集したデモマガジンです。" },
-  COLUMN: { lead: "髪の選択肢を、わかりやすく。", text: "ブリーチ、カラー、エクステ、パーマ、ケアに関する基本情報を整理します。" },
-  FEATURE: { lead: "髪色と質感から、今のムードを更新する。", text: "カラーを中心に、カット、エクステ、パーマ、ケアをひとつのデザインとして考えます。" },
-  COLOR: { lead: "色落ちの先まできれいな、自由なカラー。", text: "現在の明るさ、残留色素、ダメージを確認し、無理のない工程で理想へ近づけます。" },
-  PERM: { lead: "動きがあるだけで、いつもの服が変わって見える。", text: "骨格、毛流れ、髪の太さを見ながら、毎日扱いやすいカールをつくります。" },
-  STRAIGHT: { lead: "伸ばすのではなく、扱いやすい質感へ整える。", text: "うねりを抑えながら、自然な丸みとやわらかさを残します。" },
-  TREATMENT: { lead: "次のカラーを楽しむための、補修と保護。", text: "乾燥、切れ毛、褪色、熱ダメージを確認し、必要なケアを選びます。" },
-  "MEN'S": { lead: "性別ではなく、好きなムードから選ぶ。", text: "カット、カラー、パーマ、エクステまで、ファッションになじむデザインをつくります。" },
   CONTACT: { lead: "ご相談・お問い合わせ", text: "こちらはデモフォームです。入力内容は送信・保存されません。" },
   "PRIVACY POLICY": { lead: "プライバシーポリシー", text: "本ページはデモサイトの個人情報取り扱い方針を示す仮原稿です。" },
-  "SITE MAP": { lead: "サイトマップ", text: "MILKY VEILデモサイトの全17ページをご案内します。" },
 };
 
 const homeSplitSections = Object.freeze([
@@ -101,14 +91,6 @@ const homeSplitSections = Object.freeze([
     sectionId: "menu-home",
   }),
 ]);
-
-const featureCards = [
-  ["COLOR", "featureColor", `${P}08-lavender-hair-back.png`, "光と色落ちまで設計するカラー"],
-  ["PERM", "featurePerm", `${P}09-short-curl-portrait.png`, "服になじむ動きと質感"],
-  ["STRAIGHT", "featureStraight", `${P}03-service-closeup-blonde.png`, "やわらかく扱いやすいストレート"],
-  ["TREATMENT", "featureTreatment", `${P}05-bleach-treatment.png`, "次のデザインへつなぐ補修"],
-  ["MEN'S", "featureMens", `${P}09-short-curl-portrait.png`, "性別で区切らないデザイン"],
-];
 
 const homeFeatureCards = [
   ["COLOR", `${HF}color-lavender-customer-v2.png`, "LAVENDER", "ラベンダー"],
@@ -187,87 +169,6 @@ const HOME_STAFF_MOBILE_TRANSITION_MS = 240;
 const HOME_STAFF_TRANSITION_FALLBACK_MS = 900;
 let disposeHomeStaffCarousel = () => {};
 let disposeSubpageMotion = () => {};
-
-const posts = [
-  "はじめてのブリーチ。予約前に伝えてほしい3つのこと",
-  "色落ちまでかわいい、ラベンダーカラーのつくり方",
-  "エクステを自然になじませるための本数とケア",
-  "ブリーチ毛にパーマはできる？判断のポイント",
-  "ハイトーンを守るアイロン温度",
-  "顔まわりを変えるポイントカラー",
-  "カラーシャンプーの選び方",
-  "次回カラーまでのケアカレンダー",
-  "ショートパーマのスタイリング",
-  "複雑履歴のカウンセリングについて",
-];
-
-const journalIssue = Object.freeze({
-  number: "07",
-  label: "2026.07",
-  season: "SUMMER / 2026",
-  cover: `${J}01-journal-cover-model-06-v3.png`,
-  featureSlug: "first-bleach",
-  supportingSlugs: Object.freeze(["lavender-color", "salon-hours", "extension-care", "bleach-perm"]),
-  categories: Object.freeze(["ALL", "HAIR", "COLOR", "CARE", "LIFESTYLE", "SALON", "NEWS"]),
-});
-
-const journalMedia = (src, extra = {}) => Object.freeze({
-  listFeature: src,
-  card: src,
-  ...extra,
-});
-
-const journalPosts = Object.freeze([
-  Object.freeze({
-    slug: "first-bleach",
-    category: "FEATURE",
-    date: "2026.07.02",
-    title: "はじめてのブリーチ。予約前に伝えてほしい3つのこと",
-    listTitleLines: Object.freeze(["はじめてのブリーチ", "予約前に伝えてほしい", "3つのこと"]),
-    media: journalMedia(`${J}02-first-bleach-feature-model-06-v2.png`),
-  }),
-  Object.freeze({
-    slug: "lavender-color",
-    category: "COLOR",
-    date: "2026.07.06",
-    title: "色落ちまでかわいい、ラベンダーカラーのつくり方",
-    media: journalMedia(`${J}03-color-fade-model-06-approved.png`),
-  }),
-  Object.freeze({
-    slug: "salon-hours",
-    category: "SALON",
-    date: "2026.07.11",
-    title: "渋谷で見つける、静かなヘアサロンの時間",
-    media: journalMedia(journalIssue.cover, { indexCard: `${J}01-interior-wide.png`, homeCover: journalIssue.cover }),
-  }),
-  Object.freeze({
-    slug: "extension-care",
-    category: "CARE",
-    date: "2026.07.17",
-    title: "エクステを自然になじませるための本数とケア",
-    media: journalMedia(`${J}04-extension-hair-detail-model-06-v2.png`),
-  }),
-  Object.freeze({
-    slug: "bleach-perm",
-    category: "HAIR",
-    date: "2026.07.23",
-    title: "ブリーチ毛にパーマはできる？判断のポイント",
-    media: journalMedia(`${J}05-bleached-perm-model-06-approved.png`),
-  }),
-]);
-
-const columns = [
-  "ケアブリーチと通常ブリーチの違い",
-  "エクステの種類と、自然に見える選び方",
-  "カラー前に伝えたい施術履歴",
-  "ハイトーンをきれいに保つアイロン温度",
-  "色落ちを味方にするカラー設計",
-  "パーマの強さと日々の扱いやすさ",
-  "ブリーチ後に必要なホームケア",
-  "顔まわりデザインの考え方",
-  "髪色とファッションのバランス",
-  "次のデザインにつなげるメンテナンス",
-];
 
 function link(routeId, cls = "", currentPath = "", labelOverride = "") {
   const { path, label } = routeRegistry[routeId];
@@ -423,7 +324,7 @@ function related() {
       <p class="eyebrow">EXPLORE MILKY VEIL</p>
       <h2>もっと自分らしいスタイルへ。</h2>
       <div class="related-grid">
-        ${["concept", "menu", "staff", "feature"].map((id) => link(id, "related-link")).join("")}
+        ${["concept", "menu", "staff", "items"].map((id) => link(id, "related-link")).join("")}
       </div>
       <div class="tag-row"><span>#BLEACH</span><span>#COLOR</span><span>#EXTENSION</span><span>#PERM</span></div>
     </section>`;
@@ -673,28 +574,6 @@ function staffStrip() {
     </section>`;
 }
 
-function articlePreview(title, items, routeId) {
-  return `
-    <section class="article-preview">
-      <div class="section-title"><p class="eyebrow">${title}</p><h2>NEW<br>${title}</h2></div>
-      <div class="article-list">${items.slice(0,4).map((p,i)=>`<article><span>2026.0${i+1}.00</span><h3>${p}</h3><i>↗</i></article>`).join("")}</div>
-      ${link(routeId,"outline-link wave-cta","",`VIEW ${title}`)}
-    </section>`;
-}
-
-function journalIssueBadge(modifier = "") {
-  return `<div class="journal-issue ${modifier}" aria-label="ISSUE ${journalIssue.label}"><span>ISSUE</span><strong>${journalIssue.number}</strong><small>${journalIssue.season}</small></div>`;
-}
-
-function journalCard(post, className = "", mediaRole = "card") {
-  const mediaSource = post.media[mediaRole] || post.media.card;
-  return `<article class="journal-card ${className}">
-    <figure>${responsiveImage(mediaSource, "", { sizes: mediaRole === "indexCard" ? "(max-width: 900px) 50vw, 25vw" : "(max-width: 900px) 100vw, 33vw" })}</figure>
-    <p><span>${post.category}</span><time datetime="${post.date.replaceAll(".", "-")}">${post.date}</time></p>
-    <h3>${post.title}</h3><i aria-hidden="true">→</i>
-  </article>`;
-}
-
 function subpageImageSlot(label, description) {
   return `<figure class="subpage-image-slot" role="img" aria-label="${description}" data-image-role="${label}"><span>${label}</span><i aria-hidden="true"></i></figure>`;
 }
@@ -782,58 +661,6 @@ function menuPage() {
       <div class="menu-consultation-slot">${subpageImageSlot("CONSULTATION / MIRROR","鏡の前で時間と予算を相談する場面")}</div>
     </section>
   </main>`;
-}
-
-function archivePage(kind) {
-  if (kind === "JOURNAL") return journalPage();
-  const list = kind==="BLOG" ? posts : columns;
-  return `<main id="main">${pageHead(kind === "COLUMN" ? "column" : "blog",kind,pageCopy[kind].lead,pageCopy[kind].text)}
-    <section class="archive-layout"><div class="archive-list">${list.map((p,i)=>`<article><span>2026.${String((i%9)+1).padStart(2,"0")}.00</span><h2>${p}</h2><p>髪の選択肢をわかりやすく解説するデモ記事です。正式な記事本文は準備中です。</p><i>READ ↗</i></article>`).join("")}<nav class="pagination"><b>01</b><span>02</span><span>03</span><span>→</span></nav></div><aside><h3>CATEGORIES</h3><p>COLOR<br>BLEACH<br>EXTENSION<br>PERM<br>CARE<br>STYLE</p><h3>RECENT POSTS</h3>${list.slice(0,4).map(p=>`<a>${p}</a>`).join("")}<h3>TAGS</h3><div class="tag-row"><span>#COLOR</span><span>#CARE</span><span>#SHIBUYA</span></div></aside></section></main>`;
-}
-
-function journalPage() {
-  const featured = journalPosts.find((post)=>post.slug===journalIssue.featureSlug) || journalPosts[0];
-  const stories = journalIssue.supportingSlugs.map((slug)=>journalPosts.find((post)=>post.slug===slug)).filter(Boolean);
-  return `<main id="main" class="journal-page">
-    <div class="journal-index-canvas">
-      <nav class="journal-breadcrumb journal-index-breadcrumb" aria-label="パンくず"><a href="${routePath("home")}" data-link>HOME</a><span>/</span><span aria-current="page">JOURNAL</span></nav>
-      <section class="journal-masthead">
-        <h1>JOURNAL</h1>
-        ${journalIssueBadge("journal-issue--index")}
-      </section>
-      <div class="journal-categories" aria-label="記事カテゴリ">${journalIssue.categories.map((category,index)=>index===0?`<strong aria-current="true">${category}</strong>`:`<span>${category}</span>`).join("")}</div>
-      <article class="journal-feature-surface" aria-labelledby="journal-feature-title">
-        <figure>${responsiveImage(featured.media.listFeature, "", { loading: "eager", sizes: "100vw", fetchPriority: "high" })}</figure>
-        <div class="journal-feature-copy"><p><span>${featured.category}</span><time datetime="${featured.date.replaceAll(".", "-")}">${featured.date}</time></p><h2 id="journal-feature-title">${(featured.listTitleLines||[featured.title]).map((line)=>`<span>${line}</span>`).join("")}</h2><span class="journal-feature-read">READ STORY <i aria-hidden="true">→</i></span></div>
-      </article>
-      <section class="journal-story-grid" id="journal-stories" aria-label="最新記事">${stories.map((post,index)=>journalCard(post,`journal-story-${index+1}`,"indexCard")).join("")}</section>
-      <div class="journal-pagination" aria-label="ページネーション"><b>01</b><span>02</span><span>03</span><span>…</span><span class="journal-pagination-next">NEXT →</span></div>
-    </div>
-  </main>`;
-}
-
-function featurePage() {
-  return `<main id="main">${pageHead("feature","FEATURE",pageCopy.FEATURE.lead,pageCopy.FEATURE.text)}${featureCards.map(([n,routeId,img,t],i)=>splitSection(n,t,pageCopy[n]?.text || pageCopy["MEN'S"].text,img,i%2===1,routeId)).join("")}<section class="same-links">${featureCards.map(([,routeId])=>link(routeId)).join("")}</section></main>`;
-}
-
-function featureDetail(name) {
-  const { salon } = shellData;
-  const copy = pageCopy[name];
-  const current = featureCards.find((x)=>x[0]===name) || featureCards[0];
-  const points = {
-    COLOR:["ケアブリーチという選択","複雑履歴も、まずは共有から"],
-    PERM:["カラー履歴と髪の体力を確認","朝のセットをシンプルに"],
-    STRAIGHT:["ハイトーン履歴へ慎重に対応","毛先が硬く見えない設計"],
-    TREATMENT:["ブリーチ後の乾燥へ","熱と摩擦から守る"],
-    "MEN'S":["ハイトーンとデザインカラー","扱いやすいパーマ"],
-  }[name];
-  return `<main id="main">${pageHead(current[1],name,copy.lead,copy.text)}
-    ${splitSection("01",points[0],"髪の状態を確認し、できることと避けるべきことを共有したうえで施術計画をご提案します。",current[2])}
-    ${splitSection("02",points[1],"毎日無理なく再現でき、次のデザインにもつながる仕上がりを目指します。",name==="COLOR"?`${P}05-bleach-treatment.png`:`${P}09-short-curl-portrait.png`,true)}
-    ${articlePreview("RELATED ARTICLES",posts,"blog")}
-    <section class="salon-callout">${responsiveImage(`${J}01-interior-wide.png`, "", { sizes: "(max-width: 900px) 100vw, 50vw" })}<div><p class="eyebrow">SALON OVERVIEW</p><h2>${salon.name}<br>SHIBUYA</h2><p>${salon.phone}<br>${salon.accessLabel}</p>${link("access","outline-link wave-cta")}</div></section>
-    <section class="supporting"><p>DESIGN FOR<br>YOUR NEXT COLOR.</p><span>髪の今と、次の選択肢を大切に。</span></section>
-    <section class="same-links">${featureCards.map(([,routeId])=>link(routeId)).join("")}</section></main>`;
 }
 
 function contactPage() {
@@ -929,25 +756,17 @@ function privacyPage() {
   return `<main id="main">${pageHead("privacy","PRIVACY POLICY",pageCopy["PRIVACY POLICY"].lead,pageCopy["PRIVACY POLICY"].text)}<section class="policy">${blocks.map(([h,p],i)=>`<article><span>0${i+1}</span><h2>${h}</h2><p>${p}</p></article>`).join("")}</section>${related()}</main>`;
 }
 
-function sitemapPage() {
-  const rootIds = routeIds.filter((routeId)=>!routeRegistry[routeId].parentId);
-  return `<main id="main">${pageHead("sitemap","SITE MAP",pageCopy["SITE MAP"].lead,pageCopy["SITE MAP"].text)}<section class="sitemap-grid" aria-label="サイト階層"><ul>${rootIds.map((routeId)=>{
-    const children = routeIds.filter((candidate)=>routeRegistry[candidate].parentId === routeId);
-    return `<li data-route-id="${routeId}">${link(routeId)}${children.length?`<ul>${children.map((childId)=>`<li data-route-id="${childId}">${link(childId)}</li>`).join("")}</ul>`:""}</li>`;
-  }).join("")}</ul></section></main>`;
-}
-
 function resolveRoute(path = location.pathname) {
   const normalized = path.endsWith("/") ? path : `${path}/`;
   const routeId = routeIdByPath[normalized];
-  if (routeId) return Object.freeze({ routeId, view: routeId === "blog" ? "index" : "page", slug: "" });
-  if (/^\/milky-veil-preview\/blog\/[^/]+\/$/.test(normalized)) return Object.freeze({ routeId: "blog", view: "index", slug: "" });
+  if (routeId) return Object.freeze({ routeId, view: "page", slug: "" });
   return Object.freeze({ routeId: "home", view: "fallback", slug: "" });
 }
 
 function renderPage(path) {
   const resolved = resolveRoute(path);
   const routeId = resolved.routeId;
+  if (resolved.view === "fallback") return `<main id="main"><section class="page-head"><p class="eyebrow">404</p><h1>ページが見つかりません</h1><p>URLをご確認ください。</p>${link("home", "outline-link", "", "HOMEへ戻る")}</section></main>`;
   const normalized = path.endsWith("/") ? path : `${path}/`;
   const key = routeRegistry[routeId].label;
   if (normalized === "/milky-veil-preview/") return home();
@@ -956,13 +775,8 @@ function renderPage(path) {
   if (key === "MENU") return menuPage();
   if (key === "ITEMS") { location.replace(routeRegistry.items.path); return ""; }
   if (key === "ACCESS") { location.replace(routeRegistry.access.path); return ""; }
-  if (key === "JOURNAL") return journalPage();
-  if (key === "COLUMN") return archivePage(key);
-  if (key === "FEATURE") return featurePage();
-  if (["COLOR","PERM","STRAIGHT","TREATMENT","MEN'S"].includes(key)) return featureDetail(key);
   if (key === "CONTACT") return contactPage();
   if (key === "PRIVACY POLICY") return privacyPage();
-  if (key === "SITE MAP") return sitemapPage();
   return home();
 }
 
@@ -1654,7 +1468,6 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   disposeSubpageMotion();
   disposeSubpageMotion = () => {};
   document.body.classList.remove("nav-open");
-  if (/^\/milky-veil-preview\/blog\/[^/]+\/?$/.test(location.pathname)) history.replaceState({}, "", routePath("blog"));
   const resolved = resolveRoute(location.pathname);
   const currentRouteId = resolved.routeId;
   const current = routeRegistry[currentRouteId];
@@ -1664,21 +1477,19 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
     || embedQuery === "family-rough"
     || (window.self !== window.top && /subpage-uniplex-family/.test(document.referrer || ""));
   const suppressSharedShell = embedMode
-    && (current.path === routePath("concept") || current.path === routePath("blog"));
+    && current.path === routePath("concept");
   applySharedDocumentBrand();
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
     const description = current.path === "/milky-veil-preview/"
       ? "渋谷のカラーデザインサロン MILKY VEIL デモサイト"
-        : currentRouteId === "blog"
-        ? "髪色、ケア、スタイルをMILKY VEILの視点で編集したデモマガジンです。"
         : pageCopy[current.label]?.text || `${current.label} | MILKY VEIL デモサイト`;
     metaDescription.setAttribute("content", description);
   }
   const isConceptRoute = currentRouteId === "concept";
   const routeShell = isConceptRoute
     ? conceptHeader(current.path)
-    : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path)}</div>` : currentRouteId === "blog" ? sharedConceptMenuMarkup(current.path) : globalOverlay(current.path)}`;
+    : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path)}</div>` : globalOverlay(current.path)}`;
   const appBody = suppressSharedShell
     ? renderPage(location.pathname)
     : `${routeShell}${renderPage(location.pathname)}`;
@@ -1688,13 +1499,6 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
     ? (clearSharedBottomUi(sharedBottomUiRoot), null)
     : mountSharedBottomUi(sharedBottomUiRoot, current.path);
   bind(sharedBottomScope);
-  if (focusRoute && currentRouteId === "blog") {
-    const routeHeading = document.querySelector(".journal-masthead h1");
-    if (routeHeading instanceof HTMLElement) {
-      routeHeading.tabIndex = -1;
-      routeHeading.focus({ preventScroll: true });
-    }
-  }
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   else mountGoogleTranslateWidgets();
   renderedPathname = location.pathname;

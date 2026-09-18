@@ -8,7 +8,7 @@ import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-previ
 import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
-const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") || pathname.endsWith("/service") ? "menu" : "concept");
+const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") ? "menu" : "concept");
 const currentPath = sharedRouteRegistry[pageRouteId]?.path || sharedRouteRegistry.concept.path;
 
 const pointVideo = document.querySelector(".home-point-ingredient__vi video");
