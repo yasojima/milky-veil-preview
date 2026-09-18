@@ -184,7 +184,7 @@
   .hero-headline h1 > span:first-child .hero-outline-character:last-child { transform:translateY(-.1em); }
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:none; }
   .hero-headline h1 > span:last-child .hero-outline-character:first-child { transform:translate(.08em,.2em); }
-  .hero-headline h1 > span:last-child .hero-outline-character:last-child { transform:translate(.035em,.1em); }
+  .hero-headline h1 > span:last-child .hero-outline-character:last-child { transform:translate(0,.045em) scale(1.08); transform-origin:center; }
   .hero-headline h1 > span:last-child { transform:translateY(.32em); }
   .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:33.1%; right:auto; gap:1.9cqw; transform:none; }
   .price-circle { gap:10px; }
