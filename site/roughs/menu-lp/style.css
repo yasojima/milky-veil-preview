@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-421");
-@import url("../../shared-theme.css?pages=20260919-421");
-@import url("../../shared-hair-gallery.css?pages=20260919-421");
+@import url("../../shared-lp-palette.css?pages=20260919-422");
+@import url("../../shared-theme.css?pages=20260919-422");
+@import url("../../shared-hair-gallery.css?pages=20260919-422");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -27,15 +27,10 @@
 .eyebrow { font-size:11px; line-height:1.6; letter-spacing:.18em; color:var(--lp-rose-ink); }
 .menu-lp h2 { font-size:clamp(25px,3vw,39px); line-height:1.75; letter-spacing:.07em; }
 .menu-lp h2 em { color:var(--lp-rose-ink); }
-.reservation-button { position:relative; overflow:hidden; display:flex; justify-content:center; align-items:center; width:min(100%,520px); min-height:80px; padding:11px 58px 13px; border:1px solid #fff9; border-radius:999px; color:#fff; background:linear-gradient(115deg,#d483a1,#b65b7d 72%,#a95071); box-shadow:inset 0 1px 0 #ffffff70,0 5px 14px #98526d24; letter-spacing:.1em; transition:transform .2s; }
-.reservation-button::before { content:""; position:absolute; inset:5px 11% auto; height:1px; background:linear-gradient(90deg,transparent,#fff9,transparent); pointer-events:none; }
-.reservation-button::after { content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(110deg,transparent 36%,#fff5 50%,transparent 64%) 160% 0/250% 100% no-repeat; pointer-events:none; }
-.hero-action.is-in-view .reservation-button::after,.booking-copy.is-in-view .reservation-button::after { animation:reservation-light 1.25s ease .85s 1 both; }
-@keyframes reservation-light { to { background-position:-60% 0; } }
+.reservation-button { position:relative; overflow:hidden; display:flex; justify-content:center; align-items:center; width:min(100%,347px); min-height:54px; padding:10px 24px; border:0; border-radius:0; color:#fff; background:#c87091; box-shadow:0 3px 5px -2px #98526d33; transition:transform .2s; }
 .reservation-button:hover { transform:translateY(-1px); }
 .menu-lp .reservation-button:focus-visible { outline:2px solid #fff; outline-offset:-6px; }
-.menu-lp [data-lp-reserve] { width:clamp(154px,66.6667%,347px); max-width:100%; min-height:54px; padding:10px 44px 10px 24px; border:0; border-radius:0; background:#c87091; box-shadow:0 3px 5px -2px #98526d33; }
-.menu-lp [data-lp-reserve]::before,.menu-lp [data-lp-reserve]::after { content:none; animation:none; }
+.menu-lp [data-lp-reserve] { width:clamp(154px,66.6667%,347px); max-width:100%; min-height:54px; padding:10px 44px 10px 24px; }
 .reservation-label { font:400 20px/1.4 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.04em; white-space:nowrap; }
 .reservation-arrow { position:absolute; right:20px; top:50%; width:20px; height:20px; transform:translateY(-50%); }
 .reservation-arrow::before,.reservation-arrow::after { content:""; position:absolute; top:4px; width:11px; height:11px; border-top:1.25px solid currentColor; border-right:1.25px solid currentColor; transform:rotate(45deg); }
@@ -157,7 +152,7 @@
 .reservation-dialog::backdrop { background:#44344377; }
 .reservation-dialog h2 { font-size:23px; }
 .reservation-dialog > p:not(.eyebrow) { font-size:14px; }
-.reservation-dialog .reservation-button { margin-top:24px; justify-content:center; }
+.reservation-dialog .reservation-button { margin:24px auto 0; }
 .scene-enter { opacity:0; transform:translate3d(var(--scene-x,0),var(--scene-y,22px),0) scale(var(--scene-scale,1)); transition:opacity .7s ease var(--scene-delay,0ms),transform .85s cubic-bezier(.2,.75,.25,1) var(--scene-delay,0ms); }
 .scene-enter.is-in-view,.scene-enter:focus-within { opacity:1; transform:none; }
 .hero-headline.scene-enter { --scene-y:14px; }
