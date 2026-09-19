@@ -1,8 +1,8 @@
 import { sharedBrandEyebrow, sharedBrandSupportingLines, sharedFooterTickerText, sharedRouteRegistry } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-441";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-441";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-441";
-import { priceItems } from "../menu-price/menu-data.js?pages=20260919-441";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-446";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-446";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-446";
+import { priceItems } from "../menu-price/menu-data.js?pages=20260919-446";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
@@ -44,16 +44,19 @@ document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLin
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
 for (const part of heroTitle.children) {
-  const outline = document.createElement("span");
-  outline.className = "hero-outline";
-  outline.setAttribute("aria-hidden","true");
-  for (const character of part.textContent) {
+  const characters = [...part.textContent];
+  part.textContent = "";
+  part.setAttribute("aria-hidden","true");
+  for (const character of characters) {
     const glyph = document.createElement("span");
-    glyph.className = "hero-outline-character";
+    glyph.className = "hero-character";
     glyph.textContent = character;
-    outline.append(glyph);
+    const outline = document.createElement("span");
+    outline.className = "hero-outline";
+    outline.textContent = character;
+    glyph.append(outline);
+    part.append(glyph);
   }
-  part.append(outline);
 }
 const heroPrices = [
   { english:"CUT", item:priceItems[5] },
