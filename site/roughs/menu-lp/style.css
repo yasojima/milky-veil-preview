@@ -202,13 +202,13 @@
   .hero-character { position:absolute; isolation:isolate; font-size:calc(var(--hero-letter-unit)*var(--glyph-size)); transform:skewY(-7deg) skewX(-8deg); transform-origin:center; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(1) { --glyph-size:1.6; left:calc(var(--hero-letter-unit)*-.12); top:0; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(2) { --glyph-size:1.08; left:calc(var(--hero-letter-unit)*1.36); top:calc(var(--hero-letter-unit)*.12); }
-  .hero-headline h1 > span:first-child .hero-character:nth-child(3) { --glyph-size:.94; left:calc(var(--hero-letter-unit)*2.46); top:calc(var(--hero-letter-unit)*.32); }
-  .hero-headline h1 > span:last-child :is(.hero-character:nth-child(1),.hero-character-front) { --glyph-size:1.48; left:calc(var(--hero-letter-unit)*3.15); top:calc(var(--hero-letter-unit)*-.04); }
-  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*4.33); top:calc(var(--hero-letter-unit)*.25); }
+  .hero-headline h1 > span:first-child .hero-character:nth-child(3) { --glyph-size:.88; left:calc(var(--hero-letter-unit)*2.4); top:calc(var(--hero-letter-unit)*.39); }
+  .hero-headline h1 > span:last-child :is(.hero-character:nth-child(1),.hero-character-front) { --glyph-size:1.36; left:calc(var(--hero-letter-unit)*3.09); top:calc(var(--hero-letter-unit)*-.04); }
+  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*4.16); top:calc(var(--hero-letter-unit)*.25); }
   .hero-headline .hero-outline { display:block; position:absolute; z-index:-1; inset:0; color:transparent; -webkit-text-stroke:1px #c8709166; text-shadow:none; transform:translate(.08em,.24em); pointer-events:none; }
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:translate(.08em,.2em); }
   .hero-headline h1 > span:last-child .hero-character:nth-child(2) .hero-outline { transform:translate(0,.045em) scale(1.08); transform-origin:center; }
-  .hero-character-front { display:block; z-index:4; clip-path:polygon(-20% -20%,43% -20%,43% 130%,-20% 130%); pointer-events:none; text-shadow:none; }
+  .hero-character-front { display:block; z-index:4; clip-path:polygon(-20% -20%,36% -20%,36% 130%,-20% 130%); pointer-events:none; text-shadow:none; }
   .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:33.1%; right:auto; gap:1.9cqw; transform:none; }
   .price-circle { gap:9px; padding-top:10px; }
   .circle-english { font-size:clamp(13px,1.4cqw,23px); }
