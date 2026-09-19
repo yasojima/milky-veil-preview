@@ -41,6 +41,36 @@ document.querySelector(".lp-hero").style.setProperty("--hero-wave-solid-start",w
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
 document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLines.map(line => `<span>${line}</span>`).join("");
+const heroCopy = document.querySelector(".hero-subcopy");
+const heroCopyDesktop = window.matchMedia("(min-width:901px)");
+let heroCopyFrame = 0;
+function updateHeroCopyVisibility() {
+  heroCopyFrame = 0;
+  const fixedBarHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--shared-fixed-bar-height")) || 0;
+  // Reveal both lines above the fixed bar without changing the wave's centered layout.
+  const fits = heroCopy.getBoundingClientRect().bottom <= window.innerHeight - fixedBarHeight - 12;
+  heroCopy.classList.toggle("is-below-fold",heroCopyDesktop.matches && !fits);
+}
+function queueHeroCopyVisibility() {
+  if (!heroCopyFrame) heroCopyFrame = requestAnimationFrame(updateHeroCopyVisibility);
+}
+const heroCopyObserver = new ResizeObserver(queueHeroCopyVisibility);
+function observeHeroCopy() {
+  heroCopyObserver.observe(heroCopy);
+  heroCopyObserver.observe(document.querySelector(".lp-hero"));
+  window.addEventListener("scroll",queueHeroCopyVisibility,{passive:true});
+  window.addEventListener("resize",queueHeroCopyVisibility);
+  updateHeroCopyVisibility();
+}
+observeHeroCopy();
+window.addEventListener("pagehide",() => {
+  heroCopyObserver.disconnect();
+  window.removeEventListener("scroll",queueHeroCopyVisibility);
+  window.removeEventListener("resize",queueHeroCopyVisibility);
+  cancelAnimationFrame(heroCopyFrame);
+  heroCopyFrame = 0;
+});
+window.addEventListener("pageshow",event => { if (event.persisted) observeHeroCopy(); });
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
 for (const part of heroTitle.children) {

@@ -215,7 +215,9 @@
   .price-circle strong { font-family:"Yu Mincho","MV Shared Noto Serif JP",serif; font-size:clamp(24px,calc(var(--hero-fit-unit)*4),67px); font-style:italic; line-height:1; letter-spacing:-.075em; padding-right:.075em; text-shadow:0 1px 1.5px #506e85b3; }
   .hero-message { position:absolute; z-index:4; top:calc((var(--hero-decoration-height) + var(--hero-wave-lift))*var(--hero-wave-solid-start,.63) - var(--hero-wave-lift)); left:0; width:100%; height:calc((var(--hero-decoration-height) + var(--hero-wave-lift))*(var(--hero-wave-fade-start) - var(--hero-wave-solid-start,.63))); display:flex; align-items:center; justify-content:center; padding:0 5%; }
   .hero-message::before { content:none; }
-  .hero-subcopy { text-align:left; color:inherit; text-shadow:none; }
+  .hero-message.scene-enter { opacity:1; transform:none; }
+  .hero-subcopy { text-align:left; color:inherit; text-shadow:none; opacity:1; transition:opacity .35s ease; }
+  .hero-subcopy.is-below-fold { opacity:0; transition:none; }
   .hero-subcopy span:first-child { font-size:20px; line-height:1.5; letter-spacing:.14em; }
   .hero-subcopy span:last-child { font-size:clamp(20px,2.25vw,31px); line-height:1.65; letter-spacing:.1em; }
   .hero-action { padding:28px 24px 10px; }
