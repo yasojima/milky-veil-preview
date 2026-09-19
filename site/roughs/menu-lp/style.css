@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-439");
-@import url("../../shared-theme.css?pages=20260919-439");
-@import url("../../shared-hair-gallery.css?pages=20260919-439");
+@import url("../../shared-lp-palette.css?pages=20260919-440");
+@import url("../../shared-theme.css?pages=20260919-440");
+@import url("../../shared-hair-gallery.css?pages=20260919-440");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -191,7 +191,7 @@
   .price-circle { gap:10px; }
   .circle-english { font-size:clamp(13px,1.4cqw,23px); }
   .price-circle strong { font-size:clamp(30px,3.8cqw,64px); }
-  .hero-message { position:absolute; z-index:4; top:calc(var(--hero-stage-height)*.5 + var(--circle)); left:0; width:100%; height:calc(var(--hero-decoration-height) - var(--hero-stage-height)*.5 - var(--circle)); display:flex; align-items:center; justify-content:center; padding:0 5%; }
+  .hero-message { position:absolute; z-index:4; top:calc(var(--hero-stage-height)*.5 + var(--circle)); left:0; width:100%; height:calc(var(--hero-decoration-height) - var(--hero-stage-height)*.5 - var(--circle)); display:flex; align-items:center; justify-content:center; padding:0 5% clamp(36px,4.2cqw,80px); }
   .hero-message::before { content:none; }
   .hero-subcopy { text-align:left; color:inherit; text-shadow:none; }
   .hero-subcopy span:first-child { font-size:20px; line-height:1.5; letter-spacing:.14em; }
