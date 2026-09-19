@@ -1,14 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-444");
-@import url("../../shared-theme.css?pages=20260919-444");
-@import url("../../shared-hair-gallery.css?pages=20260919-444");
-@font-face {
-  font-family:"MV FAQ Serif";
-  src:url("../../../assets/fonts/shared-ui/rosarivo-shared.woff2") format("woff2");
-  font-style:normal;
-  font-weight:400;
-  font-display:swap;
-  unicode-range:U+0051;
-}
+@import url("../../shared-lp-palette.css?pages=20260919-445");
+@import url("../../shared-theme.css?pages=20260919-445");
+@import url("../../shared-hair-gallery.css?pages=20260919-445");
 /* Shared UI: content, palette and wide-layout defaults; device overrides follow in cascade order. */
 .menu-lp { --menu-copy-pink:#c87091; --menu-copy-white:#fff; --menu-photo-shadow:0 2px 5px #302a3214,0 12px 25px #302a3221,0 26px 42px -16px #302a322e; margin:0; color:#58434b; background:var(--lp-paper); font:400 16px/1.9 var(--mv-font-text); -webkit-text-size-adjust:100%; }
 .menu-lp *, .menu-lp *::before, .menu-lp *::after { box-sizing:border-box; }
@@ -153,13 +145,14 @@
 .lp-faq { position:relative; isolation:isolate; padding:90px max(7%,calc((100% - 860px)/2)) 130px; }
 .lp-faq::before { content:""; position:absolute; z-index:-1; inset:-60px 0 -60px; pointer-events:none; background:linear-gradient(#f3dde53b,#fffdfb38 25%,#fffdfb38 75%,#ece6f040),url("../../../assets/references/menu-faq/white-veil.png") center 52%/cover no-repeat; mask-image:linear-gradient(transparent,#000 110px,#000 calc(100% - 110px),transparent); }
 .lp-faq .section-heading { margin-bottom:36px; }
+.lp-faq .eyebrow,.faq-q { font-family:"Times New Roman",Times,serif; font-weight:400; }
 .lp-faq .eyebrow { font-size:32px; letter-spacing:.14em; }
 .lp-faq .section-heading h2 { padding:8px 0 0; font-size:17px; letter-spacing:.12em; }
 .faq-list { display:grid; gap:16px; }
 .faq-item { min-width:0; border:1px solid #bd9daf66; background:#fffffff0; }
 .faq-item summary { display:grid; grid-template-columns:30px minmax(0,1fr) 14px; align-items:center; gap:16px; min-height:78px; padding:20px 28px; list-style:none; cursor:pointer; font-size:16px; line-height:1.8; letter-spacing:.025em; }
 .faq-item summary::-webkit-details-marker { display:none; }
-.faq-q { align-self:start; font-family:"MV FAQ Serif","Times New Roman",serif; font-size:27px; font-weight:400; line-height:1.1; letter-spacing:0; color:var(--lp-rose-ink); }
+.faq-q { align-self:start; font-size:27px; font-weight:700; line-height:1.1; letter-spacing:0; color:var(--lp-rose-ink); }
 .faq-chevron { width:9px; height:9px; justify-self:center; border-right:1px solid var(--lp-rose-ink); border-bottom:1px solid var(--lp-rose-ink); transform:translateY(-2px) rotate(45deg); transition:transform .2s ease; }
 .faq-item[open] .faq-chevron { transform:translateY(2px) rotate(225deg); }
 .faq-item summary:focus-visible { outline-offset:-5px; }
