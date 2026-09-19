@@ -244,7 +244,7 @@
   .hero-photo { object-position:78% center; }
   .price-circle strong { font-size:30px; }
   .booking-copy { width:clamp(420px,58%,620px); max-width:100%; }
-  .lp-faq { padding-right:58px; }
+  .lp-faq { padding-inline:max(40px,7%); }
 }
 /* Mobile UI scope: compact content layout. */
 @media (max-width:600px) {
@@ -293,7 +293,7 @@
   .review-card { display:block; padding:24px 0; }
   .review-card h3 { font-size:20px; padding-top:14px; }
   .review-body { padding-top:14px; }
-  .lp-faq { padding:60px 58px 100px 22px; }
+  .lp-faq { padding:60px 40px 100px; }
   .lp-faq::before { background-position:center,54% center; }
   .lp-faq .section-heading { margin-bottom:28px; }
   .lp-faq .eyebrow { font-size:28px; }
