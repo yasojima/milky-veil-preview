@@ -58,6 +58,11 @@ for (const part of heroTitle.children) {
     part.append(glyph);
   }
 }
+const privateGlyph = heroTitle.lastElementChild.firstElementChild;
+const foregroundGlyph = privateGlyph.cloneNode(false);
+foregroundGlyph.classList.add("hero-character-front");
+foregroundGlyph.textContent = privateGlyph.firstChild.textContent;
+heroTitle.lastElementChild.append(foregroundGlyph);
 const heroPrices = [
   { english:"CUT", item:priceItems[5] },
   { english:"COLOR", item:priceItems[3] },
