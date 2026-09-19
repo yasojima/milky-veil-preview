@@ -243,7 +243,7 @@
   .hero-headline h1 > span:last-child { margin-left:1em; transform:none; }
   .hero-photo { object-position:78% center; }
   .price-circle strong { font-size:30px; }
-  .booking-copy { width:clamp(420px,58%,620px); max-width:100%; }
+  .booking-copy { width:clamp(420px,58%,620px); max-width:100%; margin-inline:auto; }
   .lp-faq { padding-inline:max(40px,7%); }
 }
 /* Mobile UI scope: compact content layout. */
@@ -302,7 +302,7 @@
   .faq-item summary { grid-template-columns:22px minmax(0,1fr) 12px; gap:10px; min-height:72px; padding:17px 15px; font-size:14px; }
   .faq-q { font-size:24px; }
   .faq-answer { padding:0 18px 22px; font-size:13px; }
-  .lp-booking { min-height:0; padding:300px 58px 48px 22px; }
+  .lp-booking { min-height:0; padding:300px 40px 48px; }
   .booking-photo { height:450px; object-position:32% 40%; mask-image:linear-gradient(transparent,#000 25%,#000 70%,transparent); }
   .booking-copy { width:100%; padding:28px 18px; border-radius:45px 8px 45px 8px; }
   .lp-booking h2 { font-size:clamp(16px,4.5vw,23px); }
