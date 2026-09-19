@@ -7,6 +7,7 @@ import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
 import { reservationLabel } from "../../shared-contact-details.js?v=20260913-244";
+import { layoutQueries } from "../../responsive-policy.js";
 
 for (const [selector,src] of [
   ["[data-hero-photo]","/milky-veil-preview/assets/generated/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2.png"],
@@ -42,7 +43,7 @@ document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
 document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLines.map(line => `<span>${line}</span>`).join("");
 const heroCopy = document.querySelector(".hero-subcopy");
-const heroCopyDesktop = window.matchMedia("(min-width:901px)");
+const heroCopyDesktop = window.matchMedia(layoutQueries.desktop);
 let heroCopyFrame = 0;
 function updateHeroCopyVisibility() {
   heroCopyFrame = 0;
@@ -182,7 +183,7 @@ function fitPriceFrame() {
 }
 priceFrame.addEventListener("load",fitPriceFrame);
 fitPriceFrame();
-window.addEventListener("pagehide",()=>{ priceObserver?.disconnect(); designObserver?.disconnect(); sceneObserver?.disconnect(); },{once:true});
+window.addEventListener("pagehide",()=>{ priceObserver?.disconnect(); designObserver?.disconnect(); sceneObserver?.disconnect(); });
 window.addEventListener("pageshow",event=>{ if (event.persisted) { fitPriceFrame(); showDesignPhotos(); showScenes(); } });
 
 mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"),sharedRouteRegistry.menu.path);
