@@ -235,6 +235,7 @@
 }
 @media (max-width:900px) {
   .menu-lp .has-split-hero > .menu-brand { display:none; }
+  .menu-lp #shared-bottom-ui-root::part(fixed-cta) { display:none; }
 }
 
 /* Mobile UI scope: wide mobile content; shared shell uses the same 900px boundary. */
@@ -260,14 +261,14 @@
   .menu-lp h1 { display:block; font-size:clamp(56px,17.4vw,95px); line-height:1.13; padding-top:18px; letter-spacing:-.06em; }
   .hero-headline h1 > span { display:block; }
   .hero-headline h1 > span:last-child { transform:none; margin-left:.9em; }
-  .hero-prices { left:22px; right:58px; bottom:-32px; gap:10px; transform:none; }
+  .hero-prices { left:22px; right:22px; bottom:-32px; gap:10px; transform:none; }
   .price-circle { width:calc((100% - 20px)/3); max-width:130px; gap:5px; }
   .price-circle strong { font-size:clamp(21px,6.1vw,30px); }
   .circle-english { font-size:clamp(9px,2.6vw,12px); }
-  .hero-message { padding:41px 58px 9px 22px; }
+  .hero-message { padding:41px 22px 9px; }
   .hero-subcopy span:first-child { font-size:12px; }
   .hero-subcopy span:last-child { font-size:17px; line-height:1.6; letter-spacing:.04em; text-wrap:balance; }
-  .hero-action { padding:10px 58px 8px 22px; }
+  .hero-action { padding:10px 22px 8px; }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
   .reservation-label { font-size:clamp(14px,4vw,18px); letter-spacing:.03em; }
   .reservation-arrow { right:12px; }

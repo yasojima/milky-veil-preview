@@ -187,5 +187,7 @@ window.addEventListener("pagehide",()=>{ priceObserver?.disconnect(); designObse
 window.addEventListener("pageshow",event=>{ if (event.persisted) { fitPriceFrame(); showDesignPhotos(); showScenes(); } });
 
 mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"),sharedRouteRegistry.menu.path);
-bindSharedFixedShell(mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"),sharedRouteRegistry.menu.path));
+const bottomUi = mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"),sharedRouteRegistry.menu.path);
+bottomUi.querySelector(".fixed-cta").part.add("fixed-cta");
+bindSharedFixedShell(bottomUi);
 bindSharedConceptMenu(document);
