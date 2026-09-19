@@ -1,8 +1,8 @@
 import { sharedBrandEyebrow, sharedBrandSupportingLines, sharedFooterTickerText, sharedRouteRegistry } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-439";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-439";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-439";
-import { priceItems } from "../menu-price/menu-data.js?pages=20260919-439";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-441";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-441";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-441";
+import { priceItems } from "../menu-price/menu-data.js?pages=20260919-441";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
@@ -17,6 +17,26 @@ for (const [selector,src] of [
   photoTemplate.innerHTML = `<img ${responsiveImageAttributes(src,"(max-width:600px) 1100px, 2200px")}>`;
   for (const attribute of photoTemplate.content.firstElementChild.attributes) photo.setAttribute(attribute.name, attribute.value);
 }
+
+const heroWave = document.querySelector(".hero-ribbons");
+const waveFront = heroWave.querySelector(".ribbon-front");
+const waveMidX = heroWave.viewBox.baseVal.width / 2;
+const waveLength = waveFront.getTotalLength();
+const waveStep = waveLength / 64;
+let waveLow = 0;
+let waveHigh = waveStep;
+// The upper edge moves left to right; bracket its center before the closing edges.
+while (waveHigh < waveLength && waveFront.getPointAtLength(waveHigh).x < waveMidX) {
+  waveLow = waveHigh;
+  waveHigh += waveStep;
+}
+for (let i = 0; i < 14; i++) {
+  const mid = (waveLow + waveHigh) / 2;
+  if (waveFront.getPointAtLength(mid).x < waveMidX) waveLow = mid;
+  else waveHigh = mid;
+}
+const waveSolidStart = waveFront.getPointAtLength((waveLow + waveHigh) / 2).y / heroWave.viewBox.baseVal.height;
+document.querySelector(".lp-hero").style.setProperty("--hero-wave-solid-start",waveSolidStart);
 
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
