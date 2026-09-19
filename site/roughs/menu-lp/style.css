@@ -182,12 +182,12 @@
 .lp-design .section-heading.scene-enter { --scene-x:18px; --scene-y:0; }
 .lp-salon .section-heading.scene-enter { --scene-x:-18px; --scene-y:0; }
 #preview-viewport-hud { display:none !important; }
-/* Desktop composition uses the image width as its scale, independent of viewport height. */
+/* Fit the desktop composition above the fixed bar without changing its internal proportions. */
 @media (min-width:901px) {
-  .lp-hero { --hero-stage-height:clamp(620px,61.75cqw,1040px); --hero-copy-space:clamp(32px,3.5cqw,64px); --hero-wave-lift:calc(var(--circle)*.3); --hero-wave-fade-start:.88; --hero-decoration-height:calc((var(--hero-stage-height) + var(--hero-copy-space)*2)*1000/880 - var(--hero-wave-lift)); --circle:clamp(148px,16.5cqw,278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
+  .lp-hero { --hero-fit-unit:min(1cqw,calc((100svh - var(--shared-fixed-bar-height,60px))/51.85)); --hero-fit-offset:calc((100cqw - var(--hero-fit-unit)*100)/2); --hero-stage-height:clamp(360px,calc(var(--hero-fit-unit)*61.75),1040px); --hero-copy-space:clamp(32px,calc(var(--hero-fit-unit)*3.5),64px); --hero-wave-lift:calc(var(--circle)*.3); --hero-wave-fade-start:.88; --hero-decoration-height:calc((var(--hero-stage-height) + var(--hero-copy-space)*2)*1000/880 - var(--hero-wave-lift)); --circle:clamp(96px,calc(var(--hero-fit-unit)*16.5),278px); container-type:inline-size; display:block; height:auto; min-height:0; max-height:none; }
   /* Match the extended SVG viewBox while preserving the upper curves' scale. */
   .hero-visual { height:var(--hero-decoration-height); }
-  .hero-photo { inset:0 auto auto 10%; width:100%; height:auto; object-fit:contain; object-position:center; mask-image:linear-gradient(90deg,transparent,#000 8%),linear-gradient(#000 90%,transparent); mask-composite:intersect; }
+  .hero-photo { inset:0 calc(var(--hero-fit-unit)*-10) auto auto; width:calc(var(--hero-fit-unit)*100); height:auto; object-fit:contain; object-position:center; mask-image:linear-gradient(90deg,transparent,#000 8%),linear-gradient(#000 90%,transparent); mask-composite:intersect; }
   .hero-visual::before { background:linear-gradient(90deg,#fffdfa66,transparent 48%); mask-image:none; }
   .hero-ribbons { display:block; position:absolute; z-index:-1; inset:0; width:100%; height:calc(100% + var(--hero-wave-lift)); transform:translateY(calc(-1*var(--hero-wave-lift))); pointer-events:none; mask-image:linear-gradient(#000 calc(var(--hero-wave-fade-start)*100%),transparent); }
   .ribbon-cool { stop-color:#b9d2dc; }
@@ -195,9 +195,9 @@
   .hero-ribbons path { fill:url(#menu-hero-ribbon); }
   .ribbon-back { opacity:.48; }
   .ribbon-front { opacity:.68; }
-  .hero-headline { top:calc(var(--hero-stage-height)*.11); left:2.3%; width:95%; }
-  .hero-headline .eyebrow { display:block; width:37%; min-width:0; margin-left:19%; padding:12px 20px; font-size:clamp(12px,1.4cqw,21px); line-height:1.5; letter-spacing:.13em; }
-  .menu-lp h1 { --hero-letter-unit:clamp(148px,17cqw,286px); position:relative; display:block; height:calc(var(--hero-letter-unit)*1.65); padding-top:0; font-size:var(--hero-letter-unit); line-height:1; letter-spacing:0; transform:none; }
+  .hero-headline { top:calc(var(--hero-stage-height)*.11); left:calc(var(--hero-fit-offset) + var(--hero-fit-unit)*2.3); width:calc(var(--hero-fit-unit)*95); }
+  .hero-headline .eyebrow { display:block; width:37%; min-width:0; margin-left:19%; padding:min(12px,calc(var(--hero-fit-unit)*.8421)) min(20px,calc(var(--hero-fit-unit)*1.4035)); font-size:clamp(10px,calc(var(--hero-fit-unit)*1.4),21px); line-height:1.5; letter-spacing:.13em; }
+  .menu-lp h1 { --hero-letter-unit:clamp(90px,calc(var(--hero-fit-unit)*17),286px); position:relative; display:block; height:calc(var(--hero-letter-unit)*1.65); padding-top:0; font-size:var(--hero-letter-unit); line-height:1; letter-spacing:0; transform:none; }
   .hero-headline h1 > span { display:contents; }
   .hero-character { position:absolute; isolation:isolate; font-size:calc(var(--hero-letter-unit)*var(--glyph-size)); transform:skewY(-7deg) skewX(-8deg); transform-origin:center; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(1) { --glyph-size:1.6; left:calc(var(--hero-letter-unit)*-.12); top:0; }
@@ -209,10 +209,10 @@
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:translate(.08em,.2em); }
   .hero-headline h1 > span:last-child .hero-character:nth-child(2) .hero-outline { transform:translate(0,.045em) scale(1.08); transform-origin:center; }
   .hero-character-front { display:block; z-index:4; clip-path:polygon(-20% -20%,36% -20%,36% 130%,-20% 130%); pointer-events:none; text-shadow:none; }
-  .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:33.1%; right:auto; gap:1.9cqw; transform:none; }
-  .price-circle { gap:9px; padding-top:10px; }
-  .circle-english { font-size:clamp(13px,1.4cqw,23px); }
-  .price-circle strong { font-family:"Yu Mincho","MV Shared Noto Serif JP",serif; font-size:clamp(30px,4cqw,67px); font-style:italic; line-height:1; letter-spacing:-.075em; padding-right:.075em; text-shadow:0 1px 1.5px #506e85b3; }
+  .hero-prices { top:calc(var(--hero-stage-height)*.50); bottom:auto; left:calc(var(--hero-fit-offset) + var(--hero-fit-unit)*33.1); right:auto; gap:calc(var(--hero-fit-unit)*1.9); transform:none; }
+  .price-circle { gap:min(9px,calc(var(--hero-fit-unit)*.6316)); padding-top:min(10px,calc(var(--hero-fit-unit)*.7018)); }
+  .circle-english { font-size:clamp(10px,calc(var(--hero-fit-unit)*1.4),23px); }
+  .price-circle strong { font-family:"Yu Mincho","MV Shared Noto Serif JP",serif; font-size:clamp(24px,calc(var(--hero-fit-unit)*4),67px); font-style:italic; line-height:1; letter-spacing:-.075em; padding-right:.075em; text-shadow:0 1px 1.5px #506e85b3; }
   .hero-message { position:absolute; z-index:4; top:calc((var(--hero-decoration-height) + var(--hero-wave-lift))*var(--hero-wave-solid-start,.63) - var(--hero-wave-lift)); left:0; width:100%; height:calc((var(--hero-decoration-height) + var(--hero-wave-lift))*(var(--hero-wave-fade-start) - var(--hero-wave-solid-start,.63))); display:flex; align-items:center; justify-content:center; padding:0 5%; }
   .hero-message::before { content:none; }
   .hero-subcopy { text-align:left; color:inherit; text-shadow:none; }
