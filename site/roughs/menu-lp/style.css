@@ -275,7 +275,7 @@
   .hero-headline h1 > span:first-child .hero-character:nth-child(2) { --glyph-size:1.08; left:calc(var(--hero-letter-unit)*1.25); top:calc(var(--hero-letter-unit)*.1); }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3) { --glyph-size:.88; left:calc(var(--hero-letter-unit)*2.25); top:calc(var(--hero-letter-unit)*.36); }
   .hero-headline h1 > span:last-child :is(.hero-character:nth-child(1),.hero-character-front) { --glyph-size:1.36; left:calc(var(--hero-letter-unit)*.98); top:calc(var(--hero-letter-unit)*1.1); }
-  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*2.23); top:calc(var(--hero-letter-unit)*1.45); }
+  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*2.23); top:calc(var(--hero-letter-unit)*1.2); }
   .hero-headline .hero-outline { display:block; position:absolute; z-index:-1; inset:0; color:transparent; -webkit-text-stroke:1px #c8709173; text-shadow:none; transform:translate(.06em,.19em); pointer-events:none; }
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:translate(.06em,.16em); }
   .hero-headline h1 > span:last-child .hero-character:nth-child(2) .hero-outline { transform:translate(0,.05em) scale(1.08); transform-origin:center; }
