@@ -254,8 +254,8 @@
 /* Mobile UI scope: compact content layout. */
 @media (max-width:600px) {
   .lp-hero { --circle:min(130px,calc((100vw - 64px)/3)); container-type:inline-size; height:100svh; min-height:480px; max-height:none; grid-template-rows:minmax(0,min(67svh,125cqw)) minmax(82px,1fr) minmax(80px,16svh); }
-  .menu-lp .hero-photo { inset:0 -37.5% auto auto; width:260%; max-width:none; height:auto; object-fit:contain; mask-image:linear-gradient(#000 92%,transparent); }
-  .hero-visual::before { background:linear-gradient(90deg,#fffdfb66,transparent 65%); }
+  .menu-lp .hero-photo { inset:0 -32% auto auto; width:200%; max-width:none; height:auto; object-fit:contain; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 92%,transparent); mask-composite:intersect; }
+  .hero-visual::before { background:linear-gradient(#fffdfb66,#fffdfb66),var(--menu-curtain-image) left top/100% auto no-repeat; mask-image:linear-gradient(90deg,#000,transparent 52%),linear-gradient(#000 78%,transparent); mask-composite:intersect; }
   .hero-ribbons { display:block; position:absolute; z-index:-1; top:0; left:0; width:100%; height:84svh; pointer-events:none; mask-image:linear-gradient(#000 78%,transparent); }
   .ribbon-cool { stop-color:#b9d2dc; }
   .ribbon-rose { stop-color:#d5a5b7; }
