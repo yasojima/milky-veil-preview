@@ -270,11 +270,12 @@
   .menu-lp .hero-headline h1 { position:relative; display:block; height:calc(var(--hero-letter-unit)*2.9); font-size:var(--hero-letter-unit); line-height:1; padding-top:0; margin-top:0; letter-spacing:0; transform:none; }
   .hero-headline h1 > span { display:contents; }
   .hero-character { position:absolute; isolation:isolate; font-size:calc(var(--hero-letter-unit)*var(--glyph-size)); transform:skewY(-7deg) skewX(-8deg); }
+  .hero-headline h1 > span:first-child .hero-character { translate:-12px 0; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(1) { --glyph-size:1.6; left:-.08em; top:0; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(2) { --glyph-size:1.08; left:calc(var(--hero-letter-unit)*1.25); top:calc(var(--hero-letter-unit)*.1); }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3) { --glyph-size:.88; left:calc(var(--hero-letter-unit)*2.25); top:calc(var(--hero-letter-unit)*.36); }
-  .hero-headline h1 > span:last-child :is(.hero-character:nth-child(1),.hero-character-front) { --glyph-size:1.36; left:calc(var(--hero-letter-unit)*.68); top:calc(var(--hero-letter-unit)*1.1); }
-  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*1.93); top:calc(var(--hero-letter-unit)*1.45); }
+  .hero-headline h1 > span:last-child :is(.hero-character:nth-child(1),.hero-character-front) { --glyph-size:1.36; left:calc(var(--hero-letter-unit)*.98); top:calc(var(--hero-letter-unit)*1.1); }
+  .hero-headline h1 > span:last-child .hero-character:nth-child(2) { --glyph-size:1; left:calc(var(--hero-letter-unit)*2.23); top:calc(var(--hero-letter-unit)*1.45); }
   .hero-headline .hero-outline { display:block; position:absolute; z-index:-1; inset:0; color:transparent; -webkit-text-stroke:1px #c8709173; text-shadow:none; transform:translate(.06em,.19em); pointer-events:none; }
   .hero-headline h1 > span:last-child .hero-outline { -webkit-text-stroke:1px #83a1b0b3; transform:translate(.06em,.16em); }
   .hero-headline h1 > span:last-child .hero-character:nth-child(2) .hero-outline { transform:translate(0,.05em) scale(1.08); transform-origin:center; }
@@ -287,7 +288,7 @@
   .hero-message::before { content:none; }
   .hero-subcopy span:first-child { font-size:clamp(12px,4.1cqw,24px); line-height:1.25; letter-spacing:.06em; }
   .hero-subcopy span:last-child { font-size:clamp(13px,5.45cqw,38px); line-height:1.2; letter-spacing:-.015em; }
-  .hero-action { display:flex; align-items:flex-start; justify-content:center; padding:var(--hero-gap) 22px max(22px,4svh); }
+  .hero-action { display:flex; align-items:flex-start; justify-content:center; padding:calc(var(--hero-gap) + clamp(0px,calc((100svh - 480px)*.16),48px)) 22px max(22px,4svh); }
   .hero-reservation { margin:0; }
   .menu-lp .hero-action .hero-reservation { width:min(100%,304px); padding:12px 48px; }
   .hero-reservation .reservation-label { font-size:clamp(22px,6vw,26px); }
