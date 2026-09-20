@@ -218,8 +218,8 @@
   .hero-message.scene-enter { opacity:1; transform:none; }
   .hero-subcopy { text-align:left; color:inherit; text-shadow:none; opacity:1; transition:opacity .35s ease; }
   .hero-subcopy.is-below-fold { opacity:0; transition:none; }
-  .hero-subcopy span:first-child { font-size:20px; line-height:1.5; letter-spacing:.14em; }
-  .hero-subcopy span:last-child { font-size:clamp(20px,2.25vw,31px); line-height:1.65; letter-spacing:.1em; }
+  .hero-subcopy span:first-child { font-size:clamp(18px,calc(var(--hero-fit-unit)*2.2),32px); line-height:1.5; letter-spacing:.14em; }
+  .hero-subcopy span:last-child { font-size:clamp(30px,calc(var(--hero-fit-unit)*4.3),72px); line-height:1.45; letter-spacing:.04em; }
   .hero-action { padding:28px 24px 10px; }
   .hero-side-note { display:none; }
   .lp-intro { padding-top:56px; padding-bottom:48px; }
@@ -229,18 +229,16 @@
   .review-body { font-size:clamp(14px,1.1vw,15px); line-height:2; }
   .review-body p + p { margin-top:.9em; }
 }
-@media (min-width:901px) and (max-height:750px) {
-  .hero-subcopy span:first-child { font-size:16px; }
-  .hero-subcopy span:last-child { font-size:23px; }
-}
 @media (max-width:900px) {
   .menu-lp .has-split-hero > .menu-brand { display:none; }
   .menu-lp #shared-bottom-ui-root::part(fixed-cta) { display:none; }
+  .hero-subcopy span:first-child { font-size:clamp(16px,2.8vw,24px); }
+  .hero-subcopy span:last-child { font-size:clamp(24px,4.4vw,38px); line-height:1.45; letter-spacing:.04em; }
 }
 
 /* Mobile UI scope: wide mobile content; shared shell uses the same 900px boundary. */
 @media (min-width:601px) and (max-width:900px) {
-  .lp-hero { --circle:136px; min-height:650px; grid-template-rows:minmax(0,1fr) 125px 132px; }
+  .lp-hero { --circle:136px; min-height:650px; grid-template-rows:minmax(0,1fr) 152px 112px; }
   .hero-headline { left:6%; top:160px; }
   .hero-headline .eyebrow { min-width:250px; }
   .menu-lp h1 { display:block; font-size:clamp(80px,12vw,112px); }
@@ -253,7 +251,7 @@
 }
 /* Mobile UI scope: compact content layout. */
 @media (max-width:600px) {
-  .lp-hero { --circle:min(130px,calc((100vw - 64px)/3)); container-type:inline-size; height:100svh; min-height:480px; max-height:none; grid-template-rows:minmax(0,min(67svh,125cqw)) minmax(82px,1fr) minmax(80px,16svh); }
+  .lp-hero { --circle:min(130px,calc((100vw - 64px)/3)); container-type:inline-size; height:100svh; min-height:480px; max-height:none; grid-template-rows:minmax(0,min(67svh,125cqw)) minmax(min-content,1fr) minmax(80px,16svh); }
   .menu-lp .hero-photo { inset:0 -32% auto auto; width:200%; max-width:none; height:auto; object-fit:contain; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 92%,transparent); mask-composite:intersect; }
   .hero-visual::before { background:linear-gradient(#fffdfb66,#fffdfb66),var(--menu-curtain-image) left top/100% auto no-repeat; mask-image:linear-gradient(90deg,#000,transparent 52%),linear-gradient(#000 78%,transparent); mask-composite:intersect; }
   .hero-ribbons { display:block; position:absolute; z-index:-1; top:0; left:0; width:100%; height:84svh; pointer-events:none; mask-image:linear-gradient(#000 78%,transparent); }
@@ -279,9 +277,9 @@
   .price-circle { width:calc((100% - 20px)/3); max-width:130px; gap:5px; }
   .price-circle strong { font-size:clamp(21px,6.1vw,30px); }
   .circle-english { font-size:clamp(9px,2.6vw,12px); }
-  .hero-message { z-index:3; display:flex; align-items:center; justify-content:center; padding:12px 22px; }
-  .hero-subcopy span:first-child { font-size:12px; }
-  .hero-subcopy span:last-child { font-size:17px; line-height:1.6; letter-spacing:.04em; text-wrap:balance; }
+  .hero-message { z-index:3; display:flex; align-items:center; justify-content:center; padding:6px 22px; }
+  .hero-subcopy span:first-child { font-size:clamp(16px,4.3cqw,22px); }
+  .hero-subcopy span:last-child { font-size:clamp(22px,6.8cqw,32px); line-height:1.45; letter-spacing:.04em; text-wrap:balance; }
   .hero-action { display:flex; align-items:flex-end; justify-content:center; padding:8px 22px max(22px,4svh); }
   .hero-reservation { margin:0; }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
@@ -336,8 +334,11 @@
 @media (max-width:600px) and (max-height:650px) {
   .hero-headline .eyebrow { width:180px; padding:5px; }
   .menu-lp .hero-headline h1 { margin-top:12px; }
-  .hero-subcopy span:first-child { font-size:11px; }
-  .hero-subcopy span:last-child { font-size:16px; }
+  .hero-subcopy span:first-child { font-size:14px; }
+  .hero-subcopy span:last-child { font-size:22px; line-height:1.35; }
+}
+@media (max-width:600px) and (max-height:550px) {
+  .menu-lp .hero-headline h1 { --hero-letter-unit:min(23cqw,12svh); }
 }
 @media (max-width:360px) {
   .price-circle strong { font-size:17px; }
