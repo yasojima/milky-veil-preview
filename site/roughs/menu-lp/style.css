@@ -61,7 +61,7 @@
 .hero-subcopy span:last-child { font-size:clamp(20px,2.25vw,31px); line-height:1.65; letter-spacing:.1em; }
 .hero-action { position:relative; z-index:5; padding:8px 24px 12px; }
 .hero-reservation { margin:auto; }
-.menu-lp .hero-action .hero-reservation { width:min(100%,588px); min-height:var(--hero-cta-height,140px); padding:16px 64px; }
+.menu-lp .hero-action .hero-reservation { width:min(100%,480px); min-height:var(--hero-cta-height,140px); padding:16px 64px; }
 .hero-reservation .reservation-label { font-size:clamp(24px,2.2vw,32px); }
 .hero-reservation .reservation-arrow { right:28px; transform:translateY(-50%) scale(1.2); }
 .hero-side-note { position:absolute; right:22px; top:36%; writing-mode:vertical-rl; font-size:10px; letter-spacing:.23em; }
@@ -287,7 +287,7 @@
   .hero-subcopy span:last-child { font-size:clamp(13px,5.45cqw,38px); letter-spacing:.015em; }
   .hero-action { display:flex; align-items:flex-start; justify-content:center; padding:var(--hero-gap) 22px max(22px,4svh); }
   .hero-reservation { margin:0; }
-  .menu-lp .hero-action .hero-reservation { width:100%; padding:12px 48px; }
+  .menu-lp .hero-action .hero-reservation { width:min(100%,304px); padding:12px 48px; }
   .hero-reservation .reservation-label { font-size:clamp(22px,6vw,26px); }
   .hero-reservation .reservation-arrow { right:20px; }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
