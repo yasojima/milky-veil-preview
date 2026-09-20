@@ -282,7 +282,7 @@
   .hero-message { z-index:3; display:flex; align-items:center; justify-content:center; padding:6px 16px; }
   .hero-subcopy span:first-child { font-size:clamp(12px,4.1cqw,24px); }
   .hero-subcopy span:last-child { font-size:clamp(13px,5.45cqw,38px); letter-spacing:.015em; }
-  .hero-action { display:flex; align-items:flex-end; justify-content:center; padding:8px 22px max(22px,4svh); }
+  .hero-action { display:flex; align-items:flex-start; justify-content:center; padding:8px 22px max(22px,4svh); }
   .hero-reservation { margin:0; }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
   .reservation-label { font-size:clamp(14px,4vw,18px); letter-spacing:.03em; }
