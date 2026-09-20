@@ -143,7 +143,7 @@
 .review-body { font-size:13px; line-height:2.15; overflow-wrap:anywhere; }
 .review-body p + p { margin-top:1em; }
 .lp-faq { position:relative; isolation:isolate; padding:90px max(7%,calc((100% - 860px)/2)) 130px; }
-.lp-faq::before { content:""; position:absolute; z-index:-1; inset:-60px 0 -60px; pointer-events:none; background:linear-gradient(#f3dde53b,#fffdfb38 25%,#fffdfb38 75%,#ece6f040),url("../../../assets/references/menu-faq/white-veil.png") center 52%/cover no-repeat; mask-image:linear-gradient(transparent,#000 110px,#000 calc(100% - 110px),transparent); }
+.lp-faq::before { content:""; position:absolute; z-index:-1; inset:-60px 0 -60px; pointer-events:none; background-image:linear-gradient(#f3dde53b,#fffdfb38 240px),url("../../../assets/references/menu-faq/white-veil.png"); background-position:center top; background-size:100% 100%,100% auto; background-repeat:no-repeat,repeat-y; mask-image:linear-gradient(transparent,#000 110px,#000 calc(100% - 110px),transparent); }
 .lp-faq .section-heading { margin-bottom:36px; }
 .lp-faq .eyebrow,.faq-q { font-family:"Times New Roman",Times,serif; font-weight:400; }
 .lp-faq .eyebrow { font-size:32px; letter-spacing:.14em; }
@@ -314,7 +314,6 @@
   .review-card h3 { font-size:20px; padding-top:14px; }
   .review-body { padding-top:14px; }
   .lp-faq { padding:60px 40px 100px; }
-  .lp-faq::before { background-position:center,54% center; }
   .lp-faq .section-heading { margin-bottom:28px; }
   .lp-faq .eyebrow { font-size:28px; }
   .lp-faq .section-heading h2 { font-size:15px; }
