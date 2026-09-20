@@ -143,7 +143,7 @@
 .review-body { font-size:13px; line-height:2.15; overflow-wrap:anywhere; }
 .review-body p + p { margin-top:1em; }
 .lp-faq { position:relative; isolation:isolate; padding:90px max(7%,calc((100% - 860px)/2)) 130px; }
-.lp-faq::before { content:""; position:absolute; z-index:-1; inset:-60px 0 -60px; pointer-events:none; background-image:linear-gradient(#f3dde53b,#fffdfb38 240px),url("../../../assets/references/menu-faq/white-veil.png"); background-position:center top; background-size:100% 100%,100% auto; background-repeat:no-repeat,repeat-y; mask-image:linear-gradient(transparent,#000 110px,#000 calc(100% - 110px),transparent); }
+.lp-faq::before { --veil-height:calc(100vw * 977 / 588); --veil-base:#e4e4e6; content:""; position:absolute; z-index:-1; inset:-60px 0 -60px; pointer-events:none; background-color:var(--veil-base); background-image:linear-gradient(#f3dde53b,#fffdfb38 240px),linear-gradient(transparent calc(var(--veil-height) - 180px),var(--veil-base) var(--veil-height)),url("../../../assets/references/menu-faq/white-veil.png"); background-position:center top; background-size:100% 100%,100% 100%,100vw auto; background-repeat:no-repeat; mask-image:linear-gradient(transparent,#000 110px,#000 calc(100% - 110px),transparent); }
 .lp-faq .section-heading { margin-bottom:36px; }
 .lp-faq .eyebrow,.faq-q { font-family:"Times New Roman",Times,serif; font-weight:400; }
 .lp-faq .eyebrow { font-size:32px; letter-spacing:.14em; }
