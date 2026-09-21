@@ -61,9 +61,9 @@
 .hero-subcopy span:last-child { font-size:clamp(20px,2.25vw,31px); line-height:1.65; letter-spacing:.1em; }
 .hero-action { position:relative; z-index:5; padding:8px 24px 12px; }
 .hero-reservation { margin:auto; }
-.menu-lp .hero-action .hero-reservation { width:min(100%,400px); min-height:var(--hero-cta-height,100px); padding:16px 52px; }
-.hero-reservation .reservation-label { font-size:clamp(24px,2vw,28px); }
-.hero-reservation .reservation-arrow { right:28px; transform:translateY(-50%) scale(1.2); }
+.menu-lp .hero-action .hero-reservation { width:min(100%,360px); min-height:var(--hero-cta-height,76px); padding:14px 44px; }
+.hero-reservation .reservation-label { font-size:24px; }
+.hero-reservation .reservation-arrow { right:24px; transform:translateY(-50%); }
 .hero-side-note { position:absolute; right:22px; top:36%; writing-mode:vertical-rl; font-size:10px; letter-spacing:.23em; }
 .lp-story { position:relative; max-width:1000px; margin:auto; }
 .lp-space,.lp-reviews { position:relative; isolation:isolate; }
@@ -243,7 +243,7 @@
 
 /* Mobile UI scope: wide mobile content; shared shell uses the same 900px boundary. */
 @media (min-width:601px) and (max-width:900px) {
-  .lp-hero { --circle:136px; --hero-cta-height:80px; min-height:650px; grid-template-rows:minmax(0,1fr) 152px 128px; }
+  .lp-hero { --circle:136px; --hero-cta-height:72px; min-height:650px; grid-template-rows:minmax(0,1fr) 152px 128px; }
   .hero-headline { left:6%; top:160px; }
   .hero-headline .eyebrow { min-width:250px; }
   .menu-lp h1 { display:block; font-size:clamp(80px,12vw,112px); }
