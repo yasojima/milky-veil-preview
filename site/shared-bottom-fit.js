@@ -81,7 +81,7 @@ export function bindBottomFit(root) {
       const layoutMobileHeadline = size => {
         title.style.fontSize = size + "px";
         const overlapsLogo = logo && title.parentElement.getBoundingClientRect().left < logo.getBoundingClientRect().right + 16;
-        const logoClearance = logo && (viewport > 600 || overlapsLogo) ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
+        const logoClearance = logo && (viewport > 600 || window.innerWidth <= 600 || overlapsLogo) ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
         brand.style.paddingTop = Math.max(viewport <= 600 ? 24 : headlineTop, logoClearance) + Math.max(0, targetHeight - viewport) + "px";
       };
       brand.style.paddingBottom = minimumBottom + "px";
