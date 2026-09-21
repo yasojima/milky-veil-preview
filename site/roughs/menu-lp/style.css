@@ -172,7 +172,6 @@
 }
 /* Mobile UI scope: compact content layout. */
 @media (max-width:600px) {
-  .lp-opening { container-type:inline-size; }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
   .reservation-label { font-size:clamp(14px,4vw,18px); letter-spacing:.03em; }
   .reservation-arrow { right:12px; }

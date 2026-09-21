@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedFooterTickerText, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
+import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-446";
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-446";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-446";
@@ -21,7 +21,6 @@ for (const [selector,src] of [
 
 document.querySelector("[data-header-name]").textContent = sharedSalonData.name;
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
-document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
 for (const part of heroTitle.children) {
