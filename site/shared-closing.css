@@ -37,7 +37,7 @@
 
   .shared-brand-message-copy > p { white-space:normal; }
   .brand-headline-word { display:block; white-space:nowrap; }
-  .shared-brand-message-copy > p > br { display:none; }
+  .brand-headline-original > br { display:none; }
 }
 
 
@@ -71,7 +71,7 @@
 @media(max-width:900px) and (max-height:600px) and (orientation:portrait) {
   .shared-brand-message-copy > p { white-space:nowrap; }
   .brand-headline-word { display:inline; }
-  .shared-brand-message-copy > p > br { display:initial; }
+  .brand-headline-original > br { display:initial; }
 }
 
 
