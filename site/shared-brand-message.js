@@ -6,7 +6,7 @@ export const sharedBrandMessageSupportingLines = sharedBrandSupportingLines;
 
 export function sharedBrandMessageMarkup() {
   const headline = sharedBrandMessageLines.map(line => line.split(" ").map(word => `<span class="brand-headline-word">${word}</span>`).join(" ")).join("<br>");
-  return `<section class="shared-brand-message"><div class="shared-brand-message-copy"><small>${sharedBrandMessageEyebrow}</small><p>${headline}</p><span>${sharedBrandMessageSupportingLines.join("<br>")}</span></div></section>`;
+  return `<section class="shared-brand-message"><div class="shared-brand-message-copy"><small>${sharedBrandMessageEyebrow}</small><p><span class="brand-headline-original notranslate" translate="no" aria-hidden="true">${headline}</span><span class="brand-headline-translation">${sharedBrandMessageLines.join(" ")}</span></p><span>${sharedBrandMessageSupportingLines.join("<br>")}</span></div></section>`;
 }
 
 export function mountSharedBrandMessage(host) {

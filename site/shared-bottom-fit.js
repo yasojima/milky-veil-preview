@@ -79,10 +79,12 @@ export function bindBottomFit(root) {
     if (window.innerHeight === fittedHeight && window.innerWidth === fittedWidth) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
   };
   window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("milky-translation-layout", schedule);
   window.addEventListener("scroll", scroll, { passive: true });
   document.fonts.ready.then(schedule);
   bindings.set(root, () => {
     window.removeEventListener("resize", resize);
+    window.removeEventListener("milky-translation-layout", schedule);
     window.removeEventListener("scroll", scroll);
     cancelAnimationFrame(frame);
   });

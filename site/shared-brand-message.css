@@ -20,6 +20,7 @@
   -webkit-font-smoothing: auto;
   -webkit-text-size-adjust: auto;
 }
+.brand-headline-translation { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
 
 .shared-brand-message-copy {
   width: max-content;

@@ -3,9 +3,9 @@ import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260921-48
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260921-489";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260921-489";
 import { priceItems } from "../menu-price/menu-data.js?pages=20260921-489";
-import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-510";
+import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-512";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
-import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
+import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260922-512";
 import { reservationLabel } from "../../shared-contact-details.js?v=20260913-244";
 
 
@@ -23,11 +23,15 @@ document.querySelector("[data-header-name]").setAttribute("aria-label",`${shared
 document.querySelector("[data-header-wordmark]").textContent = sharedSalonData.name;
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 const heroTitle = document.getElementById("hero-title");
-heroTitle.setAttribute("aria-label",heroTitle.textContent);
+const translationCopy = document.createElement("span");
+translationCopy.className = "hero-translation-copy";
+translationCopy.textContent = heroTitle.textContent;
 for (const part of heroTitle.children) {
   const characters = [...part.textContent];
   part.textContent = "";
   part.setAttribute("aria-hidden","true");
+  part.setAttribute("translate","no");
+  part.classList.add("notranslate");
   for (const character of characters) {
     const glyph = document.createElement("span");
     glyph.className = "hero-character";
@@ -41,6 +45,7 @@ for (const part of heroTitle.children) {
     part.append(glyph);
   }
 }
+heroTitle.append(translationCopy);
 const heroPrices = [
   { english:"CUT", item:priceItems[5] },
   { english:"COLOR", item:priceItems[3] },

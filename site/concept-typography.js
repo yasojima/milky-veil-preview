@@ -3,6 +3,8 @@
 export function mountConceptTypography(stage, name, { gsap }) {
   const title = document.createElement("div");
   title.className = "concept-type-title";
+  title.classList.add("notranslate");
+  title.setAttribute("translate", "no");
   title.setAttribute("aria-label", name);
   for (const word of name.trim().split(/\s+/u)) {
     const row = document.createElement("span");

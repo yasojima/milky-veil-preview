@@ -1,3 +1,5 @@
+import { bindTranslationLayout } from "./shared-translation-layout.js?v=20260922-512";
+
 export const translationSettings = Object.freeze({
       kind: "embedded-service",
       provider: "Google Translate",
@@ -24,6 +26,7 @@ function rememberTranslationLanguage(language) {
     else sessionStorage.setItem(translationStorageKey, language);
   } catch { /* Storage is optional for translating the current document. */ }
 }
+window.addEventListener("milky-translation-restored", () => rememberTranslationLanguage(""));
 
 function activeTarget() {
   return document.getElementById(activeTranslateTargetId) || document.querySelector("[data-google-translate]");
@@ -124,6 +127,7 @@ function loadGoogleTranslateScript(useFallback = false) {
 }
 
 export function ensureGoogleTranslate() {
+  bindTranslationLayout();
   if (window.google?.translate?.TranslateElement) {
     mountGoogleTranslateWidgets();
     return;

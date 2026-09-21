@@ -1,14 +1,14 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
-import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js";
+import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260914-274";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-244";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-510";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-512";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260919-423";
+import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260922-512";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260902-04";
 

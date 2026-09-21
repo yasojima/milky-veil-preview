@@ -1,0 +1,36 @@
+/* Translation changes text metrics; original-language composition stays with each page owner. */
+[data-translation-active] :is(h1,h2,h3,h4,p,dt,dd,label,summary,figcaption) {
+  min-inline-size:0;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  white-space:normal !important;
+  hyphens:auto;
+  letter-spacing:normal !important;
+}
+[data-translation-active] :is(h1,h2,h3) { text-wrap:balance; }
+[data-translation-active] :is(p,dd) { text-wrap:pretty; }
+[data-translation-active] :is(.reservation-label,.fixed-cta-action,.menu-contact-actions a,.menu-contact-actions button,.cta-hours,.menu-contact-hours,.l-nav-list__item-link) {
+  white-space:normal !important; overflow-wrap:anywhere; min-width:0; letter-spacing:normal; line-height:1.4;
+}
+[data-translation-active] :is(.fixed-cta-action,.menu-contact-actions a,.menu-contact-actions button) { text-align:center; padding:4px 8px; }
+[data-translation-active] .cta-tel { flex-wrap:wrap; align-content:center; gap:4px 16px; }
+[data-translation-active] .cta-hours { flex:1 1 220px; }
+[data-translation-active] .shared-brand-message-copy { width:100%; }
+[data-translation-active] .shared-brand-message-copy > span { white-space:normal; overflow-wrap:anywhere; text-wrap:balance; }
+[data-translation-active] .shared-brand-message-copy > p { max-width:100%; }
+[data-translation-active] .brand-headline-original { display:none; }
+[data-translation-active] .brand-headline-translation { position:static; display:block; width:auto; height:auto; clip-path:none; overflow:visible; white-space:normal; text-wrap:balance; }
+[data-translation-active] .footer-links { max-width:100%; }
+[data-translation-active] .footer-links a { white-space:normal; overflow-wrap:anywhere; text-align:center; }
+[data-translation-active] .shared-nav-label { max-width:5.5em; white-space:normal; overflow-wrap:anywhere; font-size:.85em; line-height:1.2; }
+@media (min-width:901px) {
+  [data-translation-active] .footer-links { display:flex; flex-wrap:wrap; justify-content:center; }
+}
+[data-translation-active] .access-info dd .access-hours-line { grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); }
+[data-translation-active] .items-hero { height:auto; min-height:var(--items-stage); }
+[data-translation-active] .items-copy-line { display:inline; }
+[data-translation-active] .items-copy-line + .items-copy-line::before { content:" "; }
+[data-translation-active] .price-row { grid-template-columns:minmax(0,1fr) minmax(80px,.55fr); }
+[data-translation-active] .price-row .amount { white-space:normal; text-align:right; }
+[data-translation-active] .price-row .tax { display:block; }
+[data-translation-active] .price-row .detail { grid-column:1 / -1; }

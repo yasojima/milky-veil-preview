@@ -1,4 +1,4 @@
-import { mountConceptTypography } from "../../concept-typography.js?v=20260916-332";
+import { mountConceptTypography } from "../../concept-typography.js?v=20260922-512";
 import { sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 const stage = document.querySelector(".concept-fv-background-stage");
 if (stage) stage.classList.remove("milky-kaleidoscope-stage", "js-home-concept-lt");
