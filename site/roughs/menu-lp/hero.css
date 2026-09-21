@@ -129,7 +129,7 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
   .hero-headline { z-index:auto; pointer-events:none; }
   .hero-headline .eyebrow,.hero-character { z-index:2; }
   .hero-headline h1 > span:nth-child(2) .hero-character { isolation:auto; transform:none; z-index:auto; }
-  .hero-headline h1 > span:nth-child(2) .hero-ink { position:relative; display:block; z-index:4; transform:skewY(-7deg) skewX(-8deg); text-shadow:0 1px 2px #475b6e55; }
+  .hero-headline h1 > span:nth-child(2) .hero-ink { position:relative; display:block; z-index:4; transform:skewY(-7deg) skewX(-8deg); text-shadow:0 1px 2px #475b6e80; }
   .hero-headline h1 > span:nth-child(2) .hero-outline { z-index:2; opacity:.3; transform:skewY(-7deg) skewX(-8deg) translate(.025em,.045em); }
   .hero-headline h1 > span:nth-child(2) .hero-character:nth-child(2) .hero-outline { transform:skewY(-7deg) skewX(-8deg) translate(.025em,.045em); }
   .hero-catchcopy { left:var(--opening-unit); width:calc(var(--poster-width) - var(--opening-unit)*2); top:calc(var(--price-top) + var(--circle)); height:calc(var(--poster-height) - var(--price-top) - var(--circle)); gap:calc(var(--opening-unit)*.35); }
