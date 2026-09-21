@@ -45,7 +45,7 @@ export function bindBottomFit(root) {
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
-    const keepBottom = !usesMobileLayout() && atBottom && fittedHeight !== window.innerHeight;
+    const keepBottom = atBottom && fittedHeight !== window.innerHeight;
 
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
@@ -60,6 +60,7 @@ export function bindBottomFit(root) {
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
       fittedMobileHeight = parseFloat(getComputedStyle(component).minHeight);
+      if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
       return;
     }
     const viewport = usesMobileLayout() ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
@@ -121,6 +122,7 @@ export function bindBottomFit(root) {
       fittedWidth = window.innerWidth;
       fittedHeight = window.innerHeight;
       fittedMobileHeight = targetHeight;
+      if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
       return;
     }
     let top = Math.max(minimumTop, parseFloat(style.paddingTop));
