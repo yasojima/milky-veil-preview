@@ -45,7 +45,7 @@ export function bindBottomFit(root) {
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
-    const keepBottom = atBottom && fittedHeight !== window.innerHeight;
+    const keepBottom = atBottom && (fittedHeight !== window.innerHeight || fittedWidth !== window.innerWidth);
 
     brand.style.removeProperty("padding-top");
     brand.style.removeProperty("padding-bottom");
@@ -198,7 +198,7 @@ export function bindBottomFit(root) {
     schedule();
   };
   const scroll = () => {
-    if (window.innerHeight === fittedHeight) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
+    if (window.innerHeight === fittedHeight && window.innerWidth === fittedWidth) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
   };
   window.addEventListener("resize", resize, { passive: true });
   window.addEventListener("scroll", scroll, { passive: true });

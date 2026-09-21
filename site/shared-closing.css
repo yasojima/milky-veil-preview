@@ -39,6 +39,9 @@
 
 /* Desktop UI scope: above 900px. */
 @media(min-width:901px) {
+  .closing-brand { height:min(clamp(85px,calc(12.037037vw - 23.333333px),150px),clamp(64px,19.5svh,150px)); }
+  .footer-links { column-gap:clamp(12px,calc(1.481481vw - 1.333333px),20px); }
+  .shared-footer-ticker .heading.block_header_4 .h { font-size:clamp(42px,calc(14.444444vw - 88px),120px)!important; }
   .shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; margin-inline:auto; justify-self:center; text-align:left; }
 
   .shared-brand-message {
@@ -49,7 +52,7 @@
     --closing-min-top:calc(40px + var(--closing-height-step) * .16 - var(--closing-short-step) * .088);
     --closing-min-bottom:calc(32px + var(--closing-height-step) * .16 - var(--closing-short-step) * .056);
   }
-  .shared-brand-message-copy > small { font-size:15px; margin-bottom:calc(14px + var(--closing-height-step) * .04 - var(--closing-short-step) * .024); }
+  .shared-brand-message-copy > small { font-size:clamp(11px,calc(.740741vw + 4.333333px),15px); margin-bottom:calc(14px + var(--closing-height-step) * .04 - var(--closing-short-step) * .024); }
   .shared-brand-message-copy > span { margin-top:calc(22px + var(--closing-height-step) * .066667 - var(--closing-short-step) * .04); font-size:calc(18.5px + var(--closing-height-step) * .013333); line-height:clamp(29.75px,calc(4.866667svh - 4.316669px),37.05px); }
 }
 
