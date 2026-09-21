@@ -74,7 +74,7 @@
   .hero-headline { z-index:auto; pointer-events:none; }
   .hero-headline .eyebrow,.hero-character { z-index:2; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3) { top:calc(var(--hero-letter-unit)*.57); }
-  .hero-headline h1 > span:last-child .hero-character:nth-child(1) { top:calc(var(--hero-letter-unit)*.08); }
+  .hero-headline h1 > span:last-child .hero-character:nth-child(1) { --glyph-size:1.48; left:calc(var(--hero-letter-unit)*3.03); top:calc(var(--hero-letter-unit)*.02); }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3),
   .hero-headline h1 > span:last-child .hero-character:nth-child(1) { isolation:auto; transform:none; z-index:auto; }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3) .hero-ink,
