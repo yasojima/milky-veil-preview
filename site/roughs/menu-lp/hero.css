@@ -119,9 +119,9 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
   .lp-hero {
     --poster-width:100cqw; --poster-left:0px;
     --eyebrow-top:4.4cqw; --eyebrow-left:5.5cqw; --eyebrow-width:50cqw; --eyebrow-height:9cqw;
-    --title-left:0px; --title-top:18cqw; --title-width:97cqw; --title-height:82cqw;
-    --price-top:70cqw; --price-width:94cqw; --price-left:3cqw; --circle:29cqw;
-    --decoration-space:23cqw; --poster-height:calc(var(--price-top) + var(--circle) + var(--decoration-space)); --hero-letter-unit:25cqw;
+    --title-left:0px; --title-top:12cqw; --title-width:97cqw; --title-height:82cqw;
+    --price-top:60cqw; --price-width:94cqw; --price-left:3cqw; --circle:29cqw;
+    --decoration-space:19cqw; --poster-height:calc(var(--price-top) + var(--circle) + var(--decoration-space)); --hero-letter-unit:25cqw;
   }
   .menu-lp .hero-photo { width:200%; max-width:none; right:-30%; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 82%,transparent); }
   .hero-visual { background:linear-gradient(110deg,#f8f5f3 38%,#e8dde6 75%,#e5d5df); }
@@ -140,8 +140,8 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
   .price-circle strong { font-size:calc(var(--circle)*.28); }
   .hero-headline h1 > span:first-child .hero-character:nth-child(2) { left:calc(var(--hero-letter-unit)*1.32); }
   .hero-headline h1 > span:first-child .hero-character:nth-child(3) { left:calc(var(--hero-letter-unit)*2.33); }
-  .hero-headline h1 > span:nth-child(2) .hero-character:nth-child(1) { left:calc(var(--hero-letter-unit)*1.28); top:calc(var(--hero-letter-unit)*1.08); }
-  .hero-headline h1 > span:nth-child(2) .hero-character:nth-child(2) { left:calc(var(--hero-letter-unit)*2.35); top:calc(var(--hero-letter-unit)*1.37); }
+  .hero-headline h1 > span:nth-child(2) .hero-character:nth-child(1) { left:calc(var(--hero-letter-unit)*1.28); top:calc(var(--hero-letter-unit)*.96); }
+  .hero-headline h1 > span:nth-child(2) .hero-character:nth-child(2) { left:calc(var(--hero-letter-unit)*2.35); top:calc(var(--hero-letter-unit)*1.25); }
   .hero-action { padding:calc(var(--opening-unit)*2.5) calc(var(--opening-unit)*1.25); }
   .menu-lp .hero-reservation { width:100%; height:calc(var(--opening-unit)*5.1853); }
   .hero-reservation-intro { top:var(--opening-unit); left:var(--opening-unit); right:var(--opening-unit); height:calc(var(--opening-unit)*1.749); font-size:calc(var(--opening-unit)*.875); line-height:1.4; gap:.65em; }
