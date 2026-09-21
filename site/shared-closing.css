@@ -82,6 +82,7 @@
 }
 
 @media(max-width:600px) and (max-height:400px) {
+  .closing-brand { height:64px; }
   .shared-brand-message,.shared-footer-ticker,.shared-footer-ticker-rule { display:none; }
   .site-footer { display:flex; flex:1; align-items:stretch; padding:calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 12px) 0 0; }
   .footer-shell { width:100%; align-items:stretch; }
