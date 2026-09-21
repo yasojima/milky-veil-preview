@@ -1,3 +1,4 @@
+import { fitMobileBottom } from "./shared-bottom-fit-mobile.js?v=20260922-523";
 import { usesMobileLayout } from "./responsive-policy.js";
 
 const bindings = new WeakMap();
@@ -27,14 +28,16 @@ export function bindBottomFit(root) {
     for (const element of [title, eyebrow, supporting]) element.style.removeProperty("font-size");
     copy.style.removeProperty("row-gap");
     brand.style.removeProperty("padding-top");
+    brand.style.removeProperty("padding-bottom");
     brand.style.removeProperty("padding-inline");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     const targetHeight = mobile ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
+    if (mobile) {
+      fitMobileBottom({ component, brand, copy, title, eyebrow, supporting, logo, tickers, targetHeight });
+    } else {
     if (getComputedStyle(brand).display !== "none") {
       const style = getComputedStyle(brand);
-      if (mobile && window.innerWidth <= 600 && logo) {
-        brand.style.paddingTop = (parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12) + "px";
-      } else if (logo) {
+      if (logo) {
         // Equal side reservations keep the center stable while clearing the left logo.
         brand.style.paddingInline = Math.max(parseFloat(style.paddingLeft), logo.getBoundingClientRect().right + 16) + "px";
       }
@@ -62,6 +65,7 @@ export function bindBottomFit(root) {
         else upper = candidate;
       }
       applySize(lower);
+    }
     }
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
