@@ -52,6 +52,18 @@ body[data-embedded] .price-sheet { box-shadow:none; }
   .detail { font-size:12px; line-height:1.75; }
   .price-notes { font-size:11px; line-height:1.85; }
 }
+/* Scale embedded desktop type with the adopted 896px sheet. */
+@media (min-width:897px) {
+  body[data-embedded] { overflow:hidden; }
+  body[data-embedded] .price-sheet { --price-unit:calc(100cqw / 896); max-width:none; }
+  body[data-embedded] .brand { font-size:calc(var(--price-unit)*24); }
+  body[data-embedded] dt { font-size:calc(var(--price-unit)*17); }
+  body[data-embedded] .amount { font-size:calc(var(--price-unit)*18); }
+  body[data-embedded] .tax { margin-left:var(--price-unit); font-size:calc(var(--price-unit)*9); }
+  body[data-embedded] .detail { margin-top:calc(var(--price-unit)*4); font-size:calc(var(--price-unit)*10); }
+  body[data-embedded] .price-notes { font-size:calc(var(--price-unit)*10); }
+  body[data-embedded] .price-notes p + p { margin-top:calc(var(--price-unit)*3); }
+}
 @media print {
   body { background:#fff; }
   main { padding:0; }

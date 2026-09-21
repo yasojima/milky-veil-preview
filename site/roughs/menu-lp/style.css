@@ -161,6 +161,9 @@
   .review-body { font-size:clamp(14px,1.1vw,15px); line-height:2; }
   .review-body p + p { margin-top:.9em; }
 }
+@media (min-width:901px) {
+  .lp-price { padding-inline:0; }
+}
 @media (max-width:900px) {
   .menu-lp #shared-bottom-ui-root::part(fixed-cta) { display:none; }
 }
