@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedBrandSupportingLines, sharedFooterTickerText, sharedRouteRegistry } from "../../shared-site-data.js?v=20260913-251";
+import { sharedBrandEyebrow, sharedFooterTickerText, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-446";
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-446";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-446";
@@ -7,7 +7,7 @@ import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
 import { reservationLabel } from "../../shared-contact-details.js?v=20260913-244";
-import { layoutQueries } from "../../responsive-policy.js";
+
 
 for (const [selector,src] of [
   ["[data-hero-photo]","/milky-veil-preview/assets/generated/journal-model-06-pack-v2/02-first-bleach-feature-model-06-v2.png"],
@@ -19,59 +19,9 @@ for (const [selector,src] of [
   for (const attribute of photoTemplate.content.firstElementChild.attributes) photo.setAttribute(attribute.name, attribute.value);
 }
 
-const heroWave = document.querySelector(".hero-ribbons");
-const waveFront = heroWave.querySelector(".ribbon-front");
-const waveMidX = heroWave.viewBox.baseVal.width / 2;
-const waveLength = waveFront.getTotalLength();
-const waveStep = waveLength / 64;
-let waveLow = 0;
-let waveHigh = waveStep;
-// The upper edge moves left to right; bracket its center before the closing edges.
-while (waveHigh < waveLength && waveFront.getPointAtLength(waveHigh).x < waveMidX) {
-  waveLow = waveHigh;
-  waveHigh += waveStep;
-}
-for (let i = 0; i < 14; i++) {
-  const mid = (waveLow + waveHigh) / 2;
-  if (waveFront.getPointAtLength(mid).x < waveMidX) waveLow = mid;
-  else waveHigh = mid;
-}
-const waveSolidStart = waveFront.getPointAtLength((waveLow + waveHigh) / 2).y / heroWave.viewBox.baseVal.height;
-document.querySelector(".lp-hero").style.setProperty("--hero-wave-solid-start",waveSolidStart);
-
+document.querySelector("[data-header-name]").textContent = sharedSalonData.name;
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 document.querySelector("[data-brand-ticker]").textContent = sharedFooterTickerText;
-document.querySelector("[data-brand-copy]").innerHTML = sharedBrandSupportingLines.map(line => `<span>${line}</span>`).join("");
-const heroCopy = document.querySelector(".hero-subcopy");
-const heroCopyDesktop = window.matchMedia(layoutQueries.desktop);
-let heroCopyFrame = 0;
-function updateHeroCopyVisibility() {
-  heroCopyFrame = 0;
-  const fixedBarHeight = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--shared-fixed-bar-height")) || 0;
-  // Reveal both lines above the fixed bar without changing the wave's centered layout.
-  const fits = heroCopy.getBoundingClientRect().bottom <= window.innerHeight - fixedBarHeight - 12;
-  heroCopy.classList.toggle("is-below-fold",heroCopyDesktop.matches && !fits);
-}
-function queueHeroCopyVisibility() {
-  if (!heroCopyFrame) heroCopyFrame = requestAnimationFrame(updateHeroCopyVisibility);
-}
-const heroCopyObserver = new ResizeObserver(queueHeroCopyVisibility);
-function observeHeroCopy() {
-  heroCopyObserver.observe(heroCopy);
-  heroCopyObserver.observe(document.querySelector(".lp-hero"));
-  window.addEventListener("scroll",queueHeroCopyVisibility,{passive:true});
-  window.addEventListener("resize",queueHeroCopyVisibility);
-  updateHeroCopyVisibility();
-}
-observeHeroCopy();
-window.addEventListener("pagehide",() => {
-  heroCopyObserver.disconnect();
-  window.removeEventListener("scroll",queueHeroCopyVisibility);
-  window.removeEventListener("resize",queueHeroCopyVisibility);
-  cancelAnimationFrame(heroCopyFrame);
-  heroCopyFrame = 0;
-});
-window.addEventListener("pageshow",event => { if (event.persisted) observeHeroCopy(); });
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
 for (const part of heroTitle.children) {
@@ -155,7 +105,7 @@ for (const button of document.querySelectorAll("[data-lp-reserve]")) {
   button.addEventListener("click", () => document.getElementById("reservation-dialog").showModal());
 }
 
-sceneElements = [...document.querySelectorAll(".hero-headline,.price-circle,.hero-message,.hero-action,.intro-card,.lp-price,.lp-design .section-heading,.design-word,.lp-salon .section-heading,.salon-photo,.lp-reviews .section-heading,.review-card,.booking-copy")];
+sceneElements = [...document.querySelectorAll(".intro-card,.lp-price,.lp-design .section-heading,.design-word,.lp-salon .section-heading,.salon-photo,.lp-reviews .section-heading,.review-card,.booking-copy")];
 if (!reducedMotion.matches && "IntersectionObserver" in window) {
   for (const element of sceneElements) element.classList.add("scene-enter");
   sceneObserver = new IntersectionObserver(entries => {
@@ -189,5 +139,13 @@ window.addEventListener("pageshow",event=>{ if (event.persisted) { fitPriceFrame
 mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"),sharedRouteRegistry.menu.path);
 const bottomUi = mountSharedBottomUi(document.getElementById("shared-bottom-ui-root"),sharedRouteRegistry.menu.path);
 bottomUi.querySelector(".fixed-cta").part.add("fixed-cta");
+const bottomHost = document.getElementById("shared-bottom-ui-root");
+const openingObserver = new IntersectionObserver(entries => {
+  bottomHost.toggleAttribute("data-opening-visible",entries[0].isIntersecting);
+});
+const observeOpening = () => openingObserver.observe(document.querySelector(".lp-hero"));
+observeOpening();
+window.addEventListener("pagehide",() => openingObserver.disconnect());
+window.addEventListener("pageshow",event => { if (event.persisted) observeOpening(); });
 bindSharedFixedShell(bottomUi);
 bindSharedConceptMenu(document);

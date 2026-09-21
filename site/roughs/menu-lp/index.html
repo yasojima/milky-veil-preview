@@ -9,12 +9,17 @@
   <link rel="stylesheet" href="../../shared-font-subset.css?pages=20260919-422">
   <link rel="stylesheet" href="../../shared-ui-position.css?v=20260917-372&pages=20260919-422">
   <link rel="stylesheet" href="../../uniplex-menu.css?v=20260917-371&pages=20260919-422">
-  <link rel="stylesheet" href="./style.css?pages=20260921-484">
-  <script type="module" src="./page.js?pages=20260920-460"></script>
+  <link rel="stylesheet" href="./style.css?pages=20260921-485">
+  <link rel="stylesheet" href="./hero.css?pages=20260921-485">
+  <script type="module" src="./page.js?pages=20260921-485"></script>
 </head>
 <body class="menu-lp" data-page-route-id="menu">
   <a class="skip-link" href="#main">本文へ移動</a>
   <div id="shared-concept-menu-root" class="has-split-hero" data-logo-top-only data-logo-state="active"></div>
+  <header class="lp-header">
+    <a class="lp-header-name" href="#top" data-page-top-logo aria-label="このページの先頭へ" data-header-name></a>
+    <button class="lp-header-cta" type="button" aria-label="予約ボタンの配置確認用の枠" disabled></button>
+  </header>
   <main id="main">
     <div class="lp-opening">
     <div class="lp-atmosphere" aria-hidden="true"></div>
@@ -37,9 +42,8 @@
         </div>
         <div class="hero-prices" aria-label="主なメニューの税込料金" data-hero-prices></div>
       </div>
-      <div class="hero-message"><p class="hero-subcopy" data-brand-copy></p></div>
       <div class="hero-action">
-        <button class="reservation-button hero-reservation" type="button" data-lp-reserve></button>
+        <button class="hero-reservation" type="button" aria-label="予約ボタンの配置確認用の枠" disabled></button>
       </div>
       <p class="hero-side-note" aria-hidden="true" data-brand-ticker></p>
     </section>
@@ -190,7 +194,7 @@
       </div>
     </section>
   </main>
-  <div id="shared-bottom-ui-root"></div>
+  <div id="shared-bottom-ui-root" data-opening-visible></div>
   <dialog class="reservation-dialog" id="reservation-dialog" aria-labelledby="reservation-dialog-title" aria-describedby="reservation-dialog-copy">
     <p class="eyebrow">RESERVATION</p>
     <h2 id="reservation-dialog-title">ご予約について</h2>
