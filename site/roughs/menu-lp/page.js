@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
+import { sharedBrandEyebrow, sharedBrandLogo, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-446";
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-446";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-446";
@@ -19,7 +19,8 @@ for (const [selector,src] of [
   for (const attribute of photoTemplate.content.firstElementChild.attributes) photo.setAttribute(attribute.name, attribute.value);
 }
 
-document.querySelector("[data-header-name]").textContent = sharedSalonData.name;
+document.querySelector("[data-header-name]").setAttribute("aria-label",`${sharedSalonData.name} このページの先頭へ`);
+document.querySelector("[data-header-logo]").setAttribute("href",sharedBrandLogo);
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
@@ -38,11 +39,6 @@ for (const part of heroTitle.children) {
     part.append(glyph);
   }
 }
-const privateGlyph = heroTitle.lastElementChild.firstElementChild;
-const foregroundGlyph = privateGlyph.cloneNode(false);
-foregroundGlyph.classList.add("hero-character-front");
-foregroundGlyph.textContent = privateGlyph.firstChild.textContent;
-heroTitle.lastElementChild.append(foregroundGlyph);
 const heroPrices = [
   { english:"CUT", item:priceItems[5] },
   { english:"COLOR", item:priceItems[3] },
