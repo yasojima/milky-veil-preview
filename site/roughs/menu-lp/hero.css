@@ -6,7 +6,7 @@
 .menu-lp .lp-header-cta,.menu-lp .hero-reservation { display:block; border:0; border-radius:0; background:var(--menu-copy-pink); box-shadow:none; opacity:1; cursor:default; }
 .menu-lp .lp-header-cta { position:absolute; top:10px; right:var(--header-menu-space); width:294px; height:60px; min-height:0; padding:0; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; cursor:pointer; }
 .lp-header-cta .reservation-label,.hero-reservation .reservation-label { font:600 1em/1.5 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.08em; }
-.lp-header-cta .reservation-arrow,.hero-reservation .reservation-arrow { display:inline-block; position:relative; flex:0 0 19px; top:auto; right:auto; width:19px; height:24px; margin-left:.5em; vertical-align:middle; transform:none; background:url("../../../assets/references/menu-cta/double-arrow.png") center/100% auto no-repeat; }
+.lp-header-cta .reservation-arrow,.hero-reservation .reservation-arrow { display:inline-block; position:relative; flex:0 0 19px; top:auto; right:auto; width:19px; height:24px; margin-left:.5em; vertical-align:middle; transform:translateY(.08em); background:url("../../../assets/references/menu-cta/double-arrow.png") center/100% auto no-repeat; }
 .lp-header-cta .reservation-arrow::before,.lp-header-cta .reservation-arrow::after,.hero-reservation .reservation-arrow::before,.hero-reservation .reservation-arrow::after { content:none; }
 .menu-lp .lp-header-cta:focus-visible,.menu-lp .hero-reservation:focus-visible { outline:2px solid #fff; outline-offset:-4px; }
 .menu-lp .has-split-hero > .menu-brand { display:none; }
