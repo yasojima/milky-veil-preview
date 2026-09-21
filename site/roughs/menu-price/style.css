@@ -20,7 +20,7 @@ dt { font-size:clamp(15px,1.9cqw,17px); font-weight:400; line-height:1.4; letter
 .price-notes { margin-top:5cqw; color:#55424f; font-size:10px; line-height:1.75; }
 .price-notes p + p { margin-top:3px; }
 #preview-viewport-hud { display:none !important; }
-body[data-embedded] { background:transparent; }
+body[data-embedded] { background:transparent; overflow:hidden; }
 body[data-embedded] main { padding:0; }
 body[data-embedded] .price-sheet { box-shadow:none; }
 @media (min-width:761px) and (max-width:1000px) {
@@ -68,4 +68,19 @@ body[data-embedded] .price-sheet { box-shadow:none; }
   body { background:#fff; }
   main { padding:0; }
   .price-sheet { box-shadow:none; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+}
+
+/* The embedded sheet keeps its desktop proportions at compact PC widths. */
+@media(min-width:601px) and (max-width:896px) {
+  body[data-embedded] .price-panel { width:67.7%; padding:9.2cqw 4.7cqw 5.7cqw; }
+  body[data-embedded] .portrait { object-position:100% 40%; transform:scale(1.12); transform-origin:55% 45%; }
+  body[data-embedded] .price-header { margin-bottom:8.6cqw; }
+  body[data-embedded] .brand { font-size:clamp(18px,2.68cqw,24px); letter-spacing:.14em; }
+  body[data-embedded] h1 { margin-top:6.4cqw; font-size:13.7cqw; }
+  body[data-embedded] dl { gap:3.8cqw; }
+  body[data-embedded] dt { font-size:clamp(13px,1.9cqw,17px); line-height:1.5; }
+  body[data-embedded] .amount { font-size:clamp(14px,2.01cqw,18px); }
+  body[data-embedded] .tax { display:inline; margin-left:1px; font-size:9px; }
+  body[data-embedded] .detail { grid-column:1; font-size:10px; line-height:1.6; }
+  body[data-embedded] .price-notes { margin-top:5cqw; font-size:10px; }
 }

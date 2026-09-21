@@ -120,3 +120,14 @@
   .hero-reservation-intro { top:var(--opening-unit); left:var(--opening-unit); right:var(--opening-unit); height:calc(var(--opening-unit)*1.749); font-size:calc(var(--opening-unit)*.9); gap:.65em; }
   .hero-reservation-main { top:calc(var(--opening-unit)*2.749); bottom:calc(var(--opening-unit)*.5); left:var(--opening-unit); right:var(--opening-unit); font-size:calc(var(--opening-unit)*1.35); }
 }
+
+@media(min-width:769px) {
+  .menu-lp { --opening-unit:calc(16 * var(--menu-layout-unit)); --opening-header-height:max(72px,calc(79.5 * var(--menu-layout-unit))); }
+  .menu-lp .lp-header-name { width:calc(240 * var(--menu-layout-unit)); }
+  .menu-lp .lp-header-wordmark { font-size:clamp(20px,calc(27 * var(--menu-layout-unit)),27px); }
+  .menu-lp .lp-header-cta { top:calc((var(--opening-header-height) - 60 * var(--menu-layout-unit))/2); width:calc(294 * var(--menu-layout-unit)); height:calc(60 * var(--menu-layout-unit)); font-size:clamp(16px,calc(20 * var(--menu-layout-unit)),20px); }
+  .lp-hero { --poster-width:min(100cqw,calc(1200 * var(--menu-layout-unit))); --eyebrow-left:calc(var(--poster-left) + 175 * var(--menu-layout-unit)); --eyebrow-width:calc(502 * var(--menu-layout-unit)); --eyebrow-height:calc(56 * var(--menu-layout-unit)); --title-left:calc(var(--poster-left) - var(--opening-unit)*5); --title-top:calc(var(--eyebrow-top) + var(--eyebrow-height) + 6 * var(--menu-layout-unit)); --title-width:var(--poster-width); --decoration-space:calc(170 * var(--menu-layout-unit)); --price-width:calc(var(--poster-width)*.63); --price-left:calc(var(--title-left) + var(--poster-width)*.3665); }
+  .menu-lp #hero-title { left:max(8px,var(--title-left)); }
+  .menu-lp .hero-reservation { width:calc(var(--poster-width)*.49); height:calc(141.390625 * var(--menu-layout-unit)); }
+}
+@media(min-width:1450px) { .lp-hero { --title-left:calc(var(--poster-left) - var(--opening-unit)*12); } }

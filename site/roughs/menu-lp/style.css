@@ -222,3 +222,30 @@
 }
 /* Shared accessibility preference, independent of device width. */
 @media (prefers-reduced-motion:reduce) { .menu-lp *,.menu-lp *::before,.menu-lp *::after { scroll-behavior:auto !important; transition:none !important; animation:none !important; } .design-photo.will-reveal,.scene-enter { opacity:1; transform:none; } }
+
+/* Page rhythm follows width, while reading text retains its usable size. */
+@media(min-width:601px) {
+  .menu-lp { --menu-layout-unit:clamp(.68px,calc(.175vw - 1.52px),1px); }
+  .lp-story { max-width:calc(1000 * var(--menu-layout-unit)); }
+  .menu-lp h2 { font-size:clamp(25px,calc(39 * var(--menu-layout-unit)),39px); }
+  .section-space { padding:calc(70 * var(--menu-layout-unit)) 7%; }
+  .lp-intro { padding-block:calc(56 * var(--menu-layout-unit)) calc(48 * var(--menu-layout-unit)); }
+  .intro-card { min-height:calc(224 * var(--menu-layout-unit)); padding:calc(40 * var(--menu-layout-unit)) 24px; }
+  .intro-card h2 { font-size:clamp(28px,calc(46 * var(--menu-layout-unit)),46px); }
+  .lp-design { padding:calc(70 * var(--menu-layout-unit)) 0 calc(58 * var(--menu-layout-unit)); }
+  .design-grid { width:min(100%,calc(720 * var(--menu-layout-unit))); }
+  .menu-lp .design-photo figcaption { padding-block:calc(20 * var(--menu-layout-unit)); }
+  .menu-lp .design-photo figcaption b { font-size:clamp(14px,calc(24 * var(--menu-layout-unit)),24px); }
+  .lp-salon { padding:calc(70 * var(--menu-layout-unit)) 0; }
+  .lp-salon .section-heading { padding:calc(22 * var(--menu-layout-unit)) calc(32 * var(--menu-layout-unit)); }
+  .salon-photo:nth-child(2) { margin-top:calc(46 * var(--menu-layout-unit)); margin-bottom:calc(-46 * var(--menu-layout-unit)); }
+  .salon-play { width:calc(144 * var(--menu-layout-unit)); }
+  .lp-reviews { padding-block:calc(60 * var(--menu-layout-unit)) calc(65 * var(--menu-layout-unit)); }
+  .review-grid { padding:calc(28 * var(--menu-layout-unit)) calc(32 * var(--menu-layout-unit)) 10px; }
+  .review-card { grid-template-columns:calc(180 * var(--menu-layout-unit)) minmax(0,1fr); padding-block:calc(30 * var(--menu-layout-unit)); gap:24px; }
+  .review-body { font-size:14px; }
+  .lp-faq { padding:calc(90 * var(--menu-layout-unit)) max(7%,calc((100% - 860 * var(--menu-layout-unit))/2)) calc(130 * var(--menu-layout-unit)); }
+  .faq-item summary { min-height:64px; padding:16px 22px; }
+  .lp-booking { min-height:calc(700 * var(--menu-layout-unit)); padding:calc(140 * var(--menu-layout-unit)) max(6%,calc((100% - 1200 * var(--menu-layout-unit))/2)) calc(80 * var(--menu-layout-unit)); }
+  .booking-copy { width:min(58%,calc(620 * var(--menu-layout-unit))); padding:calc(46 * var(--menu-layout-unit)) 24px; }
+}
