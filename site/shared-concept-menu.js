@@ -1,5 +1,5 @@
-import "./shared-document-brand.js?v=20260922-513";
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
+import "./shared-document-brand.js?v=20260922-513";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
@@ -87,7 +87,9 @@ export function bindSharedConceptMenu(scope = document) {
     const headerBottom = homeHeader ? Math.max(homeHeader.getBoundingClientRect().bottom, homeHeader.querySelector(".brand")?.getBoundingClientRect().bottom || 0) : 0;
     const visible = Boolean(homeHeader && headerBottom > 0 && !usesMobileLayout());
     menu.classList.toggle("home-header-visible", visible);
-    toggle.inert = visible && !nav.classList.contains("is-open");
+    const scrolled = window.scrollY > 0;
+    menu.classList.toggle("has-page-scroll", scrolled);
+    toggle.inert = (visible || (usesMobileLayout() && !scrolled)) && !nav.classList.contains("is-open");
   };
   syncHomeHeaderVisibility();
   const homeHeaderObserver = new ResizeObserver(syncHomeHeaderVisibility);

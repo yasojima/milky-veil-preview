@@ -14,6 +14,13 @@
 }
 .shared-concept-menu :where(*, *::before, *::after) { box-sizing: border-box; }
 
+@media (max-width: 900px) {
+  .shared-concept-menu:not(.has-page-scroll):not(:has(.shared-nav-content.is-open)) .shared-nav-toggle {
+    visibility: hidden !important;
+    pointer-events: none;
+  }
+}
+
 .shared-concept-menu {
   --mh--font-family--en: var(--mv-font-text);
   --mh--font-size--x3s: 11px;

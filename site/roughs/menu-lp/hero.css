@@ -108,11 +108,11 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
 }
 @media (max-width:768px) {
   .lp-hero { --price-top:calc(var(--title-top) + var(--title-height) - var(--circle)*1.15); }
-  .menu-lp { --opening-unit:4.25vw; --opening-header-height:12vw; }
-  .lp-header { justify-content:flex-start; }
-  .menu-lp .lp-header-name { width:50%; height:100%; }
-  .menu-lp .lp-header-wordmark { font-size:clamp(15px,4.1vw,24px); letter-spacing:.12em; padding-left:.12em; }
-  .menu-lp .lp-header-cta { top:0; width:calc(50% - var(--header-menu-space)); height:100%; padding-inline:4px; border-radius:0; font-size:clamp(9px,2.5vw,13px); }
+  .menu-lp { --opening-unit:4.25vw; --opening-header-height:clamp(48px,12vw,72px); }
+  .lp-header { display:grid; grid-template-columns:28% 44% 28%; height:auto; min-height:var(--opening-header-height); }
+  .menu-lp .lp-header-name { grid-column:2; width:100%; height:100%; min-height:var(--opening-header-height); }
+  .menu-lp .lp-header-wordmark { font-size:clamp(13px,3.55vw,24px); letter-spacing:.12em; padding-left:.12em; }
+  .menu-lp .lp-header-cta { position:static; grid-column:3; width:100%; height:100%; min-height:var(--opening-header-height); padding:6px; border-radius:0; font-size:clamp(10px,2.65vw,16px); }
   .lp-header-cta .reservation-label { min-width:0; white-space:normal; line-height:1.2; letter-spacing:.02em; }
   .lp-header-cta .reservation-arrow { flex-basis:1em; width:1em; height:1.25em; }
   .lp-hero { --poster-width:100cqw; --poster-left:0px; --eyebrow-top:calc(var(--opening-unit)*1.25); --eyebrow-left:var(--eyebrow-top); --eyebrow-width:50cqw; --eyebrow-height:calc(var(--eyebrow-width)*200/762); --title-left:0px; --title-top:calc(var(--eyebrow-top) + var(--eyebrow-height) + var(--opening-unit)*1.25); --title-width:calc(100cqw - var(--opening-unit)*.75); --title-height:calc(var(--title-width)*576/697); --decoration-space:calc(78.42cqw*410/1388); --poster-height:calc(var(--title-top) + var(--title-height) + var(--decoration-space) + var(--opening-unit)); --price-width:calc(var(--title-width)*.965); --price-left:calc(var(--title-width)*.035); --circle:29vw; --hero-letter-unit:25cqw; }

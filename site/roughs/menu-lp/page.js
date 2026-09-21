@@ -5,7 +5,7 @@ import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260
 import { priceItems } from "../menu-price/menu-data.js?pages=20260921-489";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-512";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
-import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260922-513";
+import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260922-514";
 import { reservationLabel } from "../../shared-contact-details.js?v=20260913-244";
 
 
