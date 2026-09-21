@@ -37,22 +37,6 @@
 }
 
 
-/* Desktop UI scope: above 900px. */
-@media(min-width:901px) {
-  .shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; margin-inline:auto; justify-self:center; text-align:left; }
-
-  .shared-brand-message {
-    display:grid;
-    grid-template-columns:minmax(0,1fr);
-    --closing-short-step:clamp(0px,calc(800px - 100svh),250px);
-    --closing-height-step:clamp(0px,calc(100svh - 700px),150px);
-    --closing-min-top:calc(40px + var(--closing-height-step) * .16 - var(--closing-short-step) * .088);
-    --closing-min-bottom:calc(32px + var(--closing-height-step) * .16 - var(--closing-short-step) * .056);
-  }
-  .shared-brand-message-copy > small { font-size:15px; margin-bottom:calc(14px + var(--closing-height-step) * .04 - var(--closing-short-step) * .024); }
-  .shared-brand-message-copy > span { margin-top:calc(22px + var(--closing-height-step) * .066667 - var(--closing-short-step) * .04); font-size:calc(18.5px + var(--closing-height-step) * .013333); line-height:clamp(29.75px,calc(4.866667svh - 4.316669px),37.05px); }
-}
-
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
   .footer-links { display:flex; flex-direction:column; align-items:center; width:max-content; max-width:100%; gap:0; }
@@ -100,4 +84,16 @@
   .footer-links { flex-direction:column; flex-wrap:nowrap; }
   .footer-link-row { display:flex; gap:clamp(10px,2vw,12px); }
   .footer-links a { font-size:clamp(14px,calc(10px + 1lvh),16px); min-height:clamp(26px,calc(14px + 3lvh),32px); }
+}
+@media(min-width:901px) {
+  .shared-brand-message { padding:clamp(48px,6vw,96px) 30px; }
+  .shared-brand-message-copy > small { font-size:15px; margin-bottom:16px; }
+  .shared-brand-message-copy > span { font-size:clamp(18px,1.5vw,21px); margin-top:24px; line-height:1.7; }
+  .shared-brand-message-copy > p { font-size:clamp(64px,8vw,140px); }
+  .closing-brand { top:auto; left:auto; right:30px; bottom:90px; height:104px; }
+  .site-footer { min-height:244px; padding:30px 30px 80px; }
+  .footer-shell { align-items:flex-start; justify-content:flex-start; padding-right:110px; }
+  .footer-links { display:flex; flex-wrap:wrap; justify-content:flex-start; gap:0 20px; width:100%; }
+  .footer-link-row { display:contents; }
+  .footer-links a { min-height:32px; }
 }

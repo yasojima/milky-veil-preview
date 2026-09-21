@@ -41,6 +41,14 @@ export function bindClosingLogo(root) {
     const viewport = mobileLayout.matches ? window.visualViewport : null;
     const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
     const entering = bounds.top < viewportBottom && bounds.bottom > 0;
+    const menuButton = document.querySelector(".shared-concept-menu .l-nav-btn");
+    const dock = root.querySelector(".fixed-cta-clearance");
+    const menuOpen = !!document.querySelector(".shared-nav-content.is-open");
+    if (menuButton) {
+      const footerAtMenu = !mobileLayout.matches && dock && dock.getBoundingClientRect().top <= menuButton.getBoundingClientRect().bottom;
+      if (footerAtMenu && !menuOpen) menuButton.style.setProperty("visibility", "hidden", "important");
+      else menuButton.style.removeProperty("visibility");
+    }
     const naturalLogoTop = parseFloat(getComputedStyle(logo).top) || 0;
     const ready = entering && bounds.top + naturalLogoTop + logo.offsetHeight * .25 < viewportBottom;
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
@@ -132,6 +140,7 @@ export function bindClosingLogo(root) {
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;
     delete component.dataset.closingState;
+    document.querySelector(".shared-concept-menu .l-nav-btn")?.style.removeProperty("visibility");
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;
     header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-top");
