@@ -1,8 +1,8 @@
 import { sharedBrandEyebrow, sharedBrandLogo, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260919-446";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260919-446";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260919-446";
-import { priceItems } from "../menu-price/menu-data.js?pages=20260919-446";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260921-489";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260921-489";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260921-489";
+import { priceItems } from "../menu-price/menu-data.js?pages=20260921-489";
 import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260919-423";
@@ -31,11 +31,13 @@ for (const part of heroTitle.children) {
   for (const character of characters) {
     const glyph = document.createElement("span");
     glyph.className = "hero-character";
-    glyph.textContent = character;
+    const ink = document.createElement("span");
+    ink.className = "hero-ink";
+    ink.textContent = character;
     const outline = document.createElement("span");
     outline.className = "hero-outline";
     outline.textContent = character;
-    glyph.append(outline);
+    glyph.append(ink,outline);
     part.append(glyph);
   }
 }
