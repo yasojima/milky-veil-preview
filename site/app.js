@@ -6,7 +6,7 @@ import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260914-274";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260913-244";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-509";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-510";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260919-423";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";

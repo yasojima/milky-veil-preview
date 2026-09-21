@@ -3,6 +3,7 @@
   --milky-home-paper:#F3E4E9;
   --milky-footer:#F3E4E9;
   background:#F3E4E9;
+  min-height:100svh; display:flex; flex-direction:column;
 }
 .closing-brand-track { display:contents; }
 .closing-brand {
@@ -10,11 +11,14 @@
   display:block; height:var(--shared-desktop-logo-height); width:auto;
 }
 .closing-brand img { display:block; height:100%; width:auto; }
-.shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; }
-.shared-brand-message { --brand-vertical-space:150px; }
-.site-footer { padding:16px 30px 20px; }
+.shared-brand-message-copy { display:grid; grid-template-rows:1fr auto 1fr; justify-items:start; row-gap:clamp(8px,1.5svh,20px); width:max-content; max-width:100%; margin-inline:auto; }
+.shared-brand-message-copy > p { width:max-content; max-width:100%; justify-self:center; line-height:1.02; }
+.shared-brand-message-copy > small { align-self:end; }
+.shared-brand-message-copy > span { align-self:start; }
+.shared-brand-message { flex:1 0 auto; display:grid; place-items:center; --brand-vertical-space:16px; padding-block:clamp(8px,2svh,16px); }
+.site-footer { padding:clamp(8px,1.2svh,16px) 30px clamp(8px,1.5svh,20px); }
 .footer-shell { min-height:0; justify-content:center; }
-.shared-footer-ticker-rule { padding-bottom:28px; }
+.shared-footer-ticker-rule { padding-bottom:clamp(8px,2svh,28px); }
 .shared-footer-ticker-rule hr { border-color:rgba(23,33,51,.24); }
 /* Mobile UI scope: 900px and below. */
 @media(max-width:900px) {
@@ -42,18 +46,6 @@
   .closing-brand { height:min(clamp(85px,calc(12.037037vw - 23.333333px),150px),clamp(64px,19.5svh,150px)); }
   .footer-links { column-gap:clamp(12px,calc(1.481481vw - 1.333333px),20px); }
   .shared-footer-ticker .heading.block_header_4 .h { font-size:clamp(42px,calc(14.444444vw - 88px),120px)!important; }
-  .shared-brand-message-copy { position:relative; left:var(--closing-group-offset,0px); width:max-content; max-width:100%; margin-inline:auto; justify-self:center; text-align:left; }
-
-  .shared-brand-message {
-    display:grid;
-    grid-template-columns:minmax(0,1fr);
-    --closing-short-step:clamp(0px,calc(800px - 100svh),250px);
-    --closing-height-step:clamp(0px,calc(100svh - 700px),150px);
-    --closing-min-top:calc(40px + var(--closing-height-step) * .16 - var(--closing-short-step) * .088);
-    --closing-min-bottom:calc(32px + var(--closing-height-step) * .16 - var(--closing-short-step) * .056);
-  }
-  .shared-brand-message-copy > small { font-size:clamp(11px,calc(.740741vw + 4.333333px),15px); margin-bottom:calc(14px + var(--closing-height-step) * .04 - var(--closing-short-step) * .024); }
-  .shared-brand-message-copy > span { margin-top:calc(22px + var(--closing-height-step) * .066667 - var(--closing-short-step) * .04); font-size:calc(18.5px + var(--closing-height-step) * .013333); line-height:clamp(29.75px,calc(4.866667svh - 4.316669px),37.05px); }
 }
 
 /* Mobile UI scope: 900px and below. */
@@ -65,6 +57,8 @@
 }
 
 @media(max-width:900px) and (max-height:600px) {
+  .shared-footer-ticker-rule { padding-bottom:8px; }
+  .site-footer { padding-block:8px; }
 
   .shared-brand-message-copy > small { margin-bottom:8px; }
   .shared-brand-message-copy > span { margin-top:10px; line-height:1.6; }
@@ -80,9 +74,7 @@
   .shared-brand-message-copy > p > br { display:initial; }
 }
 
-@media(min-width:451px) and (max-width:600px) and (orientation:portrait) {
-  .shared-brand-message-copy > span { width:0; min-width:100%; }
-}
+
 
 @media(max-width:600px) and (max-height:400px) {
   [data-shared-bottom-ui-component] { --closing-compact-logo-height:64px; }
@@ -103,4 +95,12 @@
   .footer-links { flex-direction:column; flex-wrap:nowrap; }
   .footer-link-row { display:flex; gap:clamp(10px,2vw,12px); }
   .footer-links a { font-size:clamp(14px,calc(10px + 1lvh),16px); min-height:clamp(26px,calc(14px + 3lvh),32px); }
+}
+
+/* Equal outer tracks keep the headline centered independently of supporting copy. */
+.shared-brand-message-copy > small,
+.shared-brand-message-copy > span { margin:0; width:auto; min-width:0; max-width:100%; }
+@media(min-width:901px) {
+  .shared-brand-message-copy > small { font-size:15px; }
+  .shared-brand-message-copy > span { font-size:19.5px; line-height:1.7; }
 }

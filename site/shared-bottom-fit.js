@@ -1,6 +1,4 @@
 import { usesMobileLayout } from "./responsive-policy.js";
-import { desktopClosingMetrics } from "./desktop-layout-policy.js";
-import { mobileClosingMetrics } from "./mobile-layout-policy.js?v=20260916-332";
 
 const bindings = new WeakMap();
 
@@ -8,186 +6,66 @@ export function bindBottomFit(root) {
   if (bindings.has(root)) return;
   const component = root.querySelector("[data-shared-bottom-ui-component]");
   const brand = root.querySelector(".shared-brand-message");
-  const title = brand?.querySelector("p");
-  const rule = root.querySelector(".shared-footer-ticker-rule");
-  if (!component || !brand || !title || !rule) return;
-  const footer = root.querySelector(".site-footer");
+  const copy = brand?.querySelector(".shared-brand-message-copy");
+  const title = copy?.querySelector("p");
+  if (!component || !brand || !title) return;
+  const eyebrow = copy.querySelector("small");
+  const supporting = copy.querySelector(":scope > span");
+  const logo = root.querySelector(".closing-brand");
   const tickers = [...root.querySelectorAll(".shared-footer-ticker .h")];
   let frame = 0;
   let fittedWidth = window.innerWidth;
   let fittedHeight = window.innerHeight;
   let fittedMobileHeight = 0;
   let atBottom = false;
-  const centerHeadline = () => {
-    const context = document.createElement("canvas").getContext("2d");
-    const walker = document.createTreeWalker(title, NodeFilter.SHOW_TEXT);
-    let left = Infinity;
-    let right = -Infinity;
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      const textStyle = getComputedStyle(node.parentElement);
-      context.font = `${textStyle.fontWeight} ${textStyle.fontSize} ${textStyle.fontFamily}`;
-      for (let index = 0; index < node.length; index += 1) {
-        if (/\s/.test(node.data[index])) continue;
-        const range = document.createRange();
-        range.setStart(node, index);
-        range.setEnd(node, index + 1);
-        const bounds = range.getBoundingClientRect();
-        const ink = context.measureText(node.data[index]);
-        left = Math.min(left, bounds.left - ink.actualBoundingBoxLeft);
-        right = Math.max(right, bounds.left + ink.actualBoundingBoxRight);
-      }
-    }
-    if (Number.isFinite(left) && Number.isFinite(right)) {
-      title.parentElement.style.setProperty("--closing-group-offset", (document.documentElement.clientWidth / 2 - (left + right) / 2) + "px");
-    }
-  };
+
   const fit = () => {
     frame = 0;
     if (!component.isConnected) return;
+    const mobile = usesMobileLayout();
     const keepBottom = atBottom && (fittedHeight !== window.innerHeight || fittedWidth !== window.innerWidth);
-
+    for (const element of [title, eyebrow, supporting]) element.style.removeProperty("font-size");
+    copy.style.removeProperty("row-gap");
     brand.style.removeProperty("padding-top");
-    brand.style.removeProperty("padding-bottom");
-    title.style.removeProperty("font-size");
-    title.style.removeProperty("line-height");
-    rule.style.removeProperty("padding-bottom");
-    footer.style.removeProperty("padding-top");
-    footer.style.removeProperty("padding-bottom");
+    brand.style.removeProperty("padding-inline");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
-    title.parentElement.style.removeProperty("--closing-group-offset");
-    if (getComputedStyle(brand).display === "none") {
-      fittedWidth = window.innerWidth;
-      fittedHeight = window.innerHeight;
-      fittedMobileHeight = parseFloat(getComputedStyle(component).minHeight);
-      if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
-      return;
-    }
-    const viewport = usesMobileLayout() ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
-    const style = getComputedStyle(brand);
-    const readSpacing = (property, fallback) => {
-      brand.style.paddingTop = `var(${property}, ${fallback}px)`;
-      const value = parseFloat(getComputedStyle(brand).paddingTop);
-      brand.style.removeProperty("padding-top");
-      return value;
-    };
-    const metrics = usesMobileLayout() ? mobileClosingMetrics(viewport) : desktopClosingMetrics(viewport, readSpacing);
-    const { headlineTop, minimumTop, minimumBottom } = metrics;
-    if (metrics.lineHeight !== null) title.style.lineHeight = metrics.lineHeight;
-    // The large viewport stays stable while mobile browser chrome expands or retracts.
-    if (usesMobileLayout()) {
-      const logo = root.querySelector(".closing-brand");
-      const targetHeight = parseFloat(getComputedStyle(component).minHeight);
-      const layoutMobileHeadline = size => {
+    const targetHeight = mobile ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
+    if (getComputedStyle(brand).display !== "none") {
+      const style = getComputedStyle(brand);
+      if (mobile && window.innerWidth <= 600 && logo) {
+        brand.style.paddingTop = (parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12) + "px";
+      } else if (logo) {
+        // Equal side reservations keep the center stable while clearing the left logo.
+        brand.style.paddingInline = Math.max(parseFloat(style.paddingLeft), logo.getBoundingClientRect().right + 16) + "px";
+      }
+      const availableWidth = brand.clientWidth - parseFloat(getComputedStyle(brand).paddingLeft) - parseFloat(getComputedStyle(brand).paddingRight);
+      const eyebrowMaximum = parseFloat(getComputedStyle(eyebrow).fontSize);
+      const supportingMaximum = parseFloat(getComputedStyle(supporting).fontSize);
+      const gapMaximum = parseFloat(getComputedStyle(copy).rowGap);
+      const preferredTitle = parseFloat(getComputedStyle(title).fontSize);
+      const tickerMaximum = parseFloat(getComputedStyle(tickers[0]).fontSize);
+      tickers.forEach(ticker => ticker.style.setProperty("font-size", Math.min(tickerMaximum, Math.max(28, targetHeight * .075)) + "px", "important"));
+      const applySize = size => {
+        const scale = Math.min(1, size / 120);
         title.style.fontSize = size + "px";
-        const overlapsLogo = logo && title.parentElement.getBoundingClientRect().left < logo.getBoundingClientRect().right + 16;
-        const logoClearance = logo && (viewport > 600 || window.innerWidth <= 600 || overlapsLogo) ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
-        brand.style.paddingTop = Math.max(viewport <= 600 ? 24 : headlineTop, logoClearance) + Math.max(0, targetHeight - viewport) + "px";
+        eyebrow.style.fontSize = Math.max(10, eyebrowMaximum * scale) + "px";
+        supporting.style.fontSize = Math.max(12, supportingMaximum * scale) + "px";
+        copy.style.rowGap = Math.max(6, gapMaximum * scale) + "px";
       };
-      brand.style.paddingBottom = minimumBottom + "px";
-      const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-
-      const shortfall = Math.max(0, 600 - targetHeight);
-      brand.style.paddingBottom = Math.max(8, (minimumBottom - shortfall * .12) * 2 / 3) + "px";
-      rule.style.paddingBottom = Math.max(8, 20 - shortfall * .4) + "px";
-      footer.style.paddingBottom = Math.max(10, 16 - shortfall * .2) + "px";
+      // Fit the whole copy block, keeping readable text and equal space around the headline.
       let lower = 32;
-      let upper = availableWidth;
-      for (let iteration = 0; iteration < 12; iteration += 1) {
+      let upper = Math.max(lower, preferredTitle);
+      for (let iteration = 0; iteration < 14; iteration += 1) {
         const candidate = (lower + upper) / 2;
-        layoutMobileHeadline(candidate);
-        if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight) lower = candidate;
+        applySize(candidate);
+        if (copy.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight + .5) lower = candidate;
         else upper = candidate;
       }
-      let headlineSize = Math.max(32, lower * .9);
-      if (window.innerWidth > 450 && window.innerWidth <= 600 && window.innerWidth <= window.innerHeight && viewport > 600) {
-        const supporting = title.nextElementSibling;
-        const supportingStyle = getComputedStyle(supporting);
-        const canvas = document.createElement("canvas").getContext("2d");
-        canvas.font = supportingStyle.font;
-        const spacing = parseFloat(supportingStyle.letterSpacing) || 0;
-        const lineWidth = Math.max(...[...supporting.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).map(node => canvas.measureText(node.textContent).width + spacing * node.textContent.length));
-        title.style.fontSize = headlineSize + "px";
-        const wordWidths = [...title.querySelectorAll(".brand-headline-word")].map(word => {
-          const range = document.createRange();
-          range.selectNodeContents(word);
-          return range.getBoundingClientRect().width;
-        });
-        const headlineWidth = Math.max(...wordWidths);
-        // Keep the shared left edge and two-line supporting copy without shifting the headline alone.
-        if (lineWidth + 2 <= availableWidth) headlineSize = Math.max(headlineSize, headlineSize * (lineWidth + 2) / headlineWidth);
-      }
-      layoutMobileHeadline(headlineSize);
-      if (window.innerWidth > 450) centerHeadline();
-      fittedWidth = window.innerWidth;
-      fittedHeight = window.innerHeight;
-      fittedMobileHeight = targetHeight;
-      if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
-      return;
+      applySize(lower);
     }
-    let top = Math.max(minimumTop, parseFloat(style.paddingTop));
-    let bottom = Math.max(minimumBottom, parseFloat(style.paddingBottom));
-    brand.style.paddingTop = top + "px";
-    brand.style.paddingBottom = bottom + "px";
-    const originalFont = parseFloat(getComputedStyle(title).fontSize);
-    const gap = parseFloat(getComputedStyle(rule).paddingBottom);
-    const footerStyle = getComputedStyle(footer);
-    const footerTop = parseFloat(footerStyle.paddingTop);
-    const footerBottom = parseFloat(footerStyle.paddingBottom);
-    const tickerFont = parseFloat(getComputedStyle(tickers[0]).fontSize);
-    let excess = component.getBoundingClientRect().height - viewport;
-    // Spend decorative space before reducing the headline; keep utility text unchanged.
-    const spare = Math.max(0, top - minimumTop) + Math.max(0, bottom - minimumBottom) + Math.max(0, gap - 16) + Math.max(0, footerTop - 12) + Math.max(0, footerBottom - 12);
-    const fraction = spare ? Math.min(1, Math.max(0, excess) / spare) : 0;
-    top -= Math.max(0, top - minimumTop) * fraction;
-    bottom -= Math.max(0, bottom - minimumBottom) * fraction;
-    brand.style.paddingTop = top + "px";
-    brand.style.paddingBottom = bottom + "px";
-    rule.style.paddingBottom = (gap - Math.max(0, gap - 16) * fraction) + "px";
-    footer.style.paddingTop = (footerTop - Math.max(0, footerTop - 12) * fraction) + "px";
-    footer.style.paddingBottom = (footerBottom - Math.max(0, footerBottom - 12) * fraction) + "px";
-    excess = component.getBoundingClientRect().height - viewport;
-    if (excess > 0) {
-      const titleHeight = title.getBoundingClientRect().height;
-      const tickerHeight = root.querySelector(".shared-footer-ticker").getBoundingClientRect().height;
-      const scale = Math.max(0, 1 - excess / (titleHeight + tickerHeight));
-      title.style.fontSize = Math.max(32, originalFont * scale) + "px";
-      tickers.forEach(ticker => ticker.style.setProperty("font-size", Math.max(28, tickerFont * scale) + "px", "important"));
-    }
-    const copy = title.parentElement;
-    const logo = root.querySelector(".closing-brand");
-    const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const layoutHeadline = size => {
-      title.style.fontSize = size + "px";
-      top = headlineTop;
-      if (logo && copy.getBoundingClientRect().left < logo.getBoundingClientRect().right + 24) {
-        top = Math.max(top, logo.offsetTop + logo.offsetHeight + 24);
-      }
-      bottom = minimumBottom;
-      brand.style.paddingTop = top + "px";
-      brand.style.paddingBottom = bottom + "px";
-    };
-    // Maximize the headline against both viewport axes, reserving the logo's space.
-    let lower = 32;
-    let upper = availableWidth;
-    for (let iteration = 0; iteration < 12; iteration += 1) {
-      const candidate = (lower + upper) / 2;
-      layoutHeadline(candidate);
-      if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= viewport) {
-        lower = candidate;
-      } else {
-        upper = candidate;
-      }
-    }
-    layoutHeadline(lower);
-    const remaining = viewport - component.getBoundingClientRect().height;
-    if (remaining > 0) {
-      brand.style.paddingTop = (top + remaining / 2) + "px";
-      brand.style.paddingBottom = (bottom + remaining / 2) + "px";
-    }
-    centerHeadline();
     fittedWidth = window.innerWidth;
     fittedHeight = window.innerHeight;
+    fittedMobileHeight = targetHeight;
     if (keepBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
   };
   const schedule = () => {
