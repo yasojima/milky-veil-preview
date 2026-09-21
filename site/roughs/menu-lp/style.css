@@ -256,7 +256,7 @@
 }
 /* Mobile UI scope: compact content layout. */
 @media (max-width:600px) {
-  .lp-hero { --hero-letter-unit:min(29cqw,16svh); --circle:min(130px,calc((100cqw - 64px)/3)); --hero-price-top:calc(38px + var(--hero-letter-unit)*2.25); --hero-wave-height:110cqw; --hero-cta-height:72px; --hero-gap:clamp(10px,3svh,24px); container-type:inline-size; height:auto; min-height:480px; max-height:none; grid-template-rows:calc(var(--hero-price-top) + var(--circle)) auto auto; }
+  .lp-hero { --hero-letter-unit:min(29cqw,16svh); --circle:min(130px,calc((100cqw - 64px)/3)); --hero-price-top:calc(38px + var(--hero-letter-unit)*2.25); --hero-wave-height:110cqw; --hero-cta-height:62px; --hero-gap:clamp(10px,3svh,24px); container-type:inline-size; height:auto; min-height:480px; max-height:none; grid-template-rows:calc(var(--hero-price-top) + var(--circle)) auto auto; }
   .menu-lp .hero-photo { inset:0 -32% auto auto; width:200%; max-width:none; height:auto; object-fit:contain; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 92%,transparent); mask-composite:intersect; }
   .hero-visual::before { background:linear-gradient(#fffdfb66,#fffdfb66),var(--menu-curtain-image) left top/100% auto no-repeat; mask-image:linear-gradient(90deg,#000,transparent 52%),linear-gradient(#000 78%,transparent); mask-composite:intersect; }
   .hero-ribbons { display:block; position:absolute; z-index:-1; top:calc(100% - var(--circle)*.38 - var(--hero-wave-height)*.6); left:-20%; width:140%; max-width:none; height:var(--hero-wave-height); pointer-events:none; mask-image:linear-gradient(#000 88%,transparent); }
@@ -290,9 +290,9 @@
   .hero-subcopy span:last-child { font-size:clamp(13px,5.45cqw,38px); line-height:1.2; letter-spacing:-.015em; }
   .hero-action { display:flex; align-items:flex-start; justify-content:center; padding:calc(var(--hero-gap) + clamp(0px,calc((100svh - 480px)*.16),48px)) 22px max(22px,4svh); }
   .hero-reservation { margin:0; }
-  .menu-lp .hero-action .hero-reservation { width:min(100%,280px); padding:12px 44px; }
-  .hero-reservation .reservation-label { font-size:22px; }
-  .hero-reservation .reservation-arrow { right:20px; }
+  .menu-lp .hero-action .hero-reservation { width:min(100%,250px); padding:10px 40px; }
+  .hero-reservation .reservation-label { font-size:20px; }
+  .hero-reservation .reservation-arrow { right:16px; transform:translateY(-50%); }
   .menu-lp [data-lp-reserve] { padding:10px 34px 10px 12px; }
   .reservation-label { font-size:clamp(14px,4vw,18px); letter-spacing:.03em; }
   .reservation-arrow { right:12px; }
