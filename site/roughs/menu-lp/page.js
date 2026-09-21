@@ -152,3 +152,16 @@ window.addEventListener("pagehide",() => openingObserver.disconnect());
 window.addEventListener("pageshow",event => { if (event.persisted) observeOpening(); });
 bindSharedFixedShell(bottomUi);
 bindSharedConceptMenu(document);
+
+const openingHeader = document.querySelector(".lp-header");
+const syncOpeningMenuClearance = () => {
+  const bottom = Math.max(0, openingHeader.getBoundingClientRect().bottom);
+  document.body.style.setProperty("--opening-menu-clearance", `${bottom + 28}px`);
+};
+const headerObserver = new ResizeObserver(syncOpeningMenuClearance);
+headerObserver.observe(openingHeader);
+window.addEventListener("scroll", syncOpeningMenuClearance, { passive: true });
+window.addEventListener("resize", syncOpeningMenuClearance, { passive: true });
+window.addEventListener("pagehide", () => headerObserver.disconnect());
+window.addEventListener("pageshow", () => headerObserver.observe(openingHeader));
+syncOpeningMenuClearance();

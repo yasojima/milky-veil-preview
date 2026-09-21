@@ -107,6 +107,7 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
   .menu-lp .hero-reservation { width:calc((var(--poster-width) - var(--opening-unit)*2.425)*.49); height:calc(var(--opening-unit)*8.5327); }
 }
 @media (max-width:768px) {
+  .menu-lp .shared-concept-menu:not(:has(.shared-nav-content.is-open)) { --shared-menu-anchor-y:max(40px,var(--opening-menu-clearance,40px)); }
   .lp-hero { --price-top:calc(var(--title-top) + var(--title-height) - var(--circle)); }
   .menu-lp { --opening-unit:4.25vw; --opening-header-height:clamp(48px,12vw,72px); }
   .lp-header { display:grid; grid-template-columns:28% 44% 28%; height:auto; min-height:var(--opening-header-height); }
