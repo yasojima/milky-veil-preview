@@ -20,7 +20,7 @@ for (const [selector,src] of [
 }
 
 document.querySelector("[data-header-name]").setAttribute("aria-label",`${sharedSalonData.name} このページの先頭へ`);
-document.querySelector("[data-header-logo]").setAttribute("href",sharedBrandLogo);
+document.querySelector("[data-header-logo]").setAttribute("src",sharedBrandLogo);
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);

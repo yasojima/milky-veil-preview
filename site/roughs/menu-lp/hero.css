@@ -1,8 +1,8 @@
 /* The opening uses a width-based poster grid, independent of viewport height. */
 .menu-lp { --opening-unit:16px; --opening-header-height:79.5px; --header-menu-space:calc(var(--shared-menu-anchor-right) + 80px); }
 .lp-header { position:relative; height:var(--opening-header-height); background:#fff; display:flex; align-items:center; justify-content:center; }
-.menu-lp .lp-header-name { display:grid; place-items:center; width:240px; height:49.5px; }
-.lp-header-wordmark { display:block; width:100%; height:auto; }
+.menu-lp .lp-header-name { display:grid; place-items:center; width:240px; height:100%; }
+.menu-lp .lp-header-logo { display:block; width:auto; height:var(--opening-header-height); max-width:100%; object-fit:contain; }
 .menu-lp .lp-header-cta,.menu-lp .hero-reservation { display:block; border:0; border-radius:0; background:var(--menu-copy-pink); box-shadow:none; opacity:1; cursor:default; }
 .menu-lp .lp-header-cta { position:absolute; top:10px; right:var(--header-menu-space); width:294px; height:60px; padding:0; border-radius:4px; }
 .menu-lp .has-split-hero > .menu-brand { display:none; }
@@ -88,7 +88,6 @@
   .menu-lp { --opening-unit:4.25vw; --opening-header-height:12vw; }
   .lp-header { justify-content:flex-start; }
   .menu-lp .lp-header-name { width:50%; height:100%; }
-  .lp-header-wordmark { width:80%; }
   .menu-lp .lp-header-cta { top:0; width:calc(50% - var(--header-menu-space)); height:100%; border-radius:0; }
   .lp-hero { --poster-width:100cqw; --poster-left:0px; --eyebrow-top:calc(var(--opening-unit)*1.25); --eyebrow-left:var(--eyebrow-top); --eyebrow-width:50cqw; --eyebrow-height:calc(var(--eyebrow-width)*200/762); --title-left:0px; --title-top:calc(var(--eyebrow-top) + var(--eyebrow-height) + var(--opening-unit)*1.25); --title-width:calc(100cqw - var(--opening-unit)*.75); --title-height:calc(var(--title-width)*576/697); --decoration-space:calc(78.42cqw*410/1388); --poster-height:calc(var(--title-top) + var(--title-height) + var(--decoration-space) + var(--opening-unit)); --price-width:calc(var(--title-width)*.965); --price-left:calc(var(--title-width)*.035); --circle:29vw; --hero-letter-unit:25cqw; }
   .menu-lp .hero-photo { width:220%; max-width:none; right:-36.8%; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 92%,transparent); }
