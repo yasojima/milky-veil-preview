@@ -83,9 +83,10 @@
 
 @media(max-width:600px) and (max-height:400px) {
   .shared-brand-message,.shared-footer-ticker,.shared-footer-ticker-rule { display:none; }
-  .site-footer { display:flex; flex:1; align-items:center; justify-content:center; padding:24px 12px; }
-  .footer-shell { width:100%; }
-  .footer-links { flex-direction:column; flex-wrap:nowrap; align-items:center; gap:0; }
+  .site-footer { display:flex; flex:1; align-items:stretch; padding:calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 12px) 0 0; }
+  .footer-shell { width:100%; align-items:stretch; }
+  .footer-links { position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(44px,1fr)); align-items:stretch; width:100%; gap:0; }
+  .footer-links::after { content:""; position:absolute; top:0; bottom:0; left:50%; width:1px; background:rgba(23,33,51,.16); pointer-events:none; }
   .footer-link-row { display:contents; }
-  .footer-links a { min-height:28px; justify-content:center; }
+  .footer-links a { min-width:0; min-height:44px; box-sizing:border-box; border-top:1px solid rgba(23,33,51,.16); justify-content:center; font-size:clamp(12px,3.2vw,16px); }
 }
