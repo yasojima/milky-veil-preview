@@ -5,7 +5,7 @@
 .menu-lp .lp-header-wordmark { display:block; padding-left:.18em; color:var(--menu-copy-pink); font:500 27px/1 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.18em; white-space:nowrap; }
 .menu-lp .lp-header-cta,.menu-lp .hero-reservation { display:block; border:0; border-radius:0; background:var(--menu-copy-pink); box-shadow:none; opacity:1; cursor:default; }
 .menu-lp .lp-header-cta { position:absolute; top:10px; right:var(--header-menu-space); width:294px; height:60px; min-height:0; padding:0; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; cursor:pointer; }
-.lp-header-cta .reservation-label { font:700 1em/1.5 "Yu Gothic",YuGothic,Meiryo,sans-serif; letter-spacing:0; }
+.lp-header-cta .reservation-label { font:600 1em/1.5 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.08em; }
 .lp-header-cta .reservation-arrow { display:inline-block; position:relative; flex:0 0 19px; top:-2px; right:auto; width:19px; height:24px; margin-left:.5em; vertical-align:middle; transform:none; background:url("../../../assets/references/menu-cta/double-arrow.png") center/100% auto no-repeat; }
 .lp-header-cta .reservation-arrow::before,.lp-header-cta .reservation-arrow::after { content:none; }
 .menu-lp .lp-header-cta:focus-visible { outline:2px solid #fff; outline-offset:-4px; }
@@ -94,7 +94,7 @@
   .menu-lp .lp-header-name { width:50%; height:100%; }
   .menu-lp .lp-header-wordmark { font-size:clamp(15px,4.1vw,24px); letter-spacing:.12em; padding-left:.12em; }
   .menu-lp .lp-header-cta { top:0; width:calc(50% - var(--header-menu-space)); height:100%; padding-inline:4px; border-radius:0; font-size:clamp(9px,2.5vw,13px); }
-  .lp-header-cta .reservation-label { min-width:0; white-space:normal; line-height:1.2; }
+  .lp-header-cta .reservation-label { min-width:0; white-space:normal; line-height:1.2; letter-spacing:.02em; }
   .lp-header-cta .reservation-arrow { flex-basis:1em; top:-1px; width:1em; height:1.25em; }
   .lp-hero { --poster-width:100cqw; --poster-left:0px; --eyebrow-top:calc(var(--opening-unit)*1.25); --eyebrow-left:var(--eyebrow-top); --eyebrow-width:50cqw; --eyebrow-height:calc(var(--eyebrow-width)*200/762); --title-left:0px; --title-top:calc(var(--eyebrow-top) + var(--eyebrow-height) + var(--opening-unit)*1.25); --title-width:calc(100cqw - var(--opening-unit)*.75); --title-height:calc(var(--title-width)*576/697); --decoration-space:calc(78.42cqw*410/1388); --poster-height:calc(var(--title-top) + var(--title-height) + var(--decoration-space) + var(--opening-unit)); --price-width:calc(var(--title-width)*.965); --price-left:calc(var(--title-width)*.035); --circle:29vw; --hero-letter-unit:25cqw; }
   .menu-lp .hero-photo { width:220%; max-width:none; right:-36.8%; mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(#000 92%,transparent); }
