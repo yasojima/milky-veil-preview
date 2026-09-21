@@ -1,3 +1,5 @@
+.menu-lp .shared-concept-menu:not(:has(.shared-nav-content.is-open)) { --shared-menu-anchor-y:max(40px,var(--opening-menu-clearance,40px)); }
+.menu-lp .shared-concept-menu:not(.has-page-scroll):not(:has(.shared-nav-content.is-open)) .shared-nav-toggle { visibility:hidden!important; pointer-events:none; }
 /* The opening uses a width-based poster grid, independent of viewport height. */
 .hero-headline h1 > .hero-translation-copy { display:block; position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 html[data-translation-active] .menu-lp #hero-title > .notranslate { display:none; }
@@ -10,7 +12,7 @@ html[data-translation-active] .hero-catchcopy-lead { white-space:normal; text-wr
 html[data-translation-active] .menu-lp .hero-reservation { height:auto; min-height:141px; padding:20px; display:grid; gap:12px; }
 html[data-translation-active] .hero-reservation :is(.hero-reservation-intro,.hero-reservation-main) { position:static; height:auto; min-height:2em; padding:6px 10px; white-space:normal; text-align:center; line-height:1.4; }
 html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
-.menu-lp { --opening-unit:16px; --opening-header-height:79.5px; --header-menu-space:calc(var(--shared-menu-anchor-right) + 80px); }
+.menu-lp { --opening-unit:16px; --opening-header-height:79.5px; --header-menu-space:10px; }
 .lp-header { position:relative; height:var(--opening-header-height); background:#fff; display:flex; align-items:center; justify-content:center; }
 .menu-lp .lp-header-name { display:grid; place-items:center; width:240px; height:100%; }
 .menu-lp .lp-header-wordmark { display:block; padding-left:.18em; color:var(--menu-copy-pink); font:500 27px/1 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.18em; white-space:nowrap; }
@@ -107,7 +109,6 @@ html[data-translation-active] .menu-lp .lp-header-cta { padding:6px 12px; }
   .menu-lp .hero-reservation { width:calc((var(--poster-width) - var(--opening-unit)*2.425)*.49); height:calc(var(--opening-unit)*8.5327); }
 }
 @media (max-width:768px) {
-  .menu-lp .shared-concept-menu:not(:has(.shared-nav-content.is-open)) { --shared-menu-anchor-y:max(40px,var(--opening-menu-clearance,40px)); }
   .lp-hero { --price-top:calc(var(--title-top) + var(--title-height) - var(--circle)); }
   .menu-lp { --opening-unit:4.25vw; --opening-header-height:clamp(48px,12vw,72px); }
   .lp-header { display:grid; grid-template-columns:1fr 1fr; height:auto; min-height:var(--opening-header-height); }

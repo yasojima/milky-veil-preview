@@ -89,7 +89,7 @@ export function bindSharedConceptMenu(scope = document) {
     menu.classList.toggle("home-header-visible", visible);
     const scrolled = window.scrollY > 0;
     menu.classList.toggle("has-page-scroll", scrolled);
-    toggle.inert = (visible || (usesMobileLayout() && !scrolled)) && !nav.classList.contains("is-open");
+    toggle.inert = (visible || ((usesMobileLayout() || document.body.classList.contains("menu-lp")) && !scrolled)) && !nav.classList.contains("is-open");
   };
   syncHomeHeaderVisibility();
   const homeHeaderObserver = new ResizeObserver(syncHomeHeaderVisibility);
