@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="/milky-veil-preview/site/shared-ui-position.css?v=20260917-372&pages=20260919-422">
   <link rel="stylesheet" href="/milky-veil-preview/site/uniplex-menu.css?v=20260917-371&pages=20260919-422">
   <link rel="stylesheet" href="/milky-veil-preview/site/roughs/menu-lp/style.css?pages=20260921-486">
-  <link rel="stylesheet" href="/milky-veil-preview/site/roughs/menu-lp/hero.css?pages=20260922-494">
-  <script type="module" src="/milky-veil-preview/site/roughs/menu-lp/page.js?pages=20260921-492"></script>
+  <link rel="stylesheet" href="/milky-veil-preview/site/roughs/menu-lp/hero.css?pages=20260922-495">
+  <script type="module" src="/milky-veil-preview/site/roughs/menu-lp/page.js?pages=20260922-495"></script>
 </head>
 <body class="menu-lp" data-page-route-id="menu">
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -45,7 +45,10 @@
         <div class="hero-prices" aria-label="主なメニューの税込料金" data-hero-prices></div>
       </div>
       <div class="hero-action">
-        <button class="hero-reservation" type="button" aria-label="予約ボタンの配置確認用の枠" disabled></button>
+        <button class="hero-reservation" type="button" data-lp-reserve>
+          <span class="hero-reservation-intro">まずはお気軽にご相談を</span>
+          <span class="hero-reservation-main" data-reservation-content></span>
+        </button>
       </div>
     </section>
 

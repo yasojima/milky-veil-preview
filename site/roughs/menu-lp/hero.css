@@ -5,10 +5,10 @@
 .menu-lp .lp-header-wordmark { display:block; padding-left:.18em; color:var(--menu-copy-pink); font:500 27px/1 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.18em; white-space:nowrap; }
 .menu-lp .lp-header-cta,.menu-lp .hero-reservation { display:block; border:0; border-radius:0; background:var(--menu-copy-pink); box-shadow:none; opacity:1; cursor:default; }
 .menu-lp .lp-header-cta { position:absolute; top:10px; right:var(--header-menu-space); width:294px; height:60px; min-height:0; padding:0; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; cursor:pointer; }
-.lp-header-cta .reservation-label { font:600 1em/1.5 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.08em; }
-.lp-header-cta .reservation-arrow { display:inline-block; position:relative; flex:0 0 19px; top:auto; right:auto; width:19px; height:24px; margin-left:.5em; vertical-align:middle; transform:none; background:url("../../../assets/references/menu-cta/double-arrow.png") center/100% auto no-repeat; }
-.lp-header-cta .reservation-arrow::before,.lp-header-cta .reservation-arrow::after { content:none; }
-.menu-lp .lp-header-cta:focus-visible { outline:2px solid #fff; outline-offset:-4px; }
+.lp-header-cta .reservation-label,.hero-reservation .reservation-label { font:600 1em/1.5 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.08em; }
+.lp-header-cta .reservation-arrow,.hero-reservation .reservation-arrow { display:inline-block; position:relative; flex:0 0 19px; top:auto; right:auto; width:19px; height:24px; margin-left:.5em; vertical-align:middle; transform:none; background:url("../../../assets/references/menu-cta/double-arrow.png") center/100% auto no-repeat; }
+.lp-header-cta .reservation-arrow::before,.lp-header-cta .reservation-arrow::after,.hero-reservation .reservation-arrow::before,.hero-reservation .reservation-arrow::after { content:none; }
+.menu-lp .lp-header-cta:focus-visible,.menu-lp .hero-reservation:focus-visible { outline:2px solid #fff; outline-offset:-4px; }
 .menu-lp .has-split-hero > .menu-brand { display:none; }
 .menu-lp #shared-bottom-ui-root[data-opening-visible]::part(fixed-cta) { visibility:hidden; pointer-events:none; }
 .lp-opening { container-type:inline-size; }
@@ -63,8 +63,13 @@
 .price-circle strong { font:italic 400 calc(var(--circle)*.2424)/1 "Yu Mincho","MV Shared Noto Serif JP",serif; color:var(--milky-ice-blue); letter-spacing:-.075em; padding-right:.075em; white-space:nowrap; text-shadow:0 1px 1.5px #506e85b3; }
 .price-circle strong small { font-size:.55em; }
 .hero-action { position:relative; padding:calc(var(--opening-unit)*6) 0; }
-.menu-lp .hero-reservation { position:relative; width:calc(var(--poster-width)*.49); height:141.390625px; padding:0; margin:auto; }
-.hero-reservation::before { content:""; position:absolute; top:calc(var(--opening-unit)*1.75); left:calc(var(--opening-unit)*1.75); right:calc(var(--opening-unit)*1.75); height:calc(var(--opening-unit)*2.4); border-radius:30px; background:#fff; }
+.menu-lp .hero-reservation { position:relative; width:calc(var(--poster-width)*.49); height:141.390625px; padding:0; margin:auto; cursor:pointer; }
+.hero-reservation-intro { position:absolute; top:calc(var(--opening-unit)*1.75); left:calc(var(--opening-unit)*1.75); right:calc(var(--opening-unit)*1.75); height:calc(var(--opening-unit)*2.4); border-radius:30px; background:#fff; display:flex; align-items:center; justify-content:center; gap:1em; color:#58434b; font:400 calc(var(--opening-unit)*1.4)/1 "MV Shared Noto Serif JP","Yu Mincho",serif; white-space:nowrap; }
+.hero-reservation-intro::before,.hero-reservation-intro::after { content:""; flex:0 0 .6em; height:1em; border-inline:1px solid currentColor; transform:skewX(35deg); }
+.hero-reservation-intro::after { transform:skewX(-35deg); }
+.hero-reservation-main { position:absolute; top:calc(var(--opening-unit)*4.15); bottom:calc(var(--opening-unit)*.7); left:calc(var(--opening-unit)*1.75); right:calc(var(--opening-unit)*1.75); display:flex; align-items:center; justify-content:center; color:#fff; font-size:calc(var(--opening-unit)*2); }
+.hero-reservation .reservation-label { line-height:1.25; }
+.hero-reservation .reservation-arrow { flex-basis:.6em; width:.6em; height:.758em; }
 @media (min-width:769px) {
   .hero-headline { z-index:auto; pointer-events:none; }
   .hero-headline .eyebrow,.hero-character { z-index:2; }
@@ -106,5 +111,6 @@
   .hero-headline h1 > span:last-child .hero-character:nth-child(2) { left:calc(var(--hero-letter-unit)*2.35); top:calc(var(--hero-letter-unit)*1.24); }
   .hero-action { padding:calc(var(--opening-unit)*2.5) calc(var(--opening-unit)*1.25); }
   .menu-lp .hero-reservation { width:100%; height:calc(var(--opening-unit)*5.1853); }
-  .hero-reservation::before { top:var(--opening-unit); left:var(--opening-unit); right:var(--opening-unit); height:calc(var(--opening-unit)*1.749); }
+  .hero-reservation-intro { top:var(--opening-unit); left:var(--opening-unit); right:var(--opening-unit); height:calc(var(--opening-unit)*1.749); font-size:calc(var(--opening-unit)*.9); gap:.65em; }
+  .hero-reservation-main { top:calc(var(--opening-unit)*2.749); bottom:calc(var(--opening-unit)*.5); left:var(--opening-unit); right:var(--opening-unit); font-size:calc(var(--opening-unit)*1.35); }
 }

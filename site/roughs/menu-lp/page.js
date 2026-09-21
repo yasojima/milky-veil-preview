@@ -98,7 +98,8 @@ document.querySelector("[data-salon-grid]").innerHTML = MENU_STILL_ASSETS.map((s
 </figure>`).join("");
 
 for (const button of document.querySelectorAll("[data-lp-reserve]")) {
-  button.innerHTML = `<span class="reservation-label">${reservationLabel}</span><span class="reservation-arrow" aria-hidden="true"></span>`;
+  const content = button.querySelector("[data-reservation-content]") || button;
+  content.innerHTML = `<span class="reservation-label">${reservationLabel}</span><span class="reservation-arrow" aria-hidden="true"></span>`;
   button.addEventListener("click", () => document.getElementById("reservation-dialog").showModal());
 }
 
