@@ -24,7 +24,7 @@
   --price-width:calc(var(--poster-width)*.63);
   --circle:calc(var(--price-width)/3 - var(--opening-unit)*1.0625);
   --price-left:calc(var(--title-left) + var(--poster-width)*.3665);
-  --price-top:calc(var(--title-top) + var(--title-height) - var(--circle)*1.15);
+  --price-top:calc(var(--title-top) + var(--title-height) - var(--circle));
   --hero-letter-unit:calc(var(--title-width)*.185);
   position:relative; isolation:isolate;
 }
@@ -72,6 +72,7 @@
   .menu-lp .hero-reservation { width:calc((var(--poster-width) - var(--opening-unit)*2.425)*.49); height:calc(var(--opening-unit)*8.5327); }
 }
 @media (max-width:768px) {
+  .lp-hero { --price-top:calc(var(--title-top) + var(--title-height) - var(--circle)*1.15); }
   .menu-lp { --opening-unit:4.25vw; --opening-header-height:12vw; }
   .lp-header { justify-content:flex-start; }
   .menu-lp .lp-header-name { width:50%; height:100%; }
