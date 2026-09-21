@@ -56,6 +56,12 @@ export function bindBottomFit(root) {
     footer.style.removeProperty("padding-bottom");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
     title.parentElement.style.removeProperty("--closing-group-offset");
+    if (getComputedStyle(brand).display === "none") {
+      fittedWidth = window.innerWidth;
+      fittedHeight = window.innerHeight;
+      fittedMobileHeight = parseFloat(getComputedStyle(component).minHeight);
+      return;
+    }
     const viewport = usesMobileLayout() ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
     const style = getComputedStyle(brand);
     const readSpacing = (property, fallback) => {
