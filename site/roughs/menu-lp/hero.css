@@ -2,7 +2,7 @@
 .menu-lp { --opening-unit:16px; --opening-header-height:79.5px; --header-menu-space:calc(var(--shared-menu-anchor-right) + 80px); }
 .lp-header { position:relative; height:var(--opening-header-height); background:#fff; display:flex; align-items:center; justify-content:center; }
 .menu-lp .lp-header-name { display:grid; place-items:center; width:240px; height:100%; }
-.menu-lp .lp-header-logo { display:block; width:auto; height:var(--opening-header-height); max-width:100%; object-fit:contain; }
+.menu-lp .lp-header-wordmark { display:block; padding-left:.18em; color:var(--menu-copy-pink); font:500 27px/1 "MV Shared Noto Serif JP","Yu Mincho",serif; letter-spacing:.18em; white-space:nowrap; }
 .menu-lp .lp-header-cta,.menu-lp .hero-reservation { display:block; border:0; border-radius:0; background:var(--menu-copy-pink); box-shadow:none; opacity:1; cursor:default; }
 .menu-lp .lp-header-cta { position:absolute; top:10px; right:var(--header-menu-space); width:294px; height:60px; min-height:0; padding:0; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; cursor:pointer; }
 .lp-header-cta .reservation-label { font:700 1em/1.5 "Yu Gothic",YuGothic,Meiryo,sans-serif; letter-spacing:0; }
@@ -92,6 +92,7 @@
   .menu-lp { --opening-unit:4.25vw; --opening-header-height:12vw; }
   .lp-header { justify-content:flex-start; }
   .menu-lp .lp-header-name { width:50%; height:100%; }
+  .menu-lp .lp-header-wordmark { font-size:clamp(15px,4.1vw,24px); letter-spacing:.12em; padding-left:.12em; }
   .menu-lp .lp-header-cta { top:0; width:calc(50% - var(--header-menu-space)); height:100%; padding-inline:4px; border-radius:0; font-size:clamp(9px,2.5vw,13px); }
   .lp-header-cta .reservation-label { min-width:0; white-space:normal; line-height:1.2; }
   .lp-header-cta .reservation-arrow { flex-basis:1em; top:-1px; width:1em; height:1.25em; }

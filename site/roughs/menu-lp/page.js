@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedBrandLogo, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
+import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260921-489";
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260921-489";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260921-489";
@@ -20,7 +20,7 @@ for (const [selector,src] of [
 }
 
 document.querySelector("[data-header-name]").setAttribute("aria-label",`${sharedSalonData.name} このページの先頭へ`);
-document.querySelector("[data-header-logo]").setAttribute("src",sharedBrandLogo);
+document.querySelector("[data-header-wordmark]").textContent = sharedSalonData.name;
 document.querySelector("[data-brand-eyebrow]").textContent = sharedBrandEyebrow;
 const heroTitle = document.getElementById("hero-title");
 heroTitle.setAttribute("aria-label",heroTitle.textContent);
