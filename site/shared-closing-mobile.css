@@ -71,6 +71,8 @@
   .footer-links a { font-size:clamp(14px,calc(10px + 1lvh),16px); min-height:clamp(26px,calc(14px + 3lvh),32px); }
 }
 @media(max-width:900px) and (min-height:601px) {
+  [data-shared-bottom-ui-component] { --closing-copy-lift:clamp(0px, calc((100svh - 688px) / 12), 12px); }
+  :is(.shared-brand-message-copy, .shared-footer-ticker, .shared-footer-ticker-rule, .site-footer) { translate:0 calc(-1 * var(--closing-copy-lift)); }
   .shared-brand-message { display:flex; align-items:flex-end; padding-inline:22px; }
   .site-footer { padding-top:4px; padding-bottom:24px; }
   .shared-brand-message-copy { display:block; }
