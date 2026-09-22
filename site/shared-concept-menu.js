@@ -97,6 +97,16 @@ export function bindSharedConceptMenu(scope = document) {
   window.addEventListener("scroll", syncHomeHeaderVisibility, { passive: true, signal });
   window.addEventListener("resize", syncHomeHeaderVisibility, { passive: true, signal });
   const mobileQuery = mobileLayout();
+  const contactDetails = nav.querySelector('.menu-contact-details');
+  const contactActions = nav.querySelector('.menu-contact-actions');
+  const socialTools = nav.querySelector('.menu-social-tools');
+  const syncContactOrder = () => {
+    if (!contactDetails || !contactActions || !socialTools) return;
+    if (mobileQuery.matches) nav.insertBefore(contactActions, socialTools);
+    else contactDetails.append(contactActions);
+  };
+  syncContactOrder();
+  mobileQuery.addEventListener('change', syncContactOrder, { signal });
   const menuParent = menu.parentNode;
   const menuNextSibling = menu.nextSibling;
   const sceneLogo = document.querySelector(".has-split-hero > .menu-brand");

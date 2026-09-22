@@ -2,9 +2,9 @@ import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/sha
 import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260915-313";
 import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260917-346";
 import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20260913-244";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260919-425&closing=20260922-526";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260919-425&closing=20260922-527";
 import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260922-514";
+import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20260922-527";
 import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
