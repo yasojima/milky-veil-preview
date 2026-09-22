@@ -361,7 +361,7 @@
     right:auto;
     gap:12px;
     box-sizing:border-box;
-    padding:calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 12px) 24px 16px;
+    padding:calc(var(--shared-mobile-logo-y) + var(--shared-mobile-logo-height) + 12px) 24px clamp(16px, calc(16px + (var(--shared-menu-screen-height, 100svh) - 600px) * .28), 80px);
     overflow:hidden;
     touch-action:pan-y;
     overscroll-behavior:auto;
