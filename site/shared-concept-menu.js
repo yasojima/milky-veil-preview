@@ -102,7 +102,7 @@ export function bindSharedConceptMenu(scope = document) {
   const socialTools = nav.querySelector('.menu-social-tools');
   const syncContactOrder = () => {
     if (!contactDetails || !contactActions || !socialTools) return;
-    if (mobileQuery.matches) nav.insertBefore(contactActions, socialTools);
+    if (mobileQuery.matches) nav.append(contactActions);
     else contactDetails.append(contactActions);
   };
   syncContactOrder();

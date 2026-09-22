@@ -3,9 +3,9 @@ import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20260921-48
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20260921-489";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20260921-489";
 import { priceItems } from "../menu-price/menu-data.js?pages=20260921-489";
-import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-527";
+import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-528";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20260913-244";
-import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260922-527";
+import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20260922-528";
 import { reservationLabel } from "../../shared-contact-details.js?v=20260913-244";
 
 
