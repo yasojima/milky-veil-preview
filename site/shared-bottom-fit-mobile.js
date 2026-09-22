@@ -5,7 +5,7 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       const logoClearance = logo ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
       brand.style.paddingTop = Math.max(92, logoClearance) + "px";
-      brand.style.paddingBottom = "16px";
+      brand.style.paddingBottom = "12px";
       let lower = 32;
       let upper = availableWidth;
       for (let iteration = 0; iteration < 12; iteration += 1) {
@@ -14,7 +14,7 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
         if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight + .5) lower = candidate;
         else upper = candidate;
       }
-      title.style.fontSize = Math.max(32, lower * .9) + "px";
+      title.style.fontSize = Math.max(32, lower) + "px";
   } else {
     if (getComputedStyle(brand).display !== "none") {
       const style = getComputedStyle(brand);

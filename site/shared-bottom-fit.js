@@ -1,4 +1,4 @@
-import { fitMobileBottom } from "./shared-bottom-fit-mobile.js?v=20260922-523";
+import { fitMobileBottom } from "./shared-bottom-fit-mobile.js?v=20260922-529";
 import { usesMobileLayout } from "./responsive-policy.js";
 
 const bindings = new WeakMap();

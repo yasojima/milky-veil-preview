@@ -71,7 +71,8 @@
   .footer-links a { font-size:clamp(14px,calc(10px + 1lvh),16px); min-height:clamp(26px,calc(14px + 3lvh),32px); }
 }
 @media(max-width:900px) and (min-height:601px) {
-  .shared-brand-message { display:flex; padding-inline:22px; }
+  .shared-brand-message { display:flex; align-items:flex-end; padding-inline:22px; }
+  .site-footer { padding-top:4px; padding-bottom:24px; }
   .shared-brand-message-copy { display:block; }
   .shared-brand-message-copy > p { line-height:1.05; }
   .shared-brand-message-copy > small { margin-bottom:14px; font-size:13px; }
