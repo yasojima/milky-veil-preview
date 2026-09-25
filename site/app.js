@@ -489,6 +489,39 @@ const homeDuoCards = Object.freeze([
   { routeId: "items", image: `${A}home-role-locked-pack-v1/home-items-customer-06-v1.png` },
 ]);
 
+function homeOpeningMarkup() {
+  return `<div class="home-opening" aria-hidden="true">
+    <div class="home-opening-portraits">
+      <div class="home-opening-portrait">${conceptFirstViewImage("left")}</div>
+      <div class="home-opening-portrait">${conceptFirstViewImage("right")}</div>
+    </div>
+    <p class="home-opening-wordmark">${shellData.salon.name}</p>
+    <div class="home-opening-cover"><span>${shellData.salon.name}</span></div>
+  </div>`;
+}
+
+function bindHomeOpening() {
+  const opening = document.querySelector(".home-opening");
+  if (!opening) return;
+  try { sessionStorage.setItem("milky-home-opening-seen", "1"); } catch { /* Storage may be unavailable. */ }
+  document.documentElement.classList.remove("home-opening-pending");
+  document.body.classList.add("home-opening-active");
+  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  void (async () => {
+    await Promise.race([waitForConceptFirstViewImages(opening), wait(1800)]);
+    if (!opening.isConnected) return;
+    await wait(450);
+    if (!opening.isConnected) return;
+    opening.classList.add("is-revealing");
+    await wait(1000);
+    if (!opening.isConnected) return;
+    opening.classList.add("is-exiting");
+    await wait(650);
+    opening.remove();
+    document.body.classList.remove("home-opening-active");
+  })();
+}
+
 function home() {
   const { hotpepper } = shellData.actions;
   return `
@@ -1493,7 +1526,13 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   const appBody = suppressSharedShell
     ? renderPage(location.pathname)
     : `${routeShell}${renderPage(location.pathname)}`;
-  document.getElementById("app").innerHTML = appBody;
+  const showHomeOpening = currentRouteId === "home" && document.documentElement.classList.contains("home-opening-pending");
+  document.getElementById("app").innerHTML = `${showHomeOpening ? homeOpeningMarkup() : ""}${appBody}`;
+  if (showHomeOpening) bindHomeOpening();
+  else {
+    document.documentElement.classList.remove("home-opening-pending");
+    document.body.classList.remove("home-opening-active");
+  }
   const sharedBottomUiRoot = document.getElementById("shared-bottom-ui-root");
   const sharedBottomScope = suppressSharedShell
     ? (clearSharedBottomUi(sharedBottomUiRoot), null)
