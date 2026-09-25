@@ -280,6 +280,14 @@ export function bindSharedConceptMenu(scope = document) {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") setOpen(false, { restoreFocus: true });
   }, { signal });
+  document.addEventListener("click", (event) => {
+    if (toggle.getAttribute("aria-expanded") !== "true") return;
+    const path = event.composedPath();
+    if (path.includes(nav) || path.includes(toggle)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    setOpen(false);
+  }, { capture: true, signal });
 
   const translateButton = nav.querySelector(".menu-social-tools .translate-toggle");
   if (translateButton && !document.getElementById("app")) {
