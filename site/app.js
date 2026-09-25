@@ -11,7 +11,7 @@ import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260926-534";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-513";
-import { playHomeConceptTypography } from "./concept-typography.js?v=20260926-537";
+import { createConceptTypography } from "./concept-typography.js?v=20260926-538";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -499,9 +499,10 @@ function bindHomeOpening() {
   if (!opening) return;
   document.documentElement.classList.remove("home-opening-pending");
   document.body.classList.add("home-opening-active");
+  createConceptTypography(opening.querySelector(".home-opening__stage"), sharedSalonData.name, { splitChars: false });
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   void (async () => {
-    await playHomeConceptTypography(opening.querySelector(".home-opening__stage"), sharedSalonData.name);
+    await wait(500);
     if (!opening.isConnected) return;
     opening.classList.add("is-exiting");
     await wait(1000);

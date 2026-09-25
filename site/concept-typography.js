@@ -1,6 +1,6 @@
 // Motion adapted from Codrops OnScrollTypographyAnimations, effect19.
 // License and source: vendor/codrops-typography/SOURCE.md.
-export function createConceptTypography(stage, name) {
+export function createConceptTypography(stage, name, { splitChars = true } = {}) {
   const title = document.createElement("div");
   title.className = "concept-type-title";
   title.classList.add("notranslate");
@@ -9,11 +9,15 @@ export function createConceptTypography(stage, name) {
   for (const word of name.trim().split(/\s+/u)) {
     const row = document.createElement("span");
     row.className = "concept-type-word";
-    for (const { segment } of new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(word)) {
-      const char = document.createElement("span");
-      char.className = "concept-type-char";
-      char.textContent = segment;
-      row.append(char);
+    if (splitChars) {
+      for (const { segment } of new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(word)) {
+        const char = document.createElement("span");
+        char.className = "concept-type-char";
+        char.textContent = segment;
+        row.append(char);
+      }
+    } else {
+      row.textContent = word;
     }
     title.append(row);
   }
@@ -68,19 +72,4 @@ export function mountConceptTypography(stage, name, { gsap }) {
       media.revert();
     }
   });
-}
-
-export async function playHomeConceptTypography(stage, name) {
-  const chars = createConceptTypography(stage, name);
-  const duration = 3000 - (chars.length - 1) * 50;
-  const animations = [...chars].map((char, index) => {
-    char.parentNode.style.perspective = "1000px";
-    char.style.transformOrigin = "50% 0%";
-    return char.animate([
-      { opacity: 0, transform: "translateZ(-200px) rotateX(-90deg)" },
-      { opacity: 1, transform: "translateZ(0) rotateX(0deg)" },
-    ], { duration, delay: index * 50, easing: "cubic-bezier(.333333,.666667,.666667,1)", fill: "forwards" });
-  });
-  await Promise.all(animations.map(animation => animation.finished));
-  await new Promise(resolve => setTimeout(resolve, 1000));
 }
