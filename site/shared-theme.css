@@ -10,9 +10,13 @@
 body { background-color: var(--milky-canvas); }
 #main { background-color: var(--milky-surface); }
 
-body:has(.concept-fv-background-stage) {
-  --milky-canvas: var(--milky-ice-blue);
-  --milky-intro-surface: var(--milky-canvas);
+body:is([data-page-route-id="concept"], [data-page-route-id="staff"]):has(.concept-fv-background-stage) {
+  --milky-canvas: var(--milky-surface);
+  --milky-intro-surface: var(--milky-ice-blue);
+}
+
+body:is([data-page-route-id="concept"], [data-page-route-id="staff"]) .home-point.u-bg-primary-500 {
+  background-color: var(--milky-ice-blue);
 }
 
 :root {
