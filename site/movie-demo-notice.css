@@ -9,3 +9,8 @@
   text-align: center;
   text-wrap: balance;
 }
+
+body:is([data-page-route-id="concept"], [data-page-route-id="staff"]) .movie-demo-notice {
+  color: #172133;
+  text-shadow: 0 1px 5px #fff;
+}
