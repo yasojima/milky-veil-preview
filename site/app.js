@@ -503,7 +503,6 @@ function homeOpeningMarkup() {
 function bindHomeOpening() {
   const opening = document.querySelector(".home-opening");
   if (!opening) return;
-  try { sessionStorage.setItem("milky-home-opening-seen", "1"); } catch { /* Storage may be unavailable. */ }
   document.documentElement.classList.remove("home-opening-pending");
   document.body.classList.add("home-opening-active");
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));

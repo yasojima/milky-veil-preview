@@ -14,14 +14,14 @@
 *{box-sizing:border-box}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 html{scroll-behavior:smooth;scroll-padding-block-end:calc(var(--fixed-cta-height) + 8px)}
-html.home-opening-pending::before{content:"";position:fixed;inset:0;z-index:1999;background:#f3e4e9}
+html.home-opening-pending::before{content:"";position:fixed;inset:0;z-index:1999;background:#fff}
 body.home-opening-active{overflow:hidden}
-.home-opening{position:fixed;inset:0;z-index:2000;overflow:hidden;background:#f3e4e9;isolation:isolate}
+.home-opening{position:fixed;inset:0;z-index:2000;overflow:hidden;background:#fff;isolation:isolate}
 .home-opening-portraits{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr}
 .home-opening-portrait{position:relative;min-width:0;overflow:hidden;background:#e9e7e9}
 .home-opening-portrait img{display:block;width:100%;height:100%;object-fit:cover}
 .home-opening-wordmark{position:absolute;z-index:1;inset:auto 0 5%;margin:0;color:#fff;text-align:center;text-shadow:0 3px 16px rgba(23,33,51,.24);font:400 clamp(48px,13vw,210px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.065em;white-space:nowrap;opacity:0;transition:opacity .5s ease .35s}
-.home-opening-cover{position:absolute;z-index:2;inset:0;display:grid;place-items:center;background:#f3e4e9;color:#172133;transition:opacity 1s ease}
+.home-opening-cover{position:absolute;z-index:2;inset:0;display:grid;place-items:center;background:#fff;color:#172133;transition:opacity 1s ease}
 .home-opening-cover span{font:400 clamp(45px,12vw,170px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.065em;white-space:nowrap}
 .home-opening.is-revealing .home-opening-cover{opacity:0}
 .home-opening.is-revealing .home-opening-wordmark{opacity:1}
