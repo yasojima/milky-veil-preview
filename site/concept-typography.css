@@ -1,0 +1,14 @@
+.concept-type-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: min(32.2vw, 39.1svh);
+  line-height: .95;
+  letter-spacing: -.065em;
+  color: #000;
+  text-align: center;
+}
+.concept-type-word { display: block; white-space: nowrap; }
+.concept-type-char { display: inline-block; }
+@media (max-width: 900px) {
+  .concept-type-title { font-size: min(26.1vw, 35.19svh); }
+}

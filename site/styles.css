@@ -1,4 +1,6 @@
 
+@import url("./concept-typography.css?v=20260926-537");
+
 :root {
   --ink:#172133;
   --paper:var(--milky-home-paper);
@@ -16,7 +18,8 @@
 html{scroll-behavior:smooth;scroll-padding-block-end:calc(var(--fixed-cta-height) + 8px)}
 html.home-opening-pending::before{content:"";position:fixed;inset:0;z-index:1999;background:#fff}
 body.home-opening-active{overflow:hidden}
-.home-opening{position:fixed;inset:0;z-index:2000;background:#fff;transition:opacity 1s cubic-bezier(.19,1,.22,1)}
+.home-opening{position:fixed;inset:0;z-index:2000;background:#fff;transition:opacity 1s ease}
+.home-opening__stage{width:92%;height:100%;margin:auto;display:flex;align-items:center;justify-content:center}
 .home-opening.is-exiting{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){html.home-opening-pending::before,.home-opening{display:none}}
 body{margin:0;background:var(--milky-canvas);color:var(--ink);font-family:var(--mv-font-text);font-weight:300;line-height:1.9;padding-bottom:0}
