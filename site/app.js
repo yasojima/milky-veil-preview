@@ -490,14 +490,7 @@ const homeDuoCards = Object.freeze([
 ]);
 
 function homeOpeningMarkup() {
-  return `<div class="home-opening" aria-hidden="true">
-    <div class="home-opening-portraits">
-      <div class="home-opening-portrait">${conceptFirstViewImage("left")}</div>
-      <div class="home-opening-portrait">${conceptFirstViewImage("right")}</div>
-    </div>
-    <p class="home-opening-wordmark">${shellData.salon.name}</p>
-    <div class="home-opening-cover"><span>${shellData.salon.name}</span></div>
-  </div>`;
+  return `<div class="home-opening" aria-hidden="true"></div>`;
 }
 
 function bindHomeOpening() {
@@ -507,15 +500,10 @@ function bindHomeOpening() {
   document.body.classList.add("home-opening-active");
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   void (async () => {
-    await Promise.race([waitForConceptFirstViewImages(opening), wait(1800)]);
-    if (!opening.isConnected) return;
-    await wait(450);
-    if (!opening.isConnected) return;
-    opening.classList.add("is-revealing");
-    await wait(1000);
+    await wait(500);
     if (!opening.isConnected) return;
     opening.classList.add("is-exiting");
-    await wait(650);
+    await wait(1000);
     opening.remove();
     document.body.classList.remove("home-opening-active");
   })();

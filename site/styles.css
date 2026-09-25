@@ -16,17 +16,8 @@
 html{scroll-behavior:smooth;scroll-padding-block-end:calc(var(--fixed-cta-height) + 8px)}
 html.home-opening-pending::before{content:"";position:fixed;inset:0;z-index:1999;background:#fff}
 body.home-opening-active{overflow:hidden}
-.home-opening{position:fixed;inset:0;z-index:2000;overflow:hidden;background:#fff;isolation:isolate}
-.home-opening-portraits{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr}
-.home-opening-portrait{position:relative;min-width:0;overflow:hidden;background:#e9e7e9}
-.home-opening-portrait img{display:block;width:100%;height:100%;object-fit:cover}
-.home-opening-wordmark{position:absolute;z-index:1;inset:auto 0 5%;margin:0;color:#fff;text-align:center;text-shadow:0 3px 16px rgba(23,33,51,.24);font:400 clamp(48px,13vw,210px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.065em;white-space:nowrap;opacity:0;transition:opacity .5s ease .35s}
-.home-opening-cover{position:absolute;z-index:2;inset:0;display:grid;place-items:center;background:#fff;color:#172133;transition:opacity 1s ease}
-.home-opening-cover span{font:400 clamp(45px,12vw,170px)/.9 Georgia,"Times New Roman",serif;letter-spacing:-.065em;white-space:nowrap}
-.home-opening.is-revealing .home-opening-cover{opacity:0}
-.home-opening.is-revealing .home-opening-wordmark{opacity:1}
-.home-opening.is-exiting{opacity:0;pointer-events:none;transition:opacity .6s ease}
-@media (orientation:portrait){.home-opening-portraits{grid-template-columns:1fr;grid-template-rows:1fr 1fr}.home-opening-portrait:first-child{grid-row:2}.home-opening-portrait:last-child{grid-row:1}.home-opening-wordmark{bottom:7%;font-size:clamp(40px,12vw,110px)}.home-opening-cover span{font-size:clamp(42px,11vw,100px)}}
+.home-opening{position:fixed;inset:0;z-index:2000;background:#fff;transition:opacity 1s cubic-bezier(.19,1,.22,1)}
+.home-opening.is-exiting{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){html.home-opening-pending::before,.home-opening{display:none}}
 body{margin:0;background:var(--milky-canvas);color:var(--ink);font-family:var(--mv-font-text);font-weight:300;line-height:1.9;padding-bottom:0}
 html:has(.home-page){scrollbar-gutter:stable}
