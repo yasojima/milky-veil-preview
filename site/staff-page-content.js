@@ -3,8 +3,8 @@ const portrait = (name, alt) => ({ src: `/milky-veil-preview/assets/references/s
 export const staffPageContent = Object.freeze({
   pointLabel: "伝えたいこと",
   slots: {
-    "intro-heading-first": "髪のことも、何気ないことも。",
-    "intro-heading-second": "気軽に話せる場所でありたい。",
+    "intro-heading-first": "トレンドに敏感",
+    "intro-heading-second": "",
     "detail-label": "OUR PEOPLE",
     "detail-heading": "また会いたくなる、<br>気さくなスタッフたち。",
     "point01-lead": "私自身、髪やファッションを通して、<br>自分の好きなところを増やしていくのが好きです。",
