@@ -1,4 +1,8 @@
 .home-concept { overflow-x:clip; }
+.home-point-ingredient__vi-btn-img > img,
+.home-point-ingredient__vi-btn-img > video {
+  object-position:center top;
+}
 /* WebKit sticky descendants can jitter under an overflow:clip ancestor. */
 @media (max-width:900px) {
   .home-concept { overflow-x:visible; }
