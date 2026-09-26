@@ -15,7 +15,7 @@
   .shared-brand-message { flex:1 0 auto; }
   .footer-shell { min-height:0; }
   .closing-brand-track { display:block; position:absolute; inset:0; z-index:2; box-sizing:border-box; padding-top:var(--shared-mobile-logo-y); pointer-events:none; }
-  .closing-brand { position:sticky; top:var(--shared-mobile-logo-y); left:auto; margin-left:var(--shared-mobile-logo-x); width:max-content; height:var(--shared-mobile-logo-height); pointer-events:auto; }
+  .closing-brand { position:absolute; top:var(--shared-mobile-logo-y); left:auto; margin-left:var(--shared-mobile-logo-x); width:max-content; height:var(--shared-mobile-logo-height); pointer-events:auto; }
   .shared-brand-message-copy > small { font-size:11px; }
   .shared-brand-message-copy > span { font-size:clamp(15px,3.86vw,17px); line-height:1.85; letter-spacing:.1em; }
   .site-footer { padding:12px 12px 16px; }
