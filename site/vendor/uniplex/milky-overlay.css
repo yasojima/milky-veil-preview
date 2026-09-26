@@ -546,11 +546,16 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 .home-point-ingredient-box__img img[src*="/concept-point-cards/"] { aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; }
 .home-point-ingredient-box__img img[src*="/concept-point-cards/03-wave"] { object-position: 50% 80%; }
 
-.home-point-ingredient__vi-btn-img::after,
+.home-point-ingredient__content-bg-in::after,
 .home-movie__bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, .22);
+  background: rgba(0, 0, 0, .30);
   pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .home-point-ingredient__content-bg-in::after,
+  .home-movie__bg::after { background: rgba(0, 0, 0, .60); }
 }
