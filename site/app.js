@@ -503,7 +503,7 @@ function bindHomeOpening() {
   createConceptTypography(opening.querySelector(".home-opening__stage"), sharedSalonData.name, { splitChars: false });
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   void (async () => {
-    await wait(500);
+    await wait(2000);
     if (!opening.isConnected) return;
     opening.classList.add("is-exiting");
     await wait(1000);
