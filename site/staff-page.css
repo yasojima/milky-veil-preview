@@ -14,10 +14,6 @@
   object-position:center top;
 }
 @media (min-width:901px) {
-  [data-page-route-id="staff"] .home-point-ingredient-box__txt {
-    block-size:auto;
-    min-block-size:6lh;
-  }
   [data-staff-fv-image] {
     --staff-rendered-width:max(50vw, calc((100svh - var(--shared-fixed-bar-height, 0px)) * var(--staff-width-per-height)));
     --pc-portrait-height:calc(100% + var(--staff-rendered-width) * var(--staff-head-offset));
