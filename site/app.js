@@ -3,7 +3,6 @@ import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { conceptFirstViewImage, waitForConceptFirstViewImages } from "./concept-first-view-images.js?v=20260914-274";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260926-546";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546";
@@ -42,10 +41,6 @@ const shellData = Object.freeze({
     hotpepper: Object.freeze({ kind: "external", label: "ご予約はこちら", href: "https://beauty.hotpepper.jp/" }),
     translate: translationSettings,
   }),
-  assistChannels: Object.freeze([
-    Object.freeze({ id: "webChat", label: "WEB CHAT", enabled: false, href: null, placement: "floating-support" }),
-    Object.freeze({ id: "lineChat", label: "LINE CHAT", enabled: false, href: null, placement: "floating-support" }),
-  ]),
 });
 
 const pageCopy = {
@@ -601,94 +596,13 @@ function staffStrip() {
     </section>`;
 }
 
-function subpageImageSlot(label, description) {
-  return `<figure class="subpage-image-slot" role="img" aria-label="${description}" data-image-role="${label}"><span>${label}</span><i aria-hidden="true"></i></figure>`;
-}
 
-function conceptPage() {
-  const C = `${A}concept-family-two-model-pack-v1/`;
-  const P = "/milky-veil-preview/assets/generated/concept-point02-framing/";
-  return `<main id="main" class="subpage subpage-concept concept-uniplex-mainline">
-    <div id="top" class="concept-uniplex-content">
-      <div class="intro-sequence" data-motion="intro-sequence">
-        <div class="intro-logo-motion home-concept__bg"><div class="intro-logo-viewport"><div class="intro-logo-stage home-concept__bg-in milky-kaleidoscope-stage concept-fv-background-stage" aria-hidden="true"></div></div></div>
-        <div class="hero-layer">
-          <section class="hero js-home-mv l-main-img is-intro-pending is-fv-media-pending" data-motion="hero" aria-labelledby="hero-title">
-            <span class="concept-fv-trigger js-home-mv-trigger l-main-img__trigger" data-motion="hero-trigger" aria-hidden="true"></span>
-            <div class="hero-stage l-main-img__inner">
-              <div class="l-main-img-bg">
-                <div class="hero-media hero-media-left l-main-img-bg__col is-col01"><span class="concept-fv-portrait l-main-img-bg__col-img">${conceptFirstViewImage("left")}</span></div>
-                <div class="hero-media hero-media-right l-main-img-bg__col is-col02"><span class="concept-fv-portrait js-home-mv-img is-reverse l-main-img-bg__col-img">${conceptFirstViewImage("right")}</span></div>
-              </div>
-              <div class="concept-fv-content js-home-mv-content l-main-img__content is-hidden">
-                <h1 id="hero-title" class="l-main-img__logo"><svg viewBox="0 0 1920 285" aria-hidden="true" focusable="false"><text x="0" y="250" textLength="1920" lengthAdjust="spacingAndGlyphs">MILKY VEIL</text></svg><span class="sr-only">MILKY VEIL</span></h1>
-              </div>
-              ${sharedScrollCueMarkup({ target: "#concept", ariaLabel: "コンセプトセクションへ移動" })}
-            </div>
-          </section>
-        </div>
-        <div class="concept-layer">
-          <div class="concept-layer-spacer" aria-hidden="true"></div>
-          <section class="concept" id="concept" data-motion="concept" aria-labelledby="concept-title">
-            <div class="concept-sticky" aria-hidden="true"><img src="${C}S03-concept-consultation-v1.png" alt=""><span class="concept-word">LISTEN</span></div>
-            <div class="concept-copy">
-              <p class="eyebrow">MILKY VEILが大切にしていること</p><h2 id="concept-title"><span class="copy-line">髪を変えたら、</span><span class="copy-line">新しい自分が見えてくる。</span></h2>
-              <p class="concept-intro"><span class="copy-line">いつもの服やメイクはそのままなのに、髪を変えたら、鏡の中の自分が少し新しく見える。</span><span class="copy-line">デザインカラーを軸に、色と質感のバランスをご提案します。ブリーチで明るさや透明感を調整し、あなたらしい髪色へ。</span><span class="copy-line">「こんな自分も好きかも」と思える変化を、ここから始めてみませんか。</span></p>
-              <dl class="concept-notes"><div><dt>01 / LISTEN</dt><dd><span class="copy-line">最近気になる色や</span><span class="copy-line">いつも選ぶ服を教えてください</span></dd></div><div><dt>02 / TOUCH</dt><dd><span class="copy-line">今の髪を一緒に見ながら</span><span class="copy-line">できる色とケアを相談していく</span></dd></div><div><dt>03 / LIGHT</dt><dd><span class="copy-line">店内でも 外に出たときでも</span><span class="copy-line">顔まわりがきれいに見える色を選ぶ</span></dd></div></dl>
-            </div>
-          </section>
-        </div>
-      </div>
-      <div class="foreground-sheet">
-        <section class="point" id="point" aria-labelledby="point-heading">
-          <div class="point-heading-wrap"><h2 id="point-heading">POINT</h2><p><span class="copy-line">今の髪に無理をさせず</span><span class="copy-line">これからも楽しめる色へ</span></p></div>
-          <article class="point-one" data-motion="point-one" aria-labelledby="point-one-title"><div class="point-one-sticky">
-            <div class="point-one-visual"><img src="${C}S05-point1-length-texture-v1.png" alt="スタイリストが毛先の質感を確かめる様子"></div>
-            <div class="point-one-copy"><p class="chapter">POINT 01 / READ</p><h3 id="point-one-title"><span class="copy-line">根元と毛先では</span><span class="copy-line">状態が少しずつ違う</span></h3><p><span class="copy-line">だから 同じ色を重ねるのではなく</span><span class="copy-line">それぞれに合う染め方を考える</span></p></div>
-            <div class="point-one-cards" aria-label="髪の診断項目"><figure><img src="${C}S04-point1-root-check-v1.png" alt="スタイリストが髪の根元を確認する様子"><figcaption><span>ROOT</span>根元の状態</figcaption></figure><figure><img src="${C}S06-point1-color-compare-v1.png" alt="スタイリストがカラーチャートを髪に合わせる様子"><figcaption><span>COLOR</span>毛先に残る色</figcaption></figure></div>
-            <div class="point-progress" aria-hidden="true"><span></span></div>
-          </div></article>
-          <article class="point-two" data-motion="point-two" aria-labelledby="point-two-title"><div class="point-two-sticky">
-            <div class="phase phase-before"><img src="${P}point02-before-long-aligned-v1.png" alt="施術前の暗い根元が見える長いブロンドヘア"><div class="phase-copy"><p class="chapter">POINT 02 / BEFORE</p><h3 id="point-two-title"><span class="copy-line">まずは今の髪を見ながら</span><span class="copy-line">できることを一緒に確認する</span></h3></div></div>
-            <div class="phase phase-process"><img src="${P}point02-before-light-aligned-v1.png" alt="施術前の白いロングヘア"><div class="phase-copy"><p class="chapter">POINT 02 / BEFORE</p><h3><span class="copy-line">肌や服にも合わせながら</span><span class="copy-line">いちばん似合う色を選んでいく</span></h3></div></div>
-            <div class="phase phase-after" id="point-after"><img src="${P}point02-after-short-aligned-v1.png" alt="施術後の短いホワイトブロンドヘア"><div class="phase-copy"><p class="chapter">POINT 02 / AFTER</p><h3><span class="copy-line">今日きれいなのはもちろん</span><span class="copy-line">色落ちしてからも楽しめる色に</span></h3></div></div>
-            <div class="wipe-boundary" aria-hidden="true"></div><div class="phase-index" aria-hidden="true"><span>BEFORE</span><span>BEFORE</span><span>AFTER</span></div>
-          </div></article>
-        </section>
-        <section class="story" id="story" aria-labelledby="story-title">
-          <div class="story-title-wrap"><h2 id="story-title"><span class="copy-line">今日の髪のことも</span><span class="copy-line">次にしてみたい色も</span></h2></div>
-          <div class="marquee marquee-top" aria-hidden="true"><div>HAIR MEMORY&nbsp;&nbsp;LIGHT AND COLOR&nbsp;&nbsp;HAIR MEMORY&nbsp;&nbsp;LIGHT AND COLOR&nbsp;&nbsp;</div></div>
-          <div class="story-rail-window"><div class="story-rail" aria-label="MILKY VEILの施術工程"><div class="story-rail-group"><figure><img src="${C}S01-customer-first-view-v1.png" alt="来店時の顧客"><figcaption>ARRIVAL</figcaption></figure><figure><img src="${C}S04-point1-root-check-v1.png" alt="髪の根元の診断"><figcaption>ROOT CHECK</figcaption></figure><figure><img src="${C}S06-point1-color-compare-v1.png" alt="色の比較"><figcaption>COLOR DESIGN</figcaption></figure><figure><img src="${C}S09-point2-after-v1.png" alt="仕上がりの確認"><figcaption>FINISH</figcaption></figure></div><div class="story-rail-group" aria-hidden="true"><figure><img src="${C}S01-customer-first-view-v1.png" alt=""><figcaption>ARRIVAL</figcaption></figure><figure><img src="${C}S04-point1-root-check-v1.png" alt=""><figcaption>ROOT CHECK</figcaption></figure><figure><img src="${C}S06-point1-color-compare-v1.png" alt=""><figcaption>COLOR DESIGN</figcaption></figure><figure><img src="${C}S09-point2-after-v1.png" alt=""><figcaption>FINISH</figcaption></figure></div></div></div>
-          <div class="marquee marquee-bottom" aria-hidden="true"><div>MILKY VEIL STORIES / MILKY VEIL STORIES / MILKY VEIL STORIES / MILKY VEIL STORIES /&nbsp;&nbsp;</div></div>
-        </section>
-        <section class="closing" id="concept-closing" aria-labelledby="closing-title"><img src="${C}S10-closing-v1.png" alt="施術後に同じ鏡を見ながら自然に微笑む顧客とスタイリスト"><div class="closing-shade" aria-hidden="true"></div><div class="closing-copy"><p class="eyebrow">MILKY VEIL / SHIBUYA</p><h2 id="closing-title"><span class="copy-line">いつもの服にも</span><span class="copy-line">自然になじむ髪色へ</span></h2><a href="#top">BACK TO TOP <span aria-hidden="true">→</span></a></div></section>
-      </div>
-    </div>
-  </main>`;
-}
 
-function staffPage() {
-  const positions = ["p1","p2","p3","p4","p5","p6"];
-  return `<main id="main" class="subpage subpage-staff">${routeBreadcrumb("staff")}
-    <section class="staff-casting-wall">
-      <header class="staff-casting-title mv-reveal"><small>SIX DIFFERENT EYES</small><h1>同じ“かわいい”を<br>見ていないから<span class="staff-mobile-break"><br></span>面白い</h1><p>技術も視点も違う6人が<br>ひとりの好きに向き合う</p></header>
-      ${staffProfiles.map((profile,index)=>`<article class="staff-cast ${positions[index]}">${subpageImageSlot(`${profile.name} / ${profile.role}`,`${profile.name}のページ専用ポートレート`)}<div><small>${profile.role}</small><h2>${profile.name}</h2><p>${profile.specialty}</p></div></article>`).join("")}
-      <div class="staff-casting-ticker" aria-hidden="true"><span>${staffProfiles.map(({name})=>name).join("　")}　</span><span>${staffProfiles.map(({name})=>name).join("　")}　</span></div>
-    </section>
-  </main>`;
-}
 
-function menuPage() {
-  const chips = [["COLOR","90min","15%","20%"],["CARE","45min","38%","10%"],["BLEACH","180min","62%","52%"],["EXTENSION","120min","82%","34%"]];
-  return `<main id="main" class="subpage subpage-menu">${routeBreadcrumb("menu")}
-    <section class="menu-range-map">
-      <header class="mv-reveal"><small>FIND YOUR RANGE</small><h1>時間と予算から<br>今日できることを探す</h1><p>迷っている時間も<br>きれいになるための大切な準備</p></header>
-      <div class="menu-budget-chart" role="group" aria-label="時間と予算の目安"><span class="menu-axis menu-axis-y">PRICE</span><span class="menu-axis menu-axis-x">TIME</span>${chips.map(([name,time,left,bottom],index)=>`<button type="button" class="menu-range-chip c${index+1}" style="--chip-left:${left};--chip-bottom:${bottom}" data-menu-range="${name} / ${time}"><span>${name}<br>${time}</span></button>`).join("")}</div>
-      <div class="menu-range-note"><p>正確な金額は髪の履歴と長さを見てから<br>ここでは相談できそうな範囲を先に見つける</p><strong data-menu-range-result>気になる施術を選んでください</strong></div>
-      <div class="menu-consultation-slot">${subpageImageSlot("CONSULTATION / MIRROR","鏡の前で時間と予算を相談する場面")}</div>
-    </section>
-  </main>`;
-}
+
+
+
+
 
 function contactPage() {
   const { salon } = shellData;
@@ -797,9 +711,7 @@ function renderPage(path) {
   const normalized = path.endsWith("/") ? path : `${path}/`;
   const key = routeRegistry[routeId].label;
   if (normalized === "/milky-veil-preview/") return home();
-  if (key === "CONCEPT") return conceptPage();
-  if (key === "STAFF") return staffPage();
-  if (key === "MENU") return menuPage();
+  if (["CONCEPT", "STAFF", "MENU"].includes(key)) { location.replace(routeRegistry[routeId].path); return ""; }
   if (key === "ITEMS") { location.replace(routeRegistry.items.path); return ""; }
   if (key === "ACCESS") { location.replace(routeRegistry.access.path); return ""; }
   if (key === "CONTACT") return contactPage();
@@ -807,219 +719,17 @@ function renderPage(path) {
   return home();
 }
 
-function bindConceptUniplexMotion() {
-  const scope = document.querySelector(".concept-uniplex-mainline");
-  if (!(scope instanceof HTMLElement)) return () => {};
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-  const portrait = matchMedia("(orientation: portrait)");
-  const nodes = {
-    intro: scope.querySelector('[data-motion="intro-sequence"]'),
-    hero: scope.querySelector('[data-motion="hero"]'),
-    heroTrigger: scope.querySelector('[data-motion="hero-trigger"]'),
-    concept: scope.querySelector('[data-motion="concept"]'),
-    foreground: scope.querySelector(".foreground-sheet"),
-    pointOne: scope.querySelector('[data-motion="point-one"]'),
-    pointTwo: scope.querySelector('[data-motion="point-two"]'),
-  };
-  const introLogoStage = scope.querySelector(".intro-logo-stage");
-  let frameId = 0;
-  let disposed = false;
-  let heroObserver = null;
-  let fvMediaReady = false;
-  const completeHeroIntro = () => {
-    nodes.hero?.classList.add("is-images-ready", "is-content-ready");
-    nodes.hero?.classList.remove("is-intro-pending");
-    scope.querySelector(".js-home-mv-content")?.classList.remove("is-hidden");
-  };
-  const beginHeroIntro = async () => {
-    const portraitsReady = await waitForConceptFirstViewImages(scope);
-    if (disposed) return;
-    if (!portraitsReady) return;
-    fvMediaReady = true;
-    nodes.hero?.classList.add("is-fv-media-ready");
-    completeHeroIntro();
-    introLogoStage?.classList.add("is-fv-background-ready");
-    nodes.hero?.classList.remove("is-fv-media-pending");
-  };
-  void beginHeroIntro();
 
-  const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-  const smoothstep = (start, end, value) => {
-    const x = clamp((value - start) / Math.max(.0001, end - start));
-    return x * x * (3 - 2 * x);
-  };
-  const progress = (node, startOffset = 0, endOffset = 0) => {
-    if (!(node instanceof HTMLElement)) return 0;
-    const rect = node.getBoundingClientRect();
-    const range = Math.max(1, node.offsetHeight - innerHeight - startOffset - endOffset);
-    return clamp((-rect.top - startOffset) / range);
-  };
-  if (nodes.heroTrigger instanceof HTMLElement) {
-    heroObserver = new IntersectionObserver(([entry]) => {
-      if (!entry) return;
-      if (entry.isIntersecting || reduced.matches) {
-        nodes.hero?.classList.remove("is-split-out", "is-out");
-      } else {
-        nodes.hero?.classList.add("is-split-out", "is-out");
-      }
-    });
-    heroObserver.observe(nodes.heroTrigger);
-  }
-
-  const renderConceptMotion = () => {
-    frameId = 0;
-    if (disposed) return;
-    if (reduced.matches) {
-      if (fvMediaReady) completeHeroIntro();
-      introLogoStage?.classList.remove("is-end");
-      nodes.hero?.classList.remove("is-split-out");
-      Object.entries({ "--hero-p": 0, "--concept-p": 0, "--p1": 1, "--p2": 1, "--p2-wipe": 1, "--p2-after": 1, "--p2-before-copy": 0, "--p2-process-copy": 0, "--p2-after-copy": 1 }).forEach(([name, value]) => scope.style.setProperty(name, String(value)));
-      return;
-    }
-    const heroP = progress(nodes.hero);
-    const conceptP = progress(nodes.concept);
-    const p1 = progress(nodes.pointOne);
-    const p1Main = smoothstep(.04, .60, p1);
-    const p1CardA = smoothstep(.20, .74, p1);
-    const p1CardB = smoothstep(.34, .84, p1);
-    const p2 = progress(nodes.pointTwo);
-    const p2Wipe = smoothstep(.08, .48, p2);
-    const p2After = smoothstep(.48, .74, p2);
-    const p2BeforeCopy = clamp(1 - p2Wipe * 1.65);
-    const p2ProcessCopy = clamp(p2Wipe * 2) * clamp(1 - p2After * 3);
-    const p2AfterCopy = clamp((p2After - .45) * 2);
-    scope.style.setProperty("--hero-p", heroP.toFixed(4));
-    scope.style.setProperty("--concept-p", conceptP.toFixed(4));
-    scope.style.setProperty("--p1", p1.toFixed(4));
-    scope.style.setProperty("--p1-main", p1Main.toFixed(4));
-    scope.style.setProperty("--p1-card-a", p1CardA.toFixed(4));
-    scope.style.setProperty("--p1-card-b", p1CardB.toFixed(4));
-    scope.style.setProperty("--p2", p2.toFixed(4));
-    scope.style.setProperty("--p2-wipe", p2Wipe.toFixed(4));
-    scope.style.setProperty("--p2-after", p2After.toFixed(4));
-    scope.style.setProperty("--p2-before-copy", p2BeforeCopy.toFixed(4));
-    scope.style.setProperty("--p2-process-copy", p2ProcessCopy.toFixed(4));
-    scope.style.setProperty("--p2-after-copy", p2AfterCopy.toFixed(4));
-  };
-  const requestConceptMotion = () => {
-    if (frameId || disposed) return;
-    frameId = requestAnimationFrame(renderConceptMotion);
-  };
-  addEventListener("scroll", requestConceptMotion, { passive: true });
-  addEventListener("resize", requestConceptMotion, { passive: true });
-  reduced.addEventListener("change", requestConceptMotion);
-  portrait.addEventListener("change", requestConceptMotion);
-  requestConceptMotion();
-
-  const storyRail = scope.querySelector(".story-rail");
-  const storyRailGroup = storyRail?.querySelector(".story-rail-group");
-  const syncStoryRailSpeed = () => {
-    if (!(storyRail instanceof HTMLElement) || !(storyRailGroup instanceof HTMLElement)) return;
-    const gap = Number.parseFloat(getComputedStyle(storyRail).columnGap) || 0;
-    storyRail.style.setProperty("--story-duration", `${Math.max(1, (storyRailGroup.getBoundingClientRect().width + gap) / 24).toFixed(2)}s`);
-  };
-  syncStoryRailSpeed();
-  addEventListener("resize", syncStoryRailSpeed, { passive: true });
-  return () => {
-    disposed = true;
-    if (frameId) cancelAnimationFrame(frameId);
-    heroObserver?.disconnect();
-    removeEventListener("scroll", requestConceptMotion);
-    removeEventListener("resize", requestConceptMotion);
-    removeEventListener("resize", syncStoryRailSpeed);
-    reduced.removeEventListener("change", requestConceptMotion);
-    portrait.removeEventListener("change", requestConceptMotion);
-  };
-}
 
 function bindSubpageMotion() {
-  const disposeConceptUniplexMotion = bindConceptUniplexMotion();
-  const motionNodes = [...document.querySelectorAll(".mv-reveal,.mv-marker-reveal")];
-  const point = document.querySelector("[data-motion-zone='concept-point']");
-  const pointSticky = point?.querySelector(".concept-point-sticky");
-  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  let frameId = 0;
-  const clamp = (value) => Math.max(0, Math.min(1, value));
-  const sectionProgress = (node) => {
-    if (!(node instanceof HTMLElement)) return 0;
-    const rect = node.getBoundingClientRect();
-    return clamp(-rect.top / Math.max(1, rect.height - innerHeight));
-  };
-  const renderMotion = () => {
-    frameId = 0;
-    if (matchMedia(layoutQueries.legacyMotionCompact).matches || reducedMotion.matches) {
-      document.documentElement.style.removeProperty("--concept-hero-title-y");
-      document.documentElement.style.removeProperty("--concept-asset-shift");
-      document.documentElement.style.removeProperty("--concept-asset-scale");
-      document.documentElement.style.removeProperty("--concept-point-x");
-      document.documentElement.style.removeProperty("--concept-point-scale");
-      document.documentElement.style.removeProperty("--concept-point-progress");
-      document.documentElement.style.removeProperty("--concept-point-progress-pct");
-      document.documentElement.style.removeProperty("--concept-point-lens-x");
-      document.documentElement.style.removeProperty("--concept-point-rotation");
-      document.documentElement.style.removeProperty("--concept-point-rotation-reverse");
-      document.documentElement.style.removeProperty("--concept-point-rise");
-      ["p","o","i","n","t"].forEach((letter) => {
-        document.documentElement.style.removeProperty(`--concept-point-${letter}-fill`);
-        document.documentElement.style.removeProperty(`--concept-point-${letter}-shadow`);
-        document.documentElement.style.removeProperty(`--concept-point-${letter}-rise`);
-      });
-      if (pointSticky) pointSticky.dataset.pointStep = "3";
-      return;
-    }
-    const pointProgress = sectionProgress(point);
-    const stagedFill = (start, end, minimum = .03, power = 1) => minimum + (1 - minimum) * Math.pow(clamp((pointProgress - start) / (end - start)), power);
-    const letterFills = {
-      p: 1,
-      o: stagedFill(0, .55, .08, 1.5),
-      i: stagedFill(.26, .58),
-      n: stagedFill(.5, .82),
-      t: stagedFill(.64, .9),
-    };
-    document.documentElement.style.setProperty("--concept-point-x", `${pointProgress * -3.2}vw`);
-    document.documentElement.style.setProperty("--concept-point-scale", `${1 + pointProgress * .075}`);
-    document.documentElement.style.setProperty("--concept-point-progress", pointProgress.toFixed(4));
-    document.documentElement.style.setProperty("--concept-point-progress-pct", `${pointProgress * 100}%`);
-    document.documentElement.style.setProperty("--concept-point-lens-x", `${-18 + pointProgress * 92}vw`);
-    document.documentElement.style.setProperty("--concept-point-rotation", `${pointProgress * 210}deg`);
-    document.documentElement.style.setProperty("--concept-point-rotation-reverse", `${pointProgress * -210}deg`);
-    document.documentElement.style.setProperty("--concept-point-rise", `${(pointProgress - .5) * -18}vh`);
-    Object.entries(letterFills).forEach(([letter, fill]) => {
-      document.documentElement.style.setProperty(`--concept-point-${letter}-fill`, fill.toFixed(4));
-      document.documentElement.style.setProperty(`--concept-point-${letter}-shadow`, (.004 + fill * .116).toFixed(4));
-      document.documentElement.style.setProperty(`--concept-point-${letter}-rise`, `${(.018 - fill * .053).toFixed(4)}em`);
-    });
-    if (pointSticky) pointSticky.dataset.pointStep = pointProgress < .38 ? "1" : pointProgress < .72 ? "2" : "3";
-  };
-  const requestMotion = () => {
-    if (frameId) return;
-    frameId = requestAnimationFrame(renderMotion);
-  };
-  const observer = motionNodes.length ? new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+  const nodes = [...document.querySelectorAll(".mv-reveal,.mv-marker-reveal")];
+  const observer = nodes.length ? new IntersectionObserver(entries => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add("is-visible");
     });
   }, { threshold: .24 }) : null;
-  motionNodes.forEach((node) => observer?.observe(node));
-  if (point) {
-    addEventListener("scroll", requestMotion, { passive: true });
-    addEventListener("resize", requestMotion, { passive: true });
-    reducedMotion.addEventListener("change", requestMotion);
-    requestMotion();
-  }
-  document.querySelectorAll("[data-menu-range]").forEach((button) => button.addEventListener("click", () => {
-    document.querySelectorAll("[data-menu-range]").forEach((candidate) => candidate.classList.toggle("is-selected", candidate === button));
-    const output = document.querySelector("[data-menu-range-result]");
-    if (output) output.textContent = `${button.dataset.menuRange} を相談の入口にする`;
-  }));
-  disposeSubpageMotion = () => {
-    disposeConceptUniplexMotion();
-    observer?.disconnect();
-    if (frameId) cancelAnimationFrame(frameId);
-    removeEventListener("scroll", requestMotion);
-    removeEventListener("resize", requestMotion);
-    reducedMotion.removeEventListener("change", requestMotion);
-  };
+  nodes.forEach(node => observer?.observe(node));
+  disposeSubpageMotion = () => observer?.disconnect();
 }
 
 function bind(sharedBottomScope) {
@@ -1501,8 +1211,7 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   const embedQuery = new URLSearchParams(location.search).get("embed");
   const embedMode = window.self !== window.top
     || embedQuery === "subpage-family"
-    || embedQuery === "family-rough"
-    || (window.self !== window.top && /subpage-uniplex-family/.test(document.referrer || ""));
+    || embedQuery === "family-rough";
   const suppressSharedShell = embedMode
     && current.path === routePath("concept");
   applySharedDocumentBrand();
