@@ -7,6 +7,10 @@
 @media (max-width:900px) {
   .home-concept { overflow-x:visible; }
 }
+@media (max-width:767px) {
+  [data-page-route-id] .home-concept__inner { padding-bottom:calc(var(--mh--space--x2l) / 2); }
+  [data-page-route-id] .home-point { padding-top:25px; }
+}
 /* Desktop UI scope: above 900px. */
 @media(min-width:901px) {
   .home-page { --pc-height-step:clamp(0px,calc(100svh - 700px),150px); --home-section-space:calc(110px + var(--pc-height-step) * .133333); }
