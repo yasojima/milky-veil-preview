@@ -499,6 +499,7 @@ function bindHomeOpening() {
   if (!opening) return;
   document.documentElement.classList.remove("home-opening-pending");
   document.body.classList.add("home-opening-active");
+  document.body.classList.add("home-opening-content-pending");
   createConceptTypography(opening.querySelector(".home-opening__stage"), sharedSalonData.name, { splitChars: false });
   const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   void (async () => {
@@ -508,6 +509,10 @@ function bindHomeOpening() {
     await wait(1000);
     opening.remove();
     document.body.classList.remove("home-opening-active");
+    await wait(200);
+    document.body.classList.replace("home-opening-content-pending", "home-opening-content-visible");
+    await wait(800);
+    document.body.classList.remove("home-opening-content-visible");
   })();
 }
 
@@ -1521,6 +1526,7 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   else {
     document.documentElement.classList.remove("home-opening-pending");
     document.body.classList.remove("home-opening-active");
+    document.body.classList.remove("home-opening-content-pending", "home-opening-content-visible");
   }
   const sharedBottomUiRoot = document.getElementById("shared-bottom-ui-root");
   const sharedBottomScope = suppressSharedShell
