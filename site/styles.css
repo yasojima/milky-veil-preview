@@ -22,8 +22,7 @@ body.home-opening-active{overflow:hidden}
 .home-opening__stage{width:92%;height:100%;margin:auto;display:flex;align-items:center;justify-content:center}
 .home-opening.is-exiting{opacity:0;pointer-events:none}
 body.home-opening-content-pending .site-header,body.home-opening-content-pending .home-simple-menu,body.home-opening-content-pending .hero-copy,body.home-opening-content-pending .hero .shared-scroll-cue{opacity:0;pointer-events:none}
-body.home-opening-content-visible .site-header,body.home-opening-content-visible .home-simple-menu{transition:opacity .3s ease .5s}
-body.home-opening-content-visible .hero-copy,body.home-opening-content-visible .hero .shared-scroll-cue{transition:opacity .5s ease}
+body.home-opening-content-visible .site-header,body.home-opening-content-visible .home-simple-menu,body.home-opening-content-visible .hero-copy,body.home-opening-content-visible .hero .shared-scroll-cue{transition:opacity .5s ease}
 @media (prefers-reduced-motion:reduce){html.home-opening-pending::before,.home-opening{display:none}}
 body{margin:0;background:var(--milky-canvas);color:var(--ink);font-family:var(--mv-font-text);font-weight:300;line-height:1.9;padding-bottom:0}
 html:has(.home-page){scrollbar-gutter:stable}
