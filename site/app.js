@@ -571,8 +571,8 @@ function staffStrip() {
     <section class="staff-strip" aria-labelledby="home-staff-title">
       <header class="staff-strip-heading">
         <p class="eyebrow">STAFF</p>
-        <h2 id="home-staff-title">「好き」を気軽に話せる、6人のスタッフ。</h2>
-        <p>おしゃれが好きで、人と話すことが好きな私たち。<br>やってみたい髪色も、いつもの髪の悩みも、気軽に聞かせてください。<br>それぞれの得意を生かして、あなたに似合うスタイルを一緒に見つけます。</p>
+        <h2 id="home-staff-title">「好き」を気軽に話せる、6人のスタッフ</h2>
+        <p>おしゃれが好きで、人と話すことが好きな私たち。やってみたい髪色も、いつもの髪の悩みも、気軽に聞かせてください。それぞれの得意を生かして、あなたに似合うスタイルを一緒に見つけます。</p>
       </header>
       <div class="home-staff-carousel-root" data-home-staff-carousel role="region" aria-roledescription="カルーセル" aria-label="MILKY VEIL スタイリスト紹介">
         <div class="home-staff-controls">
