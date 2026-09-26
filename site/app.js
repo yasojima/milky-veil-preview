@@ -71,7 +71,7 @@ const homeSplitSections = Object.freeze([
   Object.freeze({
     label: "CONCEPT",
     heading: Object.freeze(["カラーをもっと自由に"]),
-    text: "髪への負担に配慮しながら<br>ブリーチでつくる明るさや透明感まで丁寧に調整<br>あなたらしい髪色をデザインします",
+    text: "髪への負担に配慮しながら<br>ブリーチでつくる明るさや透明感まで丁寧に調整<br>あなたらしい髪色をデザインします。",
     image: `${P}02-concept-closeup-purple.png`,
     reverse: false,
     routeId: "concept",
@@ -80,7 +80,7 @@ const homeSplitSections = Object.freeze([
   Object.freeze({
     label: "MENU",
     heading: Object.freeze(["自分らしく似合わせる"]),
-    text: "今の気分やトレンドを取り入れながら<br>デザインカラーを軸にカットや質感を組み合わせて<br>骨格や髪質とファッションに合うバランスに仕上げます",
+    text: "今の気分やトレンドを取り入れながら<br>デザインカラーを軸にカットや質感を組み合わせて<br>骨格や髪質とファッションに合うバランスに仕上げます。",
     image: `${A}home-role-locked-pack-v1/home-service-customer-05-v1.png`,
     reverse: true,
     routeId: "menu",
