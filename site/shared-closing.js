@@ -42,15 +42,8 @@ export function bindClosingLogo(root) {
     const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
     const entering = bounds.top < viewportBottom && bounds.bottom > 0;
     const naturalLogoTop = parseFloat(getComputedStyle(logo).top) || 0;
-    if (mobileLayout.matches) {
-      // Bound the logo to its footer without relying on WebKit sticky during toolbar resizing.
-      const viewportTop = viewport?.offsetTop || 0;
-      const limit = Math.max(0, component.offsetHeight - naturalLogoTop - logo.offsetHeight);
-      const offset = Math.min(limit, Math.max(0, viewportTop - bounds.top));
-      logo.style.translate = `0 ${offset}px`;
-    } else {
-      logo.style.removeProperty("translate");
-    }
+    // The visual viewport offset includes Safari elastic scrolling; do not add it to the logo.
+    logo.classList.toggle("is-pinned", mobileLayout.matches && bounds.top <= 1 && bounds.bottom >= naturalLogoTop + logo.offsetHeight);
     const ready = entering && bounds.top + naturalLogoTop + logo.offsetHeight * .25 < viewportBottom;
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
@@ -141,7 +134,7 @@ export function bindClosingLogo(root) {
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;
     delete component.dataset.closingState;
-    logo.style.removeProperty("translate");
+    logo.classList.remove("is-pinned");
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;
     header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-top");
