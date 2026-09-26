@@ -4,6 +4,7 @@ import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
+import { reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260926-546";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
@@ -37,8 +38,7 @@ const shellData = Object.freeze({
   }),
   actions: Object.freeze({
     contact: Object.freeze({ kind: "route", routeId: "contact", label: "お問い合わせはこちら" }),
-    demoReservation: Object.freeze({ kind: "demo", label: "ご予約はこちら" }),
-    hotpepper: Object.freeze({ kind: "external", label: "ご予約はこちら", href: "https://beauty.hotpepper.jp/" }),
+    demoReservation: Object.freeze({ kind: "demo", label: reservationLabel }),
     translate: translationSettings,
   }),
 });
@@ -512,7 +512,7 @@ function bindHomeOpening() {
 }
 
 function home() {
-  const { hotpepper } = shellData.actions;
+  const { demoReservation } = shellData.actions;
   return `
     <main id="main" class="home-page">
       <section class="hero">
@@ -522,7 +522,7 @@ function home() {
           <p>${sharedBrandEyebrow}</p>
           <h1>${sharedBrandHeadlineLines.join("<br>")}</h1>
           <span>${sharedBrandSupportingLines.join("<br>")}</span>
-          <a class="hero-reserve wave-cta" href="${hotpepper.href}" target="_blank" rel="noopener noreferrer" aria-label="Hot Pepper Beautyを新しいタブで開きます"><span>${hotpepper.label}</span><i aria-hidden="true"></i></a>
+          <button class="hero-reserve wave-cta" type="button" data-demo-reserve><span>${demoReservation.label}</span><i aria-hidden="true"></i></button>
         </div>
         ${sharedScrollCueMarkup({ target: "#concept-home", ariaLabel: "CONCEPTセクションへ移動" })}
       </section>
@@ -719,6 +719,7 @@ function bind(sharedBottomScope) {
   bindHomeImageViewer();
   bindSubpageMotion();
   bindSharedFixedShell(sharedBottomScope);
+  document.querySelectorAll("[data-demo-reserve]").forEach((button) => button.addEventListener("click", () => showContactDemo("reserve")));
   document.querySelectorAll("[data-link]").forEach((el)=>el.addEventListener("click",(e)=>{
     if (e.metaKey || e.ctrlKey) return;
     if (storedTranslationLanguage()) return;
