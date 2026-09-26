@@ -49,7 +49,7 @@ export function bindBottomFit(root) {
       const tickerMaximum = parseFloat(getComputedStyle(tickers[0]).fontSize);
       tickers.forEach(ticker => ticker.style.setProperty("font-size", Math.min(tickerMaximum, Math.max(28, targetHeight * .075)) + "px", "important"));
       const applySize = size => {
-        const scale = Math.min(1, size / 120);
+        const scale = size > 204 ? size / 204 : Math.min(1, size / 120);
         title.style.fontSize = size + "px";
         eyebrow.style.fontSize = Math.max(10, eyebrowMaximum * scale) + "px";
         supporting.style.fontSize = Math.max(12, supportingMaximum * scale) + "px";
