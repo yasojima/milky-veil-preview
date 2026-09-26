@@ -545,3 +545,12 @@ body[data-page-route-id="menu"] .service-menu-artwork img {
 /* Keep the original card frame when a portrait source has a different ratio. */
 .home-point-ingredient-box__img img[src*="/concept-point-cards/"] { aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; }
 .home-point-ingredient-box__img img[src*="/concept-point-cards/03-wave"] { object-position: 50% 80%; }
+
+.home-point-ingredient__vi-btn-img::after,
+.home-movie__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .22);
+  pointer-events: none;
+}
