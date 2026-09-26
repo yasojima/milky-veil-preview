@@ -40,6 +40,7 @@ export function mountSharedConceptMenu(host, currentPath = "/concept/") {
     host.classList.add("has-split-hero", "is-logo-hidden");
   }
   host.innerHTML = sharedConceptMenuMarkup(currentPath);
+  host.querySelector("[data-shared-concept-menu]").classList.toggle("has-static-header", host.hasAttribute("data-logo-top-only"));
   if (host.classList.contains("has-split-hero")) host.prepend(host.querySelector(".menu-brand"));
   return host.querySelector("[data-shared-concept-menu]");
 }
@@ -89,7 +90,7 @@ export function bindSharedConceptMenu(scope = document) {
     menu.classList.toggle("home-header-visible", visible);
     const scrolled = window.scrollY > 0;
     menu.classList.toggle("has-page-scroll", scrolled);
-    toggle.inert = (visible || ((usesMobileLayout() || document.body.classList.contains("menu-lp")) && !scrolled)) && !nav.classList.contains("is-open");
+    toggle.inert = (visible || ((usesMobileLayout() || document.body.classList.contains("menu-lp")) && !scrolled && !menu.classList.contains("has-static-header"))) && !nav.classList.contains("is-open");
   };
   syncHomeHeaderVisibility();
   const homeHeaderObserver = new ResizeObserver(syncHomeHeaderVisibility);

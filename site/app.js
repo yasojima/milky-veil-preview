@@ -7,7 +7,7 @@ import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260926-546";
 import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260926-534";
+import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260926-551";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-513";
 import { createConceptTypography } from "./concept-typography.js?v=20260926-538";
@@ -605,25 +605,27 @@ function staffStrip() {
 
 
 function contactPage() {
-  const { salon } = shellData;
-  return `<main id="main">${pageHead("contact","CONTACT",pageCopy.CONTACT.lead,pageCopy.CONTACT.text)}
-    <section class="contact-form"><div class="demo-notice">DEMO FORM — 入力内容は送信・保存されません。</div><form data-demo-form novalidate>
+  return `<main id="main" class="contact-main">
+    <header class="contact-heading"><h1>CONTACT</h1><p>${pageCopy.CONTACT.lead}</p></header>
+    <section class="contact-form" aria-label="お問い合わせフォーム">
+    <p class="contact-intro">髪や施術についてのご相談など、お気軽にお問い合わせください。</p>
+    <p class="demo-notice">${pageCopy.CONTACT.text}</p>
+    <form data-demo-form novalidate><div data-contact-fields>
       <div class="form-error-summary" data-form-error-summary role="alert" tabindex="-1" hidden><p>入力内容を確認してください。</p><ul></ul></div>
-      <label>お名前<input id="contact-name" name="name" maxlength="80" aria-describedby="contact-name-error" placeholder="△△ △△"><span id="contact-name-error" class="field-error" data-field-error="name"></span></label>
-      <label>フリガナ<input name="kana" placeholder="△△△△ △△△△"></label>
-      <label>電話番号<input name="tel" inputmode="tel" placeholder="${salon.phone}"></label>
-      <label>メールアドレス<input id="contact-email" name="email" type="email" maxlength="254" aria-describedby="contact-email-error" placeholder="demo@example.invalid"><span id="contact-email-error" class="field-error" data-field-error="email"></span></label>
-      <label>お問い合わせ種別<select id="contact-type" name="type" aria-describedby="contact-type-error"><option value="">選択してください</option><option value="施術相談">施術相談</option><option value="予約について">予約について</option><option value="採用について">採用について</option><option value="その他">その他</option></select><span id="contact-type-error" class="field-error" data-field-error="type"></span></label>
-      <label>お問い合わせ内容<textarea id="contact-message" name="message" rows="8" maxlength="2000" aria-describedby="contact-message-error"></textarea><span id="contact-message-error" class="field-error" data-field-error="message"></span></label>
-      <label class="check"><input id="contact-privacy" name="privacy" type="checkbox" aria-describedby="contact-privacy-error"> プライバシーポリシーを確認しました。</label><span id="contact-privacy-error" class="field-error" data-field-error="privacy"></span>
-      <button class="wave-cta">CONFIRM</button><p class="form-result" aria-live="polite"></p>
-    </form></section>${related()}</main>`;
+      <p class="contact-required-note"><span class="contact-required">※</span> は必須項目です。</p>
+      <div class="contact-row"><label for="contact-name">お名前 <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-name" name="name" maxlength="80" autocomplete="name" required aria-describedby="contact-name-error"><span id="contact-name-error" class="field-error" data-field-error="name"></span></div></div>
+      <div class="contact-row"><label for="contact-tel">お電話番号 <span class="contact-optional">任意</span></label><div><input id="contact-tel" name="tel" type="tel" inputmode="tel" maxlength="30" autocomplete="tel"></div></div>
+      <div class="contact-row"><label for="contact-email">メールアドレス <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-email" name="email" type="email" maxlength="254" autocomplete="email" required aria-describedby="contact-email-error"><span id="contact-email-error" class="field-error" data-field-error="email"></span></div></div>
+      <div class="contact-row"><label for="contact-message">お問い合わせ内容 <span class="contact-required" aria-hidden="true">※</span></label><div><textarea id="contact-message" name="message" rows="8" maxlength="2000" required aria-describedby="contact-message-error"></textarea><span id="contact-message-error" class="field-error" data-field-error="message"></span></div></div>
+      <div class="contact-privacy"><label class="check"><input id="contact-privacy" name="privacy" type="checkbox" required aria-describedby="contact-privacy-error"><span>${link("privacy", "contact-policy-link", "", "プライバシーポリシー")}を確認しました。</span></label><span id="contact-privacy-error" class="field-error" data-field-error="privacy"></span></div>
+      <button class="wave-cta" type="submit">入力内容を確認する</button>
+    </div><section class="contact-confirmation" data-contact-confirmation tabindex="-1" hidden aria-labelledby="contact-confirm-title"><h2 id="contact-confirm-title">入力内容の確認</h2><dl data-contact-review></dl><p class="form-result" role="status">デモのため送信されません。入力内容も保存していません。</p><button class="wave-cta" type="button" data-contact-edit>入力内容を修正する</button></section>
+    </form></section></main>`;
 }
 
 const contactFieldIds = Object.freeze({
   name: "contact-name",
   email: "contact-email",
-  type: "contact-type",
   message: "contact-message",
   privacy: "contact-privacy",
 });
@@ -634,17 +636,16 @@ function contactFieldError(name, form) {
     ? field.value.trim()
     : "";
   if (name === "name") {
-    if (!value) return "お名前を入力してください。";
+    if (!value) return "お名前が未入力です。";
     if (value.length > 80) return "お名前は80文字以内で入力してください。";
   }
   if (name === "email") {
-    if (!value) return "メールアドレスを入力してください。";
+    if (!value) return "メールアドレスが未入力です。";
     if (value.length > 254) return "メールアドレスは254文字以内で入力してください。";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "メールアドレスの形式を確認してください。";
   }
-  if (name === "type" && !value) return "お問い合わせ種別を選択してください。";
   if (name === "message") {
-    if (!value) return "お問い合わせ内容を入力してください。";
+    if (!value) return "お問い合わせ内容が未入力です。";
     if (value.length > 2000) return "お問い合わせ内容は2000文字以内で入力してください。";
   }
   if (name === "privacy" && field instanceof HTMLInputElement && !field.checked) {
@@ -751,7 +752,7 @@ function bind(sharedBottomScope) {
   bindSharedConceptMenu(document);
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#global-nav.global-nav");
-  const translateToggles = [...document.querySelectorAll(".translate-toggle")];
+  const translateToggles = [...document.querySelectorAll(".translate-toggle")].filter(button => !button.closest(".shared-concept-menu"));
   const setTranslateOpen = (button, open) => {
     translateToggles.forEach((candidate) => {
       const control = candidate.closest(".translate-control");
@@ -832,15 +833,33 @@ function bind(sharedBottomScope) {
   demoForm?.addEventListener("submit",(event)=>{
     event.preventDefault();
     const form = event.currentTarget;
-    const result = form.querySelector(".form-result");
     form.dataset.validationActive = "true";
     const { errors, summary } = validateContactForm(form);
     if (errors.length) {
-      if (result) result.textContent = "";
       summary?.focus();
       return;
     }
-    if (result) result.textContent="デモのため送信されません。入力内容も保存していません。";
+    const review = form.querySelector("[data-contact-review]");
+    review.replaceChildren(...[
+      ["name", "お名前"], ["tel", "お電話番号"], ["email", "メールアドレス"], ["message", "お問い合わせ内容"],
+    ].map(([name, label]) => {
+      const row = document.createElement("div");
+      const term = document.createElement("dt");
+      const value = document.createElement("dd");
+      term.textContent = label;
+      value.textContent = form.elements.namedItem(name).value.trim() || "未入力";
+      row.append(term, value);
+      return row;
+    }));
+    form.querySelector("[data-contact-fields]").hidden = true;
+    const confirmation = form.querySelector("[data-contact-confirmation]");
+    confirmation.hidden = false;
+    confirmation.focus();
+  });
+  demoForm?.querySelector("[data-contact-edit]").addEventListener("click", () => {
+    demoForm.querySelector("[data-contact-confirmation]").hidden = true;
+    demoForm.querySelector("[data-contact-fields]").hidden = false;
+    demoForm.elements.namedItem("name").focus();
   });
   demoForm?.addEventListener("input",(event)=>{
     const name = event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || event.target instanceof HTMLSelectElement
@@ -1223,7 +1242,11 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
     metaDescription.setAttribute("content", description);
   }
   const isConceptRoute = currentRouteId === "concept";
-  const routeShell = isConceptRoute
+  const isContactRoute = currentRouteId === "contact";
+  document.body.classList.toggle("contact-page", isContactRoute);
+  const routeShell = isContactRoute
+    ? '<div id="shared-concept-menu-root" class="has-split-hero" data-logo-top-only data-logo-state="active"></div>'
+    : isConceptRoute
     ? conceptHeader(current.path)
     : `${header(current.path === "/milky-veil-preview/", current.path)}${currentRouteId === "home" ? `<div class="home-simple-menu">${sharedConceptMenuMarkup(current.path)}</div>` : globalOverlay(current.path)}`;
   const appBody = suppressSharedShell
@@ -1231,6 +1254,7 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
     : `${routeShell}${renderPage(location.pathname)}`;
   const showHomeOpening = currentRouteId === "home" && document.documentElement.classList.contains("home-opening-pending");
   document.getElementById("app").innerHTML = `${showHomeOpening ? homeOpeningMarkup() : ""}${appBody}`;
+  if (isContactRoute) mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"), current.path);
   if (showHomeOpening) bindHomeOpening();
   else {
     document.documentElement.classList.remove("home-opening-pending");

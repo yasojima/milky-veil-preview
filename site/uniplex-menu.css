@@ -15,7 +15,7 @@
 .shared-concept-menu :where(*, *::before, *::after) { box-sizing: border-box; }
 
 @media (max-width: 900px) {
-  .shared-concept-menu:not(.has-page-scroll):not(:has(.shared-nav-content.is-open)) .shared-nav-toggle {
+  .shared-concept-menu:not(.has-static-header):not(.has-page-scroll):not(:has(.shared-nav-content.is-open)) .shared-nav-toggle {
     visibility: hidden !important;
     pointer-events: none;
   }
