@@ -3,6 +3,15 @@
 .home-point-ingredient__vi-btn-img > video {
   object-position:center top;
 }
+@media (min-width:768px) and (orientation:landscape) {
+  .home-point-ingredient {
+    --point-visible-height:calc(100lvh - var(--shared-fixed-bar-height, 0px));
+    --point-video-width:calc(var(--point-visible-height) * .5625);
+  }
+  .home-point-ingredient__vi { width:var(--point-video-width); }
+  .home-point-ingredient__vi-btn-img { height:var(--point-visible-height); }
+  .home-point-ingredient__content { margin-left:var(--point-video-width); }
+}
 /* WebKit sticky descendants can jitter under an overflow:clip ancestor. */
 @media (max-width:900px) {
   .home-concept { overflow-x:visible; }
