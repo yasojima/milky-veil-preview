@@ -5,7 +5,7 @@ export const sharedRouteRegistry = Object.freeze({
   colorDesign: Object.freeze({ path: "/milky-veil-preview/#color-design", label: "HAIR GALLERY", navigationMode: "document" }),
   concept: Object.freeze({ path: "/milky-veil-preview/concept/", label: "CONCEPT", navigationMode: "document" }),
   menu: Object.freeze({ path: "/milky-veil-preview/menu/", label: "MENU", navigationMode: "document", introTitle: "MILKY VEILがお約束すること" }),
-  staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document", introTitle: "MILKY VEILが誇るスタッフ" }),
+  staff: Object.freeze({ path: "/milky-veil-preview/staff/", label: "STAFF", navigationMode: "document", introTitle: "MILKY VEILのスタッフ" }),
   items: Object.freeze({ path: "/milky-veil-preview/items/", label: "ITEMS", navigationMode: "document", introTitle: "MILKY VEILが選んだアイテム" }),
   access: Object.freeze({ path: "/milky-veil-preview/access/", label: "ACCESS", navigationMode: "document", introTitle: "MILKY VEILがお迎えする場所" }),
   contact: Object.freeze({ path: "/milky-veil-preview/contact/", label: "CONTACT" }),
