@@ -167,8 +167,11 @@ export function bindSharedFixedShell(scope = document) {
     if (!open && restoreFocus) socialToggle?.focus();
   }
 
-  function setContactOpen(open, restoreFocus = false) {
-    const expanded = mobile.matches && open;
+  let contactHoverOpen = false;
+  let contactClickOpen = false;
+
+  function syncContactOpen(restoreFocus = false) {
+    const expanded = mobile.matches && (contactHoverOpen || contactClickOpen);
     bar.classList.toggle("is-contact-open", expanded);
     contactToggle?.setAttribute("aria-expanded", String(expanded));
     contactToggle?.setAttribute("aria-label", expanded ? "お問い合わせ・予約を閉じる" : "お問い合わせ・予約を表示");
@@ -176,12 +179,32 @@ export function bindSharedFixedShell(scope = document) {
     if (!expanded && restoreFocus) contactToggle?.focus();
   }
 
+  function setContactOpen(open, restoreFocus = false) {
+    contactHoverOpen = false;
+    contactClickOpen = mobile.matches && open;
+    syncContactOpen(restoreFocus);
+  }
+
   contactToggle?.addEventListener("click", (event) => {
     event.stopPropagation();
-    const open = contactToggle.getAttribute("aria-expanded") !== "true";
+    const open = !contactClickOpen;
     if (open) setSocialOpen(false);
     setContactOpen(open);
   }, { signal });
+  contactToggle?.addEventListener("pointerenter", (event) => {
+    if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover)").matches || !mobile.matches) return;
+    setSocialOpen(false);
+    contactHoverOpen = true;
+    syncContactOpen();
+  }, { signal });
+  function leaveContactHover(event) {
+    const next = event.relatedTarget;
+    if (next instanceof Node && (contactToggle?.contains(next) || contactPanel?.contains(next))) return;
+    contactHoverOpen = false;
+    syncContactOpen();
+  }
+  contactToggle?.addEventListener("pointerleave", leaveContactHover, { signal });
+  contactPanel?.addEventListener("pointerleave", leaveContactHover, { signal });
   mobile.addEventListener("change", () => { setContactOpen(false); schedule(); }, { signal });
   setContactOpen(false);
 

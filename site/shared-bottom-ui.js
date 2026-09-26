@@ -2,7 +2,7 @@ import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=2026091
 import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260922-529";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260913-253&closing=20260912-186";
-import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260913-244";
+import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260926-546";
 import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260922-512";
 import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&closing=20260912-186";
 
