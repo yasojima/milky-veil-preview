@@ -5,10 +5,10 @@ import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, 
 import { socialIcons, translationControl } from "./shared-social-tools.js";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260926-546";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260926-551";
-import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260919-427";
+import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedPrivacyPolicyAnchorId, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260926-552";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-513";
 import { createConceptTypography } from "./concept-typography.js?v=20260926-538";
 
@@ -604,20 +604,32 @@ function staffStrip() {
 
 
 
+const privacyPolicyBlocks = [
+    ["基本方針","MILKY VEILデモサイトは、個人情報を適切に取り扱う想定で制作しています。"],
+    ["取得を想定する情報","氏名、電話番号、メールアドレス、お問い合わせ内容を取得する想定です。"],
+    ["収集方法","正式運用時には、利用者がフォームへ入力した情報を安全な方法で取得します。"],
+    ["利用目的","お問い合わせへの回答、予約連絡、サービス改善のために利用する想定です。"],
+    ["第三者提供","法令に基づく場合を除き、本人の同意なく第三者へ提供しない想定です。"],
+    ["開示","本人からの請求に対し、正式運用時の手続きに従って対応します。"],
+    ["訂正・削除","内容の訂正または削除の申し出へ、本人確認後に対応する想定です。"],
+    ["利用停止等","利用停止の申し出へ、法令と正式運用時の規程に基づき対応します。"],
+    ["方針変更","必要に応じて本方針を見直し、変更内容を本サイトで案内します。"],
+  ];
+
 function contactPage() {
   return `<main id="main" class="contact-main">
     <header class="contact-heading"><h1>CONTACT</h1><p>${pageCopy.CONTACT.lead}</p></header>
     <section class="contact-form" aria-label="お問い合わせフォーム">
-    <p class="contact-intro">髪や施術についてのご相談など、お気軽にお問い合わせください。</p>
-    <p class="demo-notice">${pageCopy.CONTACT.text}</p>
+    <section id="${sharedPrivacyPolicyAnchorId}" class="contact-policy" tabindex="-1" aria-labelledby="contact-policy-title">
+      <h2 id="contact-policy-title">プライバシーポリシー</h2>
+      <div class="contact-policy-text" tabindex="0" role="region" aria-label="プライバシーポリシー本文">${privacyPolicyBlocks.map(([heading, text]) => `<article><h3>${heading}</h3><p>${text}</p></article>`).join("")}</div>
+    </section>
     <form data-demo-form novalidate><div data-contact-fields>
-      <div class="form-error-summary" data-form-error-summary role="alert" tabindex="-1" hidden><p>入力内容を確認してください。</p><ul></ul></div>
       <p class="contact-required-note"><span class="contact-required">※</span> は必須項目です。</p>
-      <div class="contact-row"><label for="contact-name">お名前 <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-name" name="name" maxlength="80" autocomplete="name" required aria-describedby="contact-name-error"><span id="contact-name-error" class="field-error" data-field-error="name"></span></div></div>
+      <div class="contact-row"><label for="contact-name">お名前 <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-name" name="name" maxlength="80" autocomplete="name" required aria-describedby="contact-name-error"><span id="contact-name-error" class="field-error" aria-live="polite" data-field-error="name"></span></div></div>
       <div class="contact-row"><label for="contact-tel">お電話番号 <span class="contact-optional">任意</span></label><div><input id="contact-tel" name="tel" type="tel" inputmode="tel" maxlength="30" autocomplete="tel"></div></div>
-      <div class="contact-row"><label for="contact-email">メールアドレス <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-email" name="email" type="email" maxlength="254" autocomplete="email" required aria-describedby="contact-email-error"><span id="contact-email-error" class="field-error" data-field-error="email"></span></div></div>
-      <div class="contact-row"><label for="contact-message">お問い合わせ内容 <span class="contact-required" aria-hidden="true">※</span></label><div><textarea id="contact-message" name="message" rows="8" maxlength="2000" required aria-describedby="contact-message-error"></textarea><span id="contact-message-error" class="field-error" data-field-error="message"></span></div></div>
-      <div class="contact-privacy"><label class="check"><input id="contact-privacy" name="privacy" type="checkbox" required aria-describedby="contact-privacy-error"><span>${link("privacy", "contact-policy-link", "", "プライバシーポリシー")}を確認しました。</span></label><span id="contact-privacy-error" class="field-error" data-field-error="privacy"></span></div>
+      <div class="contact-row"><label for="contact-email">メールアドレス <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-email" name="email" type="email" maxlength="254" autocomplete="email" required aria-describedby="contact-email-error"><span id="contact-email-error" class="field-error" aria-live="polite" data-field-error="email"></span></div></div>
+      <div class="contact-row"><label for="contact-message">お問い合わせ内容 <span class="contact-required" aria-hidden="true">※</span></label><div><textarea id="contact-message" name="message" rows="8" maxlength="2000" required aria-describedby="contact-message-error"></textarea><span id="contact-message-error" class="field-error" aria-live="polite" data-field-error="message"></span></div></div>
       <button class="wave-cta" type="submit">入力内容を確認する</button>
     </div><section class="contact-confirmation" data-contact-confirmation tabindex="-1" hidden aria-labelledby="contact-confirm-title"><h2 id="contact-confirm-title">入力内容の確認</h2><dl data-contact-review></dl><p class="form-result" role="status">デモのため送信されません。入力内容も保存していません。</p><button class="wave-cta" type="button" data-contact-edit>入力内容を修正する</button></section>
     </form></section></main>`;
@@ -627,7 +639,6 @@ const contactFieldIds = Object.freeze({
   name: "contact-name",
   email: "contact-email",
   message: "contact-message",
-  privacy: "contact-privacy",
 });
 
 function contactFieldError(name, form) {
@@ -648,9 +659,6 @@ function contactFieldError(name, form) {
     if (!value) return "お問い合わせ内容が未入力です。";
     if (value.length > 2000) return "お問い合わせ内容は2000文字以内で入力してください。";
   }
-  if (name === "privacy" && field instanceof HTMLInputElement && !field.checked) {
-    return "プライバシーポリシーの確認が必要です。";
-  }
   return "";
 }
 
@@ -667,35 +675,11 @@ function validateContactForm(form) {
   const errors = Object.keys(contactFieldIds)
     .map((name) => ({ name, message: updateContactFieldState(form, name) }))
     .filter(({ message }) => message);
-  const summary = form.querySelector("[data-form-error-summary]");
-  const list = summary?.querySelector("ul");
-  if (summary && list) {
-    list.replaceChildren(...errors.map(({ name, message }) => {
-      const item = document.createElement("li");
-      const anchor = document.createElement("a");
-      anchor.href = `#${contactFieldIds[name]}`;
-      anchor.textContent = message;
-      item.append(anchor);
-      return item;
-    }));
-    summary.hidden = errors.length === 0;
-  }
-  return { errors, summary };
+  return errors;
 }
 
 function privacyPage() {
-  const blocks = [
-    ["基本方針","MILKY VEILデモサイトは、個人情報を適切に取り扱う想定で制作しています。"],
-    ["取得を想定する情報","氏名、電話番号、メールアドレス、お問い合わせ内容を取得する想定です。"],
-    ["収集方法","正式運用時には、利用者がフォームへ入力した情報を安全な方法で取得します。"],
-    ["利用目的","お問い合わせへの回答、予約連絡、サービス改善のために利用する想定です。"],
-    ["第三者提供","法令に基づく場合を除き、本人の同意なく第三者へ提供しない想定です。"],
-    ["開示","本人からの請求に対し、正式運用時の手続きに従って対応します。"],
-    ["訂正・削除","内容の訂正または削除の申し出へ、本人確認後に対応する想定です。"],
-    ["利用停止等","利用停止の申し出へ、法令と正式運用時の規程に基づき対応します。"],
-    ["方針変更","必要に応じて本方針を見直し、変更内容を本サイトで案内します。"],
-  ];
-  return `<main id="main">${pageHead("privacy","PRIVACY POLICY",pageCopy["PRIVACY POLICY"].lead,pageCopy["PRIVACY POLICY"].text)}<section class="policy">${blocks.map(([h,p],i)=>`<article><span>0${i+1}</span><h2>${h}</h2><p>${p}</p></article>`).join("")}</section>${related()}</main>`;
+  return `<main id="main">${pageHead("privacy","PRIVACY POLICY",pageCopy["PRIVACY POLICY"].lead,pageCopy["PRIVACY POLICY"].text)}<section class="policy">${privacyPolicyBlocks.map(([h,p],i)=>`<article><span>0${i+1}</span><h2>${h}</h2><p>${p}</p></article>`).join("")}</section>${related()}</main>`;
 }
 
 function resolveRoute(path = location.pathname) {
@@ -834,9 +818,9 @@ function bind(sharedBottomScope) {
     event.preventDefault();
     const form = event.currentTarget;
     form.dataset.validationActive = "true";
-    const { errors, summary } = validateContactForm(form);
+    const errors = validateContactForm(form);
     if (errors.length) {
-      summary?.focus();
+      form.elements.namedItem(errors[0].name)?.focus();
       return;
     }
     const review = form.querySelector("[data-contact-review]");
@@ -1268,6 +1252,11 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   bind(sharedBottomScope);
   if (storedTranslationLanguage()) ensureGoogleTranslate();
   else mountGoogleTranslateWidgets();
+  if (isContactRoute && location.hash === `#${sharedPrivacyPolicyAnchorId}`) {
+    document.fonts.ready.then(() => requestAnimationFrame(() => {
+      document.getElementById(sharedPrivacyPolicyAnchorId)?.scrollIntoView({ block: "start", behavior: "instant" });
+    }));
+  }
   renderedPathname = location.pathname;
   if (resetScroll) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }

@@ -1,7 +1,7 @@
 import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260917-376";
 import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260922-529";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
-import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260913-253&closing=20260912-186";
+import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260926-552&closing=20260912-186";
 import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20260926-546";
 import { sharedBrandMessageMarkup } from "./shared-brand-message.js?v=20260922-512";
 import { sharedFooterTickerMarkup, sharedFooterTickerRuleMarkup } from "./shared-footer-ticker.js?v=20260907-01&closing=20260912-186";
@@ -100,6 +100,19 @@ export function mountSharedBottomUi(host, currentPath) {
         ${sharedFixedCtaMarkup()}
       </div>
     `;
+    root.querySelectorAll(".footer-links a").forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const target = new URL(anchor.href, location.href);
+        if (target.origin !== location.origin || target.pathname !== location.pathname || !target.hash) return;
+        const section = document.getElementById(decodeURIComponent(target.hash.slice(1)));
+        if (!section) return;
+        event.preventDefault();
+        if (location.hash !== target.hash) history.pushState({}, "", target.href);
+        section.scrollIntoView({ block: "start", behavior: "instant" });
+        section.focus({ preventScroll: true });
+      });
+    });
     const component = root.querySelector("[data-shared-bottom-ui-component]");
     const ready = Promise.all([...root.querySelectorAll('link[rel="stylesheet"]')].map(link => {
       if (link.sheet) return true;

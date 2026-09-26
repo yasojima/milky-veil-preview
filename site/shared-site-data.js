@@ -1,4 +1,5 @@
 export const sharedBrandLogo = "/milky-veil-preview/assets/generated/logo-concepts/logo-mv-monogram-transparent-v2.png";
+export const sharedPrivacyPolicyAnchorId = "privacy-policy";
 export const sharedRouteRegistry = Object.freeze({
   home: Object.freeze({ path: "/milky-veil-preview/", label: "HOME" }),
   colorDesign: Object.freeze({ path: "/milky-veil-preview/#color-design", label: "HAIR GALLERY", navigationMode: "document" }),
@@ -8,7 +9,7 @@ export const sharedRouteRegistry = Object.freeze({
   items: Object.freeze({ path: "/milky-veil-preview/items/", label: "ITEMS", navigationMode: "document", introTitle: "MILKY VEILが選んだアイテム" }),
   access: Object.freeze({ path: "/milky-veil-preview/access/", label: "ACCESS", navigationMode: "document", introTitle: "MILKY VEILがお迎えする場所" }),
   contact: Object.freeze({ path: "/milky-veil-preview/contact/", label: "CONTACT" }),
-  privacy: Object.freeze({ path: "/milky-veil-preview/privacy/", label: "PRIVACY POLICY" }),
+  privacy: Object.freeze({ path: "/milky-veil-preview/privacy/", label: "PRIVACY POLICY", get footerHref() { return `${sharedRouteRegistry.contact.path}#${sharedPrivacyPolicyAnchorId}`; } }),
 });
 
 export const sharedRouteIds = Object.freeze(Object.keys(sharedRouteRegistry).filter(id => !sharedRouteRegistry[id].path.includes("#")));
