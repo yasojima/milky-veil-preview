@@ -674,8 +674,8 @@ body:has(.instagram-dialog[open]){overflow:hidden}
 .instagram-heading{margin-bottom:22px}
 .instagram-track{display:flex;gap:12px;overscroll-behavior-x:contain;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:0;scrollbar-width:none;padding-bottom:4px}
 .instagram-track::-webkit-scrollbar{display:none}
-.instagram-track::after{content:"";flex:0 0 calc(14% - 12px)}
-.instagram-card{flex:0 0 86%;scroll-snap-align:start}
+.instagram-track::after{content:"";flex:0 0 calc(38% - 12px)}
+.instagram-card{flex:0 0 62%;scroll-snap-align:start}
 .instagram-open{aspect-ratio:4/5}
 .instagram-card-hover{display:none}
 .instagram-dialog{position:fixed;inset:16px;margin:0;width:calc(100% - 32px);max-width:none;height:calc(100dvh - 32px);max-height:none;overflow:hidden;border-radius:16px;background:#f3f2f8}
