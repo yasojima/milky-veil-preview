@@ -84,6 +84,7 @@ export function bindSharedConceptMenu(scope = document) {
   if (bottomBar) bottomObserver.observe(bottomBar);
   syncBottomSpace();
   const homeHeader = document.querySelector(".header-on-hero");
+  if (homeHeader) menu.classList.add("has-static-header");
   const syncHomeHeaderVisibility = () => {
     const headerBottom = homeHeader ? Math.max(homeHeader.getBoundingClientRect().bottom, homeHeader.querySelector(".brand")?.getBoundingClientRect().bottom || 0) : 0;
     const visible = Boolean(homeHeader && headerBottom > 0 && !usesMobileLayout());
