@@ -1,5 +1,4 @@
 
-@import url("./concept-typography.css?v=20260926-537");
 
 :root {
   --ink:#172133;
@@ -16,14 +15,6 @@
 *{box-sizing:border-box}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 html{scroll-behavior:smooth;scroll-padding-block-end:calc(var(--fixed-cta-height) + 8px)}
-html.home-opening-pending::before{content:"";position:fixed;inset:0;z-index:1999;background:#fff}
-body.home-opening-active{overflow:hidden}
-.home-opening{position:fixed;inset:0;z-index:2000;background:#fff;transition:opacity 1s ease}
-.home-opening__stage{width:92%;height:100%;margin:auto;display:flex;align-items:center;justify-content:center}
-.home-opening.is-exiting{opacity:0;pointer-events:none}
-body.home-opening-content-pending .site-header,body.home-opening-content-pending .home-simple-menu,body.home-opening-content-pending .hero-copy,body.home-opening-content-pending .hero .shared-scroll-cue{opacity:0;pointer-events:none}
-body.home-opening-content-visible .site-header,body.home-opening-content-visible .home-simple-menu,body.home-opening-content-visible .hero-copy,body.home-opening-content-visible .hero .shared-scroll-cue{transition:opacity .5s ease}
-@media (prefers-reduced-motion:reduce){html.home-opening-pending::before,.home-opening{display:none}}
 body{margin:0;background:var(--milky-canvas);color:var(--ink);font-family:var(--mv-font-text);font-weight:300;line-height:1.9;padding-bottom:0}
 html:has(.home-page){scrollbar-gutter:stable}
 body.nav-open{overflow:hidden}

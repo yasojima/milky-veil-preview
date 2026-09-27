@@ -11,7 +11,6 @@ import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260926-551";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedPrivacyPolicyAnchorId, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260926-552";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-513";
-import { createConceptTypography } from "./concept-typography.js?v=20260926-538";
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
@@ -484,32 +483,6 @@ const homeDuoCards = Object.freeze([
   { routeId: "menu", image: `${A}home-role-locked-pack-v1/home-menu-color-service-v4.png` },
   { routeId: "items", image: `${A}home-role-locked-pack-v1/home-items-customer-06-v1.png` },
 ]);
-
-function homeOpeningMarkup() {
-  return `<div class="home-opening" aria-hidden="true"><div class="home-opening__stage"></div></div>`;
-}
-
-function bindHomeOpening() {
-  const opening = document.querySelector(".home-opening");
-  if (!opening) return;
-  document.documentElement.classList.remove("home-opening-pending");
-  document.body.classList.add("home-opening-active");
-  document.body.classList.add("home-opening-content-pending");
-  createConceptTypography(opening.querySelector(".home-opening__stage"), sharedSalonData.name, { splitChars: false });
-  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-  void (async () => {
-    await wait(2000);
-    if (!opening.isConnected) return;
-    opening.classList.add("is-exiting");
-    await wait(1000);
-    opening.remove();
-    document.body.classList.remove("home-opening-active");
-    await wait(200);
-    document.body.classList.replace("home-opening-content-pending", "home-opening-content-visible");
-    await wait(800);
-    document.body.classList.remove("home-opening-content-visible");
-  })();
-}
 
 function home() {
   const { demoReservation } = shellData.actions;
@@ -1234,15 +1207,8 @@ function render({ focusRoute = false, resetScroll = focusRoute } = {}) {
   const appBody = suppressSharedShell
     ? renderPage(location.pathname)
     : `${routeShell}${renderPage(location.pathname)}`;
-  const showHomeOpening = currentRouteId === "home" && document.documentElement.classList.contains("home-opening-pending");
-  document.getElementById("app").innerHTML = `${showHomeOpening ? homeOpeningMarkup() : ""}${appBody}`;
+  document.getElementById("app").innerHTML = appBody;
   if (isContactRoute) mountSharedConceptMenu(document.getElementById("shared-concept-menu-root"), current.path);
-  if (showHomeOpening) bindHomeOpening();
-  else {
-    document.documentElement.classList.remove("home-opening-pending");
-    document.body.classList.remove("home-opening-active");
-    document.body.classList.remove("home-opening-content-pending", "home-opening-content-visible");
-  }
   const sharedBottomUiRoot = document.getElementById("shared-bottom-ui-root");
   const sharedBottomScope = suppressSharedShell
     ? (clearSharedBottomUi(sharedBottomUiRoot), null)
