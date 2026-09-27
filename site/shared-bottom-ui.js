@@ -1,4 +1,4 @@
-import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260927-586";
+import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20260927-587";
 import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20260927-583";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260926-552&closing=20260912-186";

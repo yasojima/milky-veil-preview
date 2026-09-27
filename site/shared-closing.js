@@ -44,7 +44,8 @@ export function bindClosingLogo(root) {
     const naturalLogoTop = parseFloat(getComputedStyle(logo).top) || 0;
     // The visual viewport offset includes Safari elastic scrolling; do not add it to the logo.
     logo.classList.toggle("is-pinned", mobileLayout.matches && bounds.top <= 1 && bounds.bottom >= naturalLogoTop + logo.offsetHeight);
-    const ready = entering && bounds.top + naturalLogoTop + logo.offsetHeight * .25 < viewportBottom;
+    const atPageEnd = document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 1;
+    const ready = entering && (bounds.top <= 1 || atPageEnd);
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
