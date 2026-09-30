@@ -294,11 +294,11 @@ body#home {
   .milky-detail-card.home-concept-box {
     width: 100%;
     max-width: 100%;
-    padding-inline: clamp(18px, 5.6vw, 28px);
+    padding-inline: 0;
   }
 
   .milky-detail-card .home-concept-box__img {
-    width: min(72%, 280px);
+    width: min(62%, 280px);
   }
 
   .milky-detail-card .home-concept-box__head {
