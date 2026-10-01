@@ -2,9 +2,10 @@ import { sharedSalonData, sharedRouteRegistry } from "./shared-site-data.js?v=20
 
 export const contactLabel = "お問い合わせはこちら";
 export const reservationLabel = "ご予約はこちら";
+export const contactDemoMessage = "デモ表示のためリンク未設定です。";
 
-export function showContactDemo(kind) {
-  alert(kind === "phone" ? "デモ表示のため電話リンクは未設定です。" : "デモ表示のため予約リンクは未設定です。");
+export function showContactDemo() {
+  alert(contactDemoMessage);
 }
 
 export function menuContactMarkup() {

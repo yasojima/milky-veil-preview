@@ -2,7 +2,7 @@ import { sharedSocials } from "./shared-site-data.js?v=20260913-251";
 
 export function socialIcons() {
   return `<div class="social-icons" aria-label="SNS（デモ・リンク未設定）">
-    ${sharedSocials.map(({name,file})=>`<span class="social-icon social-${name.toLowerCase()}" title="${name}"><img src="/milky-veil-preview/assets/ui/social/${file}" alt="${name}"></span>`).join("")}
+    ${sharedSocials.map(({name,file})=>`<button class="social-icon social-${name.toLowerCase()}" type="button" data-demo-social aria-label="${name}（デモ・リンク未設定）" title="${name}（デモ）"><img src="/milky-veil-preview/assets/ui/social/${file}" alt=""></button>`).join("")}
   </div>`;
 }
 
@@ -19,4 +19,3 @@ export function translationControl(id = "header") {
     </div>
   </div>`;
 }
-

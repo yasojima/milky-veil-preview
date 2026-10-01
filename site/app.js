@@ -2,13 +2,13 @@ import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
 import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
-import { socialIcons, translationControl } from "./shared-social-tools.js";
+import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
-import { reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
-import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20260926-546";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20260927-587";
+import { reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20261001-595";
+import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20261001-595";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20260927-587&demo=20261001-595";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
-import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20260927-590";
+import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20261001-595";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedPrivacyPolicyAnchorId, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260926-552";
 import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-513";
 
@@ -183,7 +183,7 @@ function header(isHome = false, currentPath = "/") {
       <div class="header-desktop">
           ${isHome ? `<p class="header-message">${salon.headerMessage}</p>` : ""}
           <div class="header-utility">
-            <div class="header-phone"><strong>${salon.phone}</strong></div>
+            <div class="header-phone"><button type="button" data-demo-phone>${salon.phone}</button></div>
             <div class="header-actions">
               <a class="header-action wave-cta" href="${routePath(actions.contact.routeId)}" data-link>${actions.contact.label}</a>
               <button class="header-action wave-cta" type="button" data-demo-reserve>${actions.demoReservation.label}</button>
@@ -383,6 +383,14 @@ function bindInstagramFeed() {
   const cards = [...track.children];
   const dialog = section.querySelector("dialog");
   const detail = section.querySelector(".instagram-detail");
+  detail.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("[data-demo-social], .instagram-detail-link[aria-disabled]")) showContactDemo();
+  });
+  detail.addEventListener("keydown", (event) => {
+    if (!["Enter", " "].includes(event.key) || !(event.target instanceof Element) || !event.target.matches(".instagram-detail-link[aria-disabled]")) return;
+    event.preventDefault();
+    showContactDemo();
+  });
   let active = 0;
   let opener;
   const sync = () => {
@@ -422,7 +430,7 @@ function bindInstagramFeed() {
     currentPhoto = 0;
     const post = instagramPosts[currentPost];
     detail.querySelector("video")?.pause();
-    detail.innerHTML = `<div class="instagram-detail-image">${post.video ? `<video controls playsinline preload="metadata" poster="${post.images[0]}" src="${post.video}" aria-label="${post.alt}"></video>` : `<div class="instagram-album">${post.images.map(image => responsiveImage(image, post.alt, { sizes: "(max-width: 767px) 90vw, 50vw", loading: "eager" })).join("")}</div>${post.images.length > 1 ? `<div class="instagram-album-controls"><button type="button" data-album-step="-1" aria-label="前の写真" disabled>←</button><span class="instagram-album-count" aria-live="polite">1 / ${post.images.length}</span><button type="button" data-album-step="1" aria-label="次の写真">→</button></div>` : ""}`}</div><div class="instagram-detail-copy"><header class="instagram-detail-account"><a href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer"><img src="${sharedBrandLogo}" alt="MILKY VEIL"><span>@${instagramProfile.username}</span></a><span class="instagram-detail-icon" aria-hidden="true">${instagramIcon("detail")}</span></header><div class="instagram-detail-text"><h3 id="instagram-post-heading">${post.title}</h3><p>${post.caption}</p></div><a class="instagram-detail-link" ${post.permalink ? `href="${post.permalink}" target="_blank" rel="noopener noreferrer"` : 'aria-disabled="true" title="実投稿URLは未接続です"'}><span>元の投稿を見る</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-11 11M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></a></div>`;
+    detail.innerHTML = `<div class="instagram-detail-image">${post.video ? `<video controls playsinline preload="metadata" poster="${post.images[0]}" src="${post.video}" aria-label="${post.alt}"></video>` : `<div class="instagram-album">${post.images.map(image => responsiveImage(image, post.alt, { sizes: "(max-width: 767px) 90vw, 50vw", loading: "eager" })).join("")}</div>${post.images.length > 1 ? `<div class="instagram-album-controls"><button type="button" data-album-step="-1" aria-label="前の写真" disabled>←</button><span class="instagram-album-count" aria-live="polite">1 / ${post.images.length}</span><button type="button" data-album-step="1" aria-label="次の写真">→</button></div>` : ""}`}</div><div class="instagram-detail-copy"><header class="instagram-detail-account"><a href="${instagramProfile.url}" target="_blank" rel="noopener noreferrer"><img src="${sharedBrandLogo}" alt="MILKY VEIL"><span>@${instagramProfile.username}</span></a><span class="instagram-detail-icon" aria-hidden="true">${instagramIcon("detail")}</span></header><div class="instagram-detail-text"><h3 id="instagram-post-heading">${post.title}</h3><p>${post.caption}</p></div><a class="instagram-detail-link" ${post.permalink ? `href="${post.permalink}" target="_blank" rel="noopener noreferrer"` : 'aria-disabled="true" role="button" tabindex="0" title="実投稿URLは未接続です"'}><span>元の投稿を見る</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-11 11M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg></a></div>`;
     detail.querySelectorAll("img").forEach(image => image.addEventListener("load", fitDetail, { once: true }));
     detail.querySelector("video")?.addEventListener("loadedmetadata", fitDetail, { once: true });
     dialog.querySelector("[data-post-status]").textContent = `${currentPost + 1} / ${instagramPosts.length} ${post.title}`;
@@ -601,7 +609,7 @@ function contactPage() {
       <div class="contact-row"><label for="contact-email">メールアドレス <span class="contact-required" aria-hidden="true">※</span></label><div><input id="contact-email" name="email" type="email" maxlength="254" autocomplete="email" required aria-describedby="contact-email-error"><span id="contact-email-error" class="field-error" aria-live="polite" data-field-error="email"></span></div></div>
       <div class="contact-row"><label for="contact-message">お問い合わせ内容 <span class="contact-required" aria-hidden="true">※</span></label><div><textarea id="contact-message" name="message" rows="8" maxlength="2000" required aria-describedby="contact-message-error"></textarea><span id="contact-message-error" class="field-error" aria-live="polite" data-field-error="message"></span></div></div>
       <button class="wave-cta" type="submit">入力内容を確認する</button>
-    </div><section class="contact-confirmation" data-contact-confirmation tabindex="-1" hidden aria-labelledby="contact-confirm-title"><h2 id="contact-confirm-title">入力内容の確認</h2><dl data-contact-review></dl><p class="form-result" role="status">デモのため送信されません。入力内容も保存していません。</p><button class="wave-cta" type="button" data-contact-edit>入力内容を修正する</button></section>
+    </div><section class="contact-confirmation" data-contact-confirmation tabindex="-1" hidden aria-labelledby="contact-confirm-title"><h2 id="contact-confirm-title">入力内容の確認</h2><dl data-contact-review></dl><p class="form-result" role="status">デモのため送信されません。入力内容も保存していません。</p><button class="wave-cta" type="button" data-contact-send>送信する</button><button class="wave-cta" type="button" data-contact-edit>入力内容を修正する</button></section>
     </form></section></main>`;
 }
 
@@ -692,6 +700,7 @@ function bind(sharedBottomScope) {
   bindHomeImageViewer();
   bindSubpageMotion();
   bindSharedFixedShell(sharedBottomScope);
+  document.querySelectorAll("[data-demo-phone], .header-social-tools [data-demo-social], .nav-meta [data-demo-social]").forEach((button) => button.addEventListener("click", () => showContactDemo()));
   document.querySelectorAll("[data-demo-reserve]").forEach((button) => button.addEventListener("click", () => showContactDemo("reserve")));
   document.querySelectorAll("[data-link]").forEach((el)=>el.addEventListener("click",(e)=>{
     if (e.metaKey || e.ctrlKey) return;
@@ -816,6 +825,7 @@ function bind(sharedBottomScope) {
     demoForm.querySelector("[data-contact-fields]").hidden = false;
     demoForm.elements.namedItem("name").focus();
   });
+  demoForm?.querySelector("[data-contact-send]").addEventListener("click", () => showContactDemo());
   demoForm?.addEventListener("input",(event)=>{
     const name = event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || event.target instanceof HTMLSelectElement
       ? event.target.name

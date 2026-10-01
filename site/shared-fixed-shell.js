@@ -1,6 +1,6 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
 import { sharedSalonData, sharedSocials } from "./shared-site-data.js?v=20260913-251";
-import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
+import { contactLabel, reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20261001-595";
 
 const sharedFixedShellData = Object.freeze({
   phone: sharedSalonData.phone,
@@ -237,7 +237,7 @@ export function bindSharedFixedShell(scope = document) {
     if (event.pointerType === "mouse" && window.matchMedia("(hover: hover)").matches) socialRail.classList.add("is-hovered");
   }, { signal });
   socialRail?.addEventListener("pointerleave", () => socialRail.classList.remove("is-hovered"), { signal });
-  socialItems.forEach((item) => item.addEventListener("click", (event) => event.preventDefault(), { signal }));
+  socialItems.forEach((item) => item.addEventListener("click", () => showContactDemo(), { signal }));
   pageTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }), { signal });
   bar.querySelector("[data-demo-phone]")?.addEventListener("click", () => {
     showContactDemo("phone");

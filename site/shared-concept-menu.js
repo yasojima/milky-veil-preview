@@ -1,8 +1,8 @@
 import { mobileLayout, usesMobileLayout } from "./responsive-policy.js";
 import "./shared-document-brand.js?v=20260922-513";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js?v=20260922-512";
-import { socialIcons, translationControl } from "./shared-social-tools.js";
-import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20260913-244";
+import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
+import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20261001-595";
 import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251";
 
 export const sharedHeaderLogoLink = 'href="#top" data-page-top-logo aria-label="このページの先頭へ"';
@@ -277,6 +277,7 @@ export function bindSharedConceptMenu(scope = document) {
   nav.addEventListener("click", (event) => {
     const action = event.target instanceof Element && event.target.closest("[data-menu-contact]");
     if (action) showContactDemo(action.dataset.menuContact);
+    if (event.target instanceof Element && event.target.closest("[data-demo-social]")) showContactDemo();
     if (event.target instanceof Element && event.target.closest("a[href]")) setOpen(false);
   }, { signal });
   document.addEventListener("keydown", (event) => {
