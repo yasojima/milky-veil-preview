@@ -1,4 +1,4 @@
-import { fitMobileBottom } from "./shared-bottom-fit-mobile.js?v=20261003-603";
+import { fitMobileBottom } from "./shared-bottom-fit-mobile.js?v=20261003-604";
 import { usesMobileLayout } from "./responsive-policy.js";
 
 const bindings = new WeakMap();
@@ -6,10 +6,11 @@ const bindings = new WeakMap();
 export function bindBottomFit(root) {
   if (bindings.has(root)) return;
   const component = root.querySelector("[data-shared-bottom-ui-component]");
+  const content = root.querySelector(".closing-content");
   const brand = root.querySelector(".shared-brand-message");
   const copy = brand?.querySelector(".shared-brand-message-copy");
   const title = copy?.querySelector("p");
-  if (!component || !brand || !title) return;
+  if (!component || !content || !brand || !title) return;
   const eyebrow = copy.querySelector("small");
   const supporting = copy.querySelector(":scope > span");
   const logo = root.querySelector(".closing-brand");
@@ -31,9 +32,11 @@ export function bindBottomFit(root) {
     brand.style.removeProperty("padding-bottom");
     brand.style.removeProperty("padding-inline");
     tickers.forEach(ticker => ticker.style.removeProperty("font-size"));
-    const targetHeight = mobile ? parseFloat(getComputedStyle(component).minHeight) : window.innerHeight;
+    const targetHeight = mobile ? parseFloat(getComputedStyle(content).minHeight) : window.innerHeight;
+    if (mobile) component.dataset.closingHeight = targetHeight <= 400 ? "minimal" : targetHeight <= 600 ? "short" : "regular";
+    else delete component.dataset.closingHeight;
     if (mobile) {
-      fitMobileBottom({ component, brand, copy, title, eyebrow, supporting, logo, tickers, targetHeight });
+      fitMobileBottom({ component: content, brand, copy, title, eyebrow, supporting, logo, tickers, targetHeight });
     } else {
     if (getComputedStyle(brand).display !== "none") {
       const style = getComputedStyle(brand);
@@ -76,18 +79,27 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
+    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(content).minHeight) === fittedMobileHeight) {
+      // Browser chrome changes the visible height without changing the stable content budget.
+      const heightChanged = fittedHeight !== window.innerHeight;
+      fittedHeight = window.innerHeight;
+      if (heightChanged && atBottom) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" });
+      return;
+    }
     schedule();
   };
+  const visibleResize = () => { if (usesMobileLayout()) resize(); };
   const scroll = () => {
     if (window.innerHeight === fittedHeight && window.innerWidth === fittedWidth) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
   };
   window.addEventListener("resize", resize, { passive: true });
+  window.visualViewport?.addEventListener("resize", visibleResize, { passive: true });
   window.addEventListener("milky-translation-layout", schedule);
   window.addEventListener("scroll", scroll, { passive: true });
   document.fonts.ready.then(schedule);
   bindings.set(root, () => {
     window.removeEventListener("resize", resize);
+    window.visualViewport?.removeEventListener("resize", visibleResize);
     window.removeEventListener("milky-translation-layout", schedule);
     window.removeEventListener("scroll", scroll);
     cancelAnimationFrame(frame);
