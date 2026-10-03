@@ -3,7 +3,7 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
   supporting.style.removeProperty("width");
   supporting.style.removeProperty("translate");
   eyebrow.style.removeProperty("--closing-eyebrow-offset");
-  if (targetHeight > 600) {
+  if (window.innerHeight > 600) {
       const style = getComputedStyle(brand);
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       const words = [...title.querySelectorAll(".brand-headline-word")];

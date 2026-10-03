@@ -12,6 +12,8 @@
 
 /* Mobile UI scope: 900px and below. */
 @media (max-width: 900px) {
+  /* Keep native fixed UI stable when a touch gesture reaches the page boundary. */
+  html { overscroll-behavior-y: none; }
   :root {
 
     --shared-menu-anchor-right: 16px;

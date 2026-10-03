@@ -1,7 +1,7 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
 const bindings = new WeakMap();
 
-// Page-logo handoff stays shared; mobile closing artwork belongs to the footer.
+// One state owns the handoff from the page logo to the closing logo on every route.
 export function bindClosingLogo(root) {
   if (bindings.has(root)) return;
   const logo = root.querySelector(".closing-brand");
