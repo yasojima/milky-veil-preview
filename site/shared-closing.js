@@ -37,15 +37,18 @@ export function bindClosingLogo(root) {
   const update = () => {
     frame = 0;
     const bounds = component.getBoundingClientRect();
+    const scrollLimit = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const scrollTop = Math.min(scrollLimit, Math.max(0, window.scrollY));
+    // Safari may report elastic displacement beyond the document's scroll range.
+    const elasticOffset = window.scrollY - scrollTop;
+    const footerTop = bounds.top + elasticOffset;
+    const footerBottom = bounds.bottom + elasticOffset;
     const mobileMenuOpen = mobileLayout.matches && !!document.querySelector(".shared-nav-content.is-open");
     const viewport = mobileLayout.matches ? window.visualViewport : null;
     const viewportBottom = viewport ? viewport.offsetTop + viewport.height : window.innerHeight;
-    const entering = bounds.top < viewportBottom && bounds.bottom > 0;
-    const naturalLogoTop = parseFloat(getComputedStyle(logo).top) || 0;
-    // The visual viewport offset includes Safari elastic scrolling; do not add it to the logo.
-    logo.classList.toggle("is-pinned", mobileLayout.matches && bounds.top <= 1 && bounds.bottom >= naturalLogoTop + logo.offsetHeight);
-    const atPageEnd = document.documentElement.scrollHeight - window.innerHeight - window.scrollY <= 1;
-    const ready = entering && (bounds.top <= 1 || atPageEnd);
+    const entering = footerTop < viewportBottom && footerBottom > 0;
+    const atPageEnd = scrollLimit - scrollTop <= 1;
+    const ready = entering && (footerTop <= 1 || atPageEnd);
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
@@ -135,7 +138,6 @@ export function bindClosingLogo(root) {
     cancelAnimationFrame(frame);
     delete document.documentElement.dataset.mvClosing;
     delete component.dataset.closingState;
-    logo.classList.remove("is-pinned");
     const header = document.querySelector(".has-split-hero");
     if (header) delete header.dataset.logoState;
     header?.querySelector(":scope > .menu-brand")?.style.removeProperty("--logo-scene-top");
