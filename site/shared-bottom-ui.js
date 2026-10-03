@@ -15,16 +15,16 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20261003-599&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20261003-599&closing=20260912-186",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&closing=20260912-186",
   "/milky-veil-preview/site/shared-font-subset.css",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260922-512&pages=20261003-599",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260919-424&pages=20261003-599&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20261003-599&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260919-425&pages=20261003-599",
-  "/milky-veil-preview/site/shared-closing.css?v=20260927-583a&pages=20261003-599",
-  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-598&pages=20261003-599",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20261003-599&closing=20260912-186",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260922-512",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260919-424&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260919-425",
+  "/milky-veil-preview/site/shared-closing.css?v=20260927-583a",
+  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-601",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&closing=20260912-186",
 ]);
 
 export function mountSharedBottomUi(host, currentPath) {

@@ -2,7 +2,7 @@ import { bindAmbientMotion, observeActivity } from "/milky-veil-preview/site/sha
 import { fitConceptIntroFrame, fitConceptPointFrame } from "/milky-veil-preview/site/concept-intro-frame.js?v=20260915-313";
 import { firstViewImage, waitForConceptFirstViewImages } from "/milky-veil-preview/site/concept-first-view-images.js?v=20260917-346";
 import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shell.js?v=20261001-595";
-import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261003-599&demo=20261001-595";
+import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261003-601&demo=20261001-595";
 import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20261001-595";
 import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251";

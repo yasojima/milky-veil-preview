@@ -2,8 +2,8 @@
   "project": "MILKY VEIL",
   "repository": "milky-veil-preview",
   "publicBasePath": "/milky-veil-preview/",
-  "generatedAt": "2026-10-03T00:45:41.205Z",
-  "deploymentVersion": "CHG-600",
+  "generatedAt": "2026-10-03T01:13:19.129Z",
+  "deploymentVersion": "CHG-601",
   "assetCount": 242,
   "assetBytes": 192390301,
   "source": "runtime-only static export"
