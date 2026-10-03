@@ -1,7 +1,7 @@
 import { mobileLayout as createMobileLayout } from "./responsive-policy.js";
 const bindings = new WeakMap();
 
-// One state owns the handoff from the page logo to the closing logo on every route.
+// Page-logo handoff stays shared; mobile closing artwork belongs to the footer.
 export function bindClosingLogo(root) {
   if (bindings.has(root)) return;
   const logo = root.querySelector(".closing-brand");
@@ -52,8 +52,9 @@ export function bindClosingLogo(root) {
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
-    logo.classList.toggle("is-revealed", state === "active");
-    logo.inert = state !== "active";
+    const revealed = mobileLayout.matches || state === "active";
+    logo.classList.toggle("is-revealed", revealed);
+    logo.inert = mobileMenuOpen || !revealed;
     const header = document.querySelector(".has-split-hero");
     const headerLogo = header?.querySelector(":scope > .menu-brand");
     if (headerLogo) {

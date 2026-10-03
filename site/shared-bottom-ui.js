@@ -1,6 +1,5 @@
-import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20261003-598";
-import { bindMobileScrollBoundary } from "./shared-mobile-scroll-boundary.js?v=20261003-598";
-import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20261003-604";
+import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20261003-605";
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20261003-605";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260926-552&closing=20260912-186";
 import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20261001-595";
@@ -23,12 +22,11 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
   "/milky-veil-preview/site/shared-footer.css?v=20260913-253&closing=20260912-186",
   "/milky-veil-preview/site/shared-fixed-shell.css?v=20260919-425",
   "/milky-veil-preview/site/shared-closing.css?v=20260927-583a",
-  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-604",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&closing=20260912-186",
+  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-605",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20261003-605",
 ]);
 
 export function mountSharedBottomUi(host, currentPath) {
-  bindMobileScrollBoundary();
   if (!(host instanceof HTMLElement)) return null;
   const root = host.shadowRoot || host.attachShadow({ mode: "open" });
   if (!root.querySelector("[data-shared-bottom-ui-component]")) {
