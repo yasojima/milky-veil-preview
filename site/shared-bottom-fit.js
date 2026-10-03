@@ -24,7 +24,7 @@ export function bindBottomFit(root) {
     frame = 0;
     if (!component.isConnected) return;
     const mobile = usesMobileLayout();
-    const keepBottom = atBottom && (fittedHeight !== window.innerHeight || fittedWidth !== window.innerWidth);
+    const keepBottom = !mobile && atBottom && (fittedHeight !== window.innerHeight || fittedWidth !== window.innerWidth);
     for (const element of [title, eyebrow, supporting]) element.style.removeProperty("font-size");
     copy.style.removeProperty("row-gap");
     brand.style.removeProperty("padding-top");

@@ -1,6 +1,5 @@
 import { bindClosingLogo, clearClosingLogo } from "./shared-closing.js?v=20261003-606";
-import { bindMobileScrollBoundary } from "./shared-mobile-scroll-boundary.js?v=20261003-606";
-import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20261003-606";
+import { bindBottomFit, clearBottomFit } from "./shared-bottom-fit.js?v=20261003-607";
 import { bindAmbientMotion } from "./shared-activity.js?v=20260909-009";
 import { sharedClosingLogoMarkup, sharedFooterClearanceMarkup, sharedFooterMarkup } from "./shared-footer.js?v=20260926-552&closing=20260912-186";
 import { sharedFixedCtaMarkup } from "./shared-fixed-shell.js?v=20261001-595";
@@ -28,7 +27,6 @@ const SHARED_BOTTOM_STYLES = Object.freeze([
 ]);
 
 export function mountSharedBottomUi(host, currentPath) {
-  bindMobileScrollBoundary();
   if (!(host instanceof HTMLElement)) return null;
   const root = host.shadowRoot || host.attachShadow({ mode: "open" });
   if (!root.querySelector("[data-shared-bottom-ui-component]")) {
