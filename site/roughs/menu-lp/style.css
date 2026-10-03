@@ -1,6 +1,6 @@
-@import url("../../shared-lp-palette.css?pages=20260919-446");
-@import url("../../shared-theme.css?pages=20260919-446");
-@import url("../../shared-hair-gallery.css?pages=20260919-446");
+@import url("../../shared-lp-palette.css?pages=20261003-599");
+@import url("../../shared-theme.css?pages=20261003-599");
+@import url("../../shared-hair-gallery.css?pages=20261003-599");
 html[data-translation-active] .design-word { writing-mode:horizontal-tb; font-size:clamp(12px,2.4cqw,18px); width:24%; }
 html[data-translation-active] .design-word > span { white-space:normal; margin-inline-start:0; }
 html[data-translation-active] .design-word-three { left:2%; top:65%; width:28%; }
@@ -157,7 +157,6 @@ html[data-translation-active] .intro-card h2 { white-space:normal; }
 .lp-price.scene-enter { --scene-y:12px; }
 .lp-design .section-heading.scene-enter { --scene-x:18px; --scene-y:0; }
 .lp-salon .section-heading.scene-enter { --scene-x:-18px; --scene-y:0; }
-#preview-viewport-hud { display:none !important; }
 @media (min-width:901px) {
   .lp-intro { padding-top:56px; padding-bottom:48px; }
   .intro-card { min-height:224px; padding:40px 28px; }

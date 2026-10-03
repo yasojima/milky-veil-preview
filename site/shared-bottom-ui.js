@@ -15,43 +15,20 @@ export function sharedBottomUiReady(host) {
 }
 
 const SHARED_BOTTOM_STYLES = Object.freeze([
-  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20261003-598&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20261003-598&closing=20260912-186",
+  "/milky-veil-preview/site/shared-activity.css?v=20260909-009&pages=20261003-599&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fonts.css?v=20260906-01&pages=20261003-599&closing=20260912-186",
   "/milky-veil-preview/site/shared-font-subset.css",
-  "/milky-veil-preview/site/shared-brand-message.css?v=20260922-512&pages=20261003-598",
-  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260919-424&pages=20261003-598&closing=20260912-186",
-  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20261003-598&closing=20260912-186",
-  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260919-425&pages=20261003-598",
-  "/milky-veil-preview/site/shared-closing.css?v=20260927-583a&pages=20261003-598",
-  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-598&pages=20261003-598",
-  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20261003-598&closing=20260912-186",
+  "/milky-veil-preview/site/shared-brand-message.css?v=20260922-512&pages=20261003-599",
+  "/milky-veil-preview/site/shared-footer-ticker.css?v=20260919-424&pages=20261003-599&closing=20260912-186",
+  "/milky-veil-preview/site/shared-footer.css?v=20260913-253&pages=20261003-599&closing=20260912-186",
+  "/milky-veil-preview/site/shared-fixed-shell.css?v=20260919-425&pages=20261003-599",
+  "/milky-veil-preview/site/shared-closing.css?v=20260927-583a&pages=20261003-599",
+  "/milky-veil-preview/site/shared-closing-mobile.css?v=20261003-598&pages=20261003-599",
+  "/milky-veil-preview/site/shared-logo-motion.css?v=20260912-174&pages=20261003-599&closing=20260912-186",
 ]);
-
-function mountViewportHud() {
-  if (document.getElementById("viewport-hud")) return;
-  const hud = document.createElement("div");
-  hud.id = "viewport-hud";
-  const shadow = hud.attachShadow({ mode: "open" });
-  shadow.innerHTML = `<style>
-    :host { all:initial; position:fixed; right:0; bottom:0; z-index:2147483647; pointer-events:none; display:block; }
-    output { display:block; padding:4px 7px; border-radius:3px 0 0; background:rgba(0,0,0,.85); color:#fff; font:600 10px/1.4 Arial,sans-serif; white-space:nowrap; }
-  </style><output aria-label="Viewport size"></output>`;
-  document.body.append(hud);
-  const output = shadow.querySelector("output");
-  const update = () => {
-    const width = Math.round(window.innerWidth);
-    const height = Math.round(window.innerHeight);
-    const breakpoint = width <= 900 ? "MOBILE" : width <= 1300 ? "TABLET" : "DESKTOP";
-    output.textContent = `${width} × ${height} px · ${breakpoint}`;
-  };
-  update();
-  window.addEventListener("resize", update, { passive: true });
-  window.visualViewport?.addEventListener("resize", update, { passive: true });
-}
 
 export function mountSharedBottomUi(host, currentPath) {
   bindMobileScrollBoundary();
-  mountViewportHud();
   if (!(host instanceof HTMLElement)) return null;
   const root = host.shadowRoot || host.attachShadow({ mode: "open" });
   if (!root.querySelector("[data-shared-bottom-ui-component]")) {

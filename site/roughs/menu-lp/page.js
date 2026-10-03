@@ -1,9 +1,9 @@
 import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
-import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20261003-598";
-import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20261003-598";
-import { responsiveImageAttributes } from "../../responsive-media.js?pages=20261003-598";
-import { priceItems } from "../menu-price/menu-data.js?pages=20261003-598";
-import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261003-598&demo=20261001-595";
+import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20261003-599";
+import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20261003-599";
+import { responsiveImageAttributes } from "../../responsive-media.js?pages=20261003-599";
+import { priceItems } from "../menu-price/menu-data.js?pages=20261003-599";
+import { mountSharedBottomUi } from "../../shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261003-599&demo=20261001-595";
 import { bindSharedFixedShell } from "../../shared-fixed-shell.js?v=20261001-595";
 import { mountSharedConceptMenu, bindSharedConceptMenu } from "../../shared-concept-menu.js?v=20261001-595";
 import { contactDemoMessage, reservationLabel } from "../../shared-contact-details.js?v=20261001-595";

@@ -19,7 +19,6 @@ dt { font-size:clamp(15px,1.9cqw,17px); font-weight:400; line-height:1.4; letter
 .detail { grid-column:1; margin-top:4px; color:#55424f; font-size:11px; line-height:1.5; }
 .price-notes { margin-top:5cqw; color:#55424f; font-size:10px; line-height:1.75; }
 .price-notes p + p { margin-top:3px; }
-#preview-viewport-hud { display:none !important; }
 body[data-embedded] { background:transparent; overflow:hidden; }
 body[data-embedded] main { padding:0; }
 body[data-embedded] .price-sheet { box-shadow:none; }
