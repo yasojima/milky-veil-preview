@@ -1,5 +1,8 @@
 // Mobile layout owns its fitting rules independently of the desktop composition.
 export function fitMobileBottom({ component, brand, copy, title, eyebrow, supporting, logo, tickers, targetHeight }) {
+  supporting.style.removeProperty("width");
+  supporting.style.removeProperty("translate");
+  eyebrow.style.removeProperty("--closing-eyebrow-offset");
   if (window.innerHeight > 600) {
       const style = getComputedStyle(brand);
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
@@ -49,5 +52,34 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
       }
       applySize(lower);
     }
+  }
+  if (logo && eyebrow) {
+    const image = logo.querySelector("img").getBoundingClientRect();
+    // The lower monogram tip is at x=269 in the shared logo's 497px-wide source.
+    const tipX = image.left + image.width * 269 / 497;
+    eyebrow.style.setProperty("--closing-eyebrow-offset", (tipX - eyebrow.getBoundingClientRect().left) + "px");
+  }
+  if (getComputedStyle(brand).display !== "none") {
+    const lines = document.createRange();
+    lines.selectNodeContents(supporting);
+    const lineWidth = Math.max(...[...lines.getClientRects()].map(rect => rect.width));
+    if (lineWidth > 0) supporting.style.width = Math.ceil(lineWidth) + "px";
+    const textLines = new Map();
+    for (const node of supporting.childNodes) {
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+      for (let index = 0; index < node.length; index += 1) {
+        lines.setStart(node, index);
+        lines.setEnd(node, index + 1);
+        const rect = lines.getBoundingClientRect();
+        const key = Math.round(rect.y);
+        if (!textLines.has(key)) textLines.set(key, { left:rect.left, right:rect.right, last:"" });
+        const line = textLines.get(key);
+        line.right = rect.right;
+        line.last = node.textContent[index];
+      }
+    }
+    const longest = [...textLines.values()].sort((a,b) => (b.right-b.left)-(a.right-a.left))[0];
+    // The shared Japanese font leaves a wider blank after a final full stop.
+    supporting.style.translate = longest?.last === "。" ? ".32em 0" : ".05em 0";
   }
 }
