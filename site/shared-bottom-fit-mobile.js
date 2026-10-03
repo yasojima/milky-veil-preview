@@ -3,6 +3,8 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
   if (window.innerHeight > 600) {
       const style = getComputedStyle(brand);
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      const words = [...title.querySelectorAll(".brand-headline-word")];
+      const stackedWords = words.length > 0 && getComputedStyle(words[0]).display === "block";
       const logoClearance = logo ? parseFloat(getComputedStyle(logo).top) + logo.offsetHeight + 12 : 0;
       brand.style.paddingTop = Math.max(92, logoClearance) + "px";
       brand.style.paddingBottom = "12px";
@@ -11,7 +13,9 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
       for (let iteration = 0; iteration < 12; iteration += 1) {
         const candidate = (lower + upper) / 2;
         title.style.fontSize = candidate + "px";
-        if (title.scrollWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight + .5) lower = candidate;
+        // Fit intrinsic line widths independently of the visual glyph centering offsets.
+        const headlineWidth = stackedWords ? Math.max(...words.map(word => word.scrollWidth)) : title.scrollWidth;
+        if (headlineWidth <= availableWidth + .5 && component.getBoundingClientRect().height <= targetHeight + .5) lower = candidate;
         else upper = candidate;
       }
       title.style.fontSize = Math.max(32, lower) + "px";
