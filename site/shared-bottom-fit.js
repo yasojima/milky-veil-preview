@@ -15,6 +15,7 @@ export function bindBottomFit(root) {
   const logo = root.querySelector(".closing-brand");
   const tickers = [...root.querySelectorAll(".shared-footer-ticker .h")];
   let frame = 0;
+  let resizeFrame = 0;
   let fittedWidth = window.innerWidth;
   let fittedHeight = window.innerHeight;
   let fittedMobileHeight = 0;
@@ -76,8 +77,15 @@ export function bindBottomFit(root) {
     if (!frame) frame = requestAnimationFrame(fit);
   };
   const resize = () => {
-    if (usesMobileLayout() && window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
-    schedule();
+    if (!usesMobileLayout()) return schedule();
+    if (resizeFrame) return;
+    // Read viewport-unit styles after the resize event has reached the next layout frame.
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = 0;
+      if (!component.isConnected) return;
+      if (window.innerWidth === fittedWidth && parseFloat(getComputedStyle(component).minHeight) === fittedMobileHeight) return;
+      schedule();
+    });
   };
   const scroll = () => {
     if (window.innerHeight === fittedHeight && window.innerWidth === fittedWidth) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
@@ -91,6 +99,7 @@ export function bindBottomFit(root) {
     window.removeEventListener("milky-translation-layout", schedule);
     window.removeEventListener("scroll", scroll);
     cancelAnimationFrame(frame);
+    cancelAnimationFrame(resizeFrame);
   });
   fit();
 }
