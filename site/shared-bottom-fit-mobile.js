@@ -3,7 +3,8 @@ export function fitMobileBottom({ component, brand, copy, title, eyebrow, suppor
   supporting.style.removeProperty("width");
   supporting.style.removeProperty("translate");
   eyebrow.style.removeProperty("--closing-eyebrow-offset");
-  if (window.innerHeight > 600) {
+  // Follow the CSS composition; browser chrome can change innerHeight without changing its media query.
+  if (getComputedStyle(copy).display !== "grid" && getComputedStyle(brand).display !== "none") {
       const style = getComputedStyle(brand);
       const availableWidth = brand.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       const words = [...title.querySelectorAll(".brand-headline-word")];

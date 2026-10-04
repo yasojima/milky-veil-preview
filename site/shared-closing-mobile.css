@@ -14,7 +14,7 @@
  .shared-brand-message-copy > span { align-self:start; }
 }
 @media(max-width:900px) {
-  [data-shared-bottom-ui-component] { min-height:100lvh; display:flex; flex-direction:column; }
+  [data-shared-bottom-ui-component] { min-height:100svh; display:flex; flex-direction:column; }
   .shared-brand-message { flex:1 0 auto; }
   .footer-shell { min-height:0; }
   .closing-brand-track { display:block; position:absolute; inset:0; z-index:2; box-sizing:border-box; padding-top:var(--shared-mobile-logo-y); pointer-events:none; }
