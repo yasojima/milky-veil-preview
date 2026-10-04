@@ -90,6 +90,11 @@ export function bindBottomFit(root) {
   const scroll = () => {
     if (window.innerHeight === fittedHeight && window.innerWidth === fittedWidth) atBottom = document.documentElement.scrollHeight - fittedHeight - window.scrollY <= 2;
   };
+  // WebKit can apply viewport CSS after window.resize; read again when layout changes.
+  const resizeObserver = new ResizeObserver(() => {
+    if (usesMobileLayout()) resize();
+  });
+  resizeObserver.observe(component);
   window.addEventListener("resize", resize, { passive: true });
   window.addEventListener("milky-translation-layout", schedule);
   window.addEventListener("scroll", scroll, { passive: true });
@@ -100,6 +105,7 @@ export function bindBottomFit(root) {
     window.removeEventListener("scroll", scroll);
     cancelAnimationFrame(frame);
     cancelAnimationFrame(resizeFrame);
+    resizeObserver.disconnect();
   });
   fit();
 }
