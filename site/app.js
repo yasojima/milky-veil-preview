@@ -1,6 +1,6 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
-import { MENU_MOVIE_ASSETS } from "./shared-salon-videos.js";
+import { MENU_MOVIE_ASSETS, MENU_STILL_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
@@ -352,7 +352,7 @@ const instagramProfile = Object.freeze({ username: "m___amakawa", url: "https://
 
 const instagramPosts = Object.freeze([
   { title: homeFeatureCards[0][2], caption: "やわらかなラベンダーに透けるようなツヤ", images: [homeFeatureCards[0][1]], alt: homeFeatureCards[0][3] },
-  { title: "SALON MOMENTS", caption: "MILKY VEILの空間を動画で", images: [MENU_MOVIE_ASSETS[0].replace(".mp4", ".webp")], video: MENU_MOVIE_ASSETS[0], alt: "MILKY VEIL 店内紹介" },
+  { title: "SALON MOMENTS", caption: "MILKY VEILの空間を動画で", images: [MENU_STILL_ASSETS[0]], video: MENU_MOVIE_ASSETS[0], alt: "MILKY VEIL 店内紹介" },
   { title: "BLONDE COLLECTION", caption: "ボブもロングもなりたい印象に合わせたブロンド", images: [homeFeatureCards[1][1], homeFeatureCards[2][1]], alt: "ブロンドのヘアデザイン" },
 ]);
 

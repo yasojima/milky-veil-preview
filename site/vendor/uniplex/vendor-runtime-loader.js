@@ -2,7 +2,7 @@ import { mountConceptTypography } from "../../concept-typography.js?v=20260922-5
 import { sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
 const stage = document.querySelector(".concept-fv-background-stage");
 if (stage) stage.classList.remove("milky-kaleidoscope-stage", "js-home-concept-lt");
-const VENDOR_RUNTIME_SRC = "/milky-veil-preview/site/vendor/uniplex/wp-content/themes/uniplex/js/script.js?ver=20260912-162";
+const VENDOR_RUNTIME_SRC = "/milky-veil-preview/site/vendor/uniplex/wp-content/themes/uniplex/js/script.js?ver=20261007-610";
 const script = document.createElement("script");
 script.id = "jquery-js";
 script.src = VENDOR_RUNTIME_SRC;
