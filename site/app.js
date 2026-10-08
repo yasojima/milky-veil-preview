@@ -1,6 +1,5 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
-import { homeFeatureCards } from "./shared-hair-gallery.js";
 import { MENU_MOVIE_ASSETS, MENU_STILL_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
@@ -15,6 +14,7 @@ import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
+const HF = `${A}home-feature-roles-v1/`;
 
 const routeRegistry = sharedRouteRegistry;
 const routeIds = sharedRouteIds;
@@ -86,6 +86,14 @@ const homeSplitSections = Object.freeze([
     sectionId: "menu-home",
   }),
 ]);
+
+const homeFeatureCards = [
+  ["COLOR", `${HF}color-lavender-customer-v2.png`, "LAVENDER", "ラベンダー"],
+  ["TEXTURE", `${HF}texture-white-bob-customer-v2.png`, "WHITE BOB", "ホワイトボブ"],
+  ["SILHOUETTE", `${HF}silhouette-long-blonde-customer-v2.png`, "BLONDE", "ブロンド"],
+  ["MOOD", `${HF}mood-root-white-bob-customer-v3.png`, "ROOT SHADOW", "ルーツシャドウ"],
+  ["IDENTITY", `${HF}identity-white-purple-updo-customer-v3.png`, "TWO-TONE", "ツートーン"],
+];
 
 const staffProfiles = Object.freeze([
   Object.freeze({
