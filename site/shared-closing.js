@@ -52,9 +52,7 @@ export function bindClosingLogo(root) {
     const state = mobileMenuOpen ? "menu" : ready ? "active" : entering ? "entering" : "outside";
     document.documentElement.dataset.mvClosing = state;
     component.dataset.closingState = state;
-    const revealed = mobileLayout.matches || state === "active";
-    logo.classList.toggle("is-revealed", revealed);
-    logo.inert = mobileMenuOpen || !revealed;
+    logo.inert = mobileMenuOpen;
     const header = document.querySelector(".has-split-hero");
     const headerLogo = header?.querySelector(":scope > .menu-brand");
     if (headerLogo) {

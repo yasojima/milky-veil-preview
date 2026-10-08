@@ -1,12 +1,13 @@
 import { usesMobileLayout, layoutQueries } from "./responsive-policy.js";
 import { staffPageContent } from "./staff-page-content.js?v=20260917-351";
+import { homeFeatureCards } from "./shared-hair-gallery.js";
 import { MENU_MOVIE_ASSETS, MENU_STILL_ASSETS } from "./shared-salon-videos.js";
 import { translationSettings, storedTranslationLanguage, ensureGoogleTranslate, mountGoogleTranslateWidgets, selectTranslationTarget } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
 import { resolveMedia, responsiveSrcset } from "./responsive-media.js?v=20260917-351";
 import { reservationLabel, showContactDemo } from "./shared-contact-details.js?v=20261001-595";
 import { bindSharedFixedShell } from "./shared-fixed-shell.js?v=20261001-595";
-import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261004-609&demo=20261001-595";
+import { clearSharedBottomUi, mountSharedBottomUi, sharedBottomUiReady } from "./shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261004-609&demo=20261001-595&logo=20261008-612";
 import { sharedScrollCueMarkup } from "./shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, mountSharedConceptMenu, sharedConceptMenuMarkup, sharedHeaderLogoLink } from "./shared-concept-menu.js?v=20261001-595";
 import { sharedBrandLogo, sharedBrandEyebrow, sharedBrandHeadlineLines, sharedBrandSupportingLines, sharedPrimaryRouteIds, sharedPrivacyPolicyAnchorId, sharedRouteIds, sharedRouteRegistry, sharedSalonData, sharedSecondaryRouteIds, sharedSocials } from "./shared-site-data.js?v=20260926-552";
@@ -14,7 +15,6 @@ import { applySharedDocumentBrand } from "./shared-document-brand.js?v=20260922-
 
 const A = "/milky-veil-preview/assets/generated/";
 const P = `${A}light-salon-pack/`;
-const HF = `${A}home-feature-roles-v1/`;
 
 const routeRegistry = sharedRouteRegistry;
 const routeIds = sharedRouteIds;
@@ -86,14 +86,6 @@ const homeSplitSections = Object.freeze([
     sectionId: "menu-home",
   }),
 ]);
-
-const homeFeatureCards = [
-  ["COLOR", `${HF}color-lavender-customer-v2.png`, "LAVENDER", "ラベンダー"],
-  ["TEXTURE", `${HF}texture-white-bob-customer-v2.png`, "WHITE BOB", "ホワイトボブ"],
-  ["SILHOUETTE", `${HF}silhouette-long-blonde-customer-v2.png`, "BLONDE", "ブロンド"],
-  ["MOOD", `${HF}mood-root-white-bob-customer-v3.png`, "ROOT SHADOW", "ルーツシャドウ"],
-  ["IDENTITY", `${HF}identity-white-purple-updo-customer-v3.png`, "TWO-TONE", "ツートーン"],
-];
 
 const staffProfiles = Object.freeze([
   Object.freeze({
