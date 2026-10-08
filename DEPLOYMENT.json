@@ -2,11 +2,12 @@
   "project": "MILKY VEIL",
   "repository": "milky-veil-preview",
   "publicBasePath": "/milky-veil-preview/",
-  "generatedAt": "2026-10-08T12:52:51.022Z",
+  "generatedAt": "2026-10-08T13:02:08.489Z",
   "deploymentVersion": "20261008-614",
   "assetCount": 239,
   "assetBytes": 185340865,
   "source": "runtime-only static export",
   "sourceCommit": "586ad22",
-  "change": "CHG-612"
+  "change": "CHG-612",
+  "publicationCorrection": "Align brand module URL with canonical source; remove legacy export-only query flags"
 }
