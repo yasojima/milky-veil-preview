@@ -5,7 +5,7 @@ import { bindSharedFixedShell } from "/milky-veil-preview/site/shared-fixed-shel
 import { mountSharedBottomUi } from "/milky-veil-preview/site/shared-bottom-ui.js?v=20260919-425&closing=20260922-530&contact=20260926-546&privacy=20260926-552&footer=20261004-609&demo=20261001-595&logo=20261008-612";
 import { mountSharedScrollCue } from "/milky-veil-preview/site/shared-scroll-cue.js?v=20260902-01";
 import { bindSharedConceptMenu, mountSharedConceptMenu } from "/milky-veil-preview/site/shared-concept-menu.js?v=20261001-595";
-import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20260913-251";
+import { sharedRouteRegistry } from "/milky-veil-preview/site/shared-site-data.js?v=20261008-614";
 
 const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
 const pageRouteId = document.body.dataset.pageRouteId || (pathname.endsWith("/menu") ? "menu" : "concept");

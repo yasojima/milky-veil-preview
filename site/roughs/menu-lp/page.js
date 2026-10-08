@@ -1,4 +1,4 @@
-import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20260913-251";
+import { sharedBrandEyebrow, sharedRouteRegistry, sharedSalonData } from "../../shared-site-data.js?v=20261008-614";
 import { homeFeatureCards } from "../../shared-hair-gallery.js?pages=20261003-599";
 import { MENU_STILL_ASSETS } from "../../shared-salon-videos.js?pages=20261003-599";
 import { responsiveImageAttributes } from "../../responsive-media.js?pages=20261003-599";

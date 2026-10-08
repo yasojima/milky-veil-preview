@@ -3,7 +3,7 @@ import "./shared-document-brand.js?v=20260922-513";
 import { ensureGoogleTranslate, selectTranslationTarget, storedTranslationLanguage } from "./shared-translation.js?v=20260922-512";
 import { socialIcons, translationControl } from "./shared-social-tools.js?v=20261001-595";
 import { menuContactMarkup, showContactDemo } from "./shared-contact-details.js?v=20261001-595";
-import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20260913-251";
+import { sharedBrandLogo, sharedPrimaryRouteIds, sharedRouteRegistry } from "./shared-site-data.js?v=20261008-614";
 
 export const sharedHeaderLogoLink = 'href="#top" data-page-top-logo aria-label="このページの先頭へ"';
 

@@ -1,4 +1,4 @@
-import { sharedSalonData } from "./shared-site-data.js?v=20260913-251";
+import { sharedSalonData } from "./shared-site-data.js?v=20261008-614";
 
 export const sharedDocumentBrand = Object.freeze({
   title: sharedSalonData.name,

@@ -1,4 +1,4 @@
-import { sharedSalonData } from "../../shared-site-data.js?pages=20260918-405";
+import { sharedSalonData } from "../../shared-site-data.js?v=20261008-614";
 import { priceItems } from "./menu-data.js?pages=20260918-405";
 
 if (new URLSearchParams(location.search).has("embed")) document.body.dataset.embedded = "true";
